@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Apr 23 15:50:57 2025
+# Process ID: 3423743
+# Current directory: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl
+# Command line: vivado -mode batch -source ./pack_kernel.tcl -tclargs xcu55c-fsvh2892-2L-e
+# Log file: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl/vivado.log
+# Journal file: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl/vivado.jou
+# Running On: cyberdeck, OS: Linux, CPU Frequency: 2000.000 MHz, CPU Physical cores: 32, Host memory: 269937 MB
+#-----------------------------------------------------------
+source ./pack_kernel.tcl
+# create_project krnl_aurora ./krnl_aurora -part [lindex $argv 0]
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1328.676 ; gain = 37.836 ; free physical = 82982 ; free virtual = 245000
+# add_files -norecurse \
+#        {                                         \
+#               ../rtl/krnl_aurora_control_s_axi.v \
+#               ../rtl/krnl_aurora.v               \
+#               ../ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci \
+#               ../ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci \
+#        }
+ERROR: [Vivado 12-172] File or Directory '../ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci' does not exist
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 23 15:51:11 2025...

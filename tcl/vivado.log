@@ -1,0 +1,102 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Apr 23 16:39:33 2025
+# Process ID: 3433997
+# Current directory: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl
+# Command line: vivado -mode batch -source ./pack_kernel.tcl -tclargs xcu55c-fsvh2892-2L-e -force
+# Log file: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl/vivado.log
+# Journal file: /home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/tcl/vivado.jou
+# Running On: cyberdeck, OS: Linux, CPU Frequency: 2000.000 MHz, CPU Physical cores: 32, Host memory: 269937 MB
+#-----------------------------------------------------------
+source ./pack_kernel.tcl
+# create_project krnl_aurora ./krnl_aurora -part [lindex $argv 0]
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1328.461 ; gain = 35.836 ; free physical = 82642 ; free virtual = 244809
+# add_files -norecurse \
+#        {                                         \
+#               ../rtl/krnl_aurora_control_s_axi.v \
+#               ../rtl/krnl_aurora.v               \
+#               ../ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci \
+#               ../ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci \
+#        }
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/Vivado/2023.2/data/ip'.
+WARNING: [Vivado 12-13650] The IP file '/home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci' has been moved from its original location, as a result the outputs for this IP will now be generated in '/home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/ip_generation/aurora_64b66b_0'. Alternatively a copy of the IP can be imported into the project using one of the 'import_ip' or 'import_files' commands.
+WARNING: [Vivado 12-13650] The IP file '/home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci' has been moved from its original location, as a result the outputs for this IP will now be generated in '/home/miahafiz/Vitis-Tutorials/Hardware_Acceleration/Design_Tutorials/08-alveo_aurora_kernel/ip_generation/axis_data_fifo_0'. Alternatively a copy of the IP can be imported into the project using one of the 'import_ip' or 'import_files' commands.
+# add_files -norecurse -fileset constrs_1 \
+#        {                                         \
+#               ../xdc/aurora_64b66b_0.xdc         \
+#        }
+# update_compile_order -fileset sources_1
+# ipx::package_project -root_dir ./krnl_aurora_ip -vendor xilinx.com -library user -taxonomy /UserIP -import_files -set_current true
+INFO: [IP_Flow 19-5107] Inferred bus interface 'rx_axis' of definition 'xilinx.com:interface:axis:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'tx_axis' of definition 'xilinx.com:interface:axis:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_control' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'init_clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_rst_n': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'ap_rst_n'.
+WARNING: [IP_Flow 19-3158] Bus Interface 'rx_axis': FREQ_HZ bus parameter missing from AXI interface when interface is not associated to a clock.
+WARNING: [IP_Flow 19-3158] Bus Interface 'tx_axis': FREQ_HZ bus parameter missing from AXI interface when interface is not associated to a clock.
+WARNING: [IP_Flow 19-3158] Bus Interface 's_axi_control': FREQ_HZ bus parameter missing from AXI interface when interface is not associated to a clock.
+WARNING: [IP_Flow 19-5661] Bus Interface 'ap_clk' does not have any bus interfaces associated with it.
+WARNING: [IP_Flow 19-11770] Clock interface 'ap_clk' has no FREQ_HZ parameter.
+WARNING: [IP_Flow 19-5661] Bus Interface 'init_clk' does not have any bus interfaces associated with it.
+WARNING: [IP_Flow 19-11770] Clock interface 'init_clk' has no FREQ_HZ parameter.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+# ipx::infer_bus_interface ap_clk xilinx.com:signal:clock_rtl:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from TCL Argument).
+# ipx::infer_bus_interface ap_rst_n xilinx.com:signal:reset_rtl:1.0 [ipx::current_core]
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from TCL Argument).
+# ipx::remove_bus_interface init_clk [ipx::current_core]
+# ipx::associate_bus_interfaces -busif s_axi_control  -clock ap_clk [ipx::current_core]
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 's_axi_control'.
+# ipx::associate_bus_interfaces -busif rx_axis        -clock ap_clk [ipx::current_core]
+# ipx::associate_bus_interfaces -busif tx_axis        -clock ap_clk [ipx::current_core]
+# ipx::associate_bus_interfaces -busif rx_axis -clock ap_clk [ipx::current_core]
+# ipx::associate_bus_interfaces -busif tx_axis -clock ap_clk [ipx::current_core]
+# ipx::associate_bus_interfaces -clock ap_clk -reset ap_rst_n [ipx::current_core]
+# ipx::add_bus_interface gt_port [ipx::current_core]
+# set_property interface_mode master                                    [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property abstraction_type_vlnv xilinx.com:interface:gt_rtl:1.0    [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property bus_type_vlnv xilinx.com:interface:gt:1.0                [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# ipx::add_port_map GRX_P                                               [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property physical_name gt_rxp_in [ipx::get_port_maps GRX_P -of_objects [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]]
+# ipx::add_port_map GTX_N                                               [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property physical_name gt_txn_out [ipx::get_port_maps GTX_N -of_objects [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]]
+# ipx::add_port_map GRX_N                                               [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property physical_name gt_rxn_in [ipx::get_port_maps GRX_N -of_objects [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]]
+# ipx::add_port_map GTX_P                                               [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]
+# set_property physical_name gt_txp_out [ipx::get_port_maps GTX_P -of_objects [ipx::get_bus_interfaces gt_port -of_objects [ipx::current_core]]]
+# ipx::add_bus_interface gt_refclk [ipx::current_core]
+# set_property interface_mode slave                                            [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]
+# set_property abstraction_type_vlnv xilinx.com:interface:diff_clock_rtl:1.0   [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]
+# set_property bus_type_vlnv xilinx.com:interface:diff_clock:1.0               [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]
+# ipx::add_port_map CLK_P                                                      [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]
+# set_property physical_name gt_refclk_p [ipx::get_port_maps CLK_P -of_objects [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]]
+# ipx::add_port_map CLK_N                                                      [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]
+# set_property physical_name gt_refclk_n [ipx::get_port_maps CLK_N -of_objects [ipx::get_bus_interfaces gt_refclk -of_objects [ipx::current_core]]]
+# set_property sdx_kernel true [ipx::current_core]
+# set_property sdx_kernel_type rtl [ipx::current_core]
+# ipx::update_source_project_archive -component [ipx::current_core]
+# ipx::save_core [ipx::current_core]
+# package_xo -force \
+#            -xo_path ../krnl_aurora.xo \
+#            -kernel_name krnl_aurora \
+#            -ctrl_protocol ap_ctrl_none \
+#            -ip_directory ./krnl_aurora_ip \
+#            -output_kernel_xml ../krnl_aurora.xml
+WARNING: [Vivado 12-4404] The CPU emulation flow in v++ is only supported when using a packaged XO file that contains C-model files, none were found.
+WARNING: [IP_Flow 19-7060] When packaging for Vitis, pins that are not part of an interface are not supported 'init_clk'.
+WARNING: [IP_Flow 19-11770] Clock interface 'ap_clk' has no FREQ_HZ parameter.
+WARNING: [IP_Flow 19-8019] Interface gt_port is not a bus interface of type clock, reset, interrupt, or AXI, with limited Vitis connectivity automation support.
+WARNING: [IP_Flow 19-8019] Interface gt_refclk is not a bus interface of type clock, reset, interrupt, or AXI, with limited Vitis connectivity automation support.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-2187] The Product Guide file is missing.
+INFO: [Ipptcl 7-1486] check_integrity: Integrity check passed.
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 23 16:39:50 2025...
