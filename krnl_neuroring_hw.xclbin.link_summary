@@ -556,3 +556,714 @@
  }
 }
 </ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:31 2025",
+ "timestampMillis": "1753970491277",
+ "status": {
+  "cmdId": "0f945370-8b26-4f27-b3f9-917ffd194bde",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:31 2025",
+ "timestampMillis": "1753970491970",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_synthed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:31 2025",
+ "timestampMillis": "1753970491979",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492006",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492014",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_synthed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492042",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_placed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492050",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492081",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492089",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492151",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492160",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492194",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_routed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492203",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_kernel_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492233",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492243",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492316",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492332",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492374",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/syn/ulp_NeuroRing_0_0_synth_1_ulp_NeuroRing_0_0_utilization_synth.rpt",
+  "name": "NeuroRing",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492390",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/syn/ulp_NeuroRing_1_0_synth_1_ulp_NeuroRing_1_0_utilization_synth.rpt",
+  "name": "NeuroRing",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492457",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": "6433ba03-967f-4ea1-bf70-cbbe11f7f52a"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:32 2025",
+ "timestampMillis": "1753970492691",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "6433ba03-967f-4ea1-bf70-cbbe11f7f52a"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493056",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "6433ba03-967f-4ea1-bf70-cbbe11f7f52a"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493165",
+ "status": {
+  "cmdId": "1fa2413d-ebf3-4241-a883-aebf1303c9d4",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493231",
+ "status": {
+  "cmdId": "83627465-5938-4158-8117-a15037e3d8ad",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493322",
+ "buildStep": {
+  "cmdId": "4ba38016-780e-4935-bee1-f85fd0d5b7c8",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493323",
+ "status": {
+  "cmdId": "4ba38016-780e-4935-bee1-f85fd0d5b7c8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493423",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493540",
+ "buildStep": {
+  "cmdId": "936707fb-d842-4b44-a347-2c8e6cd34ce3",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /home/miahafiz/NeuroRing/_x/link/int/address_map.xml -sdsl /home/miahafiz/NeuroRing/_x/link/int/sdsl.dat -xclbin /home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.xml -rtd /home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.rtd -o /home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.xml",
+  "args": [
+   "-a",
+   "/home/miahafiz/NeuroRing/_x/link/int/address_map.xml",
+   "-sdsl",
+   "/home/miahafiz/NeuroRing/_x/link/int/sdsl.dat",
+   "-xclbin",
+   "/home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.rtd",
+   "-o",
+   "/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:33 2025",
+ "timestampMillis": "1753970493541",
+ "status": {
+  "cmdId": "936707fb-d842-4b44-a347-2c8e6cd34ce3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:45 2025",
+ "timestampMillis": "1753970505948",
+ "status": {
+  "cmdId": "936707fb-d842-4b44-a347-2c8e6cd34ce3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:45 2025",
+ "timestampMillis": "1753970505950",
+ "buildStep": {
+  "cmdId": "8d9a125d-bf9e-45fa-b823-d0466d9bb4c8",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.rtd",
+   "/home/miahafiz/NeuroRing/_x/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:45 2025",
+ "timestampMillis": "1753970505956",
+ "status": {
+  "cmdId": "8d9a125d-bf9e-45fa-b823-d0466d9bb4c8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506035",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506045",
+ "status": {
+  "cmdId": "8d9a125d-bf9e-45fa-b823-d0466d9bb4c8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506046",
+ "buildStep": {
+  "cmdId": "33f4037a-5edf-43c5-8928-875977d0e462",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeAutomationSummary",
+  "args": [
+   "/home/miahafiz/NeuroRing/_x/link/int/automation_summary.txt"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506068",
+ "status": {
+  "cmdId": "33f4037a-5edf-43c5-8928-875977d0e462",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506185",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/automation_summary.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506193",
+ "status": {
+  "cmdId": "33f4037a-5edf-43c5-8928-875977d0e462",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506265",
+ "status": {
+  "cmdId": "4ba38016-780e-4935-bee1-f85fd0d5b7c8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506354",
+ "buildStep": {
+  "cmdId": "0b22ad59-adef-49bb-9f72-05dec1f245f3",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/home/miahafiz/NeuroRing/_x/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.rtd --append-section :JSON:/home/miahafiz/NeuroRing/_x/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw_xml.rtd --add-section BUILD_METADATA:JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.xml --add-section SYSTEM_METADATA:RAW:/home/miahafiz/NeuroRing/_x/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u55c_gen3x16_xdma_3_202210_1 --output /home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/home/miahafiz/NeuroRing/_x/link/int/partial.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:true",
+   "--add-section",
+   ":JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.rtd",
+   "--append-section",
+   ":JSON:/home/miahafiz/NeuroRing/_x/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/home/miahafiz/NeuroRing/_x/link/int/krnl_neuroring_hw.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/home/miahafiz/NeuroRing/_x/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--output",
+   "/home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:46 2025",
+ "timestampMillis": "1753970506355",
+ "status": {
+  "cmdId": "0b22ad59-adef-49bb-9f72-05dec1f245f3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:47 2025",
+ "timestampMillis": "1753970507680",
+ "status": {
+  "cmdId": "0b22ad59-adef-49bb-9f72-05dec1f245f3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 16:01:47 2025",
+ "timestampMillis": "1753970507754",
+ "buildStep": {
+  "cmdId": "b5444475-0e62-4cc1-9839-b881d44a1010",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin.info --input /home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin.info",
+   "--input",
+   "/home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:47 2025",
+ "timestampMillis": "1753970507755",
+ "status": {
+  "cmdId": "b5444475-0e62-4cc1-9839-b881d44a1010",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509195",
+ "status": {
+  "cmdId": "b5444475-0e62-4cc1-9839-b881d44a1010",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509384",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/system_estimate_krnl_neuroring_hw.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509567",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509578",
+ "status": {
+  "cmdId": "d8b77ed7-29f9-41f1-ad66-31b96794bd86",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509776",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/link/v++_link_krnl_neuroring_hw_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 16:01:49 2025",
+ "timestampMillis": "1753970509778",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/v++_link_krnl_neuroring_hw_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

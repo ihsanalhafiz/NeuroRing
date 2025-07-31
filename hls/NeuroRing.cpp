@@ -421,38 +421,37 @@ void DendriteDelay(
     //------------------------------------------------------
     // 6000‑deep FIFO chosen from spec; tweak as needed.
     const int DELAY_FIFO_DEPTH = 10000;
-    static hls::stream<synapse_word_t> delay_fifo;
-    #pragma HLS STREAM variable=delay_fifo depth=DELAY_FIFO_DEPTH
+    //static hls::stream<synapse_word_t> delay_fifo;
+    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
+    uint32_t idx_head = 0;
+    uint32_t idx_tail = 0;
+    //#pragma HLS STREAM variable=delay_fifo depth=DELAY_FIFO_DEPTH
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
         bool done = false;
-        int sizeFifo = delay_fifo.size();
+        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
             //--------------------------------------------------
             // 1) Age existing packets
             //--------------------------------------------------
-            if (sizeFifo > 0) {
-                synapse_word_t pkt_in;
-                bool read_status = false;
-                while(!read_status) {
-                    read_status = delay_fifo.read_nb(pkt_in);
-                }
-                if (((pkt_in >> 32) & 0xFF) == 0x0) {
+            if (size_buffer > 0) {
+                synapse_word_t pkt_in = buffer_delay[idx_tail];
+                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
+                ap_uint<8> delay = pkt_in.range(39, 32);
+                if (delay == 0x0) {
                     bool write_status = false;
                     while(!write_status) {
                         write_status = SpikeStream.write_nb(pkt_in);
                     }
                 } else {
                     // Decrement & push back
-                    Delay_t delay = pkt_in.range(39, 32) - 1;
+                    delay = delay - 1;
                     pkt_in.range(39, 32) = delay;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = delay_fifo.write_nb(pkt_in);
-                    }
+                    buffer_delay[idx_head] = pkt_in;
+                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
                 }
-                sizeFifo--;
+                size_buffer--;
             }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
@@ -460,7 +459,7 @@ void DendriteDelay(
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (((pkt_new >> 40) & 0xFFFFFF) == 0xFFFFFF) {
+                if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     bool write_status = false;
                     while(!write_status) {
@@ -468,16 +467,14 @@ void DendriteDelay(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (((pkt_new >> 32) & 0xFF) == 0x0) {
+                    if (pkt_new.range(39, 32) == 0x0) {
                         bool write_status = false;
                         while(!write_status) {
                             write_status = SpikeStream.write_nb(pkt_new);
                         }
                     } else {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = delay_fifo.write_nb(pkt_new);
-                        }
+                        buffer_delay[idx_head] = pkt_new;
+                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
                     }
                 }
             }

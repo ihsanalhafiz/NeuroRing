@@ -81,9 +81,6 @@ class NeuroRingKernel:
         self.runNeuroRing.wait()
         print(f"Kernel run complete {self.kernel_neuroring}")
 
-        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, int(math.ceil(self.neuron_total/32))*4*sim_time, 0)
-        self.spikeRecorder_array = np.frombuffer(self.spikeRecorderHandle.read(int(math.ceil(self.neuron_total/32))*4*sim_time, 0), dtype=np.uint32)
-        return self.spikeRecorder_array
     
     def wait_for_axon(self):
         self.runAxonLoader.wait()
@@ -250,5 +247,4 @@ class NeuroRingHost:
         for fpga_idx in range(self.num_fpgas):
             for i, kernel in enumerate(self.kernels_per_fpga[fpga_idx]):
                 kernel.wait_for_kernel(sim_time)
-        return self.spikeRecorder_array
 
