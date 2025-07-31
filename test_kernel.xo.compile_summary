@@ -1,0 +1,228 @@
+<ENTRY>
+{
+ "thisFile": "/home/miahafiz/NeuroRing/test_kernel.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Tue Jul 22 17:06:45 2025",
+ "timestampMillis": "1753196805319",
+ "buildStep": {
+  "cmdId": "fe388656-b8fc-4302-9535-82d95f4d4bc5",
+  "name": "v++",
+  "logFile": "/home/miahafiz/NeuroRing/_x/test_kernel/test_kernel.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 200 --kernel test_kernel --output test_kernel.xo hls/test_kernel.cpp ",
+  "args": [
+   "--compile",
+   "--platform",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--target",
+   "hw",
+   "--save-temps",
+   "--debug",
+   "-I",
+   ".",
+   "--kernel_frequency",
+   "200",
+   "--kernel",
+   "test_kernel",
+   "--output",
+   "test_kernel.xo",
+   "hls/test_kernel.cpp"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jul 22 17:06:45 2025",
+ "timestampMillis": "1753196805321",
+ "status": {
+  "cmdId": "fe388656-b8fc-4302-9535-82d95f4d4bc5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Tue Jul 22 17:06:51 2025",
+ "timestampMillis": "1753196811426",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "test_kernel",
+     "file": "/home/miahafiz/NeuroRing/test_kernel.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/hls/test_kernel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2025.1. SW Build 6137779 on 2025-05-21-18:10:03"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Tue Jul 22 17:06:51 2025",
+ "timestampMillis": "1753196811457",
+ "buildStep": {
+  "cmdId": "d93fc394-dbc0-485c-a30a-381ce064fe51",
+  "name": "vitis_hls",
+  "logFile": "/home/miahafiz/NeuroRing/_x/test_kernel/test_kernel/vitis_hls.log",
+  "commandLine": "-exec vitis_hls -f test_kernel.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "-exec",
+   "vitis_hls",
+   "-f",
+   "test_kernel.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jul 22 17:06:51 2025",
+ "timestampMillis": "1753196811459",
+ "status": {
+  "cmdId": "d93fc394-dbc0-485c-a30a-381ce064fe51",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jul 22 17:08:24 2025",
+ "timestampMillis": "1753196904192",
+ "status": {
+  "cmdId": "d93fc394-dbc0-485c-a30a-381ce064fe51",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:24 2025",
+ "timestampMillis": "1753196904484",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/test_kernel/test_kernel/test_kernel/solution/.autopilot/db/test_kernel.design.xml",
+  "name": "test_kernel",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:24 2025",
+ "timestampMillis": "1753196904496",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/test_kernel/hls_reports/test_kernel_csynth.rpt",
+  "name": "test_kernel",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:24 2025",
+ "timestampMillis": "1753196904499",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/test_kernel/test_kernel/test_kernel/solution/syn/report/test_kernel_csynth.xml",
+  "name": "test_kernel",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:24 2025",
+ "timestampMillis": "1753196904618",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/test_kernel/system_estimate_test_kernel.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Tue Jul 22 17:08:25 2025",
+ "timestampMillis": "1753196905901",
+ "status": {
+  "cmdId": "fe388656-b8fc-4302-9535-82d95f4d4bc5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:26 2025",
+ "timestampMillis": "1753196906079",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/test_kernel/v++_compile_test_kernel_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Tue Jul 22 17:08:26 2025",
+ "timestampMillis": "1753196906083",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/v++_compile_test_kernel_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

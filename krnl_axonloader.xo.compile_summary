@@ -1,0 +1,228 @@
+<ENTRY>
+{
+ "thisFile": "/home/miahafiz/NeuroRing/krnl_axonloader.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Jul 23 15:37:50 2025",
+ "timestampMillis": "1753277870586",
+ "buildStep": {
+  "cmdId": "4846c1e8-2752-42c6-bfa2-bdfdea2c497c",
+  "name": "v++",
+  "logFile": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/krnl_axonloader.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 200 --kernel AxonLoader --output krnl_axonloader.xo hls/AxonLoader.cpp ",
+  "args": [
+   "--compile",
+   "--platform",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--target",
+   "hw",
+   "--save-temps",
+   "--debug",
+   "-I",
+   ".",
+   "--kernel_frequency",
+   "200",
+   "--kernel",
+   "AxonLoader",
+   "--output",
+   "krnl_axonloader.xo",
+   "hls/AxonLoader.cpp"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:37:50 2025",
+ "timestampMillis": "1753277870587",
+ "status": {
+  "cmdId": "4846c1e8-2752-42c6-bfa2-bdfdea2c497c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Jul 23 15:37:56 2025",
+ "timestampMillis": "1753277876633",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "AxonLoader",
+     "file": "/home/miahafiz/NeuroRing/krnl_axonloader.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/hls/AxonLoader.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2025.1. SW Build 6137779 on 2025-05-21-18:10:03"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Jul 23 15:37:56 2025",
+ "timestampMillis": "1753277876668",
+ "buildStep": {
+  "cmdId": "2bb7d6d5-4021-4702-9330-9187c83bd18c",
+  "name": "vitis_hls",
+  "logFile": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/vitis_hls.log",
+  "commandLine": "-exec vitis_hls -f AxonLoader.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "-exec",
+   "vitis_hls",
+   "-f",
+   "AxonLoader.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:37:56 2025",
+ "timestampMillis": "1753277876670",
+ "status": {
+  "cmdId": "2bb7d6d5-4021-4702-9330-9187c83bd18c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:40:00 2025",
+ "timestampMillis": "1753278000160",
+ "status": {
+  "cmdId": "2bb7d6d5-4021-4702-9330-9187c83bd18c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:01 2025",
+ "timestampMillis": "1753278001278",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/AxonLoader/solution/.autopilot/db/AxonLoader.design.xml",
+  "name": "AxonLoader",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:01 2025",
+ "timestampMillis": "1753278001291",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/hls_reports/AxonLoader_csynth.rpt",
+  "name": "AxonLoader",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:01 2025",
+ "timestampMillis": "1753278001293",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/AxonLoader/solution/syn/report/AxonLoader_csynth.xml",
+  "name": "AxonLoader",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:01 2025",
+ "timestampMillis": "1753278001382",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/system_estimate_krnl_axonloader.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:40:06 2025",
+ "timestampMillis": "1753278006974",
+ "status": {
+  "cmdId": "4846c1e8-2752-42c6-bfa2-bdfdea2c497c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:07 2025",
+ "timestampMillis": "1753278007164",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/v++_compile_krnl_axonloader_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:40:07 2025",
+ "timestampMillis": "1753278007167",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/v++_compile_krnl_axonloader_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

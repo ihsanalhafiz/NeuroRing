@@ -1,0 +1,558 @@
+<ENTRY>
+{
+ "thisFile": "/home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jul 31 14:04:17 2025",
+ "timestampMillis": "1753963457744",
+ "buildStep": {
+  "cmdId": "d8b77ed7-29f9-41f1-ad66-31b96794bd86",
+  "name": "v++",
+  "logFile": "/home/miahafiz/NeuroRing/_x/link/link.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --vivado.prop \"run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\" --vivado.prop run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true --vivado.prop run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --link --optimize 3 --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug --vivado.impl.jobs 32 --vivado.synth.jobs 32 --kernel_frequency 200 --config NeuroRing.cfg --output krnl_neuroring_hw.xclbin krnl_neuroring.xo krnl_axonloader.xo ",
+  "args": [
+   "--link",
+   "--optimize",
+   "3",
+   "--platform",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--target",
+   "hw",
+   "--save-temps",
+   "--debug",
+   "--vivado.impl.jobs",
+   "32",
+   "--vivado.synth.jobs",
+   "32",
+   "--kernel_frequency",
+   "200",
+   "--config",
+   "NeuroRing.cfg",
+   "--output",
+   "krnl_neuroring_hw.xclbin",
+   "krnl_neuroring.xo",
+   "krnl_axonloader.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/NeuroRing.cfg",
+    "content": "[connectivity]\nnk=NeuroRing:2:NeuroRing_0,NeuroRing_1\nnk=AxonLoader:2:AxonLoader_0,AxonLoader_1\n\nsp=AxonLoader_0.SynapseList:HBM[0]\nsp=AxonLoader_0.SpikeRecorder:HBM[1]\nsp=AxonLoader_1.SynapseList:HBM[20]\nsp=AxonLoader_1.SpikeRecorder:HBM[21]\n\nstream_connect=AxonLoader_0.SynapseStream:NeuroRing_0.synapse_stream:1024\nstream_connect=NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024\nstream_connect=NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024\nstream_connect=NeuroRing_1.syn_forward_rt:NeuroRing_0.syn_route_in:1024\n\nstream_connect=AxonLoader_1.SynapseStream:NeuroRing_1.synapse_stream:1024\nstream_connect=NeuroRing_1.spike_out:AxonLoader_1.SpikeOutIn:1024\n\nslr=AxonLoader_0:SLR0\nslr=NeuroRing_0:SLR0\nslr=NeuroRing_1:SLR1\nslr=AxonLoader_1:SLR0\n\n[vivado]\nprop=run.impl_1.strategy=Performance_ExtraTimingOpt\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:04:17 2025",
+ "timestampMillis": "1753963457746",
+ "status": {
+  "cmdId": "d8b77ed7-29f9-41f1-ad66-31b96794bd86",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Jul 31 14:04:28 2025",
+ "timestampMillis": "1753963468240",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "krnl_neuroring_hw",
+    "file": "/home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "NeuroRing",
+     "file": "/home/miahafiz/NeuroRing/krnl_neuroring.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x/link/int/xo/NeuroRing/NeuroRing/cpu_sources/NeuroRing.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "NeuroRing_0",
+     "NeuroRing_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "AxonLoader",
+     "file": "/home/miahafiz/NeuroRing/krnl_axonloader.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x/link/int/xo/AxonLoader/AxonLoader/cpu_sources/AxonLoader.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "AxonLoader_0",
+     "AxonLoader_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2025.1. SW Build 6137779 on 2025-05-21-18:10:03"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 14:04:28 2025",
+ "timestampMillis": "1753963468853",
+ "buildStep": {
+  "cmdId": "705206f0-ae34-401b-9549-645645ccd485",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /home/miahafiz/NeuroRing/krnl_neuroring.xo --xo /home/miahafiz/NeuroRing/krnl_axonloader.xo -keep --config /home/miahafiz/NeuroRing/_x/link/int/syslinkConfig.ini --xpfm /opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm --target hw --output_dir /home/miahafiz/NeuroRing/_x/link/int --temp_dir /home/miahafiz/NeuroRing/_x/link/sys_link",
+  "args": [
+   "--xo",
+   "/home/miahafiz/NeuroRing/krnl_neuroring.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/krnl_axonloader.xo",
+   "-keep",
+   "--config",
+   "/home/miahafiz/NeuroRing/_x/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/home/miahafiz/NeuroRing/_x/link/int",
+   "--temp_dir",
+   "/home/miahafiz/NeuroRing/_x/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/_x/link/int/syslinkConfig.ini",
+    "content": "nk=NeuroRing:2:NeuroRing_0,NeuroRing_1\nnk=AxonLoader:2:AxonLoader_0,AxonLoader_1\nsc=AxonLoader_0.SynapseStream:NeuroRing_0.synapse_stream:1024\nsc=NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024\nsc=NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024\nsc=NeuroRing_1.syn_forward_rt:NeuroRing_0.syn_route_in:1024\nsc=AxonLoader_1.SynapseStream:NeuroRing_1.synapse_stream:1024\nsc=NeuroRing_1.spike_out:AxonLoader_1.SpikeOutIn:1024\nsp=AxonLoader_0.SynapseList:HBM[0]\nsp=AxonLoader_0.SpikeRecorder:HBM[1]\nsp=AxonLoader_1.SynapseList:HBM[20]\nsp=AxonLoader_1.SpikeRecorder:HBM[21]\nslr=AxonLoader_0:SLR0\nslr=NeuroRing_0:SLR0\nslr=NeuroRing_1:SLR1\nslr=AxonLoader_1:SLR0\n\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:04:28 2025",
+ "timestampMillis": "1753963468854",
+ "status": {
+  "cmdId": "705206f0-ae34-401b-9549-645645ccd485",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:00 2025",
+ "timestampMillis": "1753963500685",
+ "status": {
+  "cmdId": "705206f0-ae34-401b-9549-645645ccd485",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 14:05:00 2025",
+ "timestampMillis": "1753963500787",
+ "buildStep": {
+  "cmdId": "069d349a-9378-4103-b664-f4de83bab25c",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /home/miahafiz/NeuroRing/_x/link/int/sdsl.dat -rtd /home/miahafiz/NeuroRing/_x/link/int/cf2sw.rtd -nofilter /home/miahafiz/NeuroRing/_x/link/int/cf2sw_full.rtd -xclbin /home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.xml -o /home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/home/miahafiz/NeuroRing/_x/link/int/sdsl.dat",
+   "-rtd",
+   "/home/miahafiz/NeuroRing/_x/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/home/miahafiz/NeuroRing/_x/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.xml",
+   "-o",
+   "/home/miahafiz/NeuroRing/_x/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:00 2025",
+ "timestampMillis": "1753963500788",
+ "status": {
+  "cmdId": "069d349a-9378-4103-b664-f4de83bab25c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:14 2025",
+ "timestampMillis": "1753963514654",
+ "status": {
+  "cmdId": "069d349a-9378-4103-b664-f4de83bab25c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 14:05:14 2025",
+ "timestampMillis": "1753963514724",
+ "buildStep": {
+  "cmdId": "b17c63e6-060c-49a4-9e9f-63360a903fc4",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:14 2025",
+ "timestampMillis": "1753963514724",
+ "status": {
+  "cmdId": "b17c63e6-060c-49a4-9e9f-63360a903fc4",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 14:05:15 2025",
+ "timestampMillis": "1753963515170",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:15 2025",
+ "timestampMillis": "1753963515196",
+ "status": {
+  "cmdId": "b17c63e6-060c-49a4-9e9f-63360a903fc4",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 14:05:15 2025",
+ "timestampMillis": "1753963515329",
+ "buildStep": {
+  "cmdId": "83627465-5938-4158-8117-a15037e3d8ad",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u55c_gen3x16_xdma_3_202210_1 -s -g --kernel_frequency 200 --remote_ip_cache /home/miahafiz/NeuroRing/.ipcache --output_dir /home/miahafiz/NeuroRing/_x/link/int --log_dir /home/miahafiz/NeuroRing/_x/logs/link --report_dir /home/miahafiz/NeuroRing/_x/reports/link --config /home/miahafiz/NeuroRing/_x/link/int/vplConfig.ini -k /home/miahafiz/NeuroRing/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/miahafiz/NeuroRing/_x/link --no-info --iprepo /home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_AxonLoader_1_0 --iprepo /home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0 --messageDb /home/miahafiz/NeuroRing/_x/link/run_link/vpl.pb /home/miahafiz/NeuroRing/_x/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "-s",
+   "-g",
+   "--kernel_frequency",
+   "200",
+   "--remote_ip_cache",
+   "/home/miahafiz/NeuroRing/.ipcache",
+   "--output_dir",
+   "/home/miahafiz/NeuroRing/_x/link/int",
+   "--log_dir",
+   "/home/miahafiz/NeuroRing/_x/logs/link",
+   "--report_dir",
+   "/home/miahafiz/NeuroRing/_x/reports/link",
+   "--config",
+   "/home/miahafiz/NeuroRing/_x/link/int/vplConfig.ini",
+   "-k",
+   "/home/miahafiz/NeuroRing/_x/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/home/miahafiz/NeuroRing/_x/link",
+   "--no-info",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_AxonLoader_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0",
+   "--messageDb",
+   "/home/miahafiz/NeuroRing/_x/link/run_link/vpl.pb",
+   "/home/miahafiz/NeuroRing/_x/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/_x/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=hw_emu.enableDebugWaveform=1\nparam=hw_emu.enableProfiling=1\nparam=compiler.vppCurrentWorkingDir=/home/miahafiz/NeuroRing\nmisc=BinaryName=krnl_neuroring_hw\n\n[connectivity]\nnk=NeuroRing:2:NeuroRing_0,NeuroRing_1\nnk=AxonLoader:2:AxonLoader_0,AxonLoader_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\nprop=run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\nprop=run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true\nprop=run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true\nsynth.jobs=32\nimpl.jobs=32\nprop=run.impl_1.strategy=Performance_ExtraTimingOpt\n\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:15 2025",
+ "timestampMillis": "1753963515330",
+ "status": {
+  "cmdId": "83627465-5938-4158-8117-a15037e3d8ad",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jul 31 14:05:17 2025",
+ "timestampMillis": "1753963517994",
+ "buildStep": {
+  "cmdId": "1fa2413d-ebf3-4241-a883-aebf1303c9d4",
+  "name": "vpl",
+  "logFile": "/home/miahafiz/NeuroRing/_x/link/link.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u55c_gen3x16_xdma_3_202210_1 -s -g --kernel_frequency 200 --remote_ip_cache /home/miahafiz/NeuroRing/.ipcache --output_dir /home/miahafiz/NeuroRing/_x/link/int --log_dir /home/miahafiz/NeuroRing/_x/logs/link --report_dir /home/miahafiz/NeuroRing/_x/reports/link --config /home/miahafiz/NeuroRing/_x/link/int/vplConfig.ini -k /home/miahafiz/NeuroRing/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/miahafiz/NeuroRing/_x/link --no-info --iprepo /home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_AxonLoader_1_0 --iprepo /home/miahafiz/NeuroRing/_x/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0 --messageDb /home/miahafiz/NeuroRing/_x/link/run_link/vpl.pb /home/miahafiz/NeuroRing/_x/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:17 2025",
+ "timestampMillis": "1753963517994",
+ "status": {
+  "cmdId": "1fa2413d-ebf3-4241-a883-aebf1303c9d4",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Thu Jul 31 14:05:29 2025",
+ "timestampMillis": "1753963529172",
+ "vivadoProject": {
+  "openDir": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Jul 31 14:05:29 2025",
+ "timestampMillis": "1753963529225",
+ "buildStep": {
+  "cmdId": "0f945370-8b26-4f27-b3f9-917ffd194bde",
+  "name": "vivado",
+  "logFile": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:05:29 2025",
+ "timestampMillis": "1753963529227",
+ "status": {
+  "cmdId": "0f945370-8b26-4f27-b3f9-917ffd194bde",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 14:08:47 2025",
+ "timestampMillis": "1753963727817",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/automation_summary_pre_synthesis.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jul 31 14:16:02 2025",
+ "timestampMillis": "1753964162512",
+ "buildStep": {
+  "cmdId": "45282112-1ae0-4aa6-8e09-c1989083bcd6",
+  "name": "vivado.impl",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:16:02 2025",
+ "timestampMillis": "1753964162512",
+ "status": {
+  "cmdId": "45282112-1ae0-4aa6-8e09-c1989083bcd6",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Jul 31 14:16:02 2025",
+ "timestampMillis": "1753964162514",
+ "buildStep": {
+  "cmdId": "6433ba03-967f-4ea1-bf70-cbbe11f7f52a",
+  "name": "vivado.impl.impl_1",
+  "logFile": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl/prj/prj.runs/impl_1/runme.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl/prj/prj.runs/impl_1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Jul 31 14:16:02 2025",
+ "timestampMillis": "1753964162516",
+ "status": {
+  "cmdId": "6433ba03-967f-4ea1-bf70-cbbe11f7f52a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 15:36:59 2025",
+ "timestampMillis": "1753969019792",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl/prj/prj.runs/impl_1/system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 15:38:22 2025",
+ "timestampMillis": "1753969102291",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/kernel_service.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 15:38:22 2025",
+ "timestampMillis": "1753969102297",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/int/kernel_service.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Jul 31 15:53:47 2025",
+ "timestampMillis": "1753970027851",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/link/vivado/vpl/prj/prj.runs/impl_1/dr_timing_summary.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_FAIL",
+  "cmdId": ""
+ }
+}
+</ENTRY>

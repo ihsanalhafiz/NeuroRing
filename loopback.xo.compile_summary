@@ -1,0 +1,228 @@
+<ENTRY>
+{
+ "thisFile": "/home/miahafiz/NeuroRing/loopback.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Jul 23 15:40:12 2025",
+ "timestampMillis": "1753278012685",
+ "buildStep": {
+  "cmdId": "8019377e-c39e-4930-9750-24ee00b35700",
+  "name": "v++",
+  "logFile": "/home/miahafiz/NeuroRing/_x/loopback/loopback.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 200 --kernel loopback --output loopback.xo hls/loopback.cpp ",
+  "args": [
+   "--compile",
+   "--platform",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--target",
+   "hw",
+   "--save-temps",
+   "--debug",
+   "-I",
+   ".",
+   "--kernel_frequency",
+   "200",
+   "--kernel",
+   "loopback",
+   "--output",
+   "loopback.xo",
+   "hls/loopback.cpp"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:40:12 2025",
+ "timestampMillis": "1753278012687",
+ "status": {
+  "cmdId": "8019377e-c39e-4930-9750-24ee00b35700",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Jul 23 15:40:19 2025",
+ "timestampMillis": "1753278019005",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "loopback",
+     "file": "/home/miahafiz/NeuroRing/loopback.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/hls/loopback.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2025.1. SW Build 6137779 on 2025-05-21-18:10:03"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Jul 23 15:40:19 2025",
+ "timestampMillis": "1753278019041",
+ "buildStep": {
+  "cmdId": "a909ec4e-d179-4f0a-bfa2-2feed53affd3",
+  "name": "vitis_hls",
+  "logFile": "/home/miahafiz/NeuroRing/_x/loopback/loopback/vitis_hls.log",
+  "commandLine": "-exec vitis_hls -f loopback.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "-exec",
+   "vitis_hls",
+   "-f",
+   "loopback.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:40:19 2025",
+ "timestampMillis": "1753278019043",
+ "status": {
+  "cmdId": "a909ec4e-d179-4f0a-bfa2-2feed53affd3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084047",
+ "status": {
+  "cmdId": "a909ec4e-d179-4f0a-bfa2-2feed53affd3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084171",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/loopback/loopback/loopback/solution/.autopilot/db/loopback.design.xml",
+  "name": "loopback",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084197",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/loopback/hls_reports/loopback_csynth.rpt",
+  "name": "loopback",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084199",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/loopback/loopback/loopback/solution/syn/report/loopback_csynth.xml",
+  "name": "loopback",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084269",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/loopback/system_estimate_loopback.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Jul 23 15:41:24 2025",
+ "timestampMillis": "1753278084991",
+ "status": {
+  "cmdId": "8019377e-c39e-4930-9750-24ee00b35700",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:25 2025",
+ "timestampMillis": "1753278085176",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/reports/loopback/v++_compile_loopback_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Jul 23 15:41:25 2025",
+ "timestampMillis": "1753278085179",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x/v++_compile_loopback_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

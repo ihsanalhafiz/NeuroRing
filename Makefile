@@ -52,14 +52,18 @@ TARGET := hw
 
 ################## hardware build 
 COMMFLAGS := --platform $(PLATFORM) --target $(TARGET) --save-temps --debug 
-HLSCFLAGS := --compile $(COMMFLAGS)
-LINKFLAGS := --link --optimize 3 $(COMMFLAGS)
+HLSCFLAGS := --compile $(COMMFLAGS) -I .
+LINKFLAGS := --link --optimize 3 $(COMMFLAGS) --vivado.impl.jobs 32 --vivado.synth.jobs 32
+
+FREQ_MHZ := --kernel_frequency 200
 
 RTL_SRC := ./rtl/*.v
 RTL_SRC += ./ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci 
 RTL_SRC += ./ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci
 
 XCLBIN_OBJ := krnl_aurora_test_$(TARGET).xclbin
+NEURORING_XCLBIN_OBJ := krnl_neuroring_$(TARGET).xclbin
+TEST_KERNEL_OBJ := krnl_test_kernel_$(TARGET).xclbin
 
 krnl_aurora.xo: $(RTL_SRC) ./tcl/pack_kernel.tcl
 	rm -rf vivado_pack_krnl_project; mkdir vivado_pack_krnl_project; cd vivado_pack_krnl_project; vivado -mode batch -source ../tcl/pack_kernel.tcl -tclargs $(PART)
@@ -73,6 +77,24 @@ strm_issue_$(TARGET).xo: ./hls/strm_issue.cpp
 $(XCLBIN_OBJ): krnl_aurora.xo strm_issue_$(TARGET).xo strm_dump_$(TARGET).xo krnl_aurora_test.cfg
 	v++ $(LINKFLAGS) --config krnl_aurora_test.cfg --output $@ krnl_aurora.xo strm_dump_$(TARGET).xo strm_issue_$(TARGET).xo 
 
+
+loopback.xo: ./hls/loopback.cpp
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel loopback --output $@ $^
+
+krnl_neuroring.xo: ./hls/NeuroRing.cpp
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --output $@ $^
+
+krnl_axonloader.xo: ./hls/AxonLoader.cpp
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel AxonLoader --output $@ $^
+
+$(NEURORING_XCLBIN_OBJ): krnl_neuroring.xo krnl_axonloader.xo NeuroRing.cfg
+	v++ $(LINKFLAGS) $(FREQ_MHZ) --config NeuroRing.cfg --output $@ krnl_neuroring.xo krnl_axonloader.xo
+
+test_kernel.xo: ./hls/test_kernel.cpp
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel test_kernel --output $@ $^
+
+$(TEST_KERNEL_OBJ): test_kernel.xo TestKernel.cfg
+	v++ $(LINKFLAGS) $(FREQ_MHZ) --config TestKernel.cfg --output $@ test_kernel.xo
 
 ################## software build for XRT Native API code
 
@@ -91,6 +113,9 @@ $(EXECUTABLE): $(HOST_SRCS)
 ################## all flow
 xclbin: $(XCLBIN_OBJ)
 host: $(EXECUTABLE)
+neuroring_xclbin: $(NEURORING_XCLBIN_OBJ)
+
+test_kernel: $(TEST_KERNEL_OBJ)
 
 all: xclbin host
 

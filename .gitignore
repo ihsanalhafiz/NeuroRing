@@ -1,0 +1,5 @@
+_x/
+.ipcache/
+.Xil/
+*.log
+host_py/__pycache__/

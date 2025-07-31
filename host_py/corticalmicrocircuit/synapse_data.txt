@@ -1,0 +1,679 @@
+Detailed Synapse Information
+==================================================
+
+Connection: Population 0 → Population 0
+Number of synapses: 45
+Weight range: 2098.304 to 3539.695 pA
+Delay range: 0.400 to 3.300 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  1 → 20: 2678.907 pA, 1.600 ms
+  1 → 8: 2706.346 pA, 0.900 ms
+  1 → 5: 2924.889 pA, 1.900 ms
+  1 → 3: 2858.967 pA, 1.200 ms
+  2 → 6: 2809.599 pA, 0.500 ms
+  3 → 15: 2953.175 pA, 1.500 ms
+  5 → 1: 2598.829 pA, 2.100 ms
+  5 → 10: 2398.765 pA, 1.000 ms
+  6 → 14: 3446.051 pA, 1.300 ms
+  6 → 11: 2819.573 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 1 → Population 0
+Number of synapses: 22
+Weight range: -12752.110 to -8681.262 pA
+Delay range: 0.100 to 1.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  22 → 13: -10053.635 pA, 0.900 ms
+  22 → 11: -12350.773 pA, 0.200 ms
+  23 → 12: -9096.427 pA, 0.900 ms
+  23 → 19: -11429.905 pA, 0.200 ms
+  23 → 3: -10728.761 pA, 1.200 ms
+  23 → 12: -12199.382 pA, 1.000 ms
+  23 → 8: -11601.629 pA, 0.700 ms
+  23 → 6: -11310.741 pA, 0.500 ms
+  23 → 21: -12752.110 pA, 1.200 ms
+  24 → 9: -11804.319 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 2 → Population 0
+Number of synapses: 20
+Weight range: 4153.749 to 6886.188 pA
+Delay range: 0.200 to 2.700 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  28 → 17: 5030.667 pA, 1.400 ms
+  28 → 1: 4153.749 pA, 1.700 ms
+  29 → 14: 5179.759 pA, 0.900 ms
+  31 → 15: 5610.632 pA, 1.100 ms
+  31 → 16: 6513.700 pA, 1.500 ms
+  31 → 7: 5661.801 pA, 1.800 ms
+  33 → 16: 5757.689 pA, 1.800 ms
+  33 → 8: 5227.976 pA, 1.600 ms
+  34 → 4: 5727.838 pA, 2.100 ms
+  38 → 7: 6393.791 pA, 2.700 ms
+
+==================================================
+
+Connection: Population 3 → Population 0
+Number of synapses: 10
+Weight range: -12102.117 to -8945.970 pA
+Delay range: 0.300 to 0.900 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  50 → 14: -9713.400 pA, 0.600 ms
+  51 → 16: -11462.722 pA, 0.400 ms
+  52 → 11: -8945.970 pA, 0.500 ms
+  52 → 3: -10501.171 pA, 0.300 ms
+  52 → 3: -11547.405 pA, 0.700 ms
+  52 → 2: -11827.211 pA, 0.800 ms
+  53 → 10: -10834.727 pA, 0.900 ms
+  53 → 8: -11733.653 pA, 0.800 ms
+  54 → 8: -11211.017 pA, 0.600 ms
+  54 → 21: -12102.117 pA, 0.600 ms
+
+==================================================
+
+Connection: Population 4 → Population 0
+Number of synapses: 3
+Weight range: 2517.834 to 2805.667 pA
+Delay range: 2.400 to 2.600 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  56 → 3: 2805.667 pA, 2.400 ms
+  56 → 18: 2677.672 pA, 2.400 ms
+  58 → 18: 2517.834 pA, 2.600 ms
+
+==================================================
+
+Connection: Population 6 → Population 0
+Number of synapses: 2
+Weight range: 2792.738 to 3526.864 pA
+Delay range: 1.400 to 1.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  64 → 9: 3526.864 pA, 1.400 ms
+  70 → 13: 2792.738 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 0 → Population 1
+Number of synapses: 17
+Weight range: 2235.951 to 3369.385 pA
+Delay range: 0.700 to 2.500 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  2 → 23: 3039.307 pA, 1.400 ms
+  7 → 25: 2812.760 pA, 1.600 ms
+  8 → 24: 2906.619 pA, 1.400 ms
+  10 → 25: 2701.192 pA, 1.200 ms
+  11 → 23: 3316.947 pA, 2.000 ms
+  13 → 26: 3010.280 pA, 2.300 ms
+  13 → 26: 3005.514 pA, 1.100 ms
+  13 → 24: 2739.904 pA, 0.700 ms
+  15 → 26: 2809.931 pA, 1.000 ms
+  15 → 25: 2342.213 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 1 → Population 1
+Number of synapses: 5
+Weight range: -10817.361 to -9362.615 pA
+Delay range: 0.200 to 0.700 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  23 → 25: -10817.361 pA, 0.300 ms
+  23 → 24: -9703.795 pA, 0.200 ms
+  26 → 24: -9362.615 pA, 0.500 ms
+  26 → 23: -9493.883 pA, 0.500 ms
+  27 → 26: -10360.636 pA, 0.700 ms
+
+==================================================
+
+Connection: Population 2 → Population 1
+Number of synapses: 4
+Weight range: 2206.628 to 3010.085 pA
+Delay range: 1.500 to 2.300 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  30 → 25: 3010.085 pA, 2.200 ms
+  31 → 25: 2206.628 pA, 1.500 ms
+  33 → 27: 2444.510 pA, 2.300 ms
+  37 → 25: 2898.259 pA, 1.600 ms
+
+==================================================
+
+Connection: Population 3 → Population 1
+Number of synapses: 2
+Weight range: -12230.720 to -11046.800 pA
+Delay range: 0.600 to 1.100 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  52 → 24: -11046.800 pA, 1.100 ms
+  54 → 23: -12230.720 pA, 0.600 ms
+
+==================================================
+
+Connection: Population 4 → Population 1
+Number of synapses: 2
+Weight range: 2355.070 to 2539.655 pA
+Delay range: 1.300 to 2.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  56 → 27: 2355.070 pA, 2.000 ms
+  57 → 25: 2539.655 pA, 1.300 ms
+
+==================================================
+
+Connection: Population 0 → Population 2
+Number of synapses: 4
+Weight range: 2772.935 to 3548.743 pA
+Delay range: 0.300 to 1.500 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  9 → 39: 2810.966 pA, 1.100 ms
+  16 → 37: 2772.935 pA, 0.300 ms
+  18 → 34: 3352.723 pA, 1.500 ms
+  18 → 38: 3548.743 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 1 → Population 2
+Number of synapses: 1
+Weight range: -11033.833 to -11033.833 pA
+Delay range: 1.200 to 1.200 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  25 → 42: -11033.833 pA, 1.200 ms
+
+==================================================
+
+Connection: Population 2 → Population 2
+Number of synapses: 24
+Weight range: 2240.755 to 3323.335 pA
+Delay range: 0.200 to 2.700 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  28 → 39: 2823.054 pA, 1.100 ms
+  30 → 31: 3073.424 pA, 1.700 ms
+  31 → 47: 2990.834 pA, 0.800 ms
+  32 → 47: 2736.019 pA, 2.500 ms
+  33 → 28: 2526.019 pA, 1.800 ms
+  33 → 30: 2911.018 pA, 1.300 ms
+  33 → 41: 3067.388 pA, 1.500 ms
+  33 → 39: 2638.200 pA, 2.500 ms
+  34 → 34: 2240.755 pA, 2.000 ms
+  34 → 34: 3218.495 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 3 → Population 2
+Number of synapses: 17
+Weight range: -13306.747 to -8013.868 pA
+Delay range: 0.200 to 1.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  50 → 35: -10219.784 pA, 1.400 ms
+  50 → 35: -11427.737 pA, 0.300 ms
+  50 → 35: -12736.437 pA, 1.000 ms
+  50 → 34: -8615.484 pA, 0.500 ms
+  51 → 32: -12499.657 pA, 1.000 ms
+  51 → 45: -11360.705 pA, 0.400 ms
+  51 → 46: -9266.340 pA, 0.700 ms
+  51 → 48: -11498.922 pA, 1.200 ms
+  52 → 43: -13306.747 pA, 0.800 ms
+  52 → 48: -11115.411 pA, 0.200 ms
+
+==================================================
+
+Connection: Population 4 → Population 2
+Number of synapses: 1
+Weight range: 2629.840 to 2629.840 pA
+Delay range: 2.800 to 2.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  58 → 35: 2629.840 pA, 2.800 ms
+
+==================================================
+
+Connection: Population 6 → Population 2
+Number of synapses: 15
+Weight range: 1683.463 to 3307.401 pA
+Delay range: 0.500 to 3.200 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  61 → 29: 2785.585 pA, 1.500 ms
+  62 → 36: 3132.313 pA, 2.100 ms
+  63 → 45: 3307.401 pA, 0.500 ms
+  64 → 46: 2794.488 pA, 1.500 ms
+  64 → 42: 2627.261 pA, 0.800 ms
+  65 → 46: 2951.856 pA, 1.400 ms
+  67 → 28: 2523.586 pA, 2.100 ms
+  67 → 43: 2729.136 pA, 1.800 ms
+  67 → 37: 2629.555 pA, 3.200 ms
+  69 → 28: 2901.056 pA, 1.900 ms
+
+==================================================
+
+Connection: Population 0 → Population 3
+Number of synapses: 8
+Weight range: 2517.365 to 3169.009 pA
+Delay range: 0.600 to 2.300 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  6 → 51: 3036.604 pA, 1.800 ms
+  8 → 54: 2517.365 pA, 2.000 ms
+  13 → 50: 3169.009 pA, 1.800 ms
+  15 → 54: 2643.842 pA, 2.000 ms
+  15 → 53: 3146.905 pA, 0.900 ms
+  16 → 54: 2882.317 pA, 2.300 ms
+  21 → 54: 2799.202 pA, 1.200 ms
+  21 → 51: 2723.642 pA, 0.600 ms
+
+==================================================
+
+Connection: Population 2 → Population 3
+Number of synapses: 10
+Weight range: 2394.139 to 3480.210 pA
+Delay range: 0.600 to 2.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  31 → 54: 2654.076 pA, 1.200 ms
+  35 → 53: 2394.139 pA, 0.600 ms
+  37 → 50: 3105.308 pA, 2.100 ms
+  37 → 54: 2501.201 pA, 0.900 ms
+  40 → 51: 2710.308 pA, 2.400 ms
+  45 → 53: 2645.411 pA, 2.300 ms
+  45 → 51: 3480.210 pA, 1.600 ms
+  46 → 54: 3188.707 pA, 1.800 ms
+  47 → 54: 2927.243 pA, 1.100 ms
+  49 → 54: 2920.822 pA, 2.000 ms
+
+==================================================
+
+Connection: Population 3 → Population 3
+Number of synapses: 5
+Weight range: -11132.364 to -9166.274 pA
+Delay range: 0.300 to 1.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  51 → 53: -9921.921 pA, 0.400 ms
+  51 → 54: -9598.139 pA, 1.000 ms
+  51 → 50: -9166.274 pA, 0.400 ms
+  52 → 53: -11132.364 pA, 0.300 ms
+  54 → 53: -10611.701 pA, 1.400 ms
+
+==================================================
+
+Connection: Population 6 → Population 3
+Number of synapses: 9
+Weight range: 2388.172 to 3498.044 pA
+Delay range: 0.400 to 2.900 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  64 → 53: 3498.044 pA, 0.400 ms
+  64 → 51: 2668.648 pA, 0.700 ms
+  64 → 54: 2411.108 pA, 2.300 ms
+  70 → 53: 2619.222 pA, 1.000 ms
+  73 → 52: 2768.722 pA, 1.600 ms
+  73 → 50: 2635.584 pA, 1.600 ms
+  74 → 53: 2523.465 pA, 2.100 ms
+  74 → 52: 2534.364 pA, 2.500 ms
+  74 → 52: 2388.172 pA, 2.900 ms
+
+==================================================
+
+Connection: Population 0 → Population 4
+Number of synapses: 11
+Weight range: 2378.504 to 3332.434 pA
+Delay range: 0.200 to 2.500 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  1 → 59: 2560.410 pA, 1.400 ms
+  3 → 56: 2829.947 pA, 2.500 ms
+  5 → 55: 2898.488 pA, 0.700 ms
+  7 → 57: 2564.390 pA, 1.900 ms
+  9 → 56: 2754.126 pA, 1.400 ms
+  12 → 59: 2645.409 pA, 0.200 ms
+  16 → 58: 3003.851 pA, 1.200 ms
+  17 → 57: 2378.504 pA, 1.000 ms
+  18 → 58: 3037.085 pA, 1.100 ms
+  18 → 58: 3332.434 pA, 1.200 ms
+
+==================================================
+
+Connection: Population 1 → Population 4
+Number of synapses: 2
+Weight range: -9567.523 to -8301.031 pA
+Delay range: 0.900 to 1.100 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  22 → 58: -8301.031 pA, 1.100 ms
+  23 → 57: -9567.523 pA, 0.900 ms
+
+==================================================
+
+Connection: Population 2 → Population 4
+Number of synapses: 6
+Weight range: 2124.618 to 2839.839 pA
+Delay range: 0.500 to 2.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  28 → 56: 2124.618 pA, 1.100 ms
+  28 → 58: 2755.832 pA, 2.400 ms
+  40 → 55: 2839.839 pA, 0.900 ms
+  41 → 56: 2693.617 pA, 1.800 ms
+  48 → 57: 2586.880 pA, 0.500 ms
+  49 → 58: 2678.991 pA, 1.300 ms
+
+==================================================
+
+Connection: Population 4 → Population 4
+Number of synapses: 2
+Weight range: 2951.855 to 3008.502 pA
+Delay range: 1.700 to 2.700 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  56 → 57: 3008.502 pA, 1.700 ms
+  58 → 59: 2951.855 pA, 2.700 ms
+
+==================================================
+
+Connection: Population 5 → Population 4
+Number of synapses: 2
+Weight range: -10006.145 to -9302.713 pA
+Delay range: 0.500 to 0.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  60 → 55: -9302.713 pA, 0.800 ms
+  60 → 56: -10006.145 pA, 0.500 ms
+
+==================================================
+
+Connection: Population 6 → Population 4
+Number of synapses: 1
+Weight range: 2757.908 to 2757.908 pA
+Delay range: 1.500 to 1.500 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  66 → 58: 2757.908 pA, 1.500 ms
+
+==================================================
+
+Connection: Population 0 → Population 5
+Number of synapses: 1
+Weight range: 2650.191 to 2650.191 pA
+Delay range: 2.600 to 2.600 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  16 → 60: 2650.191 pA, 2.600 ms
+
+==================================================
+
+Connection: Population 2 → Population 5
+Number of synapses: 1
+Weight range: 2597.906 to 2597.906 pA
+Delay range: 1.300 to 1.300 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  32 → 60: 2597.906 pA, 1.300 ms
+
+==================================================
+
+Connection: Population 0 → Population 6
+Number of synapses: 5
+Weight range: 2255.730 to 3082.382 pA
+Delay range: 0.600 to 2.500 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  1 → 63: 2653.134 pA, 2.000 ms
+  3 → 62: 2255.730 pA, 2.000 ms
+  14 → 70: 3082.382 pA, 1.700 ms
+  16 → 61: 2515.343 pA, 2.500 ms
+  21 → 74: 2540.344 pA, 0.600 ms
+
+==================================================
+
+Connection: Population 1 → Population 6
+Number of synapses: 1
+Weight range: -11989.320 to -11989.320 pA
+Delay range: 0.900 to 0.900 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  27 → 70: -11989.320 pA, 0.900 ms
+
+==================================================
+
+Connection: Population 2 → Population 6
+Number of synapses: 7
+Weight range: 2629.836 to 3415.758 pA
+Delay range: 0.200 to 2.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  31 → 68: 3415.758 pA, 1.500 ms
+  32 → 73: 2787.549 pA, 1.600 ms
+  43 → 72: 2752.782 pA, 2.200 ms
+  44 → 70: 2838.569 pA, 2.800 ms
+  44 → 69: 2754.845 pA, 2.200 ms
+  46 → 63: 2880.034 pA, 0.200 ms
+  48 → 63: 2629.836 pA, 2.200 ms
+
+==================================================
+
+Connection: Population 3 → Population 6
+Number of synapses: 1
+Weight range: -11210.158 to -11210.158 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  52 → 72: -11210.158 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 4 → Population 6
+Number of synapses: 4
+Weight range: 2402.731 to 2800.887 pA
+Delay range: 1.400 to 2.400 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  55 → 61: 2569.051 pA, 1.400 ms
+  56 → 69: 2402.731 pA, 1.500 ms
+  58 → 69: 2778.063 pA, 2.400 ms
+  58 → 70: 2800.887 pA, 1.700 ms
+
+==================================================
+
+Connection: Population 6 → Population 6
+Number of synapses: 8
+Weight range: 2303.608 to 3061.735 pA
+Delay range: 0.400 to 2.600 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  63 → 61: 2303.608 pA, 2.000 ms
+  65 → 62: 2470.068 pA, 0.400 ms
+  67 → 63: 2473.119 pA, 1.100 ms
+  67 → 65: 3061.735 pA, 0.400 ms
+  68 → 61: 2445.575 pA, 0.900 ms
+  69 → 72: 3033.353 pA, 2.200 ms
+  73 → 74: 2771.400 pA, 2.600 ms
+  74 → 74: 2787.573 pA, 2.000 ms
+
+==================================================
+
+Connection: Population 7 → Population 6
+Number of synapses: 11
+Weight range: -12703.355 to -7812.635 pA
+Delay range: 0.200 to 1.600 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  75 → 68: -12703.355 pA, 0.300 ms
+  75 → 62: -11804.091 pA, 1.300 ms
+  75 → 64: -7812.635 pA, 0.600 ms
+  76 → 74: -10902.891 pA, 0.900 ms
+  76 → 72: -9488.061 pA, 1.000 ms
+  76 → 73: -10355.094 pA, 0.200 ms
+  77 → 65: -11360.025 pA, 1.000 ms
+  77 → 63: -10066.529 pA, 1.300 ms
+  77 → 62: -11460.742 pA, 1.000 ms
+  77 → 61: -10949.889 pA, 1.600 ms
+
+==================================================
+
+Connection: Population 0 → Population 7
+Number of synapses: 2
+Weight range: 2766.143 to 2910.495 pA
+Delay range: 1.600 to 1.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  17 → 76: 2766.143 pA, 1.800 ms
+  18 → 76: 2910.495 pA, 1.600 ms
+
+==================================================
+
+Connection: Population 6 → Population 7
+Number of synapses: 3
+Weight range: 2541.793 to 2690.957 pA
+Delay range: 1.300 to 1.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  61 → 75: 2660.635 pA, 1.800 ms
+  67 → 75: 2690.957 pA, 1.700 ms
+  72 → 76: 2541.793 pA, 1.300 ms
+
+==================================================
+
+Connection: Population 7 → Population 7
+Number of synapses: 1
+Weight range: -10593.690 to -10593.690 pA
+Delay range: 0.800 to 0.800 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  76 → 75: -10593.690 pA, 0.800 ms
+
+==================================================
+
+Connection: Population 0 → Population -2
+Number of synapses: 21
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  1 → 78: 1.000 pA, 1.000 ms
+  2 → 78: 1.000 pA, 1.000 ms
+  3 → 78: 1.000 pA, 1.000 ms
+  4 → 78: 1.000 pA, 1.000 ms
+  5 → 78: 1.000 pA, 1.000 ms
+  6 → 78: 1.000 pA, 1.000 ms
+  7 → 78: 1.000 pA, 1.000 ms
+  8 → 78: 1.000 pA, 1.000 ms
+  9 → 78: 1.000 pA, 1.000 ms
+  10 → 78: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 1 → Population -2
+Number of synapses: 6
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  22 → 79: 1.000 pA, 1.000 ms
+  23 → 79: 1.000 pA, 1.000 ms
+  24 → 79: 1.000 pA, 1.000 ms
+  25 → 79: 1.000 pA, 1.000 ms
+  26 → 79: 1.000 pA, 1.000 ms
+  27 → 79: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 2 → Population -2
+Number of synapses: 22
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  28 → 80: 1.000 pA, 1.000 ms
+  29 → 80: 1.000 pA, 1.000 ms
+  30 → 80: 1.000 pA, 1.000 ms
+  31 → 80: 1.000 pA, 1.000 ms
+  32 → 80: 1.000 pA, 1.000 ms
+  33 → 80: 1.000 pA, 1.000 ms
+  34 → 80: 1.000 pA, 1.000 ms
+  35 → 80: 1.000 pA, 1.000 ms
+  36 → 80: 1.000 pA, 1.000 ms
+  37 → 80: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 3 → Population -2
+Number of synapses: 5
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  50 → 81: 1.000 pA, 1.000 ms
+  51 → 81: 1.000 pA, 1.000 ms
+  52 → 81: 1.000 pA, 1.000 ms
+  53 → 81: 1.000 pA, 1.000 ms
+  54 → 81: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 4 → Population -2
+Number of synapses: 5
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  55 → 82: 1.000 pA, 1.000 ms
+  56 → 82: 1.000 pA, 1.000 ms
+  57 → 82: 1.000 pA, 1.000 ms
+  58 → 82: 1.000 pA, 1.000 ms
+  59 → 82: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 5 → Population -2
+Number of synapses: 1
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  60 → 83: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 6 → Population -2
+Number of synapses: 14
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  61 → 84: 1.000 pA, 1.000 ms
+  62 → 84: 1.000 pA, 1.000 ms
+  63 → 84: 1.000 pA, 1.000 ms
+  64 → 84: 1.000 pA, 1.000 ms
+  65 → 84: 1.000 pA, 1.000 ms
+  66 → 84: 1.000 pA, 1.000 ms
+  67 → 84: 1.000 pA, 1.000 ms
+  68 → 84: 1.000 pA, 1.000 ms
+  69 → 84: 1.000 pA, 1.000 ms
+  70 → 84: 1.000 pA, 1.000 ms
+
+==================================================
+
+Connection: Population 7 → Population -2
+Number of synapses: 3
+Weight range: 1.000 to 1.000 pA
+Delay range: 1.000 to 1.000 ms
+------------------------------
+First 10 synapses (source → target: weight, delay):
+  75 → 85: 1.000 pA, 1.000 ms
+  76 → 85: 1.000 pA, 1.000 ms
+  77 → 85: 1.000 pA, 1.000 ms
+
+==================================================
+

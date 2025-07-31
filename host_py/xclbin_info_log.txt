@@ -1,0 +1,21 @@
+Host buffer alignment 4096 bytes
+Compiled kernel = /home/miahafiz/NeuroRing/krnl_neuroring_hw.xclbin
+Data will be written to: /home/miahafiz/NeuroRing/host_py/data/
+  Directory has been created.
+
+Neuron numbers are scaled by a factor of 0.001.
+Indegrees are scaled by a factor of 0.001.
+  Weights and DC input are adjusted to compensate.
+
+RNG seed: 55
+Total number of virtual processes: 1
+Creating neuronal populations.
+Creating recording devices.
+  Creating spike recorders.
+Creating DC generators for external stimulation.
+Connecting neuronal populations recurrently.
+Connecting DC generators.
+Extracting synapse information...
+Initialized device 0 with XCLBIN UUID: 9d751fe9-985f-796f-4323-8239d85f870c
+'pyxrt.device' object has no attribute 'index'
+TEST FAILED
