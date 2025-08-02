@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                AxonLoader, NeuroRing
    Signature:              
    Content:                Bitstream
-   UUID (xclbin):          f1e08592-22eb-69ee-aa32-924af2dc041b
+   UUID (xclbin):          b7cadc8a-c792-1d03-99a2-88a44a8fe12e
    UUID (IINTF):           b7ac1abe1e3e1cb686d5a81232452676
    Sections:               BITSTREAM, MEM_TOPOLOGY, IP_LAYOUT, CONNECTIVITY, 
                            CLOCK_FREQ_TOPOLOGY, BUILD_METADATA, 
@@ -49,7 +49,7 @@ Scalable Clocks
    Name:      DATA_CLK
    Index:     2
    Type:      DATA
-   Frequency: 111 MHz
+   Frequency: 114 MHz
 
 System Clocks
 ------
@@ -57,7 +57,7 @@ System Clocks
    Type:           SCALABLE 
    Default Freq:   300 MHz
    Requested Freq: 200 MHz
-   Achieved Freq:  111.4 MHz
+   Achieved Freq:  114.4 MHz
 
    Name:           ulp_ucs_aclk_kernel_01 
    Type:           SCALABLE 

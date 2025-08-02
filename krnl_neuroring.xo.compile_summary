@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Thu Jul 31 14:01:46 2025",
- "timestampMillis": "1753963306367",
+ "dateTimestamp": "Sat Aug  2 21:09:25 2025",
+ "timestampMillis": "1754161765813",
  "buildStep": {
-  "cmdId": "b94e432b-8725-4946-8690-961878aff627",
+  "cmdId": "7306384a-956e-48ef-bddc-28a09a98cb50",
   "name": "v++",
   "logFile": "/home/miahafiz/NeuroRing/_x/krnl_neuroring/krnl_neuroring.steps.log",
   "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 200 --kernel NeuroRing --output krnl_neuroring.xo hls/NeuroRing.cpp ",
@@ -42,10 +42,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Thu Jul 31 14:01:46 2025",
- "timestampMillis": "1753963306368",
+ "dateTimestamp": "Sat Aug  2 21:09:25 2025",
+ "timestampMillis": "1754161765814",
  "status": {
-  "cmdId": "b94e432b-8725-4946-8690-961878aff627",
+  "cmdId": "7306384a-956e-48ef-bddc-28a09a98cb50",
   "state": "CS_RUNNING"
  }
 }
@@ -53,8 +53,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Thu Jul 31 14:01:52 2025",
- "timestampMillis": "1753963312658",
+ "dateTimestamp": "Sat Aug  2 21:09:31 2025",
+ "timestampMillis": "1754161771846",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
   "hardwareDsa": "",
@@ -89,10 +89,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Thu Jul 31 14:01:52 2025",
- "timestampMillis": "1753963312693",
+ "dateTimestamp": "Sat Aug  2 21:09:31 2025",
+ "timestampMillis": "1754161771868",
  "buildStep": {
-  "cmdId": "043ae1f4-df64-43fa-9408-1562cf9a17fb",
+  "cmdId": "7b3aaa76-681f-450a-a7a2-3fb49e0a224e",
   "name": "vitis_hls",
   "logFile": "/home/miahafiz/NeuroRing/_x/krnl_neuroring/NeuroRing/vitis_hls.log",
   "commandLine": "-exec vitis_hls -f NeuroRing.tcl -messageDb vitis_hls.pb",
@@ -112,10 +112,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Thu Jul 31 14:01:52 2025",
- "timestampMillis": "1753963312695",
+ "dateTimestamp": "Sat Aug  2 21:09:31 2025",
+ "timestampMillis": "1754161771870",
  "status": {
-  "cmdId": "043ae1f4-df64-43fa-9408-1562cf9a17fb",
+  "cmdId": "7b3aaa76-681f-450a-a7a2-3fb49e0a224e",
   "state": "CS_RUNNING"
  }
 }
@@ -123,10 +123,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Thu Jul 31 14:03:59 2025",
- "timestampMillis": "1753963439914",
+ "dateTimestamp": "Sat Aug  2 21:11:38 2025",
+ "timestampMillis": "1754161898185",
  "status": {
-  "cmdId": "043ae1f4-df64-43fa-9408-1562cf9a17fb",
+  "cmdId": "7b3aaa76-681f-450a-a7a2-3fb49e0a224e",
   "state": "CS_PASSED"
  }
 }
@@ -134,8 +134,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:01 2025",
- "timestampMillis": "1753963441249",
+ "dateTimestamp": "Sat Aug  2 21:11:40 2025",
+ "timestampMillis": "1754161900014",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/krnl_neuroring/NeuroRing/NeuroRing/solution/.autopilot/db/NeuroRing.design.xml",
   "name": "NeuroRing",
@@ -148,8 +148,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:01 2025",
- "timestampMillis": "1753963441259",
+ "dateTimestamp": "Sat Aug  2 21:11:40 2025",
+ "timestampMillis": "1754161900028",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_neuroring/hls_reports/NeuroRing_csynth.rpt",
   "name": "NeuroRing",
@@ -162,8 +162,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:01 2025",
- "timestampMillis": "1753963441261",
+ "dateTimestamp": "Sat Aug  2 21:11:40 2025",
+ "timestampMillis": "1754161900031",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/krnl_neuroring/NeuroRing/NeuroRing/solution/syn/report/NeuroRing_csynth.xml",
   "name": "NeuroRing",
@@ -176,8 +176,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:01 2025",
- "timestampMillis": "1753963441337",
+ "dateTimestamp": "Sat Aug  2 21:11:40 2025",
+ "timestampMillis": "1754161900109",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_neuroring/system_estimate_krnl_neuroring.xtxt",
   "name": "",
@@ -190,10 +190,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Thu Jul 31 14:04:06 2025",
- "timestampMillis": "1753963446597",
+ "dateTimestamp": "Sat Aug  2 21:11:46 2025",
+ "timestampMillis": "1754161906272",
  "status": {
-  "cmdId": "b94e432b-8725-4946-8690-961878aff627",
+  "cmdId": "7306384a-956e-48ef-bddc-28a09a98cb50",
   "state": "CS_PASSED"
  }
 }
@@ -201,8 +201,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:06 2025",
- "timestampMillis": "1753963446780",
+ "dateTimestamp": "Sat Aug  2 21:11:46 2025",
+ "timestampMillis": "1754161906455",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_neuroring/v++_compile_krnl_neuroring_guidance.html",
   "name": "",
@@ -215,8 +215,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Thu Jul 31 14:04:06 2025",
- "timestampMillis": "1753963446783",
+ "dateTimestamp": "Sat Aug  2 21:11:46 2025",
+ "timestampMillis": "1754161906459",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/v++_compile_krnl_neuroring_guidance.pb3",
   "name": "",

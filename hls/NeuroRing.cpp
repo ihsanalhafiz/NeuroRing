@@ -88,6 +88,7 @@ void SomaEngine(
         //--------------------------------------------------
         // 2) Consume incoming weighted spikes
         //--------------------------------------------------
+        runstate = true;
         synapse_loop: while (runstate) {
             //#pragma HLS PIPELINE II=1
             synapse_word_t pkt;
@@ -95,7 +96,7 @@ void SomaEngine(
             if (have_pkt) {
                 float_to_uint32 weight_conv;
                 weight_conv.u = pkt.range(31, 0);
-                uint32_t dst = pkt.range(63, 40);
+                DstID_t dst = pkt.range(63, 40);
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst == 0xFFFFFF) {
                     // Sync – end of timestep
@@ -103,7 +104,7 @@ void SomaEngine(
                 } else {
                 // TODO: Demultiplex DstID & compute membrane update
                 // *** Insert LIF integration & threshold test ***
-                    C_acc[dst-NeuronStart] += weight_conv.f;
+                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
                 }
             }
         }
@@ -122,7 +123,7 @@ void SomaEngine(
             x_state[i] = alpha*U_membPot[i] + gamma*I_PreSynCurr[i] + beta*R_RefCnt[i];
             I_PreSynCurr[i] *= beta;
             if(x_state[i] > threshold) {
-                spike_status.data |= (ap_uint<2048>)1<<i;
+                spike_status.data.range(i, i) = 1;
                 U_membPot[i] = 0;
                 R_RefCnt[i] = t_ref;
             }
@@ -135,8 +136,6 @@ void SomaEngine(
         while(!write_status) {
             write_status = SpikeOut.write_nb(spike_status);
         }
-
-
     }
 }
 
@@ -154,225 +153,104 @@ void SynapseRouter(
     hls::stream<synapse_word_t> &SynForward,
     hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute)
 {
+    // Pre-compute range bounds for faster comparison
+    const uint32_t neuron_end = NeuronStart + NeuronTotal;
+    
     router_loop: for (int t = 0; t < SimulationTime; t++) {
         bool axon_done = false;
         bool prev_done = false;
         uint32_t coreDone = 0;
+        
         while (!(axon_done && prev_done)) {
         #pragma HLS PIPELINE II=1 rewind
+            
+            // Process main synapse stream
             stream512u_t pkt;
             bool have_pkt = SynapseStream.read_nb(pkt);
             if (have_pkt) {
-                DstID_t dst0 = pkt.data.range(511, 488);
-                Delay_t delay0 = pkt.data.range(487, 480);
-                float_to_uint32 weight_conv0;
-                weight_conv0.u = pkt.data.range(479, 448);
-    
-                DstID_t dst1 = pkt.data.range(447, 424);
-                Delay_t delay1 = pkt.data.range(423, 416);
-                float_to_uint32 weight_conv1;
-                weight_conv1.u = pkt.data.range(415, 384);
-    
-                DstID_t dst2 = pkt.data.range(383, 360);
-                Delay_t delay2 = pkt.data.range(359, 352);
-                float_to_uint32 weight_conv2;
-                weight_conv2.u = pkt.data.range(351, 320);
-    
-                DstID_t dst3 = pkt.data.range(319, 296);
-                Delay_t delay3 = pkt.data.range(295, 288);
-                float_to_uint32 weight_conv3;
-                weight_conv3.u = pkt.data.range(287, 256);
+                // Extract all 8 synapse entries in parallel
+                DstID_t dst[8];
+                Delay_t delay[8];
+                float_to_uint32 weight_conv[8];
                 
-                DstID_t dst4 = pkt.data.range(255, 232);
-                Delay_t delay4 = pkt.data.range(231, 224);
-                float_to_uint32 weight_conv4;
-                weight_conv4.u = pkt.data.range(223, 192);
-    
-                DstID_t dst5 = pkt.data.range(191, 168);
-                Delay_t delay5 = pkt.data.range(167, 160);
-                float_to_uint32 weight_conv5;
-                weight_conv5.u = pkt.data.range(159, 128);
-    
-                DstID_t dst6 = pkt.data.range(127, 104);
-                Delay_t delay6 = pkt.data.range(103, 96);
-                float_to_uint32 weight_conv6;
-                weight_conv6.u = pkt.data.range(95, 64);
-    
-                DstID_t dst7 = pkt.data.range(63, 40);
-                Delay_t delay7 = pkt.data.range(39, 32);
-                float_to_uint32 weight_conv7;
-                weight_conv7.u = pkt.data.range(31, 0);
-    
-                printf("weight0: %f, weight1: %f, weight2: %f, weight3: %f, weight4: %f, weight5: %f, weight6: %f, weight7: %f\n", weight_conv0.f, weight_conv1.f, weight_conv2.f, weight_conv3.f, weight_conv4.f, weight_conv5.f, weight_conv6.f, weight_conv7.f);
-    
-                if (delay0 == 0xFE) {
+                // Unpack all 8 synapses at once
+                for (int i = 0; i < 8; i++) {
+                #pragma HLS UNROLL
+                    int base_bit = 511 - i * 64;
+                    dst[i] = pkt.data.range(base_bit, base_bit - 23);
+                    delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
+                    weight_conv[i].u = pkt.data.range(base_bit - 32, base_bit - 63);
+                }
+                
+                printf("weight0: %f, weight1: %f, weight2: %f, weight3: %f, weight4: %f, weight5: %f, weight6: %f, weight7: %f\n", 
+                       weight_conv[0].f, weight_conv[1].f, weight_conv[2].f, weight_conv[3].f, 
+                       weight_conv[4].f, weight_conv[5].f, weight_conv[6].f, weight_conv[7].f);
+                
+                // Check if this is an axon done signal
+                if (delay[0] == 0xFE) {
                     axon_done = true;
                     ap_axiu<64, 0, 0, 0> temp_sync;
-                    //temp_sync.data = ((ap_uint<64>)dst0 << 40) | ((ap_uint<64>)delay0 << 32) | ((ap_uint<64>)weight_conv0.u);
-                    temp_sync.data.range(63, 40) = dst0;
-                    temp_sync.data.range(39, 32) = delay0;
-                    temp_sync.data.range(31, 0) = weight_conv0.u;
+                    temp_sync.data.range(63, 40) = dst[0];
+                    temp_sync.data.range(39, 32) = delay[0];
+                    temp_sync.data.range(31, 0) = weight_conv[0].u;
+                    
+                    // Non-blocking write with retry
                     bool write_status = false;
                     while(!write_status) {
                         write_status = SynForwardRoute.write_nb(temp_sync);
                     }
                 } else {
-                    synapse_word_t temp0;
-                    //temp0.data = ((ap_uint<64>)dst0 << 40) | ((ap_uint<64>)delay0 << 32) | ((ap_uint<64>)weight_conv0.u);
-                    temp0.range(63, 40) = dst0;
-                    temp0.range(39, 32) = delay0;
-                    temp0.range(31, 0) = weight_conv0.u;
-                    synapse_word_t temp1;
-                    //temp1.data = ((ap_uint<64>)dst1 << 40) | ((ap_uint<64>)delay1 << 32) | ((ap_uint<64>)weight_conv1.u);
-                    temp1.range(63, 40) = dst1;
-                    temp1.range(39, 32) = delay1;
-                    temp1.range(31, 0) = weight_conv1.u;
-                    synapse_word_t temp2;
-                    //temp2.data = ((ap_uint<64>)dst2 << 40) | ((ap_uint<64>)delay2 << 32) | ((ap_uint<64>)weight_conv2.u);
-                    temp2.range(63, 40) = dst2;
-                    temp2.range(39, 32) = delay2;
-                    temp2.range(31, 0) = weight_conv2.u;
-                    synapse_word_t temp3;
-                    //temp3.data = ((ap_uint<64>)dst3 << 40) | ((ap_uint<64>)delay3 << 32) | ((ap_uint<64>)weight_conv3.u);
-                    temp3.range(63, 40) = dst3;
-                    temp3.range(39, 32) = delay3;
-                    temp3.range(31, 0) = weight_conv3.u;
-                    synapse_word_t temp4;
-                    //temp4.data = ((ap_uint<64>)dst4 << 40) | ((ap_uint<64>)delay4 << 32) | ((ap_uint<64>)weight_conv4.u);
-                    temp4.range(63, 40) = dst4;
-                    temp4.range(39, 32) = delay4;
-                    temp4.range(31, 0) = weight_conv4.u;
-                    synapse_word_t temp5;
-                    //temp5.data = ((ap_uint<64>)dst5 << 40) | ((ap_uint<64>)delay5 << 32) | ((ap_uint<64>)weight_conv5.u);
-                    temp5.range(63, 40) = dst5;
-                    temp5.range(39, 32) = delay5;
-                    temp5.range(31, 0) = weight_conv5.u;
-                    synapse_word_t temp6;
-                    //temp6.data = ((ap_uint<64>)dst6 << 40) | ((ap_uint<64>)delay6 << 32) | ((ap_uint<64>)weight_conv6.u);
-                    temp6.range(63, 40) = dst6;
-                    temp6.range(39, 32) = delay6;
-                    temp6.range(31, 0) = weight_conv6.u;
-                    synapse_word_t temp7;
-                    //temp7.data = ((ap_uint<64>)dst7 << 40) | ((ap_uint<64>)delay7 << 32) | ((ap_uint<64>)weight_conv7.u);
-                    temp7.range(63, 40) = dst7;
-                    temp7.range(39, 32) = delay7;
-                    temp7.range(31, 0) = weight_conv7.u;
-                    printf("dst0: %u, dst1: %u, dst2: %u, dst3: %u, dst4: %u, dst5: %u, dst6: %u, dst7: %u\n", dst0.to_uint(), dst1.to_uint(), dst2.to_uint(), dst3.to_uint(), dst4.to_uint(), dst5.to_uint(), dst6.to_uint(), dst7.to_uint());
-                    if (dst0 >= NeuronStart && dst0 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp0);
-                        }
-                    } else if (dst0 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp0;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
+                    // Process all 8 synapses efficiently
+                    synapse_loop: for (int i = 0; i < 8; i++) {
+                    #pragma HLS UNROLL
+                        // Create synapse word
+                        synapse_word_t temp;
+                        temp.range(63, 40) = dst[i];
+                        temp.range(39, 32) = delay[i];
+                        temp.range(31, 0) = weight_conv[i].u;
+                        
+                        // Route based on destination
+                        bool is_local = (dst[i] >= NeuronStart && dst[i] < neuron_end);
+                        bool is_valid = (dst[i] != 0x0);
+                        
+                        if (is_local) {
+                            // Write to local synapse stream
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForward.write_nb(temp);
+                            }
+                        } else if (is_valid) {
+                            // Write to routing stream
+                            ap_axiu<64, 0, 0, 0> temp_rt;
+                            temp_rt.data = temp;
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute.write_nb(temp_rt);
+                            }
                         }
                     }
-                    if (dst1 >= NeuronStart && dst1 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp1);
-                        }
-                    } else if (dst1 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp1;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst2 >= NeuronStart && dst2 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp2);
-                        }
-                    } else if (dst2 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp2;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst3 >= NeuronStart && dst3 < NeuronStart + NeuronTotal) {  
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status =  SynForward.write_nb(temp3);
-                        }
-                    } else if (dst3 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp3;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst4 >= NeuronStart && dst4 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp4);
-                        }
-                    } else if (dst4 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp4;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst5 >= NeuronStart && dst5 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp5);
-                        }
-                    } else if (dst5 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp5;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst6 >= NeuronStart && dst6 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp6);
-                        }
-                    } else if (dst6 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp6;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
-                    if (dst7 >= NeuronStart && dst7 < NeuronStart + NeuronTotal) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp7);
-                        }
-                    } else if (dst7 != 0x0) {
-                        ap_axiu<64, 0, 0, 0> temp_rt;
-                        temp_rt.data = temp7;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
-                        }
-                    }
+                    
+                    printf("dst0: %u, dst1: %u, dst2: %u, dst3: %u, dst4: %u, dst5: %u, dst6: %u, dst7: %u\n", 
+                           dst[0].to_uint(), dst[1].to_uint(), dst[2].to_uint(), dst[3].to_uint(), 
+                           dst[4].to_uint(), dst[5].to_uint(), dst[6].to_uint(), dst[7].to_uint());
                 }
-            }    // Process routed stream from previous router
+            }
+            
+            // Process routed stream from previous router
             ap_axiu<64, 0, 0, 0> temp_rt;
             bool have_rt = SynapseStreamRoute.read_nb(temp_rt);
             if (have_rt) {
-                if (((temp_rt.data >> 32) & 0xFF) == 0xFE) {
+                Delay_t rt_delay = (temp_rt.data >> 32) & 0xFF;
+                
+                if (rt_delay == 0xFE) {
+                    // Handle synchronization
                     if(coreDone == AmountOfCores - 1) {
                         prev_done = true;
                     } else {
                         coreDone++;
                     }
+                    
+                    // Forward if not for this core
                     ap_uint<24> temp_dst = temp_rt.data.range(63, 40);
                     if (temp_dst != ap_uint<24>(NeuronStart)) {
                         bool write_status = false;
@@ -381,26 +259,33 @@ void SynapseRouter(
                         }
                     }
                 } else {
+                    // Route based on destination
                     ap_uint<24> dst = ((temp_rt.data >> 40) & 0xFFFFFF);
-                    if (dst >= NeuronStart && dst < NeuronStart + NeuronTotal) {
+                    bool is_local = (dst >= NeuronStart && dst < neuron_end);
+                    
+                    if (is_local) {
+                        // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
                             write_status = SynForward.write_nb(temp_rt.data);
                         }
                     } else {
+                        // Forward to next router
                         bool write_status = false;
                         while(!write_status) {
                             write_status = SynForwardRoute.write_nb(temp_rt);
                         }
                     }
                 }
-            }        
+            }
         }
+        
+        // Send synchronization signal
         synapse_word_t temp_sync;
-        //temp_sync.data = ((ap_uint<64>)0xFFFFFF << 40) | ((ap_uint<64>)0xFE << 32) | ((ap_uint<64>)0x0);
         temp_sync.range(63, 40) = 0xFFFFFF;
         temp_sync.range(39, 32) = 0xFE;
         temp_sync.range(31, 0) = 0x0;
+        
         bool write_status = false;
         while(!write_status) {
             write_status = SynForward.write_nb(temp_sync);
@@ -420,9 +305,10 @@ void DendriteDelay(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 10000;
+    const int DELAY_FIFO_DEPTH = 32768;
     //static hls::stream<synapse_word_t> delay_fifo;
     ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
+    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
     uint32_t idx_head = 0;
     uint32_t idx_tail = 0;
     //#pragma HLS STREAM variable=delay_fifo depth=DELAY_FIFO_DEPTH
@@ -515,14 +401,6 @@ extern "C" void NeuroRing(
 
     // Launch data‑flow processes
     // Note: You may need to define a threshold value for SomaEngine, e.g., params.threshold if available
-    SomaEngine(
-        threshold,
-        NeuronStart,
-        NeuronTotal,
-        spike_stream,
-        SimulationTime,
-        spike_out
-    );
     SynapseRouter(
         synapse_stream,
         syn_route_in,
@@ -537,6 +415,14 @@ extern "C" void NeuroRing(
         syn_forward,
         SimulationTime,
         spike_stream
+    );
+    SomaEngine(
+        threshold,
+        NeuronStart,
+        NeuronTotal,
+        spike_stream,
+        SimulationTime,
+        spike_out
     );
 }
 
