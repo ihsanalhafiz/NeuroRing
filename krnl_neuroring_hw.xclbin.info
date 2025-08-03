@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                AxonLoader, NeuroRing
    Signature:              
    Content:                Bitstream
-   UUID (xclbin):          b7cadc8a-c792-1d03-99a2-88a44a8fe12e
+   UUID (xclbin):          16d8d738-a597-a16e-0d91-e686177480ab
    UUID (IINTF):           b7ac1abe1e3e1cb686d5a81232452676
    Sections:               BITSTREAM, MEM_TOPOLOGY, IP_LAYOUT, CONNECTIVITY, 
                            CLOCK_FREQ_TOPOLOGY, BUILD_METADATA, 
@@ -49,7 +49,7 @@ Scalable Clocks
    Name:      DATA_CLK
    Index:     2
    Type:      DATA
-   Frequency: 114 MHz
+   Frequency: 112 MHz
 
 System Clocks
 ------
@@ -57,7 +57,7 @@ System Clocks
    Type:           SCALABLE 
    Default Freq:   300 MHz
    Requested Freq: 200 MHz
-   Achieved Freq:  114.4 MHz
+   Achieved Freq:  112.1 MHz
 
    Name:           ulp_ucs_aclk_kernel_01 
    Type:           SCALABLE 
@@ -104,14 +104,14 @@ Memory Configuration
    Type:         MEM_DRAM
    Base Address: 0x80000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[5]
    Index:        5
    Type:         MEM_DRAM
    Base Address: 0xa0000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[6]
    Index:        6
@@ -132,14 +132,14 @@ Memory Configuration
    Type:         MEM_DRAM
    Base Address: 0x100000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[9]
    Index:        9
    Type:         MEM_DRAM
    Base Address: 0x120000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[10]
    Index:        10
@@ -160,14 +160,14 @@ Memory Configuration
    Type:         MEM_DRAM
    Base Address: 0x180000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[13]
    Index:        13
    Type:         MEM_DRAM
    Base Address: 0x1a0000000
    Address Size: 0x20000000
-   Bank Used:    No
+   Bank Used:    Yes
 
    Name:         HBM[14]
    Index:        14
@@ -216,14 +216,14 @@ Memory Configuration
    Type:         MEM_DRAM
    Base Address: 0x280000000
    Address Size: 0x20000000
-   Bank Used:    Yes
+   Bank Used:    No
 
    Name:         HBM[21]
    Index:        21
    Type:         MEM_DRAM
    Base Address: 0x2a0000000
    Address Size: 0x20000000
-   Bank Used:    Yes
+   Bank Used:    No
 
    Name:         HBM[22]
    Index:        22
@@ -385,6 +385,48 @@ Memory Configuration
    Base Address: 0x0
    Address Size: 0x0
    Bank Used:    Yes
+
+   Name:         dc_6
+   Index:        45
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
+
+   Name:         dc_7
+   Index:        46
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
+
+   Name:         dc_8
+   Index:        47
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
+
+   Name:         dc_9
+   Index:        48
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
+
+   Name:         dc_10
+   Index:        49
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
+
+   Name:         dc_11
+   Index:        50
+   Type:         MEM_STREAMING_CONNECTION
+   Base Address: 0x0
+   Address Size: 0x0
+   Bank Used:    Yes
 ==============================================================================
 Kernel: AxonLoader
 
@@ -476,7 +518,7 @@ Instance:        AxonLoader_0
    Argument:          SynapseStream
    Register Offset:   0x0
    Port:              SYNAPSESTREAM
-   Memory:            dc_4 (MEM_STREAMING_CONNECTION)
+   Memory:            dc_8 (MEM_STREAMING_CONNECTION)
 
 --------------------------
 Instance:        AxonLoader_1
@@ -485,12 +527,12 @@ Instance:        AxonLoader_1
    Argument:          SynapseList
    Register Offset:   0x10
    Port:              M_AXI_GMEM0
-   Memory:            HBM[20] (MEM_DRAM)
+   Memory:            HBM[4] (MEM_DRAM)
 
    Argument:          SpikeRecorder
    Register Offset:   0x1C
    Port:              M_AXI_GMEM1
-   Memory:            HBM[21] (MEM_DRAM)
+   Memory:            HBM[5] (MEM_DRAM)
 
    Argument:          NeuronStart
    Register Offset:   0x28
@@ -530,7 +572,115 @@ Instance:        AxonLoader_1
    Argument:          SynapseStream
    Register Offset:   0x0
    Port:              SYNAPSESTREAM
+   Memory:            dc_9 (MEM_STREAMING_CONNECTION)
+
+--------------------------
+Instance:        AxonLoader_2
+   Base Address: 0x820000
+
+   Argument:          SynapseList
+   Register Offset:   0x10
+   Port:              M_AXI_GMEM0
+   Memory:            HBM[8] (MEM_DRAM)
+
+   Argument:          SpikeRecorder
+   Register Offset:   0x1C
+   Port:              M_AXI_GMEM1
+   Memory:            HBM[9] (MEM_DRAM)
+
+   Argument:          NeuronStart
+   Register Offset:   0x28
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimStart
+   Register Offset:   0x38
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimTotal
+   Register Offset:   0x40
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimAmp
+   Register Offset:   0x48
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          SimulationTime
+   Register Offset:   0x50
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          SpikeOutIn
+   Register Offset:   0x0
+   Port:              SPIKEOUTIN
    Memory:            dc_5 (MEM_STREAMING_CONNECTION)
+
+   Argument:          SynapseStream
+   Register Offset:   0x0
+   Port:              SYNAPSESTREAM
+   Memory:            dc_10 (MEM_STREAMING_CONNECTION)
+
+--------------------------
+Instance:        AxonLoader_3
+   Base Address: 0x830000
+
+   Argument:          SynapseList
+   Register Offset:   0x10
+   Port:              M_AXI_GMEM0
+   Memory:            HBM[12] (MEM_DRAM)
+
+   Argument:          SpikeRecorder
+   Register Offset:   0x1C
+   Port:              M_AXI_GMEM1
+   Memory:            HBM[13] (MEM_DRAM)
+
+   Argument:          NeuronStart
+   Register Offset:   0x28
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimStart
+   Register Offset:   0x38
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimTotal
+   Register Offset:   0x40
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          DCstimAmp
+   Register Offset:   0x48
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          SimulationTime
+   Register Offset:   0x50
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          SpikeOutIn
+   Register Offset:   0x0
+   Port:              SPIKEOUTIN
+   Memory:            dc_7 (MEM_STREAMING_CONNECTION)
+
+   Argument:          SynapseStream
+   Register Offset:   0x0
+   Port:              SYNAPSESTREAM
+   Memory:            dc_11 (MEM_STREAMING_CONNECTION)
 Kernel: NeuroRing
 
 Definition
@@ -571,7 +721,7 @@ Ports
 
 --------------------------
 Instance:        NeuroRing_0
-   Base Address: 0x820000
+   Base Address: 0x840000
 
    Argument:          SimulationTime
    Register Offset:   0x10
@@ -601,7 +751,7 @@ Instance:        NeuroRing_0
    Argument:          syn_route_in
    Register Offset:   0x0
    Port:              SYN_ROUTE_IN
-   Memory:            dc_2 (MEM_STREAMING_CONNECTION)
+   Memory:            dc_6 (MEM_STREAMING_CONNECTION)
 
    Argument:          syn_forward_rt
    Register Offset:   0x0
@@ -611,7 +761,7 @@ Instance:        NeuroRing_0
    Argument:          synapse_stream
    Register Offset:   0x0
    Port:              SYNAPSE_STREAM
-   Memory:            dc_4 (MEM_STREAMING_CONNECTION)
+   Memory:            dc_8 (MEM_STREAMING_CONNECTION)
 
    Argument:          spike_out
    Register Offset:   0x0
@@ -660,35 +810,147 @@ Instance:        NeuroRing_1
    Argument:          synapse_stream
    Register Offset:   0x0
    Port:              SYNAPSE_STREAM
-   Memory:            dc_5 (MEM_STREAMING_CONNECTION)
+   Memory:            dc_9 (MEM_STREAMING_CONNECTION)
 
    Argument:          spike_out
    Register Offset:   0x0
    Port:              SPIKE_OUT
    Memory:            dc_3 (MEM_STREAMING_CONNECTION)
+
+--------------------------
+Instance:        NeuroRing_2
+   Base Address: 0xc10000
+
+   Argument:          SimulationTime
+   Register Offset:   0x10
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          threshold
+   Register Offset:   0x18
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          AmountOfCores
+   Register Offset:   0x20
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronStart
+   Register Offset:   0x28
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          syn_route_in
+   Register Offset:   0x0
+   Port:              SYN_ROUTE_IN
+   Memory:            dc_2 (MEM_STREAMING_CONNECTION)
+
+   Argument:          syn_forward_rt
+   Register Offset:   0x0
+   Port:              SYN_FORWARD_RT
+   Memory:            dc_4 (MEM_STREAMING_CONNECTION)
+
+   Argument:          synapse_stream
+   Register Offset:   0x0
+   Port:              SYNAPSE_STREAM
+   Memory:            dc_10 (MEM_STREAMING_CONNECTION)
+
+   Argument:          spike_out
+   Register Offset:   0x0
+   Port:              SPIKE_OUT
+   Memory:            dc_5 (MEM_STREAMING_CONNECTION)
+
+--------------------------
+Instance:        NeuroRing_3
+   Base Address: 0xc20000
+
+   Argument:          SimulationTime
+   Register Offset:   0x10
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          threshold
+   Register Offset:   0x18
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          AmountOfCores
+   Register Offset:   0x20
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronStart
+   Register Offset:   0x28
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          syn_route_in
+   Register Offset:   0x0
+   Port:              SYN_ROUTE_IN
+   Memory:            dc_4 (MEM_STREAMING_CONNECTION)
+
+   Argument:          syn_forward_rt
+   Register Offset:   0x0
+   Port:              SYN_FORWARD_RT
+   Memory:            dc_6 (MEM_STREAMING_CONNECTION)
+
+   Argument:          synapse_stream
+   Register Offset:   0x0
+   Port:              SYNAPSE_STREAM
+   Memory:            dc_11 (MEM_STREAMING_CONNECTION)
+
+   Argument:          spike_out
+   Register Offset:   0x0
+   Port:              SPIKE_OUT
+   Memory:            dc_7 (MEM_STREAMING_CONNECTION)
 ==============================================================================
 Generated By
 ------------
    Command:       v++
    Version:       2025.1 - 2025-05-21-18:10:03 (SW BUILD: 6137779)
-   Command Line:  v++ --config NeuroRing.cfg --connectivity.nk NeuroRing:2:NeuroRing_0,NeuroRing_1 --connectivity.nk AxonLoader:2:AxonLoader_0,AxonLoader_1 --connectivity.slr AxonLoader_0:SLR0 --connectivity.slr NeuroRing_0:SLR0 --connectivity.slr NeuroRing_1:SLR1 --connectivity.slr AxonLoader_1:SLR0 --connectivity.sp AxonLoader_0.SynapseList:HBM[0] --connectivity.sp AxonLoader_0.SpikeRecorder:HBM[1] --connectivity.sp AxonLoader_1.SynapseList:HBM[20] --connectivity.sp AxonLoader_1.SpikeRecorder:HBM[21] --connectivity.stream_connect AxonLoader_0.SynapseStream:NeuroRing_0.synapse_stream:1024 --connectivity.stream_connect NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024 --connectivity.stream_connect NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024 --connectivity.stream_connect NeuroRing_1.syn_forward_rt:NeuroRing_0.syn_route_in:1024 --connectivity.stream_connect AxonLoader_1.SynapseStream:NeuroRing_1.synapse_stream:1024 --connectivity.stream_connect NeuroRing_1.spike_out:AxonLoader_1.SpikeOutIn:1024 --debug --input_files krnl_neuroring.xo --input_files krnl_axonloader.xo --kernel_frequency 200 --link --optimize 3 --output krnl_neuroring_hw.xclbin --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --report_level 0 --save-temps --target hw --vivado.impl.jobs 32 --vivado.prop run.impl_1.strategy=Performance_ExtraTimingOpt --vivado.synth.jobs 32 
+   Command Line:  v++ --config NeuroRing.cfg --connectivity.nk NeuroRing:4:NeuroRing_0,NeuroRing_1,NeuroRing_2,NeuroRing_3 --connectivity.nk AxonLoader:4:AxonLoader_0,AxonLoader_1,AxonLoader_2,AxonLoader_3 --connectivity.slr NeuroRing_0:SLR0 --connectivity.slr NeuroRing_1:SLR1 --connectivity.slr NeuroRing_2:SLR1 --connectivity.slr NeuroRing_3:SLR1 --connectivity.slr AxonLoader_0:SLR0 --connectivity.slr AxonLoader_1:SLR0 --connectivity.slr AxonLoader_2:SLR0 --connectivity.slr AxonLoader_3:SLR0 --connectivity.sp AxonLoader_0.SynapseList:HBM[0] --connectivity.sp AxonLoader_0.SpikeRecorder:HBM[1] --connectivity.sp AxonLoader_1.SynapseList:HBM[4] --connectivity.sp AxonLoader_1.SpikeRecorder:HBM[5] --connectivity.sp AxonLoader_2.SynapseList:HBM[8] --connectivity.sp AxonLoader_2.SpikeRecorder:HBM[9] --connectivity.sp AxonLoader_3.SynapseList:HBM[12] --connectivity.sp AxonLoader_3.SpikeRecorder:HBM[13] --connectivity.stream_connect AxonLoader_0.SynapseStream:NeuroRing_0.synapse_stream:1024 --connectivity.stream_connect AxonLoader_1.SynapseStream:NeuroRing_1.synapse_stream:1024 --connectivity.stream_connect AxonLoader_2.SynapseStream:NeuroRing_2.synapse_stream:1024 --connectivity.stream_connect AxonLoader_3.SynapseStream:NeuroRing_3.synapse_stream:1024 --connectivity.stream_connect NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024 --connectivity.stream_connect NeuroRing_1.spike_out:AxonLoader_1.SpikeOutIn:1024 --connectivity.stream_connect NeuroRing_2.spike_out:AxonLoader_2.SpikeOutIn:1024 --connectivity.stream_connect NeuroRing_3.spike_out:AxonLoader_3.SpikeOutIn:1024 --connectivity.stream_connect NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024 --connectivity.stream_connect NeuroRing_1.syn_forward_rt:NeuroRing_2.syn_route_in:1024 --connectivity.stream_connect NeuroRing_2.syn_forward_rt:NeuroRing_3.syn_route_in:1024 --connectivity.stream_connect NeuroRing_3.syn_forward_rt:NeuroRing_0.syn_route_in:1024 --debug --input_files krnl_neuroring.xo --input_files krnl_axonloader.xo --kernel_frequency 200 --link --optimize 3 --output krnl_neuroring_hw.xclbin --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --report_level 0 --save-temps --target hw --vivado.impl.jobs 32 --vivado.prop run.impl_1.strategy=Performance_ExtraTimingOpt --vivado.synth.jobs 32 
    Options:       --config NeuroRing.cfg
-                  --connectivity.nk NeuroRing:2:NeuroRing_0,NeuroRing_1
-                  --connectivity.nk AxonLoader:2:AxonLoader_0,AxonLoader_1
-                  --connectivity.slr AxonLoader_0:SLR0
+                  --connectivity.nk NeuroRing:4:NeuroRing_0,NeuroRing_1,NeuroRing_2,NeuroRing_3
+                  --connectivity.nk AxonLoader:4:AxonLoader_0,AxonLoader_1,AxonLoader_2,AxonLoader_3
                   --connectivity.slr NeuroRing_0:SLR0
                   --connectivity.slr NeuroRing_1:SLR1
+                  --connectivity.slr NeuroRing_2:SLR1
+                  --connectivity.slr NeuroRing_3:SLR1
+                  --connectivity.slr AxonLoader_0:SLR0
                   --connectivity.slr AxonLoader_1:SLR0
+                  --connectivity.slr AxonLoader_2:SLR0
+                  --connectivity.slr AxonLoader_3:SLR0
                   --connectivity.sp AxonLoader_0.SynapseList:HBM[0]
                   --connectivity.sp AxonLoader_0.SpikeRecorder:HBM[1]
-                  --connectivity.sp AxonLoader_1.SynapseList:HBM[20]
-                  --connectivity.sp AxonLoader_1.SpikeRecorder:HBM[21]
+                  --connectivity.sp AxonLoader_1.SynapseList:HBM[4]
+                  --connectivity.sp AxonLoader_1.SpikeRecorder:HBM[5]
+                  --connectivity.sp AxonLoader_2.SynapseList:HBM[8]
+                  --connectivity.sp AxonLoader_2.SpikeRecorder:HBM[9]
+                  --connectivity.sp AxonLoader_3.SynapseList:HBM[12]
+                  --connectivity.sp AxonLoader_3.SpikeRecorder:HBM[13]
                   --connectivity.stream_connect AxonLoader_0.SynapseStream:NeuroRing_0.synapse_stream:1024
-                  --connectivity.stream_connect NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024
-                  --connectivity.stream_connect NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024
-                  --connectivity.stream_connect NeuroRing_1.syn_forward_rt:NeuroRing_0.syn_route_in:1024
                   --connectivity.stream_connect AxonLoader_1.SynapseStream:NeuroRing_1.synapse_stream:1024
+                  --connectivity.stream_connect AxonLoader_2.SynapseStream:NeuroRing_2.synapse_stream:1024
+                  --connectivity.stream_connect AxonLoader_3.SynapseStream:NeuroRing_3.synapse_stream:1024
+                  --connectivity.stream_connect NeuroRing_0.spike_out:AxonLoader_0.SpikeOutIn:1024
                   --connectivity.stream_connect NeuroRing_1.spike_out:AxonLoader_1.SpikeOutIn:1024
+                  --connectivity.stream_connect NeuroRing_2.spike_out:AxonLoader_2.SpikeOutIn:1024
+                  --connectivity.stream_connect NeuroRing_3.spike_out:AxonLoader_3.SpikeOutIn:1024
+                  --connectivity.stream_connect NeuroRing_0.syn_forward_rt:NeuroRing_1.syn_route_in:1024
+                  --connectivity.stream_connect NeuroRing_1.syn_forward_rt:NeuroRing_2.syn_route_in:1024
+                  --connectivity.stream_connect NeuroRing_2.syn_forward_rt:NeuroRing_3.syn_route_in:1024
+                  --connectivity.stream_connect NeuroRing_3.syn_forward_rt:NeuroRing_0.syn_route_in:1024
                   --debug
                   --input_files krnl_neuroring.xo
                   --input_files krnl_axonloader.xo
