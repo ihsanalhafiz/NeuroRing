@@ -23,6 +23,7 @@ extern "C" void AxonLoader(
     uint32_t                     DCstimTotal,
     uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
+    uint32_t                     record_status,
     hls::stream<stream2048u_t>   &SpikeOutIn,
     hls::stream<stream512u_t>    &SynapseStream)
 {
@@ -75,10 +76,17 @@ extern "C" void AxonLoader(
 
     // Main simulation loop
     read_status_loop: for (int t = 0; t < SimulationTime; t++) {
-        // Read spike bitmap from SpikeRecorder
-        ap_uint<2048> spike_read = 0;
-        for (int i = 0; i < ((NeuronTotal+31)/32); i++) {
-            spike_read.range(((i+1)*32)-1, i*32) = SpikeRecorder[t*64 + i];
+        // Read spike status from input stream
+        stream2048u_t spike_data;
+        bool read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn.read_nb(spike_data);
+        }
+        if (record_status == 1) {
+        // Record spike data
+            for (int i = 0; i < 64; i++) {
+                SpikeRecorder[(t)*64 + i] = spike_data.data.range((i+1)*32-1, i*32);
+            }
         }
 
         // Process each neuron that fired
@@ -117,16 +125,5 @@ extern "C" void AxonLoader(
         sync_packet.data.range(511, 480) = dst_delay_sync;
         write_packet_to_stream(SynapseStream, sync_packet);
 
-        // Read spike status from input stream
-        stream2048u_t spike_data;
-        bool read_status = false;
-        while (!read_status) {
-            read_status = SpikeOutIn.read_nb(spike_data);
-        }
-
-        // Record spike data
-        for (int i = 0; i < 64; i++) {
-            SpikeRecorder[(t+1)*64 + i] = spike_data.data.range((i+1)*32-1, i*32);
-        }
     }
 }

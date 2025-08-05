@@ -47,6 +47,7 @@ extern "C" void AxonLoader(
     uint32_t                     DCstimTotal,
     uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
+    uint32_t                     record_status,
     hls::stream<stream2048u_t>   &SpikeOutIn,
     hls::stream<stream512u_t>    &SynapseStream);
 

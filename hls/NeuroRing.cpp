@@ -93,7 +93,27 @@ void SomaEngine(
         //--------------------------------------------------
         // 1) Broadcast spikes from last step to AxonLoader
         //--------------------------------------------------
-        
+        spike_status.data = 0;
+
+        for(int i = 0; i < NeuronTotal; i++) {
+            x_state[i] = alpha*U_membPot[i] + gamma*I_PreSynCurr[i] + beta*R_RefCnt[i];
+            I_PreSynCurr[i] *= beta;
+            if(x_state[i] > threshold_float) {
+                spike_status.data.range(i, i) = 1;
+                U_membPot[i] = membrane_potential_float;
+                R_RefCnt[i] = t_ref;
+            }
+            else {
+                U_membPot[i] = R_RefCnt[i] > 0 ? 0 : x_state[i];
+                R_RefCnt[i] = ((R_RefCnt[i] - 1) > 0) ? (R_RefCnt[i] - 1) : 0;
+            }
+        }
+        bool write_status = false;
+        while(!write_status) {
+            write_status = SpikeOut.write_nb(spike_status);
+        }
+    
+
         //--------------------------------------------------
         // 2) Consume incoming weighted spikes
         //--------------------------------------------------
@@ -124,26 +144,6 @@ void SomaEngine(
         for(int i = 0; i < NeuronTotal; i++) {
             I_PreSynCurr[i] += C_acc[i] * w_f;
             C_acc[i] = 0;
-        }
-
-        spike_status.data = 0;
-
-        for(int i = 0; i < NeuronTotal; i++) {
-            x_state[i] = alpha*U_membPot[i] + gamma*I_PreSynCurr[i] + beta*R_RefCnt[i];
-            I_PreSynCurr[i] *= beta;
-            if(x_state[i] > threshold_float) {
-                spike_status.data.range(i, i) = 1;
-                U_membPot[i] = membrane_potential_float;
-                R_RefCnt[i] = t_ref;
-            }
-            else {
-                U_membPot[i] = R_RefCnt[i] > 0 ? 0 : x_state[i];
-                R_RefCnt[i] = ((R_RefCnt[i] - 1) > 0) ? (R_RefCnt[i] - 1) : 0;
-            }
-        }
-        bool write_status = false;
-        while(!write_status) {
-            write_status = SpikeOut.write_nb(spike_status);
         }
     }
 }
