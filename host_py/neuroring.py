@@ -77,7 +77,7 @@ class NeuroRingKernel:
         print(f"Running kernel {self.kernel_neuroring}")    
         self.runAxonLoader = self.kernel_axon_loader(self.synapseListHandle, self.spikeRecorderHandle, self.neuron_start,
                                                      self.neuron_total, self.dcstim_start, self.dcstim_total, self.dcstim_amp,
-                                                     simulation_time)
+                                                     simulation_time, 0)
         print(f"Running kernel {self.kernel_axon_loader}")
 
     def wait_for_kernel(self, sim_time):

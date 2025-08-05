@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                AxonLoader, NeuroRing
    Signature:              
    Content:                Bitstream
-   UUID (xclbin):          962f5bcd-9157-c97c-96f1-bc6fe7c25bd1
+   UUID (xclbin):          08d7df50-7ee7-a2ff-835c-7e8c973bce4c
    UUID (IINTF):           b7ac1abe1e3e1cb686d5a81232452676
    Sections:               BITSTREAM, MEM_TOPOLOGY, IP_LAYOUT, CONNECTIVITY, 
                            CLOCK_FREQ_TOPOLOGY, BUILD_METADATA, 
@@ -49,7 +49,7 @@ Scalable Clocks
    Name:      DATA_CLK
    Index:     2
    Type:      DATA
-   Frequency: 107 MHz
+   Frequency: 111 MHz
 
 System Clocks
 ------
@@ -57,7 +57,7 @@ System Clocks
    Type:           SCALABLE 
    Default Freq:   300 MHz
    Requested Freq: 200 MHz
-   Achieved Freq:  107.9 MHz
+   Achieved Freq:  111 MHz
 
    Name:           ulp_ucs_aclk_kernel_01 
    Type:           SCALABLE 
@@ -432,7 +432,7 @@ Kernel: AxonLoader
 
 Definition
 ----------
-   Signature: AxonLoader (void* SynapseList, void* SpikeRecorder, unsigned int NeuronStart, unsigned int NeuronTotal, unsigned int DCstimStart, unsigned int DCstimTotal, unsigned int DCstimAmp, unsigned int SimulationTime, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& SpikeOutIn, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& SynapseStream)
+   Signature: AxonLoader (void* SynapseList, void* SpikeRecorder, unsigned int NeuronStart, unsigned int NeuronTotal, unsigned int DCstimStart, unsigned int DCstimTotal, unsigned int DCstimAmp, unsigned int SimulationTime, unsigned int record_status, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& SpikeOutIn, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& SynapseStream)
 
 Ports
 -----
@@ -462,7 +462,7 @@ Ports
 
    Port:          S_AXI_CONTROL
    Mode:          slave
-   Range (bytes): 0x58
+   Range (bytes): 0x60
    Data Width:    32 bits
    Port Type:     addressable
 
@@ -507,6 +507,11 @@ Instance:        AxonLoader_0
 
    Argument:          SimulationTime
    Register Offset:   0x50
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          record_status
+   Register Offset:   0x58
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
@@ -564,6 +569,11 @@ Instance:        AxonLoader_1
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
+   Argument:          record_status
+   Register Offset:   0x58
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
    Argument:          SpikeOutIn
    Register Offset:   0x0
    Port:              SPIKEOUTIN
@@ -618,6 +628,11 @@ Instance:        AxonLoader_2
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
+   Argument:          record_status
+   Register Offset:   0x58
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
    Argument:          SpikeOutIn
    Register Offset:   0x0
    Port:              SPIKEOUTIN
@@ -669,6 +684,11 @@ Instance:        AxonLoader_3
 
    Argument:          SimulationTime
    Register Offset:   0x50
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          record_status
+   Register Offset:   0x58
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
