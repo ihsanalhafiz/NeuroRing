@@ -77,21 +77,21 @@ extern "C" void AxonLoader(
     // Main simulation loop
     read_status_loop: for (int t = 0; t < SimulationTime; t++) {
         // Read spike status from input stream
-        stream2048u_t spike_data;
+        stream2048u_t spike_read;
         bool read_status = false;
         while (!read_status) {
-            read_status = SpikeOutIn.read_nb(spike_data);
+            read_status = SpikeOutIn.read_nb(spike_read);
         }
         if (record_status == 1) {
         // Record spike data
             for (int i = 0; i < 64; i++) {
-                SpikeRecorder[(t)*64 + i] = spike_data.data.range((i+1)*32-1, i*32);
+                SpikeRecorder[(t)*64 + i] = spike_read.data.range((i+1)*32-1, i*32);
             }
         }
 
         // Process each neuron that fired
         for (int i = 0; i < NeuronTotal; i++) {
-            if (spike_read.range(i, i) == 1) {
+            if (spike_read.data.range(i, i) == 1) {
                 // Read synapse count and ensure it's divisible by 16
                 uint32_t synapse_count = SynapseList[i*SYNAPSE_LIST_SIZE];
                 // Process synapses in chunks of 16
