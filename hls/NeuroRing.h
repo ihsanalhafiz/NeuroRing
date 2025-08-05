@@ -45,14 +45,15 @@ extern "C" void AxonLoader(
     uint32_t                     NeuronTotal,
     uint32_t                     DCstimStart,
     uint32_t                     DCstimTotal,
-    float                        DCstimAmp,
+    uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
     hls::stream<stream2048u_t>   &SpikeOutIn,
     hls::stream<stream512u_t>    &SynapseStream);
 
 extern "C" void NeuroRing(
     uint32_t              SimulationTime,
-    float                 threshold,
+    uint32_t              threshold,
+    uint32_t              membrane_potential,
     uint32_t              AmountOfCores,
     uint32_t              NeuronStart,
     uint32_t              NeuronTotal,

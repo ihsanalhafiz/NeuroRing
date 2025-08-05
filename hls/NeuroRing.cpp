@@ -42,7 +42,8 @@
 //  1. SomaEngine – Computes neuron dynamics & produces spike bitmap
 //====================================================================
 void SomaEngine(
-    float                        threshold,
+    uint32_t                     threshold,
+    uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
     hls::stream<synapse_word_t>  &SpikeStream,
@@ -69,8 +70,16 @@ void SomaEngine(
     float x_state[NEURON_NUM];
     float C_acc[NEURON_NUM];
 
+    float_to_uint32 threshold_conv;
+    threshold_conv.u = threshold;
+    float threshold_float = threshold_conv.f;
+
+    float_to_uint32 membrane_potential_conv;
+    membrane_potential_conv.u = membrane_potential;
+    float membrane_potential_float = membrane_potential_conv.f;
+
     for(int i = 0; i < NEURON_NUM; i++) {
-        U_membPot[i] = 0;
+        U_membPot[i] = membrane_potential_float;
         I_PreSynCurr[i] = 0;
         R_RefCnt[i] = 0;
         x_state[i] = 0;
@@ -122,9 +131,9 @@ void SomaEngine(
         for(int i = 0; i < NeuronTotal; i++) {
             x_state[i] = alpha*U_membPot[i] + gamma*I_PreSynCurr[i] + beta*R_RefCnt[i];
             I_PreSynCurr[i] *= beta;
-            if(x_state[i] > threshold) {
+            if(x_state[i] > threshold_float) {
                 spike_status.data.range(i, i) = 1;
-                U_membPot[i] = 0;
+                U_membPot[i] = membrane_potential_float;
                 R_RefCnt[i] = t_ref;
             }
             else {
@@ -373,7 +382,8 @@ void DendriteDelay(
 //--------------------------------------------------------------------
 extern "C" void NeuroRing(
     uint32_t              SimulationTime,
-    float                 threshold,
+    uint32_t              threshold,
+    uint32_t              membrane_potential,
     uint32_t              AmountOfCores,
     uint32_t              NeuronStart,
     uint32_t              NeuronTotal,
@@ -418,6 +428,7 @@ extern "C" void NeuroRing(
     );
     SomaEngine(
         threshold,
+        membrane_potential,
         NeuronStart,
         NeuronTotal,
         spike_stream,

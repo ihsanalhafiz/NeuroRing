@@ -21,7 +21,7 @@ extern "C" void AxonLoader(
     uint32_t                     NeuronTotal,
     uint32_t                     DCstimStart,
     uint32_t                     DCstimTotal,
-    float                        DCstimAmp,
+    uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
     hls::stream<stream2048u_t>   &SpikeOutIn,
     hls::stream<stream512u_t>    &SynapseStream)
@@ -43,7 +43,7 @@ extern "C" void AxonLoader(
 
     // Helper function to create DC stimulus packet
     auto create_dc_stimulus_packet = [](uint32_t base_neuron, uint32_t neuron_total, 
-                                       float dc_stim_amp) -> stream512u_t {
+                                       uint32_t dc_stim_amp) -> stream512u_t {
         stream512u_t packet = {};
         packet.data = 0;
         
@@ -52,15 +52,14 @@ extern "C" void AxonLoader(
             bool valid_neuron = (neuron_idx < neuron_total);
             
             // Convert float weight to uint32
-            float_to_uint32 conv;
-            conv.f = valid_neuron ? dc_stim_amp : 0.0f;
+            uint32_t weight = valid_neuron ? dc_stim_amp : 0;
             
             // Create destination and delay
             uint32_t dst_delay = (neuron_idx << 8) & 0xFFFFFF00;
             
             // Pack into packet (8 neurons per packet)
             packet.data.range(511 - offset*64, 480 - offset*64) = dst_delay;
-            packet.data.range(479 - offset*64, 448 - offset*64) = conv.u;
+            packet.data.range(479 - offset*64, 448 - offset*64) = weight;
         }
         
         return packet;

@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                AxonLoader, NeuroRing
    Signature:              
    Content:                Bitstream
-   UUID (xclbin):          16d8d738-a597-a16e-0d91-e686177480ab
+   UUID (xclbin):          962f5bcd-9157-c97c-96f1-bc6fe7c25bd1
    UUID (IINTF):           b7ac1abe1e3e1cb686d5a81232452676
    Sections:               BITSTREAM, MEM_TOPOLOGY, IP_LAYOUT, CONNECTIVITY, 
                            CLOCK_FREQ_TOPOLOGY, BUILD_METADATA, 
@@ -49,7 +49,7 @@ Scalable Clocks
    Name:      DATA_CLK
    Index:     2
    Type:      DATA
-   Frequency: 112 MHz
+   Frequency: 107 MHz
 
 System Clocks
 ------
@@ -57,7 +57,7 @@ System Clocks
    Type:           SCALABLE 
    Default Freq:   300 MHz
    Requested Freq: 200 MHz
-   Achieved Freq:  112.1 MHz
+   Achieved Freq:  107.9 MHz
 
    Name:           ulp_ucs_aclk_kernel_01 
    Type:           SCALABLE 
@@ -432,7 +432,7 @@ Kernel: AxonLoader
 
 Definition
 ----------
-   Signature: AxonLoader (void* SynapseList, void* SpikeRecorder, unsigned int NeuronStart, unsigned int NeuronTotal, unsigned int DCstimStart, unsigned int DCstimTotal, float DCstimAmp, unsigned int SimulationTime, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& SpikeOutIn, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& SynapseStream)
+   Signature: AxonLoader (void* SynapseList, void* SpikeRecorder, unsigned int NeuronStart, unsigned int NeuronTotal, unsigned int DCstimStart, unsigned int DCstimTotal, unsigned int DCstimAmp, unsigned int SimulationTime, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& SpikeOutIn, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& SynapseStream)
 
 Ports
 -----
@@ -685,7 +685,7 @@ Kernel: NeuroRing
 
 Definition
 ----------
-   Signature: NeuroRing (unsigned int SimulationTime, float threshold, unsigned int AmountOfCores, unsigned int NeuronStart, unsigned int NeuronTotal, stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& syn_route_in, stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& syn_forward_rt, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& synapse_stream, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& spike_out)
+   Signature: NeuroRing (unsigned int SimulationTime, unsigned int threshold, unsigned int membrane_potential, unsigned int AmountOfCores, unsigned int NeuronStart, unsigned int NeuronTotal, stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& syn_route_in, stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& syn_forward_rt, stream<hls::axis<ap_uint<512>, 0, 0, 0, '8', false>, 0>& synapse_stream, stream<hls::axis<ap_uint<2048>, 0, 0, 0, '8', false>, 0>& spike_out)
 
 Ports
 -----
@@ -715,7 +715,7 @@ Ports
 
    Port:          S_AXI_CONTROL
    Mode:          slave
-   Range (bytes): 0x38
+   Range (bytes): 0x40
    Data Width:    32 bits
    Port Type:     addressable
 
@@ -733,18 +733,23 @@ Instance:        NeuroRing_0
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          AmountOfCores
+   Argument:          membrane_potential
    Register Offset:   0x20
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronStart
+   Argument:          AmountOfCores
    Register Offset:   0x28
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronTotal
+   Argument:          NeuronStart
    Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x38
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
@@ -782,18 +787,23 @@ Instance:        NeuroRing_1
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          AmountOfCores
+   Argument:          membrane_potential
    Register Offset:   0x20
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronStart
+   Argument:          AmountOfCores
    Register Offset:   0x28
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronTotal
+   Argument:          NeuronStart
    Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x38
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
@@ -831,18 +841,23 @@ Instance:        NeuroRing_2
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          AmountOfCores
+   Argument:          membrane_potential
    Register Offset:   0x20
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronStart
+   Argument:          AmountOfCores
    Register Offset:   0x28
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronTotal
+   Argument:          NeuronStart
    Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x38
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
@@ -880,18 +895,23 @@ Instance:        NeuroRing_3
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          AmountOfCores
+   Argument:          membrane_potential
    Register Offset:   0x20
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronStart
+   Argument:          AmountOfCores
    Register Offset:   0x28
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
-   Argument:          NeuronTotal
+   Argument:          NeuronStart
    Register Offset:   0x30
+   Port:              S_AXI_CONTROL
+   Memory:            <not applicable>
+
+   Argument:          NeuronTotal
+   Register Offset:   0x38
    Port:              S_AXI_CONTROL
    Memory:            <not applicable>
 
