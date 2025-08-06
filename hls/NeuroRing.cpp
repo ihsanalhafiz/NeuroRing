@@ -30,8 +30,12 @@
 
 #define _XF_SYNTHESIS_ 1
 
-#define NEURON_NUM 4096
-#define SYNAPSE_LIST_SIZE 5000
+
+struct lanes8_t {
+    synapse_word_t data[NLANE];
+};
+
+//#pragma HLS aggregate variable=lanes8_t compact=bit
 
 //====================================================================
 //  Parameter & helper structs ‑ extend as required
@@ -46,7 +50,7 @@ void SomaEngine(
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -119,25 +123,33 @@ void SomaEngine(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -153,7 +165,7 @@ void SomaEngine1(
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -226,25 +238,33 @@ void SomaEngine1(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -260,7 +280,7 @@ void SomaEngine2(
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -333,25 +353,33 @@ void SomaEngine2(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -361,12 +389,13 @@ void SomaEngine2(
         }
     }
 }
+
 void SomaEngine3(
     uint32_t                     threshold,
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -439,25 +468,33 @@ void SomaEngine3(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -467,12 +504,13 @@ void SomaEngine3(
         }
     }
 }
+
 void SomaEngine4(
     uint32_t                     threshold,
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -545,25 +583,33 @@ void SomaEngine4(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -573,12 +619,13 @@ void SomaEngine4(
         }
     }
 }
+
 void SomaEngine5(
     uint32_t                     threshold,
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -651,25 +698,33 @@ void SomaEngine5(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -679,12 +734,13 @@ void SomaEngine5(
         }
     }
 }
+
 void SomaEngine6(
     uint32_t                     threshold,
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -757,25 +813,33 @@ void SomaEngine6(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -785,12 +849,13 @@ void SomaEngine6(
         }
     }
 }
+
 void SomaEngine7(
     uint32_t                     threshold,
     uint32_t                     membrane_potential,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
-    hls::stream<synapse_word_t>  &SpikeStream,
+    hls::stream<lanes8_t>  &SpikeStream,
     uint32_t                     SimulationTime,
     hls::stream<stream512u_t>  &SpikeOut)
 {
@@ -863,25 +928,33 @@ void SomaEngine7(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            //#pragma HLS PIPELINE II=1
-            synapse_word_t pkt;
+            #pragma HLS PIPELINE II=1
+            lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
-                float_to_uint32 weight_conv;
-                weight_conv.u = pkt.range(31, 0);
-                DstID_t dst = pkt.range(63, 40);
+                DstID_t dst[NLANE];
+                float weight[NLANE];
+                float_to_uint32 weight_conv[NLANE];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=weight complete
+                #pragma HLS ARRAY_PARTITION variable=weight_conv complete
+                read_pkt: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    weight_conv[i].u = pkt.data[i].range(31, 0);
+                    dst[i] = pkt.data[i].range(63, 40);
+                    weight[i] = weight_conv[i].f;
+                }
+                add_C_acc: for (int i = 0; i < NLANE; i++) {
+                    #pragma HLS UNROLL
+                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
-                if (dst == 0xFFFFFF) {
+                if (dst[0] == 0xFFFFFF) {
                     // Sync – end of timestep
                     runstate = false;
-                } else {
-                // TODO: Demultiplex DstID & compute membrane update
-                // *** Insert LIF integration & threshold test ***
-                    C_acc[dst.to_uint()-NeuronStart] += weight_conv.f;
-                }
+                } 
             }
         }
-        
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
@@ -890,13 +963,21 @@ void SomaEngine7(
             C_acc[i] = 0;
         }
     }
-}   
+}
+
 //====================================================================
 //  3. SynapseRouter – Route packets to local or next core
 //====================================================================
 void SynapseRouter(
     hls::stream<stream512u_t> &SynapseStream,
     hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute1,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute2,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute3,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute4,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute5,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute6,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynapseStreamRoute7,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
     uint32_t                     SimulationTime,
@@ -909,7 +990,14 @@ void SynapseRouter(
     hls::stream<synapse_word_t> &SynForward5,
     hls::stream<synapse_word_t> &SynForward6,
     hls::stream<synapse_word_t> &SynForward7,
-    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute)
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute1,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute2,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute3,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute4,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute5,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute6,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &SynForwardRoute7)
 {
     // Pre-compute range bounds for faster comparison
     const uint32_t neuron_end = NeuronStart + NeuronTotal;
@@ -957,11 +1045,7 @@ void SynapseRouter(
                     delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
                     weight_conv[i].u = pkt.data.range(base_bit - 32, base_bit - 63);
                 }
-                
-                printf("weight0: %f, weight1: %f, weight2: %f, weight3: %f, weight4: %f, weight5: %f, weight6: %f, weight7: %f\n", 
-                       weight_conv[0].f, weight_conv[1].f, weight_conv[2].f, weight_conv[3].f, 
-                       weight_conv[4].f, weight_conv[5].f, weight_conv[6].f, weight_conv[7].f);
-                
+                                
                 // Check if this is an axon done signal
                 if (delay[0] == 0xFE) {
                     axon_done = true;
@@ -977,6 +1061,11 @@ void SynapseRouter(
                     }
                 } else {
                     // Process all 8 synapses efficiently
+                    bool send_status_route[8] = {false, false, false, false, false, false, false, false};
+                    ap_axiu<64, 0, 0, 0> temp_rt_out[8];
+                    #pragma HLS ARRAY_PARTITION variable=send_status_route complete
+                    #pragma HLS ARRAY_PARTITION variable=temp_rt_out complete
+
                     synapse_loop: for (int i = 0; i < 8; i++) {
                     #pragma HLS UNROLL
                         // Create synapse word
@@ -1044,47 +1133,112 @@ void SynapseRouter(
                                 write_status = SynForward7.write_nb(temp);
                             }
                         } else if (is_valid) {
-                            // Write to routing stream
-                            ap_axiu<64, 0, 0, 0> temp_rt;
-                            temp_rt.data = temp;
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute.write_nb(temp_rt);
+                            // Write to routing 
+                            send_status_route[i] = true;
+                            temp_rt_out[i].data = temp;
+                        }
+                    }
+
+                    send_route_loop: for (int i = 0; i < 8; i++) {
+                    #pragma HLS UNROLL
+                        if (send_status_route[i]) {
+                            if (i == 0) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 1) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute1.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 2) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute2.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 3) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute3.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 4) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute4.write_nb(temp_rt_out[i]);   
+                                }
+                            } else if (i == 5) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute5.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 6) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute6.write_nb(temp_rt_out[i]);
+                                }
+                            } else if (i == 7) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute7.write_nb(temp_rt_out[i]);
+                                }
                             }
                         }
                     }
-                    
-                    printf("dst0: %u, dst1: %u, dst2: %u, dst3: %u, dst4: %u, dst5: %u, dst6: %u, dst7: %u\n", 
-                           dst[0].to_uint(), dst[1].to_uint(), dst[2].to_uint(), dst[3].to_uint(), 
-                           dst[4].to_uint(), dst[5].to_uint(), dst[6].to_uint(), dst[7].to_uint());
                 }
             }
             
             // Process routed stream from previous router
-            ap_axiu<64, 0, 0, 0> temp_rt;
-            bool have_rt = SynapseStreamRoute.read_nb(temp_rt);
-            if (have_rt) {
-                Delay_t rt_delay = (temp_rt.data >> 32) & 0xFF;
-                
-                if (rt_delay == 0xFE) {
-                    // Handle synchronization
-                    if(coreDone == AmountOfCores - 1) {
-                        prev_done = true;
-                    } else {
-                        coreDone++;
-                    }
-                    
-                    // Forward if not for this core
-                    ap_uint<24> temp_dst = temp_rt.data.range(63, 40);
-                    if (temp_dst != ap_uint<24>(NeuronStart)) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
+            ap_axiu<64, 0, 0, 0> temp_rt[8];
+            bool have_rt[8] = {false, false, false, false, false, false, false, false};
+            #pragma HLS ARRAY_PARTITION variable=have_rt complete
+            #pragma HLS ARRAY_PARTITION variable=temp_rt complete
+
+            read_rt_loop: for (int i = 0; i < 8; i++) {
+                #pragma HLS UNROLL
+                if (i == 0) {
+                    have_rt[i] = SynapseStreamRoute.read_nb(temp_rt[i]);
+                } else if (i == 1) {
+                    have_rt[i] = SynapseStreamRoute1.read_nb(temp_rt[i]);
+                } else if (i == 2) {
+                    have_rt[i] = SynapseStreamRoute2.read_nb(temp_rt[i]);
+                } else if (i == 3) {
+                    have_rt[i] = SynapseStreamRoute3.read_nb(temp_rt[i]);
+                } else if (i == 4) {
+                    have_rt[i] = SynapseStreamRoute4.read_nb(temp_rt[i]);
+                } else if (i == 5) {
+                    have_rt[i] = SynapseStreamRoute5.read_nb(temp_rt[i]);
+                } else if (i == 6) {
+                    have_rt[i] = SynapseStreamRoute6.read_nb(temp_rt[i]);
+                } else if (i == 7) {
+                    have_rt[i] = SynapseStreamRoute7.read_nb(temp_rt[i]);
+                }
+            }
+
+            read_rt_loop_inner: for (int i = 0; i < 8; i++) {
+                #pragma HLS UNROLL
+                if (have_rt[i]) {
+                    if(i == 0) {
+                        Delay_t rt_delay = (temp_rt[i].data >> 32) & 0xFF;
+                        if (rt_delay == 0xFE) {
+                            // Handle synchronization
+                            if(coreDone == AmountOfCores - 1) {
+                                prev_done = true;
+                            } else {
+                                coreDone++;
+                            }
+                            // Forward if not for this core
+                            ap_uint<24> temp_dst = temp_rt[i].data.range(63, 40);
+                            if (temp_dst != ap_uint<24>(NeuronStart)) {
+                                bool write_status = false;
+                                while(!write_status) {
+                                    write_status = SynForwardRoute.write_nb(temp_rt[i]);
+                                }
+                            }
                         }
                     }
-                } else {
                     // Route based on destination
-                    ap_uint<24> dst = ((temp_rt.data >> 40) & 0xFFFFFF);
+                    ap_uint<24> dst = ((temp_rt[i].data >> 40) & 0xFFFFFF);
                     bool is_local0 = (dst >= start0 && dst < end0);
                     bool is_local1 = (dst >= start1 && dst < end1);
                     bool is_local2 = (dst >= start2 && dst < end2);
@@ -1099,55 +1253,99 @@ void SynapseRouter(
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward.write_nb(temp_rt.data);
+                            write_status = SynForward.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local1) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward1.write_nb(temp_rt.data);
+                            write_status = SynForward1.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local2) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward2.write_nb(temp_rt.data);
+                            write_status = SynForward2.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local3) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward3.write_nb(temp_rt.data);
+                            write_status = SynForward3.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local4) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward4.write_nb(temp_rt.data);
+                            write_status = SynForward4.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local5) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward5.write_nb(temp_rt.data);
+                            write_status = SynForward5.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local6) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward6.write_nb(temp_rt.data);
+                            write_status = SynForward6.write_nb(temp_rt[i].data);
                         }
                     } else if (is_local7) {
                         // Write to local synapse stream
                         bool write_status = false;
                         while(!write_status) {
-                            write_status = SynForward7.write_nb(temp_rt.data);
+                            write_status = SynForward7.write_nb(temp_rt[i].data);
                         }
                     } else {
-                        // Forward to next router
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(temp_rt);
+                        if (i == 0) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 1) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute1.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 2) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute2.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 3) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute3.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 4) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute4.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 5) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute5.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 6) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute6.write_nb(temp_rt[i]);
+                            }
+                        } else if (i == 7) {
+                            // Forward to next router
+                            bool write_status = false;
+                            while(!write_status) {
+                                write_status = SynForwardRoute7.write_nb(temp_rt[i]);
+                            }
                         }
                     }
                 }
@@ -1201,45 +1399,62 @@ void SynapseRouter(
 void DendriteDelay(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1248,68 +1463,90 @@ void DendriteDelay(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay1(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1318,68 +1555,90 @@ void DendriteDelay1(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay2(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1388,68 +1647,90 @@ void DendriteDelay2(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay3(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1458,68 +1739,90 @@ void DendriteDelay3(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay4(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1528,68 +1831,90 @@ void DendriteDelay4(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay5(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1598,68 +1923,90 @@ void DendriteDelay5(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay6(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1668,68 +2015,90 @@ void DendriteDelay6(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 void DendriteDelay7(
     hls::stream<synapse_word_t> &SynForward,
     uint32_t                     SimulationTime,
-    hls::stream<synapse_word_t> &SpikeStream)
+    hls::stream<lanes8_t> &SpikeStream)
 {
     //------------------------------------------------------
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
-    // 6000‑deep FIFO chosen from spec; tweak as needed.
-    const int DELAY_FIFO_DEPTH = 65536;
     //static hls::stream<synapse_word_t> delay_fifo;
-    ap_uint<64> buffer_delay[DELAY_FIFO_DEPTH];
-    #pragma HLS bind_storage variable=buffer_delay type=ram_2p impl=uram
-    uint32_t idx_head = 0;
-    uint32_t idx_tail = 0;
+    float buf[NCORE][DELAY];
+    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
+    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
+    //------------------------------------------------------
+    //  Zero-initialize buffer and head pointers
+    //------------------------------------------------------
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        #pragma HLS PIPELINE II=1
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL
+            buf[core][d] = 0.0f;
+        }
+    }
 
     delay_loop: for (int t = 0; t < SimulationTime; t++) {
+        //--------------------------------------------------
+        // 1) send the delayed packets and move head pointer
+        //--------------------------------------------------
+        for (int i = 0; i < GROUP; i++) {
+            #pragma HLS PIPELINE II=1 
+            lanes8_t pkt;
+            #pragma HLS ARRAY_PARTITION variable=pkt.data complete
+            for (int lane = 0; lane < NLANE; lane++) {
+                #pragma HLS UNROLL
+                const int core = i * NLANE + lane;
+                ap_uint<6> h = head[core];
+                float weight = buf[core][h];
+                buf[core][h] = 0.0f;
+                float_to_uint32 temp_conv;
+                temp_conv.f = weight;
+                DstID_t dst = core;
+                synapse_word_t temp;
+                temp.range(63, 40) = dst;
+                temp.range(39, 32) = 0x0;
+                temp.range(31, 0) = temp_conv.u;
+                pkt.data[lane] = temp;
+                head[core] = (h + 1);
+            }
+            bool write_status = false;
+            while(!write_status) {
+                write_status = SpikeStream.write_nb(pkt);
+            }
+        }
+
         bool done = false;
-        int size_buffer = (idx_head >= idx_tail) ? (idx_head - idx_tail) : (idx_head + DELAY_FIFO_DEPTH - idx_tail);
         while (!done) {
             #pragma HLS PIPELINE II=1 rewind
-            //--------------------------------------------------
-            // 1) Age existing packets
-            //--------------------------------------------------
-            if (size_buffer > 0) {
-                synapse_word_t pkt_in = buffer_delay[idx_tail];
-                idx_tail = (idx_tail + 1) % DELAY_FIFO_DEPTH;
-                ap_uint<8> delay = pkt_in.range(39, 32);
-                if (delay == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_in);
-                    }
-                } else {
-                    // Decrement & push back
-                    delay = delay - 1;
-                    pkt_in.range(39, 32) = delay;
-                    buffer_delay[idx_head] = pkt_in;
-                    idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                }
-                size_buffer--;
-            }
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
@@ -1738,26 +2107,31 @@ void DendriteDelay7(
             if (have_pkt) {
                 if (pkt_new.range(63, 40) == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
+                    lanes8_t pkt;
+                    pkt.data[0] = pkt_new;
+                    for (int i = 1; i < NLANE; i++) {
+                        #pragma HLS UNROLL
+                        pkt.data[i] = 0;
+                    }
                     bool write_status = false;
                     while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
+                        write_status = SpikeStream.write_nb(pkt);
                     }
                     done = true;            // one timestep completed
                 } else {
-                    if (pkt_new.range(39, 32) == 0x0) {
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SpikeStream.write_nb(pkt_new);
-                        }
-                    } else {
-                        buffer_delay[idx_head] = pkt_new;
-                        idx_head = (idx_head + 1) % DELAY_FIFO_DEPTH;
-                    }
+                    DstID_t dst = pkt_new.range(63, 40);
+                    Delay_t delay = pkt_new.range(39, 32);
+                    float_to_uint32 temp_conv;
+                    temp_conv.u = pkt_new.range(31, 0);
+                    float weight = temp_conv.f;
+                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
+                    buf[dst][h] = buf[dst][h] + weight;
                 }
             }
         }
     }
 }
+
 //--------------------------------------------------------------------
 //  Top‑level kernel ‒ integrates all sub‑kernels using DATAFLOW
 //--------------------------------------------------------------------
@@ -1769,7 +2143,21 @@ extern "C" void NeuroRing(
     uint32_t              NeuronStart,
     uint32_t              NeuronTotal,
     hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in1,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in2,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in3,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in4,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in5,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in6,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in7,
     hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt1,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt2,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt3,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt4,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt5,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt6,
+    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt7,
     hls::stream<stream512u_t> &synapse_stream,
     hls::stream<stream512u_t> &spike_out,
     hls::stream<stream512u_t> &spike_out1,
@@ -1791,7 +2179,21 @@ extern "C" void NeuroRing(
 #pragma HLS INTERFACE axis port=spike_out6 bundle=AXIS_OUT
 #pragma HLS INTERFACE axis port=spike_out7 bundle=AXIS_OUT
 #pragma HLS INTERFACE axis port=syn_route_in bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in1 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in2 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in3 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in4 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in5 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in6 bundle=AXIS_IN
+#pragma HLS INTERFACE axis port=syn_route_in7 bundle=AXIS_IN
 #pragma HLS INTERFACE axis port=syn_forward_rt bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt1 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt2 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt3 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt4 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt5 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt6 bundle=AXIS_OUT
+#pragma HLS INTERFACE axis port=syn_forward_rt7 bundle=AXIS_OUT
 
 
 //---------------------------
@@ -1806,14 +2208,14 @@ extern "C" void NeuroRing(
     hls::stream<synapse_word_t> syn_forward5;
     hls::stream<synapse_word_t> syn_forward6;
     hls::stream<synapse_word_t> syn_forward7;
-    hls::stream<synapse_word_t> spike_stream;
-    hls::stream<synapse_word_t> spike_stream1;
-    hls::stream<synapse_word_t> spike_stream2;
-    hls::stream<synapse_word_t> spike_stream3;
-    hls::stream<synapse_word_t> spike_stream4;
-    hls::stream<synapse_word_t> spike_stream5;
-    hls::stream<synapse_word_t> spike_stream6;
-    hls::stream<synapse_word_t> spike_stream7;
+    hls::stream<lanes8_t> spike_stream;
+    hls::stream<lanes8_t> spike_stream1;
+    hls::stream<lanes8_t> spike_stream2;
+    hls::stream<lanes8_t> spike_stream3;
+    hls::stream<lanes8_t> spike_stream4;
+    hls::stream<lanes8_t> spike_stream5;
+    hls::stream<lanes8_t> spike_stream6;
+    hls::stream<lanes8_t> spike_stream7;
 
 #pragma HLS STREAM variable=syn_forward     depth=128
 #pragma HLS STREAM variable=syn_forward1    depth=128
@@ -1837,6 +2239,13 @@ extern "C" void NeuroRing(
     SynapseRouter(
         synapse_stream,
         syn_route_in,
+        syn_route_in1,
+        syn_route_in2,
+        syn_route_in3,
+        syn_route_in4,
+        syn_route_in5,
+        syn_route_in6,
+        syn_route_in7,
         NeuronStart,
         NeuronTotal,
         SimulationTime,
@@ -1849,7 +2258,14 @@ extern "C" void NeuroRing(
         syn_forward5,
         syn_forward6,
         syn_forward7,
-        syn_forward_rt
+        syn_forward_rt,
+        syn_forward_rt1,
+        syn_forward_rt2,
+        syn_forward_rt3,
+        syn_forward_rt4,
+        syn_forward_rt5,
+        syn_forward_rt6,
+        syn_forward_rt7
     );
     DendriteDelay(syn_forward, SimulationTime, spike_stream);   
     DendriteDelay1(syn_forward1, SimulationTime, spike_stream1);

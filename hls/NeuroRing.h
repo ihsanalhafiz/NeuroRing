@@ -9,7 +9,11 @@
 #include <hls_vector.h>
 #include <ap_axi_sdata.h>
 
-#define NEURON_NUM 2048
+#define NEURON_NUM 4096
+#define NCORE 512
+#define DELAY 64
+#define NLANE 8
+#define GROUP 64
 #define SYNAPSE_LIST_SIZE 5000
 
 typedef ap_uint<64>        synapse_word_t;
@@ -37,6 +41,8 @@ struct SpikeOut_t {
 struct SynapseStream_t {
     hls::vector<synapse_word_t, 8> data;
 };
+
+
 
 extern "C" void AxonLoader(
     uint32_t                    *SynapseList,
@@ -66,7 +72,21 @@ extern "C" void AxonLoader(
         uint32_t              NeuronStart,
         uint32_t              NeuronTotal,
         hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in1,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in2,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in3,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in4,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in5,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in6,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in7,
         hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt1,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt2,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt3,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt4,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt5,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt6,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt7,
         hls::stream<stream512u_t> &synapse_stream,
         hls::stream<stream512u_t> &spike_out,
         hls::stream<stream512u_t> &spike_out1,
