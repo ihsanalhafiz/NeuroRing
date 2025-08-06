@@ -73,12 +73,13 @@ class NeuroRingKernel:
 
         print(f"write done kernel {self.kernel_axon_loader}")
         ### run the kernel
-        self.runNeuroRing = self.kernel_neuroring(simulation_time, self.threshold, self.membrane_potential, self.amount_of_cores, self.neuron_start, self.neuron_total)
-        print(f"Running kernel {self.kernel_neuroring}")    
         self.runAxonLoader = self.kernel_axon_loader(self.synapseListHandle, self.spikeRecorderHandle, self.neuron_start,
                                                      self.neuron_total, self.dcstim_start, self.dcstim_total, self.dcstim_amp,
-                                                     simulation_time, 0)
+                                                     simulation_time, 1)
         print(f"Running kernel {self.kernel_axon_loader}")
+        self.runNeuroRing = self.kernel_neuroring(simulation_time, self.threshold, self.membrane_potential, self.amount_of_cores, self.neuron_start, self.neuron_total)
+        print(f"Running kernel {self.kernel_neuroring}")    
+
 
     def wait_for_kernel(self, sim_time):
         self.runAxonLoader.wait()

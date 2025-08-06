@@ -8,7 +8,7 @@
 
 #define _XF_SYNTHESIS_ 1
 
-#define NEURON_NUM 2048
+#define NEURON_NUM 4096
 #define SYNAPSE_LIST_SIZE 10000
 
 //====================================================================
@@ -24,12 +24,26 @@ extern "C" void AxonLoader(
     uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
     uint32_t                     record_status,
-    hls::stream<stream2048u_t>   &SpikeOutIn,
+    hls::stream<stream512u_t>   &SpikeOutIn,
+    hls::stream<stream512u_t>   &SpikeOutIn1,
+    hls::stream<stream512u_t>   &SpikeOutIn2,
+    hls::stream<stream512u_t>   &SpikeOutIn3,
+    hls::stream<stream512u_t>   &SpikeOutIn4,
+    hls::stream<stream512u_t>   &SpikeOutIn5,
+    hls::stream<stream512u_t>   &SpikeOutIn6,
+    hls::stream<stream512u_t>   &SpikeOutIn7,
     hls::stream<stream512u_t>    &SynapseStream)
 {
     #pragma HLS INTERFACE m_axi      port=SynapseList   offset=slave bundle=gmem0
     #pragma HLS INTERFACE m_axi      port=SpikeRecorder  offset=slave bundle=gmem1
     #pragma HLS INTERFACE axis port=SpikeOutIn bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn1 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn2 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn3 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn4 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn5 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn6 bundle=AXIS_IN
+    #pragma HLS INTERFACE axis port=SpikeOutIn7 bundle=AXIS_IN
     #pragma HLS INTERFACE axis port=SynapseStream bundle=AXIS_OUT
 
     // Helper function to create synapse packet from vector
@@ -77,21 +91,61 @@ extern "C" void AxonLoader(
     // Main simulation loop
     read_status_loop: for (int t = 0; t < SimulationTime; t++) {
         // Read spike status from input stream
-        stream2048u_t spike_read;
+        ap_uint<4096> spike_read_full;
+        stream512u_t spike_read_temp;
         bool read_status = false;
         while (!read_status) {
-            read_status = SpikeOutIn.read_nb(spike_read);
+            read_status = SpikeOutIn.read_nb(spike_read_temp);
         }
+        spike_read_full.range(511, 0) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn1.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(1023, 512) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn2.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(1535, 1024) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn3.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(2047, 1536) = spike_read_temp.data;
+        read_status = false;    
+        while (!read_status) {
+            read_status = SpikeOutIn4.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(2559, 2048) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn5.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(3071, 2560) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn6.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(3583, 3072) = spike_read_temp.data;
+        read_status = false;
+        while (!read_status) {
+            read_status = SpikeOutIn7.read_nb(spike_read_temp);
+        }
+        spike_read_full.range(4095, 3584) = spike_read_temp.data;
+
         if (record_status == 1) {
         // Record spike data
-            for (int i = 0; i < 64; i++) {
-                SpikeRecorder[(t)*64 + i] = spike_read.data.range((i+1)*32-1, i*32);
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 16; j++) {
+                    SpikeRecorder[(t)*128 + i*16 + j] = spike_read_full.range(((i*16 + j)+1)*32-1, (i*16 + j)*32);
+                }
             }
         }
 
         // Process each neuron that fired
         for (int i = 0; i < NeuronTotal; i++) {
-            if (spike_read.data.range(i, i) == 1) {
+            if (spike_read_full.range(i, i) == 1) {
                 // Read synapse count and ensure it's divisible by 16
                 uint32_t synapse_count = SynapseList[i*SYNAPSE_LIST_SIZE];
                 // Process synapses in chunks of 16

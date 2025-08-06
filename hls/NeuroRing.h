@@ -48,20 +48,35 @@ extern "C" void AxonLoader(
     uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
     uint32_t                     record_status,
-    hls::stream<stream2048u_t>   &SpikeOutIn,
+    hls::stream<stream512u_t>   &SpikeOutIn,
+    hls::stream<stream512u_t>   &SpikeOutIn1,
+    hls::stream<stream512u_t>   &SpikeOutIn2,
+    hls::stream<stream512u_t>   &SpikeOutIn3,
+    hls::stream<stream512u_t>   &SpikeOutIn4,
+    hls::stream<stream512u_t>   &SpikeOutIn5,
+    hls::stream<stream512u_t>   &SpikeOutIn6,
+    hls::stream<stream512u_t>   &SpikeOutIn7,
     hls::stream<stream512u_t>    &SynapseStream);
 
-extern "C" void NeuroRing(
-    uint32_t              SimulationTime,
-    uint32_t              threshold,
-    uint32_t              membrane_potential,
-    uint32_t              AmountOfCores,
-    uint32_t              NeuronStart,
-    uint32_t              NeuronTotal,
-    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in,
-    hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt,
-    hls::stream<stream512u_t> &synapse_stream,
-    hls::stream<stream2048u_t> &spike_out);
+    extern "C" void NeuroRing(
+        uint32_t              SimulationTime,
+        uint32_t              threshold,
+        uint32_t              membrane_potential,
+        uint32_t              AmountOfCores,
+        uint32_t              NeuronStart,
+        uint32_t              NeuronTotal,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in,
+        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt,
+        hls::stream<stream512u_t> &synapse_stream,
+        hls::stream<stream512u_t> &spike_out,
+        hls::stream<stream512u_t> &spike_out1,
+        hls::stream<stream512u_t> &spike_out2,
+        hls::stream<stream512u_t> &spike_out3,
+        hls::stream<stream512u_t> &spike_out4,
+        hls::stream<stream512u_t> &spike_out5,
+        hls::stream<stream512u_t> &spike_out6,
+        hls::stream<stream512u_t> &spike_out7
+    );
 
 extern "C" void kernel_mockup(
     uint32_t *hbm_in,
