@@ -1373,6 +1373,7 @@ void SynapseRouter(
 //====================================================================
 void DendriteDelay(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1412,7 +1413,7 @@ void DendriteDelay(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1440,8 +1441,8 @@ void DendriteDelay(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1456,15 +1457,15 @@ void DendriteDelay(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay1(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1504,7 +1505,7 @@ void DendriteDelay1(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1532,8 +1533,8 @@ void DendriteDelay1(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1548,15 +1549,15 @@ void DendriteDelay1(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay2(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1596,7 +1597,7 @@ void DendriteDelay2(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1624,8 +1625,8 @@ void DendriteDelay2(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1640,15 +1641,15 @@ void DendriteDelay2(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay3(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1688,7 +1689,7 @@ void DendriteDelay3(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1716,8 +1717,8 @@ void DendriteDelay3(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1732,15 +1733,15 @@ void DendriteDelay3(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay4(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1780,7 +1781,7 @@ void DendriteDelay4(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1808,8 +1809,8 @@ void DendriteDelay4(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1824,15 +1825,15 @@ void DendriteDelay4(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay5(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1872,7 +1873,7 @@ void DendriteDelay5(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1900,8 +1901,8 @@ void DendriteDelay5(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -1916,15 +1917,15 @@ void DendriteDelay5(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay6(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -1964,7 +1965,7 @@ void DendriteDelay6(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -1992,8 +1993,8 @@ void DendriteDelay6(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -2008,15 +2009,15 @@ void DendriteDelay6(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
-
 void DendriteDelay7(
     hls::stream<synapse_word_t> &SynForward,
+    uint32_t                     NeuronStart,
     uint32_t                     SimulationTime,
     hls::stream<lanes8_t> &SpikeStream)
 {
@@ -2056,7 +2057,7 @@ void DendriteDelay7(
                 buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
-                DstID_t dst = core;
+                DstID_t dst = core+NeuronStart;
                 synapse_word_t temp;
                 temp.range(63, 40) = dst;
                 temp.range(39, 32) = 0x0;
@@ -2084,8 +2085,8 @@ void DendriteDelay7(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                ap_uint<6> h2 = (head[dst.to_uint()-NeuronStart] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)];
                 if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
@@ -2100,12 +2101,13 @@ void DendriteDelay7(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
+                    buf_flat[BUF_IDX((dst.to_uint()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
+
 
 
 //--------------------------------------------------------------------
@@ -2243,14 +2245,14 @@ extern "C" void NeuroRing(
         syn_forward_rt6,
         syn_forward_rt7
     );
-    DendriteDelay(syn_forward, SimulationTime, spike_stream);   
-    DendriteDelay1(syn_forward1, SimulationTime, spike_stream1);
-    DendriteDelay2(syn_forward2, SimulationTime, spike_stream2);
-    DendriteDelay3(syn_forward3, SimulationTime, spike_stream3);
-    DendriteDelay4(syn_forward4, SimulationTime, spike_stream4);
-    DendriteDelay5(syn_forward5, SimulationTime, spike_stream5);
-    DendriteDelay6(syn_forward6, SimulationTime, spike_stream6);
-    DendriteDelay7(syn_forward7, SimulationTime, spike_stream7);
+    DendriteDelay(syn_forward, NeuronStart, SimulationTime, spike_stream);   
+    DendriteDelay1(syn_forward1, NeuronStart+(((NeuronTotal+7)/8)*1), SimulationTime, spike_stream1);
+    DendriteDelay2(syn_forward2, NeuronStart+(((NeuronTotal+7)/8)*2), SimulationTime, spike_stream2);
+    DendriteDelay3(syn_forward3, NeuronStart+(((NeuronTotal+7)/8)*3), SimulationTime, spike_stream3);
+    DendriteDelay4(syn_forward4, NeuronStart+(((NeuronTotal+7)/8)*4), SimulationTime, spike_stream4);
+    DendriteDelay5(syn_forward5, NeuronStart+(((NeuronTotal+7)/8)*5), SimulationTime, spike_stream5);
+    DendriteDelay6(syn_forward6, NeuronStart+(((NeuronTotal+7)/8)*6), SimulationTime, spike_stream6);
+    DendriteDelay7(syn_forward7, NeuronStart+(((NeuronTotal+7)/8)*7), SimulationTime, spike_stream7);
 
     SomaEngine(threshold, membrane_potential, 
         NeuronStart, ((NeuronTotal+7)/8), spike_stream, SimulationTime,
