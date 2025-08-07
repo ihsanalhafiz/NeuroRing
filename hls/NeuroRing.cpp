@@ -29,7 +29,8 @@
 #include "NeuroRing.h"
 
 #define _XF_SYNTHESIS_ 1
-
+#define BUF(core,delay) buf_flat[(core)*DELAY + (delay)]
+#define BUF_IDX(core, ofs)   ((core)*DELAY + (ofs))   // ofs == head[core] or (head+delay)
 
 struct lanes8_t {
     synapse_word_t data[NLANE];
@@ -123,7 +124,7 @@ void SomaEngine(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -138,10 +139,7 @@ void SomaEngine(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -238,7 +236,7 @@ void SomaEngine1(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -253,10 +251,7 @@ void SomaEngine1(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -353,7 +348,7 @@ void SomaEngine2(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -368,10 +363,7 @@ void SomaEngine2(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -468,7 +460,7 @@ void SomaEngine3(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -483,10 +475,7 @@ void SomaEngine3(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -583,7 +572,7 @@ void SomaEngine4(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -598,10 +587,7 @@ void SomaEngine4(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -698,7 +684,7 @@ void SomaEngine5(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -713,10 +699,7 @@ void SomaEngine5(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -813,7 +796,7 @@ void SomaEngine6(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -828,10 +811,7 @@ void SomaEngine6(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -928,7 +908,7 @@ void SomaEngine7(
         //--------------------------------------------------
         runstate = true;
         synapse_loop: while (runstate) {
-            #pragma HLS PIPELINE II=1
+            //#pragma HLS PIPELINE II=1
             lanes8_t pkt;
             bool have_pkt = SpikeStream.read_nb(pkt);
             if (have_pkt) {
@@ -943,10 +923,7 @@ void SomaEngine7(
                     weight_conv[i].u = pkt.data[i].range(31, 0);
                     dst[i] = pkt.data[i].range(63, 40);
                     weight[i] = weight_conv[i].f;
-                }
-                add_C_acc: for (int i = 0; i < NLANE; i++) {
-                    #pragma HLS UNROLL
-                    C_acc[dst[i].to_uint()-NeuronStart] += weight[i];
+                    C_acc[dst[i].to_uint()-NeuronStart] = weight[i];
                 }
                 //printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt.data >> 32) & 0xFF), weight_conv.f);
                 if (dst[0] == 0xFFFFFF) {
@@ -964,6 +941,8 @@ void SomaEngine7(
         }
     }
 }
+
+
 
 //====================================================================
 //  3. SynapseRouter – Route packets to local or next core
@@ -1139,50 +1118,52 @@ void SynapseRouter(
                         }
                     }
 
-                    send_route_loop: for (int i = 0; i < 8; i++) {
-                    #pragma HLS UNROLL
-                        if (send_status_route[i]) {
-                            if (i == 0) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 1) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute1.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 2) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute2.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 3) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute3.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 4) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute4.write_nb(temp_rt_out[i]);   
-                                }
-                            } else if (i == 5) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute5.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 6) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute6.write_nb(temp_rt_out[i]);
-                                }
-                            } else if (i == 7) {
-                                bool write_status = false;
-                                while(!write_status) {
-                                    write_status = SynForwardRoute7.write_nb(temp_rt_out[i]);
-                                }
-                            }
+                    if(send_status_route[0]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute.write_nb(temp_rt_out[0]);
+                        }
+                    }
+                    if(send_status_route[1]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute1.write_nb(temp_rt_out[1]);
+                        }
+                    }
+                    if(send_status_route[2]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute2.write_nb(temp_rt_out[2]);
+                        }
+                    }
+                    if(send_status_route[3]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute3.write_nb(temp_rt_out[3]);
+                        }
+                    }
+                    if(send_status_route[4]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute4.write_nb(temp_rt_out[4]);
+                        }
+                    }
+                    if(send_status_route[5]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute5.write_nb(temp_rt_out[5]);
+                        }
+                    }
+                    if(send_status_route[6]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute6.write_nb(temp_rt_out[6]);
+                        }
+                    }
+                    if(send_status_route[7]) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute7.write_nb(temp_rt_out[7]);
                         }
                     }
                 }
@@ -1194,26 +1175,19 @@ void SynapseRouter(
             #pragma HLS ARRAY_PARTITION variable=have_rt complete
             #pragma HLS ARRAY_PARTITION variable=temp_rt complete
 
-            read_rt_loop: for (int i = 0; i < 8; i++) {
-                #pragma HLS UNROLL
-                if (i == 0) {
-                    have_rt[i] = SynapseStreamRoute.read_nb(temp_rt[i]);
-                } else if (i == 1) {
-                    have_rt[i] = SynapseStreamRoute1.read_nb(temp_rt[i]);
-                } else if (i == 2) {
-                    have_rt[i] = SynapseStreamRoute2.read_nb(temp_rt[i]);
-                } else if (i == 3) {
-                    have_rt[i] = SynapseStreamRoute3.read_nb(temp_rt[i]);
-                } else if (i == 4) {
-                    have_rt[i] = SynapseStreamRoute4.read_nb(temp_rt[i]);
-                } else if (i == 5) {
-                    have_rt[i] = SynapseStreamRoute5.read_nb(temp_rt[i]);
-                } else if (i == 6) {
-                    have_rt[i] = SynapseStreamRoute6.read_nb(temp_rt[i]);
-                } else if (i == 7) {
-                    have_rt[i] = SynapseStreamRoute7.read_nb(temp_rt[i]);
-                }
-            }
+            ap_axiu<64, 0, 0, 0> temp_rt_forward[8];
+            bool have_rt_forward[8] = {false, false, false, false, false, false, false, false};
+            #pragma HLS ARRAY_PARTITION variable=have_rt_forward complete
+            #pragma HLS ARRAY_PARTITION variable=temp_rt_forward complete
+
+            have_rt[0] = SynapseStreamRoute.read_nb(temp_rt[0]);
+            have_rt[1] = SynapseStreamRoute1.read_nb(temp_rt[1]);
+            have_rt[2] = SynapseStreamRoute2.read_nb(temp_rt[2]);
+            have_rt[3] = SynapseStreamRoute3.read_nb(temp_rt[3]);
+            have_rt[4] = SynapseStreamRoute4.read_nb(temp_rt[4]);
+            have_rt[5] = SynapseStreamRoute5.read_nb(temp_rt[5]);
+            have_rt[6] = SynapseStreamRoute6.read_nb(temp_rt[6]);
+            have_rt[7] = SynapseStreamRoute7.read_nb(temp_rt[7]);
 
             read_rt_loop_inner: for (int i = 0; i < 8; i++) {
                 #pragma HLS UNROLL
@@ -1298,56 +1272,57 @@ void SynapseRouter(
                             write_status = SynForward7.write_nb(temp_rt[i].data);
                         }
                     } else {
-                        if (i == 0) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 1) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute1.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 2) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute2.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 3) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute3.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 4) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute4.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 5) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute5.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 6) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute6.write_nb(temp_rt[i]);
-                            }
-                        } else if (i == 7) {
-                            // Forward to next router
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute7.write_nb(temp_rt[i]);
-                            }
-                        }
+                        have_rt_forward[i] = true;
+                        temp_rt_forward[i] = temp_rt[i];
                     }
+                }
+            }
+            if(have_rt_forward[0]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute.write_nb(temp_rt_forward[0]);
+                }
+            }
+            if(have_rt_forward[1]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute1.write_nb(temp_rt_forward[1]);
+                }
+            }
+            if(have_rt_forward[2]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute2.write_nb(temp_rt_forward[2]);
+                }
+            }
+            if(have_rt_forward[3]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute3.write_nb(temp_rt_forward[3]);
+                }
+            }
+            if(have_rt_forward[4]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute4.write_nb(temp_rt_forward[4]);
+                }
+            }
+            if(have_rt_forward[5]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute5.write_nb(temp_rt_forward[5]);
+                }
+            }
+            if(have_rt_forward[6]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute6.write_nb(temp_rt_forward[6]);
+                }
+            }
+            if(have_rt_forward[7]) {
+                bool write_status = false;
+                while(!write_status) {
+                    write_status = SynForwardRoute7.write_nb(temp_rt_forward[7]);
                 }
             }
         }
@@ -1405,20 +1380,19 @@ void DendriteDelay(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1434,8 +1408,8 @@ void DendriteDelay(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1454,14 +1428,21 @@ void DendriteDelay(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1475,13 +1456,7 @@ void DendriteDelay(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1497,20 +1472,19 @@ void DendriteDelay1(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1526,8 +1500,8 @@ void DendriteDelay1(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1546,14 +1520,21 @@ void DendriteDelay1(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1567,13 +1548,7 @@ void DendriteDelay1(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1589,20 +1564,19 @@ void DendriteDelay2(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1618,8 +1592,8 @@ void DendriteDelay2(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1638,14 +1612,21 @@ void DendriteDelay2(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1659,13 +1640,7 @@ void DendriteDelay2(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1681,20 +1656,19 @@ void DendriteDelay3(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1710,8 +1684,8 @@ void DendriteDelay3(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1730,14 +1704,21 @@ void DendriteDelay3(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1751,13 +1732,7 @@ void DendriteDelay3(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1773,20 +1748,19 @@ void DendriteDelay4(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1802,8 +1776,8 @@ void DendriteDelay4(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1822,14 +1796,21 @@ void DendriteDelay4(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1843,13 +1824,7 @@ void DendriteDelay4(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1865,20 +1840,19 @@ void DendriteDelay5(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1894,8 +1868,8 @@ void DendriteDelay5(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -1914,14 +1888,21 @@ void DendriteDelay5(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -1935,13 +1916,7 @@ void DendriteDelay5(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -1957,20 +1932,19 @@ void DendriteDelay6(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -1986,8 +1960,8 @@ void DendriteDelay6(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -2006,14 +1980,21 @@ void DendriteDelay6(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -2027,13 +2008,7 @@ void DendriteDelay6(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
@@ -2049,20 +2024,19 @@ void DendriteDelay7(
     //  On‑chip circular buffer to hold delayed packets
     //------------------------------------------------------
     //static hls::stream<synapse_word_t> delay_fifo;
-    float buf[NCORE][DELAY];
-    #pragma HLS bind_storage variable=buf type=ram_2p impl=uram
+    static float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
     ap_uint<6> head[NCORE];
-    #pragma HLS ARRAY_PARTITION variable=buf  dim=1 cyclic factor=NLANE
+    #pragma HLS ARRAY_PARTITION variable=buf_flat  dim=1 cyclic factor=NLANE
     #pragma HLS ARRAY_PARTITION variable=head dim=1 cyclic factor=NLANE
     //------------------------------------------------------
     //  Zero-initialize buffer and head pointers
     //------------------------------------------------------
     init_loop_outer: for (int core = 0; core < NCORE; core++) {
-        #pragma HLS PIPELINE II=1
         head[core] = 0;
         init_loop_inner: for (int d = 0; d < DELAY; d++) {
-            #pragma HLS UNROLL
-            buf[core][d] = 0.0f;
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
         }
     }
 
@@ -2078,8 +2052,8 @@ void DendriteDelay7(
                 #pragma HLS UNROLL
                 const int core = i * NLANE + lane;
                 ap_uint<6> h = head[core];
-                float weight = buf[core][h];
-                buf[core][h] = 0.0f;
+                float weight = buf_flat[BUF_IDX(core,h)];
+                buf_flat[BUF_IDX(core,h)] = 0.0f;
                 float_to_uint32 temp_conv;
                 temp_conv.f = weight;
                 DstID_t dst = core;
@@ -2098,14 +2072,21 @@ void DendriteDelay7(
 
         bool done = false;
         while (!done) {
-            #pragma HLS PIPELINE II=1 rewind
+            //#pragma HLS PIPELINE II=6 rewind
             //--------------------------------------------------
             // 2) Accept new packets from SynForward
             //--------------------------------------------------
             synapse_word_t pkt_new;
             bool have_pkt = SynForward.read_nb(pkt_new);
             if (have_pkt) {
-                if (pkt_new.range(63, 40) == 0xFFFFFF) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                ap_uint<6> h2 = (head[dst] + delay) & 0x3F;
+                float weight2 = buf_flat[BUF_IDX(dst,h2)];
+                if (dst == 0xFFFFFF) {
                     // Sync word – forward immediately & exit timestep
                     lanes8_t pkt;
                     pkt.data[0] = pkt_new;
@@ -2119,18 +2100,13 @@ void DendriteDelay7(
                     }
                     done = true;            // one timestep completed
                 } else {
-                    DstID_t dst = pkt_new.range(63, 40);
-                    Delay_t delay = pkt_new.range(39, 32);
-                    float_to_uint32 temp_conv;
-                    temp_conv.u = pkt_new.range(31, 0);
-                    float weight = temp_conv.f;
-                    ap_uint<6> h = (head[dst] + delay) & 0x3F;
-                    buf[dst][h] = buf[dst][h] + weight;
+                    buf_flat[BUF_IDX(dst,h2)] = weight2 + weight;
                 }
             }
         }
     }
 }
+
 
 //--------------------------------------------------------------------
 //  Top‑level kernel ‒ integrates all sub‑kernels using DATAFLOW
