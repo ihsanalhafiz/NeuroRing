@@ -3,3 +3,4 @@ _x/
 .Xil/
 *.log
 host_py/__pycache__/
+*.dat
