@@ -14,7 +14,8 @@
 #define DELAY 64
 #define NLANE 8
 #define GROUP 64
-#define SYNAPSE_LIST_SIZE 5000
+// Each neuron has a block of 10,000 32-bit words in the synapse list buffer
+#define SYNAPSE_LIST_SIZE 10000
 
 typedef ap_uint<64>        synapse_word_t;
 typedef uint32_t       spike_status_t;
@@ -71,8 +72,8 @@ extern "C" void AxonLoader(
         uint32_t              AmountOfCores,
         uint32_t              NeuronStart,
         uint32_t              NeuronTotal,
-        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_route_in,
-        hls::stream<ap_axiu<64, 0, 0, 0>> &syn_forward_rt,
+        hls::stream<stream512u_t> &syn_route_in,
+        hls::stream<stream512u_t> &syn_forward_rt,
         hls::stream<stream512u_t> &synapse_stream,
         hls::stream<stream512u_t> &spike_out,
         hls::stream<stream512u_t> &spike_out1,

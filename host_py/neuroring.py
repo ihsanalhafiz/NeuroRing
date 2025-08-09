@@ -57,14 +57,15 @@ class NeuroRingKernel:
     def run_kernel(self, synapse_list_data, simulation_time):
         # copy the synapse_list_data to the synapselist_array
         self.synapseListHandle = pyxrt.bo(self.device, self.neuron_total*10000*4, pyxrt.bo.normal, self.kernel_axon_loader.group_id(0))
-        self.spikeRecorderHandle = pyxrt.bo(self.device, 64*4*simulation_time, pyxrt.bo.normal, self.kernel_axon_loader.group_id(1))
+        # SpikeRecorder stores 4096 spike bits per timestep = 128 uint32 words per timestep
+        self.spikeRecorderHandle = pyxrt.bo(self.device, 128*4*simulation_time, pyxrt.bo.normal, self.kernel_axon_loader.group_id(1))
         
         self.synapseListHandle.write(synapse_list_data, 0)
         self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, self.neuron_total*10000*4, 0)
-        spikeinput = np.zeros(64*simulation_time, dtype=np.uint32)
+        spikeinput = np.zeros(128*simulation_time, dtype=np.uint32)
         #spikeinput[0] = 65535   
         self.spikeRecorderHandle.write(spikeinput, 0)
-        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, 64*4*simulation_time, 0)
+        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, 128*4*simulation_time, 0)
         #self.spikeRecorderHandle.write(self.zeros_group1, 0)
         #self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, int(math.ceil(self.neuron_total/32))*4, 0)
         #thr = -50.0
@@ -97,8 +98,9 @@ class NeuroRingKernel:
         print(f"Kernel run complete {self.kernel_neuroring}")
         
     def get_spike_recorder_array(self, sim_time):
-        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, 64*4*sim_time, 0)
-        self.spikeRecorder_array = np.frombuffer(self.spikeRecorderHandle.read(64*4*sim_time, 0), dtype=np.uint32)
+        # Read back 128 words per timestep (4096 bits)
+        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, 128*4*sim_time, 0)
+        self.spikeRecorder_array = np.frombuffer(self.spikeRecorderHandle.read(128*4*sim_time, 0), dtype=np.uint32)
         return self.spikeRecorder_array
 
 
@@ -185,13 +187,16 @@ class NeuroRingHost:
                         block_start = idx * block_size
                         if syns:
                             cu_packed_list[block_start] = len(syns)
+                            # Store DC amplitude as IEEE-754 float bits (big-endian), consistent with weights
+                            dc_amp_bits = struct.unpack('>I', struct.pack('>f', float(np.average(self.net.DC_amp))))[0]
+                            cu_packed_list[block_start + 1] = dc_amp_bits
                             for i, (src, tgt, dly, wgt) in enumerate(syns):
                                 tgt = int(tgt) & 0xFFFFFF
                                 dly = int(dly) & 0xFF
                                 packed_td = (tgt << 8) | dly  # target_id upper 24 bits, delay lower 8 bits
                                 wgt_bits = struct.unpack('>I', struct.pack('>f', float(wgt)))[0]
-                                cu_packed_list[block_start + 1 + 2*i] = packed_td
-                                cu_packed_list[block_start + 2 + 2*i] = wgt_bits
+                                cu_packed_list[block_start + 16 + 2*i] = packed_td
+                                cu_packed_list[block_start + 17 + 2*i] = wgt_bits
                         # else: block is already zeroed
                 cu_packed_list = np.array(cu_packed_list, dtype=np.uint32)
                 fpga_packed_lists.append(cu_packed_list)
@@ -228,7 +233,7 @@ class NeuroRingHost:
                 kernel = NeuroRingKernel(
                     simulation_time=1,
                     threshold=net_dict["neuron_params"]["V_th"],
-                    membrane_potential=net_dict["neuron_params"]["V_reset"],
+                    membrane_potential=net_dict["neuron_params"]["E_L"],
                     amount_of_cores = self.num_compute_units,
                     neuron_start=neuron_start,
                     neuron_total=neuron_total,

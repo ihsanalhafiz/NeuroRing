@@ -80,6 +80,8 @@ extern "C" void AxonLoader(
         return packet;
     };
 
+    uint32_t DCstim_float[NEURON_NUM];
+
     // Helper function to write packet to stream
     auto write_packet_to_stream = [](hls::stream<stream512u_t>& stream, const stream512u_t& packet) {
         bool write_status = false;
@@ -147,16 +149,27 @@ extern "C" void AxonLoader(
         for (int i = 0; i < NeuronTotal; i++) {
             if (spike_read_full.range(i, i) == 1) {
                 // Read synapse count and ensure it's divisible by 16
-                uint32_t synapse_count = SynapseList[i*SYNAPSE_LIST_SIZE];
+                uint32_t synapse_count;
+                // read 16 data from SynapseList
+                hls::vector<uint32_t, 16> synapse_data;
+                #pragma HLS ARRAY_PARTITION variable=synapse_data complete dim=1
+                for (int k = 0; k < 16; k++) {
+                    #pragma HLS UNROLL
+                    synapse_data[k] = SynapseList[i*SYNAPSE_LIST_SIZE + k];
+                }
+                synapse_count = synapse_data[0];
+                DCstim_float[i] = synapse_data[1];
+                
                 // Process synapses in chunks of 16
-                for (int j = 0; j < (synapse_count + 15) / 16; j++) {
+                for (int j = 1; j < (synapse_count + 15) / 16; j++) {
                     // Read 16 synapses at once
                     hls::vector<uint32_t, 16> synapse_data;
                     #pragma HLS ARRAY_PARTITION variable=synapse_data complete dim=1
                     for (int k = 0; k < 16; k++) {
-                        synapse_data[k] = SynapseList[i*SYNAPSE_LIST_SIZE + j*16 + k + 1];
+                        #pragma HLS UNROLL
+                        synapse_data[k] = SynapseList[i*SYNAPSE_LIST_SIZE + j*16 + k];
                     }
-                    
+
                     // Create and send packet
                     stream512u_t packet = create_synapse_packet(synapse_data);
                     write_packet_to_stream(SynapseStream, packet);
@@ -164,10 +177,11 @@ extern "C" void AxonLoader(
             }
         }
 
-        // Handle DC stimulus window
+        // Handle DC stimulus window (default to kernel DCstimAmp for all neurons)
         if (t >= DCstimStart && t < DCstimStart + DCstimTotal) {
-            for (int i = NeuronStart; i < NeuronTotal; i += 8) {
-                stream512u_t packet = create_dc_stimulus_packet(i, NeuronTotal, DCstimAmp);
+            for (int i = NeuronStart; i < (int)(NeuronStart + NeuronTotal); i += 8) {
+                // Use DCstimAmp uniformly; can be replaced with DCstim_float[i-NeuronStart] if per-neuron values are desired
+                stream512u_t packet = create_dc_stimulus_packet(i, NeuronStart + NeuronTotal, DCstimAmp);
                 write_packet_to_stream(SynapseStream, packet);
             }
         }

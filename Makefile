@@ -82,10 +82,10 @@ loopback.xo: ./hls/loopback.cpp
 	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel loopback --output $@ $^
 
 krnl_neuroring.xo: ./hls/NeuroRing.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --output $@ $^
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --output $@ $^ --hls.pre_tcl ./compile_hls.tcl
 
 krnl_axonloader.xo: ./hls/AxonLoader.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel AxonLoader --output $@ $^
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel AxonLoader --output $@ $^ --hls.pre_tcl ./compile_hls.tcl
 
 $(NEURORING_XCLBIN_OBJ): krnl_neuroring.xo krnl_axonloader.xo NeuroRing.cfg
 	v++ $(LINKFLAGS) $(FREQ_MHZ) --config NeuroRing.cfg --output $@ krnl_neuroring.xo krnl_axonloader.xo
