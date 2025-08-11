@@ -56,27 +56,17 @@ class NeuroRingKernel:
         
     def run_kernel(self, synapse_list_data, simulation_time):
         # copy the synapse_list_data to the synapselist_array
-        self.synapseListHandle = pyxrt.bo(self.device, self.neuron_total*10000*4, pyxrt.bo.normal, self.kernel_axon_loader.group_id(0))
-        # SpikeRecorder stores 4096 spike bits per timestep = 128 uint32 words per timestep
-        self.spikeRecorderHandle = pyxrt.bo(self.device, 128*4*simulation_time, pyxrt.bo.normal, self.kernel_axon_loader.group_id(1))
-        
-        self.synapseListHandle.write(synapse_list_data, 0)
-        self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, self.neuron_total*10000*4, 0)
-        spikeinput = np.zeros(128*simulation_time, dtype=np.uint32)
-        #spikeinput[0] = 65535   
-        self.spikeRecorderHandle.write(spikeinput, 0)
-        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, 128*4*simulation_time, 0)
-        #self.spikeRecorderHandle.write(self.zeros_group1, 0)
-        #self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, int(math.ceil(self.neuron_total/32))*4, 0)
-        #thr = -50.0
-        #thr_bits = struct.unpack('<I', struct.pack('<f', thr))[0]  # IEEE-754 bits
-        #thr_bits = np.uint32(thr_bits)                             # keep it 32-bit
+        self.synapseListHandle = pyxrt.bo(self.device, (120000*128*4)+self.neuron_total*10000*4, pyxrt.bo.normal, self.kernel_axon_loader.group_id(0))  
+        # create array of 120000*128 32-bit zeros and combine with synapse_list_data to create the final synapse_list_data
+        synapse_list_data_final = np.zeros((120000*128)+self.neuron_total*10000, dtype=np.uint32)
+        synapse_list_data_final[120000*128:] = synapse_list_data
+        self.synapseListHandle.write(synapse_list_data_final, 0)
+        self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, (120000*128*4)+self.neuron_total*10000*4, 0)
 
         print(f"write done kernel {self.kernel_axon_loader}")
         ### run the kernel
-        self.runAxonLoader = self.kernel_axon_loader(self.synapseListHandle, self.spikeRecorderHandle, self.neuron_start,
-                                                     self.neuron_total, self.dcstim_start, self.dcstim_total, self.dcstim_amp,
-                                                     simulation_time, 1)
+        self.runAxonLoader = self.kernel_axon_loader(self.synapseListHandle, self.neuron_start, self.neuron_total, self.dcstim_start, self.dcstim_total, 
+                                                     self.dcstim_amp, simulation_time, 1)
         print(f"Running kernel {self.kernel_axon_loader}")
         self.runNeuroRing = self.kernel_neuroring(simulation_time, self.threshold, self.membrane_potential, self.amount_of_cores, self.neuron_start, self.neuron_total)
         print(f"Running kernel {self.kernel_neuroring}")    
@@ -99,9 +89,9 @@ class NeuroRingKernel:
         
     def get_spike_recorder_array(self, sim_time):
         # Read back 128 words per timestep (4096 bits)
-        self.spikeRecorderHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, 128*4*sim_time, 0)
-        self.spikeRecorder_array = np.frombuffer(self.spikeRecorderHandle.read(128*4*sim_time, 0), dtype=np.uint32)
-        return self.spikeRecorder_array
+        self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, (sim_time*128*4), 0)
+        self.SpikeRecorder_array = np.frombuffer(self.synapseListHandle.read((sim_time*128*4), 0), dtype=np.uint32)
+        return self.SpikeRecorder_array
 
 
 class NeuroRingHost:
