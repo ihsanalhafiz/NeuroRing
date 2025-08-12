@@ -502,11 +502,16 @@ extern "C" void NeuroRing_singlestep(
     hls::stream<stream2048u_t> SpikeOut_soma;
     spike_status.data = 0;
 
-    const float alpha = 0.99;
-    const float gamma = 0.00036;
-    const float beta = 0.82;
-    const float t_ref = 20;
-    const float w_f = 585;
+    // LIF (iaf_psc_exp) parameters aligned with host_py/network_params.py
+    const float dt = 0.1f;
+    const float tau_m = 10.0f;
+    const float tau_syn = 0.5f;
+    const float C_m = 250.0f;
+    const float E_L = -65.0f;
+    const float V_decay = 0.99004983f;   // exp(-dt/tau_m)
+    const float I_decay = 0.81873075f;   // exp(-dt/tau_syn)
+    const float syn_to_vm = (1.0f/C_m) * ((I_decay - V_decay) / ((1.0f/tau_m) - (1.0f/tau_syn)));
+    const int   t_ref_steps = 20;        // round(2.0/0.1)
 
     bool runstate = true;
 
@@ -544,7 +549,7 @@ extern "C" void NeuroRing_singlestep(
         }
     }
     for(int i = 0; i < NeuronTotal; i++) {
-        I_PreSynCurr[i] = C_acc[i] * w_f;
+        I_PreSynCurr[i] = I_PreSynCurr[i] * I_decay + C_acc[i];
         printf("C_acc[%d]: %f\n", i, C_acc[i]);
         C_acc[i] = 0;
     }
@@ -552,16 +557,25 @@ extern "C" void NeuroRing_singlestep(
     spike_status.data = 0;
     printf("SomaEngine Calculate\n");
     for(int i = 0; i < NeuronTotal; i++) {
-        x_state[i] = alpha*U_membPot[i] + gamma*I_PreSynCurr[i] + beta*R_RefCnt[i];
-        I_PreSynCurr[i] *= beta;
-        if(x_state[i] > threshold) {
-            spike_status.data |= (ap_uint<2048>)1<<i;
-            U_membPot[i] = 0;
-            R_RefCnt[i] = t_ref;
+        // refractory countdown
+        if (R_RefCnt[i] > 0) {
+            R_RefCnt[i] = ((R_RefCnt[i] - 1.0f) > 0.0f) ? (R_RefCnt[i] - 1.0f) : 0.0f;
         }
-        else {
-            U_membPot[i] = R_RefCnt[i] > 0 ? 0 : x_state[i];
-            R_RefCnt[i] = ((R_RefCnt[i] - 1) > 0) ? (R_RefCnt[i] - 1) : 0;
+        // membrane update
+        if (R_RefCnt[i] > 0) {
+            U_membPot[i] = 0; // treat 0 as V_reset here in singlestep mode
+        } else {
+            float v_prev = U_membPot[i];
+            float i_prev = I_PreSynCurr[i];
+            float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+            U_membPot[i] = v_new;
+        }
+        // threshold
+        float_to_uint32 thr_conv; thr_conv.u = threshold; float thr = thr_conv.f;
+        if (U_membPot[i] >= thr) {
+            spike_status.data |= (ap_uint<2048>)1<<i;
+            U_membPot[i] = 0; // reset
+            R_RefCnt[i] = (float)t_ref_steps;
         }
     }
     printf("SomaEngine Calculate done\n");
