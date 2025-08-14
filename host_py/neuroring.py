@@ -9,6 +9,8 @@ import network
 from network_params import net_dict
 from sim_params import sim_dict
 from stimulus_params import stim_dict
+import matplotlib.pyplot as plt
+
 
 import struct
 from collections import defaultdict
@@ -302,8 +304,15 @@ class NeuroRingHost:
                             e = s + int(cnt)
                             tgts = (targets_arr[s:e].astype(np.uint32) & np.uint32(0xFFFFFF))
                             dlys = (delays10_arr[s:e].astype(np.uint32) & np.uint32(0xFF))
-                            packed_td = (tgts << np.uint32(8)) | dlys
                             w_bits = weights_arr[s:e].astype('<f4').view('<u4').astype(np.uint32)
+                            
+                            # sort by target (stable). If you also want delay as tie-breaker, see lexsort below.
+                            order = np.argsort(tgts, kind='stable')
+                            tgts  = tgts[order]
+                            dlys  = dlys[order]
+                            w_bits = w_bits[order]
+                            
+                            packed_td = (tgts << np.uint32(8)) | dlys
 
                             base = block_start + 16
                             idxs = base + 2 * np.arange(cnt, dtype=np.int64)
@@ -372,4 +381,149 @@ class NeuroRingHost:
         for fpga_idx in range(self.num_fpgas):
             for i, kernel in enumerate(self.kernels_per_fpga[fpga_idx]):
                 kernel.wait_for_kernel(sim_time)
+
+    def get_spike_array(self, fpga_idx, kernel_idx, sim_time):
+        """
+        Fetch raw spike recorder words for a specific FPGA and kernel, reshaped as (sim_time, 128).
+
+        Each timestep contains 128 uint32 words, totaling 4096 bits. Word 0 holds neurons 1..32,
+        with bit 0 representing neuron 1, bit 31 representing neuron 32, and so on.
+        """
+        raw = self.kernels_per_fpga[fpga_idx][kernel_idx].get_spike_recorder_array(sim_time)
+        return np.asarray(raw, dtype=np.uint32).reshape((sim_time, 128))
+
+    def decode_spike_array(self, fpga_idx, kernel_idx, sim_time, return_global_ids=True):
+        """
+        Decode spike words into neuron IDs per timestep.
+
+        - If return_global_ids is True, neuron IDs are offset by the kernel's neuron_start.
+        - Otherwise, neuron IDs are local to the kernel (1-based within the 4096-bit window).
+
+        Returns a list of length sim_time where each entry is a list of neuron IDs that spiked at that timestep.
+        """
+        words_per_timestep = self.get_spike_array(fpga_idx, kernel_idx, sim_time)
+
+        # Retrieve neuron_start for proper global ID mapping when requested.
+        try:
+            neuron_start, neuron_total = self.kernel_neuron_ranges_per_fpga[fpga_idx][kernel_idx]
+        except Exception:
+            neuron_start, neuron_total = 1, None  # Fallback to 1-based if mapping unavailable
+
+        spikes_by_timestep = []
+        for t in range(sim_time):
+            timestep_words = words_per_timestep[t]
+            spiking_neurons = []
+            for word_index in range(128):
+                word = int(timestep_words[word_index])
+                if word == 0:
+                    continue
+                # Iterate through set bits only
+                bit_pos = 0
+                while word:
+                    # Isolate least significant set bit
+                    lsb = word & -word
+                    bit_pos = (lsb.bit_length() - 1)
+                    local_neuron_id = word_index * 32 + bit_pos + 1  # 1-based within 4096
+                    if return_global_ids:
+                        global_neuron_id = neuron_start + local_neuron_id - 1
+                        spiking_neurons.append(global_neuron_id)
+                    else:
+                        spiking_neurons.append(local_neuron_id)
+                    # Clear the least significant set bit
+                    word &= word - 1
+            # Optionally constrain to known neuron_total if provided
+            if neuron_total is not None and return_global_ids:
+                max_global = neuron_start + max(neuron_total - 1, 0)
+                spiking_neurons = [n for n in spiking_neurons if neuron_start <= n <= max_global]
+            spikes_by_timestep.append(spiking_neurons)
+
+        return spikes_by_timestep
+
+    def get_spike_events(self, fpga_idx, kernel_idx, sim_time, return_global_ids=True):
+        """
+        Return (times, neuron_ids) suitable for raster plotting.
+
+        times and neuron_ids are 1D numpy arrays of equal length.
+        """
+        spikes_by_timestep = self.decode_spike_array(fpga_idx, kernel_idx, sim_time, return_global_ids=return_global_ids)
+        times_list = []
+        neuron_ids_list = []
+        for t, neuron_ids in enumerate(spikes_by_timestep):
+            if not neuron_ids:
+                continue
+            times_list.extend([t] * len(neuron_ids))
+            neuron_ids_list.extend(neuron_ids)
+        if len(times_list) == 0:
+            return np.array([], dtype=np.int32), np.array([], dtype=np.int32)
+        return np.asarray(times_list, dtype=np.int32), np.asarray(neuron_ids_list, dtype=np.int32)
+
+    def plot_raster(self, fpga_idx, kernel_idx, sim_time, return_global_ids=True, ax=None, markersize=1.5, color='k'):
+        """
+        Plot a raster of spikes for a given FPGA and kernel over sim_time timesteps.
+
+        - return_global_ids: plots global neuron IDs if True; otherwise local 1..4096 IDs.
+        - ax: optional matplotlib Axes to plot on.
+        - markersize, color: styling for the scatter points.
+        Returns the matplotlib Axes used.
+        """
+        times, neuron_ids = self.get_spike_events(fpga_idx, kernel_idx, sim_time, return_global_ids=return_global_ids)
+        if ax is None:
+            _, ax = plt.subplots(figsize=(10, 5))
+        if times.size > 0:
+            ax.scatter(times, neuron_ids, s=markersize, c=color, marker='.', linewidths=0)
+        ax.set_xlabel('Timestep')
+        ax.set_ylabel('Neuron ID' + (' (global)' if return_global_ids else ' (local)'))
+        ax.set_title(f'Raster: FPGA {fpga_idx}, Kernel {kernel_idx}, T={sim_time}')
+        ax.set_xlim(-0.5, sim_time - 0.5)
+        return ax
+
+    def get_all_spike_arrays(self, sim_time):
+        """
+        Retrieve raw spike arrays for all FPGAs and kernels.
+
+        Returns a nested list: result[fpga_idx][kernel_idx] -> np.ndarray of shape (sim_time, 128)
+        """
+        all_arrays = []
+        for fpga_idx in range(self.num_fpgas):
+            fpga_arrays = []
+            for kernel_idx, _ in enumerate(self.kernels_per_fpga[fpga_idx]):
+                fpga_arrays.append(self.get_spike_array(fpga_idx, kernel_idx, sim_time))
+            all_arrays.append(fpga_arrays)
+        return all_arrays
+
+    def decode_all_spikes(self, sim_time, return_global_ids=True):
+        """
+        Decode spikes for all FPGAs and kernels.
+
+        Returns a nested list: result[fpga_idx][kernel_idx] -> list(length=sim_time) of lists of neuron IDs per timestep.
+        """
+        all_decoded = []
+        for fpga_idx in range(self.num_fpgas):
+            fpga_decoded = []
+            for kernel_idx, _ in enumerate(self.kernels_per_fpga[fpga_idx]):
+                fpga_decoded.append(self.decode_spike_array(fpga_idx, kernel_idx, sim_time, return_global_ids=return_global_ids))
+            all_decoded.append(fpga_decoded)
+        return all_decoded
+
+    def plot_raster_all(self, sim_time, return_global_ids=True, figsize=(14, 6), markersize=1.5, color='k'):
+        """
+        Plot rasters for all FPGAs and kernels in a grid.
+
+        Grid shape: rows = num_fpgas, cols = max kernels per FPGA. Returns (fig, axes).
+        """
+        max_kernels = max((len(klist) for klist in self.kernels_per_fpga), default=0)
+        if max_kernels == 0:
+            fig, ax = plt.subplots(figsize=figsize)
+            ax.set_title('No kernels to plot')
+            return fig, ax
+        fig, axes = plt.subplots(self.num_fpgas, max_kernels, figsize=figsize, squeeze=False)
+        for fpga_idx in range(self.num_fpgas):
+            for kernel_idx in range(max_kernels):
+                ax = axes[fpga_idx][kernel_idx]
+                if kernel_idx < len(self.kernels_per_fpga[fpga_idx]):
+                    self.plot_raster(fpga_idx, kernel_idx, sim_time, return_global_ids=return_global_ids, ax=ax, markersize=markersize, color=color)
+                else:
+                    ax.axis('off')
+        fig.tight_layout()
+        return fig, axes
 

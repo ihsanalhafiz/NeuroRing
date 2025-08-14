@@ -8,14 +8,16 @@
 #include <stdint.h>
 #include <hls_vector.h>
 #include <ap_axi_sdata.h>
+#include <hls_math.h>
 
-#define NEURON_NUM 4096
-#define NCORE 512
+#define NEURON_NUM 2048
+#define NCORE 64
 #define DELAY 64
 #define NLANE 8
 #define GROUP 64
 // Each neuron has a block of 10,000 32-bit words in the synapse list buffer
-#define SYNAPSE_LIST_SIZE 10000
+#define SYNAPSE_LIST_SIZE 9600
+#define SYNAPSE_ARRAY_OFFSET 120000 * 64
 
 typedef ap_uint<64>        synapse_word_t;
 typedef uint32_t       spike_status_t;
@@ -47,41 +49,26 @@ struct SynapseStream_t {
 
 extern "C" void AxonLoader(
     uint32_t                    *SpikeRecorder_SynapseList,
-    uint32_t                     NeuronStart,
-    uint32_t                     NeuronTotal,
-    uint32_t                     DCstimStart,
-    uint32_t                     DCstimTotal,
-    uint32_t                     DCstimAmp,
-    uint32_t                     SimulationTime,
-    uint32_t                     record_status,
-    hls::stream<stream512u_t>   &SpikeOutIn,
-    hls::stream<stream512u_t>   &SpikeOutIn1,
-    hls::stream<stream512u_t>   &SpikeOutIn2,
-    hls::stream<stream512u_t>   &SpikeOutIn3,
-    hls::stream<stream512u_t>   &SpikeOutIn4,
-    hls::stream<stream512u_t>   &SpikeOutIn5,
-    hls::stream<stream512u_t>   &SpikeOutIn6,
-    hls::stream<stream512u_t>   &SpikeOutIn7,
-    hls::stream<stream512u_t>    &SynapseStream);
+    int                     NeuronStart,
+    int                     NeuronTotal,
+    int                     DCstimStart,
+    int                     DCstimTotal,
+    int                     SimulationTime,
+    int                     record_status,
+    hls::stream<stream2048u_t>   &SpikeOutIn,
+    hls::stream<stream2048u_t>    &SynapseStream);
 
     extern "C" void NeuroRing(
-        uint32_t              SimulationTime,
-        uint32_t              threshold,
-        uint32_t              membrane_potential,
-        uint32_t              AmountOfCores,
-        uint32_t              NeuronStart,
-        uint32_t              NeuronTotal,
-        hls::stream<stream512u_t> &syn_route_in,
-        hls::stream<stream512u_t> &syn_forward_rt,
-        hls::stream<stream512u_t> &synapse_stream,
-        hls::stream<stream512u_t> &spike_out,
-        hls::stream<stream512u_t> &spike_out1,
-        hls::stream<stream512u_t> &spike_out2,
-        hls::stream<stream512u_t> &spike_out3,
-        hls::stream<stream512u_t> &spike_out4,
-        hls::stream<stream512u_t> &spike_out5,
-        hls::stream<stream512u_t> &spike_out6,
-        hls::stream<stream512u_t> &spike_out7
+        int              SimulationTime,
+        uint32_t         threshold,
+        uint32_t         membrane_potential,
+        int              AmountOfCores,
+        int              NeuronStart,
+        int              NeuronTotal,
+        hls::stream<stream2048u_t> &syn_route_in,
+        hls::stream<stream2048u_t> &syn_forward_rt,
+        hls::stream<stream2048u_t> &synapse_stream,
+        hls::stream<stream2048u_t> &spike_stream
     );
 
 extern "C" void kernel_mockup(
