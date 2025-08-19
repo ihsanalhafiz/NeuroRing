@@ -265,6 +265,14 @@ void SynapseRouter(
     hls::stream<synapse_word_t> &SynForward7,
     hls::stream<stream512u_t> &SynForwardRoute)
 {
+    // Helper function to write packet to stream
+    auto write_synapse_to_stream = [](hls::stream<synapse_word_t>& stream, const synapse_word_t& packet) {
+        bool write_status = false;
+        while (!write_status) {
+            write_status = stream.write_nb(packet);
+        }
+    };
+    
     // Pre-compute range bounds for faster comparison
     const uint32_t neuron_end = NeuronStart + NeuronTotal;
     ap_uint<24> start[8];
@@ -362,14 +370,14 @@ void SynapseRouter(
 
                     // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
                     switch (region) {
-                        case 0:  SynForward.write(temp); break;
-                        case 1:  SynForward1.write(temp); break;
-                        case 2:  SynForward2.write(temp); break;
-                        case 3:  SynForward3.write(temp); break;
-                        case 4:  SynForward4.write(temp); break;
-                        case 5:  SynForward5.write(temp); break;
-                        case 6:  SynForward6.write(temp); break;
-                        case 7:  SynForward7.write(temp); break;
+                        case 0: write_synapse_to_stream(SynForward, temp); break;
+                        case 1: write_synapse_to_stream(SynForward1, temp); break;
+                        case 2: write_synapse_to_stream(SynForward2, temp); break;
+                        case 3: write_synapse_to_stream(SynForward3, temp); break;
+                        case 4: write_synapse_to_stream(SynForward4, temp); break;
+                        case 5: write_synapse_to_stream(SynForward5, temp); break;
+                        case 6: write_synapse_to_stream(SynForward6, temp); break;
+                        case 7: write_synapse_to_stream(SynForward7, temp); break;
                         default: break; // no-op if no region matched
                     }
                     if(region != -1) {
@@ -378,73 +386,49 @@ void SynapseRouter(
                         delay[i] = 0;
                         weight_bits[i] = 0;
                     }
-                }                
+                }
+                bool any_non_zero = false;
+                for(int i = 0; i < 8; i++) {
+                    any_non_zero = any_non_zero || (dst[i] != 0);
+                }
+                if(any_non_zero) {
+                    // create stream512u_t packet
+                    stream512u_t temp_pkt;
+                    for(int i = 0; i < 8; i++) {
+                        #pragma HLS UNROLL
+                        int base_bit = 511 - i * 64;
+                        temp_pkt.data.range(base_bit, base_bit - 23) = dst[i];
+                        temp_pkt.data.range(base_bit - 24, base_bit - 31) = delay[i];
+                        temp_pkt.data.range(base_bit - 32, base_bit - 63) = weight_bits[i];
+                    }
+                    bool write_status = false;
+                    while(!write_status) {
+                        write_status = SynForwardRoute.write_nb(temp_pkt);
+                    }
+                }
+            
                 // Check if this is an axon done signal
                 if (delay[0] == 0xFE) {
-                    if(dst[0] == NeuronStart) {
+                    if((dst[0] == NeuronStart) && axon_done == false) {
                         axon_done = true;
-                        // Non-blocking write with retry
-                        if(size_forward > 0) {
-                            stream512u_t pkt_forward;
-                            for(int i = 0; i < 8; i++) {
-                                #pragma HLS UNROLL
-                                int base_bit = 511 - i * 64;
-                                pkt_forward.data.range(base_bit, base_bit - 23) = dst_forward[i];
-                                pkt_forward.data.range(base_bit - 24, base_bit - 31) = delay_forward[i];
-                                pkt_forward.data.range(base_bit - 32, base_bit - 63) = weight_bits_forward[i];
-                                dst_forward[i] = (DstID_t)0;
-                                delay_forward[i] = (Delay_t)0;
-                                weight_bits_forward[i] = (uint32_t)0;
-                            }
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute.write_nb(pkt_forward);
-                            }
-                            size_forward = 0;
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute.write_nb(pkt);
                         }
-                    }
-
-                    if(coreDone == AmountOfCores) {
-                        prev_done = true;
-                        if(dst[0] != NeuronStart) {
-                            // Write to local synapse stream
+                    } else{
+                        if(coreDone == AmountOfCores - 1) {
+                            prev_done = true;
+                        } else {
+                            coreDone++;
+                        }
+                        // Forward if not for this core
+                        if (dst[0] != ap_uint<24>(NeuronStart)) {
                             bool write_status = false;
                             while(!write_status) {
                                 write_status = SynForwardRoute.write_nb(pkt);
                             }
                         }
-                    } else {
-                        coreDone++;
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForwardRoute.write_nb(pkt);
-                        }
-                    }
-                } else {
-                    for(int i = 0; i < 8; i++) {
-                        if(size_forward < 8) {
-                            dst_forward[size_forward] = dst[i];
-                            delay_forward[size_forward] = delay[i];
-                            weight_bits_forward[size_forward] = weight_bits[i];
-                            size_forward++;
-                        } else {
-                            stream512u_t pkt_forward;
-                            for(int i = 0; i < 8; i++) {
-                                int base_bit = 511 - i * 64;
-                                pkt_forward.data.range(base_bit, base_bit - 23) = dst_forward[i];
-                                pkt_forward.data.range(base_bit - 24, base_bit - 31) = delay_forward[i];
-                                pkt_forward.data.range(base_bit - 32, base_bit - 63) = weight_bits_forward[i];
-                                dst_forward[i] = (DstID_t)0;
-                                delay_forward[i] = (Delay_t)0;
-                                weight_bits_forward[i] = (uint32_t)0;
-                            }
-                            // Write to local synapse stream
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute.write_nb(pkt_forward);
-                            }
-                            size_forward = 0;
-                        }
+
                     }
                 }
             }
@@ -456,14 +440,38 @@ void SynapseRouter(
         temp_sync.range(39, 32) = 0xFE;
         temp_sync.range(31, 0) = 0x0;
         
-        SynForward.write(temp_sync);
-        SynForward1.write(temp_sync);
-        SynForward2.write(temp_sync);
-        SynForward3.write(temp_sync);
-        SynForward4.write(temp_sync);
-        SynForward5.write(temp_sync);
-        SynForward6.write(temp_sync);
-        SynForward7.write(temp_sync);
+        bool write_status = false;
+        while(!write_status) {
+            write_status = SynForward.write_nb(temp_sync);
+        }
+        bool write_status1 = false;
+        while(!write_status1) {
+            write_status1 = SynForward1.write_nb(temp_sync);
+        }
+        bool write_status2 = false;
+        while(!write_status2) {
+            write_status2 = SynForward2.write_nb(temp_sync);
+        }
+        bool write_status3 = false;
+        while(!write_status3) {
+            write_status3 = SynForward3.write_nb(temp_sync);
+        }
+        bool write_status4 = false;
+        while(!write_status4) {
+            write_status4 = SynForward4.write_nb(temp_sync);
+        }
+        bool write_status5 = false;
+        while(!write_status5) {
+            write_status5 = SynForward5.write_nb(temp_sync);
+        }
+        bool write_status6 = false;
+        while(!write_status6) {
+            write_status6 = SynForward6.write_nb(temp_sync);
+        }
+        bool write_status7 = false;
+        while(!write_status7) {
+            write_status7 = SynForward7.write_nb(temp_sync);
+        }
     }
 }
 

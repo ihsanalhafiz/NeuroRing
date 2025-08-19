@@ -58,7 +58,7 @@ extern "C" void AxonLoader(
             #pragma HLS UNROLL
             parameter_data[k] = SpikeRecorder_SynapseList[i*SYNAPSE_LIST_SIZE + k + SYNAPSE_ARRAY_OFFSET];
         }
-        SynapseSize[i] = parameter_data[0];
+        SynapseSize[i] = parameter_data[0]*2;
         DCstim_float[i] = parameter_data[1];
         UmemPot[i] = parameter_data[2];
     }
