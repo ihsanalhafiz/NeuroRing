@@ -9,13 +9,13 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Mon Aug 11 19:02:26 2025",
- "timestampMillis": "1754931746662",
+ "dateTimestamp": "Tue Aug 19 12:15:03 2025",
+ "timestampMillis": "1755598503260",
  "buildStep": {
-  "cmdId": "c916f406-8506-4ea7-b567-39b8b7fe644c",
+  "cmdId": "c85b1c48-0c65-4c04-a212-9628c16855cd",
   "name": "v++",
   "logFile": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/krnl_axonloader.steps.log",
-  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 200 --kernel AxonLoader --output krnl_axonloader.xo hls/AxonLoader.cpp --hls.pre_tcl ./compile_hls.tcl ",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --compile --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --debug -I . --kernel_frequency 300 --kernel AxonLoader --output krnl_axonloader.xo hls/AxonLoader.cpp --hls.pre_tcl ./compile_hls.tcl ",
   "args": [
    "--compile",
    "--platform",
@@ -27,7 +27,7 @@
    "-I",
    ".",
    "--kernel_frequency",
-   "200",
+   "300",
    "--kernel",
    "AxonLoader",
    "--output",
@@ -44,10 +44,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Aug 11 19:02:26 2025",
- "timestampMillis": "1754931746663",
+ "dateTimestamp": "Tue Aug 19 12:15:03 2025",
+ "timestampMillis": "1755598503262",
  "status": {
-  "cmdId": "c916f406-8506-4ea7-b567-39b8b7fe644c",
+  "cmdId": "c85b1c48-0c65-4c04-a212-9628c16855cd",
   "state": "CS_RUNNING"
  }
 }
@@ -55,8 +55,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Mon Aug 11 19:02:32 2025",
- "timestampMillis": "1754931752487",
+ "dateTimestamp": "Tue Aug 19 12:15:09 2025",
+ "timestampMillis": "1755598509319",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
   "hardwareDsa": "",
@@ -91,10 +91,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Aug 11 19:02:32 2025",
- "timestampMillis": "1754931752515",
+ "dateTimestamp": "Tue Aug 19 12:15:09 2025",
+ "timestampMillis": "1755598509347",
  "buildStep": {
-  "cmdId": "40ed943f-344e-4882-b235-cf783ae967a4",
+  "cmdId": "d42fc048-5643-4294-a6a9-59be085b491d",
   "name": "vitis_hls",
   "logFile": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/vitis_hls.log",
   "commandLine": "-exec vitis_hls -f AxonLoader.tcl -messageDb vitis_hls.pb",
@@ -114,10 +114,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Aug 11 19:02:32 2025",
- "timestampMillis": "1754931752517",
+ "dateTimestamp": "Tue Aug 19 12:15:09 2025",
+ "timestampMillis": "1755598509349",
  "status": {
-  "cmdId": "40ed943f-344e-4882-b235-cf783ae967a4",
+  "cmdId": "d42fc048-5643-4294-a6a9-59be085b491d",
   "state": "CS_RUNNING"
  }
 }
@@ -125,10 +125,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Aug 11 19:04:48 2025",
- "timestampMillis": "1754931888169",
+ "dateTimestamp": "Tue Aug 19 12:16:57 2025",
+ "timestampMillis": "1755598617399",
  "status": {
-  "cmdId": "40ed943f-344e-4882-b235-cf783ae967a4",
+  "cmdId": "d42fc048-5643-4294-a6a9-59be085b491d",
   "state": "CS_PASSED"
  }
 }
@@ -136,8 +136,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:49 2025",
- "timestampMillis": "1754931889282",
+ "dateTimestamp": "Tue Aug 19 12:16:57 2025",
+ "timestampMillis": "1755598617830",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/AxonLoader/solution/.autopilot/db/AxonLoader.design.xml",
   "name": "AxonLoader",
@@ -150,8 +150,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:49 2025",
- "timestampMillis": "1754931889319",
+ "dateTimestamp": "Tue Aug 19 12:16:57 2025",
+ "timestampMillis": "1755598617844",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/hls_reports/AxonLoader_csynth.rpt",
   "name": "AxonLoader",
@@ -164,8 +164,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:49 2025",
- "timestampMillis": "1754931889321",
+ "dateTimestamp": "Tue Aug 19 12:16:57 2025",
+ "timestampMillis": "1755598617846",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/krnl_axonloader/AxonLoader/AxonLoader/solution/syn/report/AxonLoader_csynth.xml",
   "name": "AxonLoader",
@@ -178,8 +178,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:49 2025",
- "timestampMillis": "1754931889418",
+ "dateTimestamp": "Tue Aug 19 12:16:57 2025",
+ "timestampMillis": "1755598617917",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/system_estimate_krnl_axonloader.xtxt",
   "name": "",
@@ -192,10 +192,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Aug 11 19:04:53 2025",
- "timestampMillis": "1754931893234",
+ "dateTimestamp": "Tue Aug 19 12:16:59 2025",
+ "timestampMillis": "1755598619614",
  "status": {
-  "cmdId": "c916f406-8506-4ea7-b567-39b8b7fe644c",
+  "cmdId": "c85b1c48-0c65-4c04-a212-9628c16855cd",
   "state": "CS_PASSED"
  }
 }
@@ -203,8 +203,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:53 2025",
- "timestampMillis": "1754931893411",
+ "dateTimestamp": "Tue Aug 19 12:16:59 2025",
+ "timestampMillis": "1755598619792",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/reports/krnl_axonloader/v++_compile_krnl_axonloader_guidance.html",
   "name": "",
@@ -217,8 +217,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Aug 11 19:04:53 2025",
- "timestampMillis": "1754931893415",
+ "dateTimestamp": "Tue Aug 19 12:16:59 2025",
+ "timestampMillis": "1755598619796",
  "report": {
   "path": "/home/miahafiz/NeuroRing/_x/v++_compile_krnl_axonloader_guidance.pb3",
   "name": "",

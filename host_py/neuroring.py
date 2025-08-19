@@ -39,7 +39,7 @@ class NeuroRingKernel:
         self.kernel = None
         # Persistent BO and layout info
         self.synapseListHandle = None
-        self.header_words = 120000 * 128  # recorder words (up to 120k timesteps * 128 words/tick)
+        self.header_words = 120000 * 64  # recorder words (up to 120k timesteps * 128 words/tick)
         self.header_bytes = self.header_words * 4
         self.tail_words_capacity = max(0, self.neuron_total) * 10000
         self.tail_bytes_capacity = self.tail_words_capacity * 4
