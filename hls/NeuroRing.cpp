@@ -323,40 +323,44 @@ void SynapseRouter(
 {
     // Pre-compute range bounds for faster comparison
     const uint32_t neuron_end = NeuronStart + NeuronTotal;
+    ap_uint<24> start[16];
+    ap_uint<24> end[16];
+    #pragma HLS ARRAY_PARTITION variable=start complete
+    #pragma HLS ARRAY_PARTITION variable=end complete
 
-    const uint32_t start0 = NeuronStart;
-    const uint32_t start1 = NeuronStart + ((NeuronTotal+15)/16)*1;
-    const uint32_t start2 = NeuronStart + ((NeuronTotal+15)/16)*2;
-    const uint32_t start3 = NeuronStart + ((NeuronTotal+15)/16)*3;
-    const uint32_t start4 = NeuronStart + ((NeuronTotal+15)/16)*4;
-    const uint32_t start5 = NeuronStart + ((NeuronTotal+15)/16)*5;
-    const uint32_t start6 = NeuronStart + ((NeuronTotal+15)/16)*6;
-    const uint32_t start7 = NeuronStart + ((NeuronTotal+15)/16)*7;
-    const uint32_t start8 = NeuronStart + ((NeuronTotal+15)/16)*8;
-    const uint32_t start9 = NeuronStart + ((NeuronTotal+15)/16)*9;
-    const uint32_t start10 = NeuronStart + ((NeuronTotal+15)/16)*10;
-    const uint32_t start11 = NeuronStart + ((NeuronTotal+15)/16)*11;
-    const uint32_t start12 = NeuronStart + ((NeuronTotal+15)/16)*12;
-    const uint32_t start13 = NeuronStart + ((NeuronTotal+15)/16)*13;
-    const uint32_t start14 = NeuronStart + ((NeuronTotal+15)/16)*14;
-    const uint32_t start15 = NeuronStart + ((NeuronTotal+15)/16)*15;
+    start[0] = NeuronStart;
+    start[1] = NeuronStart + ((NeuronTotal+15)/16)*1;
+    start[2] = NeuronStart + ((NeuronTotal+15)/16)*2;
+    start[3] = NeuronStart + ((NeuronTotal+15)/16)*3;
+    start[4] = NeuronStart + ((NeuronTotal+15)/16)*4;
+    start[5] = NeuronStart + ((NeuronTotal+15)/16)*5;
+    start[6] = NeuronStart + ((NeuronTotal+15)/16)*6;
+    start[7] = NeuronStart + ((NeuronTotal+15)/16)*7;
+    start[8] = NeuronStart + ((NeuronTotal+15)/16)*8;
+    start[9] = NeuronStart + ((NeuronTotal+15)/16)*9;
+    start[10] = NeuronStart + ((NeuronTotal+15)/16)*10;
+    start[11] = NeuronStart + ((NeuronTotal+15)/16)*11;
+    start[12] = NeuronStart + ((NeuronTotal+15)/16)*12;
+    start[13] = NeuronStart + ((NeuronTotal+15)/16)*13;
+    start[14] = NeuronStart + ((NeuronTotal+15)/16)*14;
+    start[15] = NeuronStart + ((NeuronTotal+15)/16)*15;
 
-    const uint32_t end0 = start1;
-    const uint32_t end1 = start2;
-    const uint32_t end2 = start3;
-    const uint32_t end3 = start4;
-    const uint32_t end4 = start5;
-    const uint32_t end5 = start6;
-    const uint32_t end6 = start7;
-    const uint32_t end7 = start8;
-    const uint32_t end8 = start9;
-    const uint32_t end9 = start10;
-    const uint32_t end10 = start11;
-    const uint32_t end11 = start12;
-    const uint32_t end12 = start13;
-    const uint32_t end13 = start14;
-    const uint32_t end14 = start15;
-    const uint32_t end15 = neuron_end;
+    end[0] = start[1];
+    end[1] = start[2];
+    end[2] = start[3];
+    end[3] = start[4];
+    end[4] = start[5];
+    end[5] = start[6];
+    end[6] = start[7];
+    end[7] = start[8];
+    end[8] = start[9];
+    end[9] = start[10];
+    end[10] = start[11];
+    end[11] = start[12];
+    end[12] = start[13];
+    end[13] = start[14];
+    end[14] = start[15];
+    end[15] = neuron_end;
 
     bool read_axonLoader = true;
     hls::vector<DstID_t, 16> dst_forward = (DstID_t)0;
@@ -413,177 +417,48 @@ void SynapseRouter(
                 }
 
                 synapse_loop: for (int i = 0; i < 16; i++) {
-                    #pragma HLS UNROLL
+                    //#pragma HLS UNROLL
                     // Create synapse word
                     synapse_word_t temp;
                     temp.range(63, 40) = dst[i];
                     temp.range(39, 32) = delay[i];
-                    temp.range(31, 0) = weight_bits[i];
-                    
-                    // Route based on destination
-                    bool is_local0 = (dst[i] >= start0 && dst[i] < end0);
-                    bool is_local1 = (dst[i] >= start1 && dst[i] < end1);
-                    bool is_local2 = (dst[i] >= start2 && dst[i] < end2);
-                    bool is_local3 = (dst[i] >= start3 && dst[i] < end3);
-                    bool is_local4 = (dst[i] >= start4 && dst[i] < end4);
-                    bool is_local5 = (dst[i] >= start5 && dst[i] < end5);
-                    bool is_local6 = (dst[i] >= start6 && dst[i] < end6);
-                    bool is_local7 = (dst[i] >= start7 && dst[i] < end7);
-                    bool is_local8 = (dst[i] >= start8 && dst[i] < end8);
-                    bool is_local9 = (dst[i] >= start9 && dst[i] < end9);
-                    bool is_local10 = (dst[i] >= start10 && dst[i] < end10);
-                    bool is_local11 = (dst[i] >= start11 && dst[i] < end11);
-                    bool is_local12 = (dst[i] >= start12 && dst[i] < end12);
-                    bool is_local13 = (dst[i] >= start13 && dst[i] < end13);
-                    bool is_local14 = (dst[i] >= start14 && dst[i] < end14);
-                    bool is_local15 = (dst[i] >= start15 && dst[i] < end15);
-                    if (is_local0) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local1) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward1.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local2) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward2.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local3) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward3.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local4) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward4.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local5) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward5.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local6) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward6.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local7) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward7.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local8) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward8.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local9) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward9.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local10) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward10.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local11) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward11.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local12) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward12.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local13) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward13.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local14) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward14.write_nb(temp);
-                        }
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    } else if (is_local15) {
-                        // Write to local synapse stream
-                        bool write_status = false;
-                        while(!write_status) {
-                            write_status = SynForward15.write_nb(temp);
-                        }
+                    temp.range(31, 0)  = weight_bits[i];
+
+                    // Find region index in parallel
+                    int region = -1;
+                    find_region: for (int r = 0; r < 16; ++r) {
+                        #pragma HLS UNROLL
+                        bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
+                        if (is_local && region == -1) region = r;
+                    }
+
+                    // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
+                    switch (region) {
+                        case 0:  SynForward.write(temp); break;
+                        case 1:  SynForward1.write(temp); break;
+                        case 2:  SynForward2.write(temp); break;
+                        case 3:  SynForward3.write(temp); break;
+                        case 4:  SynForward4.write(temp); break;
+                        case 5:  SynForward5.write(temp); break;
+                        case 6:  SynForward6.write(temp); break;
+                        case 7:  SynForward7.write(temp); break;
+                        case 8:  SynForward8.write(temp); break;
+                        case 9:  SynForward9.write(temp); break;
+                        case 10: SynForward10.write(temp); break;
+                        case 11: SynForward11.write(temp); break;
+                        case 12: SynForward12.write(temp); break;
+                        case 13: SynForward13.write(temp); break;
+                        case 14: SynForward14.write(temp); break;
+                        case 15: SynForward15.write(temp); break;
+                        default: break; // no-op if no region matched
+                    }
+                    if(region != -1) {
+                        // Clear once
                         dst[i] = 0;
                         delay[i] = 0;
                         weight_bits[i] = 0;
                     }
-                }
-                
+                }                
                 // Check if this is an axon done signal
                 if (delay[0] == 0xFE) {
                     if(dst[0] == NeuronStart) {
