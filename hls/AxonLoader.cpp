@@ -21,18 +21,18 @@ extern "C" void AxonLoader(
     uint32_t                     SimulationTime,
     uint32_t                     record_status,
     hls::stream<stream2048u_t>   &SpikeOutIn,
-    hls::stream<stream1024u_t>    &SynapseStream)
+    hls::stream<stream512u_t>    &SynapseStream)
 {
     #pragma HLS INTERFACE m_axi      port=SpikeRecorder_SynapseList   offset=slave bundle=gmem0
     #pragma HLS INTERFACE axis port=SpikeOutIn bundle=AXIS_IN
     #pragma HLS INTERFACE axis port=SynapseStream bundle=AXIS_OUT
 
     // Helper function to create synapse packet from vector
-    auto create_synapse_packet = [](const hls::vector<uint32_t, 32>& data) -> stream1024u_t {
-        stream1024u_t packet = {};
+    auto create_synapse_packet = [](const hls::vector<uint32_t, 16>& data) -> stream512u_t {
+        stream512u_t packet = {};
         packet.data = 0;
-        for (int k = 0; k < 32; k++) {
-            packet.data.range(1023 - k*32, 992 - k*32) = data[k];
+        for (int k = 0; k < 16; k++) {
+            packet.data.range(511 - k*32, 480 - k*32) = data[k];
         }
         return packet;
     };
@@ -42,7 +42,7 @@ extern "C" void AxonLoader(
     uint32_t UmemPot[NEURON_NUM];
 
     // Helper function to write packet to stream
-    auto write_packet_to_stream = [](hls::stream<stream1024u_t>& stream, const stream1024u_t& packet) {
+    auto write_packet_to_stream = [](hls::stream<stream512u_t>& stream, const stream512u_t& packet) {
         bool write_status = false;
         while (!write_status) {
             write_status = stream.write_nb(packet);
@@ -63,13 +63,13 @@ extern "C" void AxonLoader(
         UmemPot[i] = parameter_data[2];
     }
 
-    // send data of UmemPot to SynapseStream
-    for (int i = 0; i < NeuronTotal; i+=16) {
+    // send data of UmemPot to SynapseStream (8 lanes per 512-bit packet)
+    for (int i = 0; i < NeuronTotal; i+=8) {
         // UmemPot as weight, 0xFC as delay, and index as destination
-        stream1024u_t packet;
+        stream512u_t packet;
         packet.data = 0;
-        for (int j = 0; j < 16; j++) {
-            int base_bit = 1023 - j * 64;
+        for (int j = 0; j < 8; j++) {
+            int base_bit = 511 - j * 64;
             bool valid_neuron = (i+j < NeuronTotal);
             packet.data.range(base_bit, base_bit - 23) = valid_neuron ? i+j+NeuronStart : 0;
             packet.data.range(base_bit - 24, base_bit - 31) = 0xFC;
@@ -99,17 +99,17 @@ extern "C" void AxonLoader(
         for (int i = 0; i < NeuronTotal; i++) {
             if (spike_read.data.range(i, i) == 1) {                
                 // Process synapses in chunks of 16
-                for (int j = 1; j < (SynapseSize[i] + 31) / 32; j++) {
+                for (int j = 1; j < (SynapseSize[i] + 15) / 16; j++) {
                     // Read 16 synapses at once
-                    hls::vector<uint32_t, 32> synapse_data;
+                    hls::vector<uint32_t, 16> synapse_data;
                     #pragma HLS ARRAY_PARTITION variable=synapse_data complete dim=1
-                    for (int k = 0; k < 32; k++) {
+                    for (int k = 0; k < 16; k++) {
                         #pragma HLS UNROLL
-                        synapse_data[k] = SpikeRecorder_SynapseList[i*SYNAPSE_LIST_SIZE + j*32 + k + SYNAPSE_ARRAY_OFFSET];
+                        synapse_data[k] = SpikeRecorder_SynapseList[i*SYNAPSE_LIST_SIZE + j*16 + k + SYNAPSE_ARRAY_OFFSET];
                     }
 
                     // Create and send packet
-                    stream1024u_t packet = create_synapse_packet(synapse_data);
+                    stream512u_t packet = create_synapse_packet(synapse_data);
                     write_packet_to_stream(SynapseStream, packet);
                 }
             }
@@ -117,12 +117,12 @@ extern "C" void AxonLoader(
 
         // Handle DC stimulus window (default to kernel DCstimAmp for all neurons)
         if (t >= DCstimStart && t < DCstimStart + DCstimTotal) {
-            for (int i = NeuronStart; i < (int)(NeuronStart + NeuronTotal); i += 16) {
+            for (int i = NeuronStart; i < (int)(NeuronStart + NeuronTotal); i += 8) {
                 // Use DCstimAmp uniformly; can be replaced with DCstim_float[i-NeuronStart] if per-neuron values are desired
-                stream1024u_t packet;
+                stream512u_t packet;
                 packet.data = 0;
-                for (int j = 0; j < 16; j++) {
-                    int base_bit = 1023 - j * 64;
+                for (int j = 0; j < 8; j++) {
+                    int base_bit = 511 - j * 64;
                     bool valid_neuron = (i+j < (NeuronStart + NeuronTotal));
                     packet.data.range(base_bit, base_bit - 23) = valid_neuron ? i+j : 0;
                     packet.data.range(base_bit - 24, base_bit - 31) = 0x00;
@@ -132,11 +132,11 @@ extern "C" void AxonLoader(
             }
         }
 
-        // Send sync word
-        stream1024u_t sync_packet;
+        // Send sync word in lane 0: dst=NeuronStart, delay=0xFE, weight=0
+        stream512u_t sync_packet;
         sync_packet.data = 0;
         uint32_t dst_delay_sync = (((NeuronStart) << 8) & 0xFFFFFF00) | 0xFE;
-        sync_packet.data.range(1023, 992) = dst_delay_sync;
+        sync_packet.data.range(511, 480) = dst_delay_sync;
         write_packet_to_stream(SynapseStream, sync_packet);
 
     }

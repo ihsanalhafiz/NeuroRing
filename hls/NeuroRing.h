@@ -10,13 +10,13 @@
 #include <ap_axi_sdata.h>
 
 #define NEURON_NUM 2048
-#define NCORE 128
+#define NCORE 256
 #define DELAY 64
 #define NLANE 8
 #define GROUP 64
 // Each neuron has a block of 10,000 32-bit words in the synapse list buffer
 #define SYNAPSE_LIST_SIZE 10000
-#define SYNAPSE_ARRAY_OFFSET 120000 * 128
+#define SYNAPSE_ARRAY_OFFSET (120000 * 64)
 
 typedef ap_uint<64>        synapse_word_t;
 typedef uint32_t       spike_status_t;
@@ -58,7 +58,7 @@ extern "C" void AxonLoader(
     uint32_t                     SimulationTime,
     uint32_t                     record_status,
     hls::stream<stream2048u_t>   &SpikeOutIn,
-    hls::stream<stream1024u_t>    &SynapseStream);
+    hls::stream<stream512u_t>    &SynapseStream);
 
     extern "C" void NeuroRing(
         uint32_t              SimulationTime,
@@ -67,9 +67,9 @@ extern "C" void AxonLoader(
         uint32_t              AmountOfCores,
         uint32_t              NeuronStart,
         uint32_t              NeuronTotal,
-        hls::stream<stream1024u_t> &syn_route_in,
-        hls::stream<stream1024u_t> &syn_forward_rt,
-        hls::stream<stream1024u_t> &synapse_stream,
+        hls::stream<stream512u_t> &syn_route_in,
+        hls::stream<stream512u_t> &syn_forward_rt,
+        hls::stream<stream512u_t> &synapse_stream,
         hls::stream<stream2048u_t> &spike_out_axon);
 
 extern "C" void kernel_mockup(
