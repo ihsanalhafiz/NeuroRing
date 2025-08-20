@@ -28,7 +28,11 @@
 #include <ap_axi_sdata.h>
 #include "NeuroRing.h"
 
+#ifndef SW_SIM
 #define _XF_SYNTHESIS_ 1
+#endif
+
+#define BUF_IDX(core, ofs)   ((core)*DELAY + (ofs))
 
 #define NEURON_NUM_X 2048
 #define SYNAPSE_LIST_SIZE_X 100
@@ -41,6 +45,7 @@ extern "C" void NeuroRing_singlestep(
     uint32_t                    *SpikeRecorder,
     uint32_t                     SimulationTime,
     float                        threshold,
+    float                        membrane_potential,
     uint32_t                     AmountOfCores,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
@@ -48,461 +53,127 @@ extern "C" void NeuroRing_singlestep(
     uint32_t                     DCstimTotal,
     float                        DCstimAmp)
 {
-    hls::vector<uint32_t, NEURON_NUM_X/32> spike_recorder = 0;
-    hls::stream<stream2048u_t> SpikeOut;
+    
+
+    // define stream variables
     hls::stream<stream512u_t> SynapseStream;
-    stream2048u_t Spike_send;
-    Spike_send.data = 0; // Make sure to clear it first!
-    for (int i = 0; i < (NeuronTotal/32); i++) {
-        // Place each 32-bit word at the correct offset
-        Spike_send.data.range((i+1)*32-1, i*32) = SpikeRecorder[i];
-    }
-    SpikeOut.write(Spike_send);
-    printf("SpikeRecorder done\n");
-
-// AxonLoader ------------------------------------------------------------------------------
-    printf("AxonLoader start\n");
-    stream2048u_t Spike;
-    bool read_status_spike = false;
-    while(!read_status_spike) {
-        read_status_spike = SpikeOut.read_nb(Spike);
-    }
-
-    for (int i = 0; i < NeuronTotal; i++) {
-        if((Spike.data >> i) & 1) {
-            uint32_t amount_of_synapses = SynapseList[i*SYNAPSE_LIST_SIZE_X];
-            // make sure the size is divisible by 8
-            if (amount_of_synapses % 16 != 0) amount_of_synapses += 16 - (amount_of_synapses % 16);
-            for (int j = 0; j < amount_of_synapses/16; j++) {
-                hls::vector<uint32_t,16> temp_read;
-                for (int k = 0; k < 16; k++) {
-                    temp_read[k] = SynapseList[i*SYNAPSE_LIST_SIZE_X + j*16 + k + 1];
-                }
-                stream512u_t packet = {};
-                packet.data.range(511, 480) = temp_read[0];
-                packet.data.range(479, 448) = temp_read[1];
-                packet.data.range(447, 416) = temp_read[2];
-                packet.data.range(415, 384) = temp_read[3];
-                packet.data.range(383, 352) = temp_read[4];
-                packet.data.range(351, 320) = temp_read[5];
-                packet.data.range(319, 288) = temp_read[6];
-                packet.data.range(287, 256) = temp_read[7];
-                packet.data.range(255, 224) = temp_read[8];
-                packet.data.range(223, 192) = temp_read[9];
-                packet.data.range(191, 160) = temp_read[10];
-                packet.data.range(159, 128) = temp_read[11];
-                packet.data.range(127, 96) = temp_read[12];
-                packet.data.range(95, 64) = temp_read[13];
-                packet.data.range(63, 32) = temp_read[14];
-                packet.data.range(31, 0) = temp_read[15];
-                bool write_status_packet = false;
-                while(!write_status_packet) {
-                    write_status_packet = SynapseStream.write_nb(packet);
-                }
-
-            }
-        }
-    }
-    printf("AxonLoader done\n");
-
-// DCstim ------------------------------------------------------------------------------
-    printf("DCstim start\n");
-    if(DCstimStart >= 0 && DCstimStart < DCstimTotal) {
-        for(int i = NeuronStart; i < NeuronTotal; i+=8) {
-            float weight0 = (float)(((i+0) < NeuronTotal) * DCstimAmp);
-            float weight1 = (float)(((i+1) < NeuronTotal) * DCstimAmp);
-            float weight2 = (float)(((i+2) < NeuronTotal) * DCstimAmp);
-            float weight3 = (float)(((i+3) < NeuronTotal) * DCstimAmp);
-            float weight4 = (float)(((i+4) < NeuronTotal) * DCstimAmp);
-            float weight5 = (float)(((i+5) < NeuronTotal) * DCstimAmp);
-            float weight6 = (float)(((i+6) < NeuronTotal) * DCstimAmp);
-            float weight7 = (float)(((i+7) < NeuronTotal) * DCstimAmp);
-            float_to_uint32 conv0;
-            conv0.f = weight0;
-            float_to_uint32 conv1;
-            conv1.f = weight1;
-            float_to_uint32 conv2;
-            conv2.f = weight2;
-            float_to_uint32 conv3;
-            conv3.f = weight3;
-            float_to_uint32 conv4;
-            conv4.f = weight4;
-            float_to_uint32 conv5;
-            conv5.f = weight5;
-            float_to_uint32 conv6;
-            conv6.f = weight6;
-            float_to_uint32 conv7;
-            conv7.f = weight7;
-            uint32_t dst_delay0 = ((i+0) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay1 = ((i+1) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay2 = ((i+2) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay3 = ((i+3) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay4 = ((i+4) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay5 = ((i+5) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay6 = ((i+6) << 8) & 0xFFFFFF00;
-            uint32_t dst_delay7 = ((i+7) << 8) & 0xFFFFFF00;
-
-            stream512u_t packet = {};
-            packet.data.range(511, 480) = dst_delay0;
-            packet.data.range(479, 448) = conv0.u;
-            packet.data.range(447, 416) = dst_delay1;
-            packet.data.range(415, 384) = conv1.u;
-            packet.data.range(383, 352) = dst_delay2;
-            packet.data.range(351, 320) = conv2.u;
-            packet.data.range(319, 288) = dst_delay3;
-            packet.data.range(287, 256) = conv3.u;
-            packet.data.range(255, 224) = dst_delay4;
-            packet.data.range(223, 192) = conv4.u;
-            packet.data.range(191, 160) = dst_delay5;
-            packet.data.range(159, 128) = conv5.u;
-            packet.data.range(127, 96) = dst_delay6;
-            packet.data.range(95, 64) = conv6.u;
-            packet.data.range(63, 32) = dst_delay7;
-            packet.data.range(31, 0) = conv7.u;
-            bool write_status_packet = false;
-            while(!write_status_packet) {
-                write_status_packet = SynapseStream.write_nb(packet);
-            }
-        }
-    }
-    printf("DCstim done\n");
-
-    stream512u_t pkt_sync;
-    pkt_sync.data = 0;
-    uint32_t dst_delay_sync = (((NeuronStart)<< 8) & 0xFFFFFF00) | 0xFE;
-    pkt_sync.data.range(511, 480) = dst_delay_sync;
-    bool write_status_sync = false;
-    while(!write_status_sync) {
-        write_status_sync = SynapseStream.write_nb(pkt_sync);
-    }
-
-// SynapseRouter ------------------------------------------------------------------------------
-    printf("SynapseRouter start\n");
-    hls::stream<ap_axiu<64, 0, 0, 0>> SynForwardRoute;
+    hls::stream<stream512u_t> SynapseStreamRoute;
+    hls::stream<stream512u_t> SynForwardRoute;
     hls::stream<synapse_word_t> SynForward;
-    bool axon_done = false;
-    bool prev_done = false;
-    uint32_t coreDone = 0;
-    DstID_t dst0, dst1, dst2, dst3, dst4, dst5, dst6, dst7;
-    Weight_t weight0, weight1, weight2, weight3, weight4, weight5, weight6, weight7;
-    Delay_t delay0, delay1, delay2, delay3, delay4, delay5, delay6, delay7;
-    while (!(axon_done && prev_done)) {
-    #pragma HLS PIPELINE II=1 rewind
-        stream512u_t pkt;
-        bool have_pkt = SynapseStream.read_nb(pkt);
-        if (have_pkt) {
-            dst0 = pkt.data.range(511, 488);
-            delay0 = pkt.data.range(487, 480);
-            float_to_uint32 weight_conv0;
-            weight_conv0.u = pkt.data.range(479, 448);
+    hls::stream<synapse_word_t> SynForward1;
+    hls::stream<synapse_word_t> SynForward2;
+    hls::stream<synapse_word_t> SynForward3;
+    hls::stream<synapse_word_t> SynForward4;
+    hls::stream<synapse_word_t> SynForward5;
+    hls::stream<synapse_word_t> SynForward6;
+    hls::stream<synapse_word_t> SynForward7;
 
-            dst1 = pkt.data.range(447, 424);
-            delay1 = pkt.data.range(423, 416);
-            float_to_uint32 weight_conv1;
-            weight_conv1.u = pkt.data.range(415, 384);
-
-            dst2 = pkt.data.range(383, 360);
-            delay2 = pkt.data.range(359, 352);
-            float_to_uint32 weight_conv2;
-            weight_conv2.u = pkt.data.range(351, 320);
-
-            dst3 = pkt.data.range(319, 296);
-            delay3 = pkt.data.range(295, 288);
-            float_to_uint32 weight_conv3;
-            weight_conv3.u = pkt.data.range(287, 256);
-            
-            dst4 = pkt.data.range(255, 232);
-            delay4 = pkt.data.range(231, 224);
-            float_to_uint32 weight_conv4;
-            weight_conv4.u = pkt.data.range(223, 192);
-
-            dst5 = pkt.data.range(191, 168);
-            delay5 = pkt.data.range(167, 160);
-            float_to_uint32 weight_conv5;
-            weight_conv5.u = pkt.data.range(159, 128);
-
-            dst6 = pkt.data.range(127, 104);
-            delay6 = pkt.data.range(103, 96);
-            float_to_uint32 weight_conv6;
-            weight_conv6.u = pkt.data.range(95, 64);
-
-            dst7 = pkt.data.range(63, 40);
-            delay7 = pkt.data.range(39, 32);
-            float_to_uint32 weight_conv7;
-            weight_conv7.u = pkt.data.range(31, 0);
-
-            printf("weight0: %f, weight1: %f, weight2: %f, weight3: %f, weight4: %f, weight5: %f, weight6: %f, weight7: %f\n", weight_conv0.f, weight_conv1.f, weight_conv2.f, weight_conv3.f, weight_conv4.f, weight_conv5.f, weight_conv6.f, weight_conv7.f);
-
-            if (delay0 == 0xFE) {
-                axon_done = true;
-                ap_axiu<64, 0, 0, 0> temp_sync;
-                //temp_sync.data = ((ap_uint<64>)dst0 << 40) | ((ap_uint<64>)delay0 << 32) | ((ap_uint<64>)weight_conv0.u);
-                temp_sync.data.range(63, 40) = dst0;
-                temp_sync.data.range(39, 32) = delay0;
-                temp_sync.data.range(31, 0) = weight_conv0.u;
-                bool write_status_sync = false;
-                while(!write_status_sync) {
-                    write_status_sync = SynForwardRoute.write_nb(temp_sync);
-                }
-            } else {
-                synapse_word_t temp0;
-                //temp0.data = ((ap_uint<64>)dst0 << 40) | ((ap_uint<64>)delay0 << 32) | ((ap_uint<64>)weight_conv0.u);
-                temp0.range(63, 40) = dst0;
-                temp0.range(39, 32) = delay0;
-                temp0.range(31, 0) = weight_conv0.u;
-                synapse_word_t temp1;
-                //temp1.data = ((ap_uint<64>)dst1 << 40) | ((ap_uint<64>)delay1 << 32) | ((ap_uint<64>)weight_conv1.u);
-                temp1.range(63, 40) = dst1;
-                temp1.range(39, 32) = delay1;
-                temp1.range(31, 0) = weight_conv1.u;
-                synapse_word_t temp2;
-                //temp2.data = ((ap_uint<64>)dst2 << 40) | ((ap_uint<64>)delay2 << 32) | ((ap_uint<64>)weight_conv2.u);
-                temp2.range(63, 40) = dst2;
-                temp2.range(39, 32) = delay2;
-                temp2.range(31, 0) = weight_conv2.u;
-                synapse_word_t temp3;
-                //temp3.data = ((ap_uint<64>)dst3 << 40) | ((ap_uint<64>)delay3 << 32) | ((ap_uint<64>)weight_conv3.u);
-                temp3.range(63, 40) = dst3;
-                temp3.range(39, 32) = delay3;
-                temp3.range(31, 0) = weight_conv3.u;
-                synapse_word_t temp4;
-                //temp4.data = ((ap_uint<64>)dst4 << 40) | ((ap_uint<64>)delay4 << 32) | ((ap_uint<64>)weight_conv4.u);
-                temp4.range(63, 40) = dst4;
-                temp4.range(39, 32) = delay4;
-                temp4.range(31, 0) = weight_conv4.u;
-                synapse_word_t temp5;
-                //temp5.data = ((ap_uint<64>)dst5 << 40) | ((ap_uint<64>)delay5 << 32) | ((ap_uint<64>)weight_conv5.u);
-                temp5.range(63, 40) = dst5;
-                temp5.range(39, 32) = delay5;
-                temp5.range(31, 0) = weight_conv5.u;
-                synapse_word_t temp6;
-                //temp6.data = ((ap_uint<64>)dst6 << 40) | ((ap_uint<64>)delay6 << 32) | ((ap_uint<64>)weight_conv6.u);
-                temp6.range(63, 40) = dst6;
-                temp6.range(39, 32) = delay6;
-                temp6.range(31, 0) = weight_conv6.u;
-                synapse_word_t temp7;
-                //temp7.data = ((ap_uint<64>)dst7 << 40) | ((ap_uint<64>)delay7 << 32) | ((ap_uint<64>)weight_conv7.u);
-                temp7.range(63, 40) = dst7;
-                temp7.range(39, 32) = delay7;
-                temp7.range(31, 0) = weight_conv7.u;
-                printf("dst0: %u, dst1: %u, dst2: %u, dst3: %u, dst4: %u, dst5: %u, dst6: %u, dst7: %u\n", dst0.to_uint(), dst1.to_uint(), dst2.to_uint(), dst3.to_uint(), dst4.to_uint(), dst5.to_uint(), dst6.to_uint(), dst7.to_uint());
-                if (dst0 >= NeuronStart && dst0 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp0);
-                    }
-                } else if (dst0 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp0;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst1 >= NeuronStart && dst1 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp1);
-                    }
-                } else if (dst1 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp1;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst2 >= NeuronStart && dst2 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp2);
-                    }
-                } else if (dst2 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp2;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst3 >= NeuronStart && dst3 < NeuronStart + NeuronTotal) {  
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp3);
-                    }
-                } else if (dst3 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp3;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst4 >= NeuronStart && dst4 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp4);
-                    }
-                } else if (dst4 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp4;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst5 >= NeuronStart && dst5 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp5);
-                    }
-                } else if (dst5 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp5;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst6 >= NeuronStart && dst6 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp6);
-                    }
-                } else if (dst6 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp6;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-                if (dst7 >= NeuronStart && dst7 < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp7);
-                    }
-                } else if (dst7 != 0x0) {
-                    ap_axiu<64, 0, 0, 0> temp_rt;
-                    temp_rt.data = temp7;
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-            }
-            
+    // Helper function to create synapse packet from vector
+    auto create_synapse_packet = [](const hls::vector<uint32_t, 16>& data) -> stream512u_t {
+        stream512u_t packet = {};
+        packet.data = 0;
+        for (int k = 0; k < 16; k++) {
+            packet.data.range(511 - k*32, 480 - k*32) = data[k];
         }
-        // Process routed stream from previous router
-        ap_axiu<64, 0, 0, 0> temp_rt;
-        bool have_rt = SynForwardRoute.read_nb(temp_rt);
-        if (have_rt) {
-            if (((temp_rt.data >> 32) & 0xFF) == 0xFE) {
-                if(coreDone == AmountOfCores - 1) {
-                    prev_done = true;
-                } else {
-                    coreDone++;
-                }
-            } else {
-                ap_uint<24> dst = ((temp_rt.data >> 40) & 0xFFFFFF);
-                if (dst >= NeuronStart && dst < NeuronStart + NeuronTotal) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForward.write_nb(temp_rt.data);
-                    }
-                } else {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_rt);
-                    }
-                }
-            }
+        return packet;
+    };
+
+    uint32_t DCstim_float[NEURON_NUM];
+    uint32_t SynapseSize[NEURON_NUM];
+    uint32_t UmemPot[NEURON_NUM];
+
+    // Helper function to write packet to stream
+    auto write_packet_to_stream = [](hls::stream<stream512u_t>& stream, const stream512u_t& packet) {
+        bool write_status = false;
+        while (!write_status) {
+            write_status = stream.write_nb(packet);
         }
+    };
+
+    // read parameters from file
+    for (int i = 0; i < NeuronTotal; i++) {
+        // read 16 data from SpikeRecorder_SynapseList
+        hls::vector<uint32_t, 16> parameter_data;
+        #pragma HLS ARRAY_PARTITION variable=parameter_data complete dim=1
+        for (int k = 0; k < 16; k++) {
+            #pragma HLS UNROLL
+            parameter_data[k] = SynapseList[i*SYNAPSE_LIST_SIZE + k];
+        }
+        SynapseSize[i] = parameter_data[0]*2;
+        DCstim_float[i] = parameter_data[1];
+        UmemPot[i] = parameter_data[2];
     }
-    synapse_word_t temp_sync;
-    //temp_sync.data = ((ap_uint<64>)0xFFFFFF << 40) | ((ap_uint<64>)0xFE << 32) | ((ap_uint<64>)0x0);
-    temp_sync.range(63, 40) = 0xFFFFFF;
-    temp_sync.range(39, 32) = 0xFE;
-    temp_sync.range(31, 0) = 0x0;
-    bool write_status = false;
-    while(!write_status) {
-        write_status = SynForward.write_nb(temp_sync);
-    }
-    printf("SynapseRouter done\n");
 
-    // DendriteDelay ------------------------------------------------------------------------------
-    printf("DendriteDelay start\n");
-    const int DELAY_FIFO_DEPTH = 6000;
-    static hls::stream<synapse_word_t> delay_fifo;
-    #pragma HLS STREAM variable=delay_fifo depth=DELAY_FIFO_DEPTH
-    hls::stream<synapse_word_t> SpikeStream;
-
-    bool done = false;
-    int sizeFifo = delay_fifo.size();
-    while (!done) {
-        #pragma HLS PIPELINE II=1 rewind
-        //--------------------------------------------------
-        // 1) Age existing packets
-        //--------------------------------------------------
-        if (sizeFifo > 0) {
-            synapse_word_t pkt_in;
-            bool read_status = false;
-            while(!read_status) {
-                read_status = delay_fifo.read_nb(pkt_in);
-            }
-            if (((pkt_in >> 32) & 0xFF) == 0x0) {
-                bool write_status = false;
-                while(!write_status) {
-                    write_status = SpikeStream.write_nb(pkt_in);
-                }
-            } else {
-                // Decrement & push back
-                Delay_t delay = pkt_in.range(39, 32) - 1;
-                pkt_in.range(39, 32) = delay;
-                bool write_status = false;
-                while(!write_status) {
-                    write_status = delay_fifo.write_nb(pkt_in);
-                }
-            }
-            sizeFifo--;
+    // send data of UmemPot to SynapseStream (8 lanes per 512-bit packet)
+    for (int i = 0; i < NeuronTotal; i+=8) {
+        // UmemPot as weight, 0xFC as delay, and index as destination
+        stream512u_t packet;
+        packet.data = 0;
+        for (int j = 0; j < 8; j++) {
+            int base_bit = 511 - j * 64;
+            bool valid_neuron = (i+j < NeuronTotal);
+            packet.data.range(base_bit, base_bit - 23) = valid_neuron ? i+j+NeuronStart : 0;
+            packet.data.range(base_bit - 24, base_bit - 31) = 0xFC;
+            packet.data.range(base_bit - 32, base_bit - 63) = valid_neuron ? UmemPot[i+j] : 0;
         }
-        //--------------------------------------------------
-        // 2) Accept new packets from SynForward
-        //--------------------------------------------------
-        synapse_word_t pkt_new;
-        bool have_pkt = SynForward.read_nb(pkt_new);
-        if (have_pkt) {
-            if (((pkt_new >> 40) & 0xFFFFFF) == 0xFFFFFF) {
-                // Sync word – forward immediately & exit timestep
-                bool write_status = false;
-                while(!write_status) {
-                    write_status = SpikeStream.write_nb(pkt_new);
-                }
-                done = true;            // one timestep completed
-            } else {
-                if (((pkt_new >> 32) & 0xFF) == 0x0) {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SpikeStream.write_nb(pkt_new);
-                    }
-                } else {
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = delay_fifo.write_nb(pkt_new);
-                    }
-                }
-            }
-        }
+        write_packet_to_stream(SynapseStream, packet);
     }
-    printf("DendriteDelay done\n");
 
-    // SomaEngine ------------------------------------------------------------------------------
-    printf("SomaEngine start\n");
-    stream2048u_t spike_status;
-    hls::stream<stream2048u_t> SpikeOut_soma;
-    spike_status.data = 0;
+    // Initialize SynapseRouter ------------------------------------------------------------
+    
+    const uint32_t neuron_end = NeuronStart + NeuronTotal;
+    ap_uint<24> start[8];
+    ap_uint<24> end[8];
+    #pragma HLS ARRAY_PARTITION variable=start complete
+    #pragma HLS ARRAY_PARTITION variable=end complete
 
-    // LIF (iaf_psc_exp) parameters aligned with host_py/network_params.py
+    start[0] = NeuronStart;
+    start[1] = NeuronStart + ((NeuronTotal+7)/8)*1;
+    start[2] = NeuronStart + ((NeuronTotal+7)/8)*2;
+    start[3] = NeuronStart + ((NeuronTotal+7)/8)*3;
+    start[4] = NeuronStart + ((NeuronTotal+7)/8)*4;
+    start[5] = NeuronStart + ((NeuronTotal+7)/8)*5;
+    start[6] = NeuronStart + ((NeuronTotal+7)/8)*6;
+    start[7] = NeuronStart + ((NeuronTotal+7)/8)*7;
+
+    end[0] = start[1];
+    end[1] = start[2];
+    end[2] = start[3];
+    end[3] = start[4];
+    end[4] = start[5];
+    end[5] = start[6];
+    end[6] = start[7];
+    end[7] = neuron_end;
+
+    bool read_axonLoader = true;
+    hls::vector<DstID_t, 8> dst_forward = (DstID_t)0;
+    hls::vector<Delay_t, 8> delay_forward = (Delay_t)0;
+    hls::vector<uint32_t, 8> weight_bits_forward = (uint32_t)0;
+    #pragma HLS ARRAY_PARTITION variable=dst_forward complete
+    #pragma HLS ARRAY_PARTITION variable=delay_forward complete
+    #pragma HLS ARRAY_PARTITION variable=weight_bits_forward complete
+    int size_forward = 0;
+
+    // Local ranges per soma engine
+    int chunk_size = (NeuronTotal + 7) / 8;
+    int base0 = NeuronStart + chunk_size * 0;
+    int base1 = NeuronStart + chunk_size * 1;
+    int base2 = NeuronStart + chunk_size * 2;
+    int base3 = NeuronStart + chunk_size * 3;
+    int base4 = NeuronStart + chunk_size * 4;
+    int base5 = NeuronStart + chunk_size * 5;
+    int base6 = NeuronStart + chunk_size * 6;
+    int base7 = NeuronStart + chunk_size * 7;
+    int rem0 = (int)NeuronTotal - chunk_size * 0; int cnt0 = (rem0 <= 0) ? 0 : (rem0 > chunk_size ? chunk_size : rem0);
+    int rem1 = (int)NeuronTotal - chunk_size * 1; int cnt1 = (rem1 <= 0) ? 0 : (rem1 > chunk_size ? chunk_size : rem1);
+    int rem2 = (int)NeuronTotal - chunk_size * 2; int cnt2 = (rem2 <= 0) ? 0 : (rem2 > chunk_size ? chunk_size : rem2);
+    int rem3 = (int)NeuronTotal - chunk_size * 3; int cnt3 = (rem3 <= 0) ? 0 : (rem3 > chunk_size ? chunk_size : rem3);
+    int rem4 = (int)NeuronTotal - chunk_size * 4; int cnt4 = (rem4 <= 0) ? 0 : (rem4 > chunk_size ? chunk_size : rem4);
+    int rem5 = (int)NeuronTotal - chunk_size * 5; int cnt5 = (rem5 <= 0) ? 0 : (rem5 > chunk_size ? chunk_size : rem5);
+    int rem6 = (int)NeuronTotal - chunk_size * 6; int cnt6 = (rem6 <= 0) ? 0 : (rem6 > chunk_size ? chunk_size : rem6);
+    int rem7 = (int)NeuronTotal - chunk_size * 7; int cnt7 = (rem7 <= 0) ? 0 : (rem7 > chunk_size ? chunk_size : rem7);
+
+    // Initialize SomaEngine ------------------------------------------------------------
     const float dt = 0.1f;
     const float tau_m = 10.0f;
     const float tau_syn = 0.5f;
@@ -512,92 +183,1057 @@ extern "C" void NeuroRing_singlestep(
     const float I_decay = 0.81873075f;   // exp(-dt/tau_syn)
     const float syn_to_vm = (1.0f/C_m) * ((I_decay - V_decay) / ((1.0f/tau_m) - (1.0f/tau_syn)));
     const int   t_ref_steps = 20;        // round(2.0/0.1)
+    float threshold_float = threshold;
+    float membrane_potential_float = membrane_potential;
 
+    // SomaEngine0 ------------------------------------------------------------
+
+    float buf_flat[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat type=ram_2p impl=uram
+    ap_uint<6> head[NCORE];
     bool runstate = true;
-
-    float U_membPot[NEURON_NUM_X];
-    float I_PreSynCurr[NEURON_NUM_X];
-    float R_RefCnt[NEURON_NUM_X];
-    float x_state[NEURON_NUM_X];
-    float C_acc[NEURON_NUM_X];
-
-    for(int i = 0; i < NEURON_NUM_X; i++) {
-        U_membPot[i] = 0;
-        I_PreSynCurr[i] = 0;
-        R_RefCnt[i] = 0;
-        x_state[i] = 0;
-        C_acc[i] = 0;
+    float U_membPot[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr[NCORE];
+    uint16_t R_RefCnt[NCORE];
+    float x_state[NCORE];
+    float C_acc[NCORE];
+    init_loop_outer: for (int core = 0; core < NCORE; core++) {
+        U_membPot[core] = membrane_potential_float;
+        I_PreSynCurr[core] = 0;
+        R_RefCnt[core] = 0;
+        x_state[core] = 0;
+        C_acc[core] = 0;
+        head[core] = 0;
+        init_loop_inner: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat[BUF_IDX(core,d)] = 0.0f;
+        }
     }
 
-    synapse_loop: while (runstate) {
-        //#pragma HLS PIPELINE II=1
-        synapse_word_t pkt;
-        bool have_pkt = SpikeStream.read_nb(pkt);
-        if (have_pkt) {
-            float_to_uint32 weight_conv;
-            weight_conv.u = pkt.range(31, 0);
-            uint32_t dst = pkt.range(63, 40);
-            printf("SomaEngine loop, dst: %u, delay: %u, weight: %f\n", dst, (uint32_t)((pkt >> 32) & 0xFF), weight_conv.f);
-            if (dst == 0xFFFFFF) {
-                // Sync – end of timestep
-                runstate = false;
-            } else {
-            // TODO: Demultiplex DstID & compute membrane update
-            // *** Insert LIF integration & threshold test ***
-                C_acc[dst-NeuronStart] += weight_conv.f;
+    // SomaEngine1 ------------------------------------------------------------
+
+    float buf_flat1[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat1 type=ram_2p impl=uram
+    ap_uint<6> head1[NCORE];
+    bool runstate1 = true;
+    float U_membPot1[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr1[NCORE];
+    uint16_t R_RefCnt1[NCORE];
+    float x_state1[NCORE];
+    float C_acc1[NCORE];
+    init_loop_outer1: for (int core = 0; core < NCORE; core++) {
+        U_membPot1[core] = membrane_potential_float;
+        I_PreSynCurr1[core] = 0;
+        R_RefCnt1[core] = 0;
+        x_state1[core] = 0;
+        C_acc1[core] = 0;
+        head1[core] = 0;
+        init_loop_inner1: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat1[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine2 ------------------------------------------------------------
+
+    float buf_flat2[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat2 type=ram_2p impl=uram
+    ap_uint<6> head2[NCORE];
+    bool runstate2 = true;
+    float U_membPot2[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr2[NCORE];
+    uint16_t R_RefCnt2[NCORE];
+    float x_state2[NCORE];
+    float C_acc2[NCORE];
+    init_loop_outer2: for (int core = 0; core < NCORE; core++) {
+        U_membPot2[core] = membrane_potential_float;
+        I_PreSynCurr2[core] = 0;
+        R_RefCnt2[core] = 0;
+        x_state2[core] = 0;
+        C_acc2[core] = 0;
+        head2[core] = 0;
+        init_loop_inner2: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat2[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine3 ------------------------------------------------------------
+
+    float buf_flat3[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat3 type=ram_2p impl=uram
+    ap_uint<6> head3[NCORE];
+    bool runstate3 = true;
+    float U_membPot3[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr3[NCORE];
+    uint16_t R_RefCnt3[NCORE];
+    float x_state3[NCORE];
+    float C_acc3[NCORE];
+    init_loop_outer3: for (int core = 0; core < NCORE; core++) {
+        U_membPot3[core] = membrane_potential_float;
+        I_PreSynCurr3[core] = 0;
+        R_RefCnt3[core] = 0;
+        x_state3[core] = 0;
+        C_acc3[core] = 0;
+        head3[core] = 0;
+        init_loop_inner3: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat3[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine4 ------------------------------------------------------------
+
+    float buf_flat4[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat4 type=ram_2p impl=uram
+    ap_uint<6> head4[NCORE];
+    bool runstate4 = true;
+    float U_membPot4[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr4[NCORE];
+    uint16_t R_RefCnt4[NCORE];
+    float x_state4[NCORE];
+    float C_acc4[NCORE];
+    init_loop_outer4: for (int core = 0; core < NCORE; core++) {
+        U_membPot4[core] = membrane_potential_float;
+        I_PreSynCurr4[core] = 0;
+        R_RefCnt4[core] = 0;
+        x_state4[core] = 0;
+        C_acc4[core] = 0;
+        head4[core] = 0;
+        init_loop_inner4: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat4[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine5 ------------------------------------------------------------
+
+    float buf_flat5[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat5 type=ram_2p impl=uram
+    ap_uint<6> head5[NCORE];
+    bool runstate5 = true;
+    float U_membPot5[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr5[NCORE];
+    uint16_t R_RefCnt5[NCORE];
+    float x_state5[NCORE];
+    float C_acc5[NCORE];
+    init_loop_outer5: for (int core = 0; core < NCORE; core++) {
+        U_membPot5[core] = membrane_potential_float;
+        I_PreSynCurr5[core] = 0;
+        R_RefCnt5[core] = 0;
+        x_state5[core] = 0;
+        C_acc5[core] = 0;
+        head5[core] = 0;
+        init_loop_inner5: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat5[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine6 ------------------------------------------------------------
+
+    float buf_flat6[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat6 type=ram_2p impl=uram
+    ap_uint<6> head6[NCORE];
+    bool runstate6 = true;
+    float U_membPot6[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr6[NCORE];
+    uint16_t R_RefCnt6[NCORE];
+    float x_state6[NCORE];
+    float C_acc6[NCORE];
+    init_loop_outer6: for (int core = 0; core < NCORE; core++) {
+        U_membPot6[core] = membrane_potential_float;
+        I_PreSynCurr6[core] = 0;
+        R_RefCnt6[core] = 0;
+        x_state6[core] = 0;
+        C_acc6[core] = 0;
+        head6[core] = 0;
+        init_loop_inner6: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat6[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    // SomaEngine7 ------------------------------------------------------------
+
+    float buf_flat7[NCORE*DELAY];
+    #pragma HLS bind_storage variable=buf_flat7 type=ram_2p impl=uram
+    ap_uint<6> head7[NCORE];
+    bool runstate7 = true;
+    float U_membPot7[NCORE];   // membrane potential (mV)
+    float I_PreSynCurr7[NCORE];
+    uint16_t R_RefCnt7[NCORE];
+    float x_state7[NCORE];
+    float C_acc7[NCORE];
+    init_loop_outer7: for (int core = 0; core < NCORE; core++) {
+        U_membPot7[core] = membrane_potential_float;
+        I_PreSynCurr7[core] = 0;
+        R_RefCnt7[core] = 0;
+        x_state7[core] = 0;
+        C_acc7[core] = 0;
+        head7[core] = 0;
+        init_loop_inner7: for (int d = 0; d < DELAY; d++) {
+            #pragma HLS UNROLL factor=NLANE
+            buf_flat7[BUF_IDX(core,d)] = 0.0f;
+        }
+    }
+
+    ////////////////////----------------------------------------------------------////////////////////
+    // Main loop
+    ////////////////////----------------------------------------------------------////////////////////
+
+    Main_loop: for (int t = 0; t < SimulationTime; t++) {
+        // read spike (assemble full 2048-bit bitmap from 64x32b words)
+        stream2048u_t spike_read;
+        for (int i = 0; i < 64; i++) {
+            spike_read.data.range(((i+1)*32 - 1), (i*32)) = SpikeRecorder[t*64 + i];
+        }
+
+        // process each neuron that fired
+        for (int i = 0; i < NeuronTotal; i++) {
+            if (spike_read.data.range(i, i) == 1) {
+                // process synapses in chunks of 16
+                for (int j = 1; j < (SynapseSize[i] + 15) / 16; j++) {
+                    // Read 16 synapses at once
+                    hls::vector<uint32_t, 16> synapse_data;
+                    #pragma HLS ARRAY_PARTITION variable=synapse_data complete dim=1
+                    for (int k = 0; k < 16; k++) {
+                        #pragma HLS UNROLL
+                        synapse_data[k] = SynapseList[i*SYNAPSE_LIST_SIZE + j*16 + k];
+                    }
+                    // Create and send packet
+                    stream512u_t packet = create_synapse_packet(synapse_data);
+                    write_packet_to_stream(SynapseStream, packet);
+                }
             }
         }
-    }
-    for(int i = 0; i < NeuronTotal; i++) {
-        I_PreSynCurr[i] = I_PreSynCurr[i] * I_decay + C_acc[i];
-        printf("C_acc[%d]: %f\n", i, C_acc[i]);
-        C_acc[i] = 0;
-    }
 
-    spike_status.data = 0;
-    printf("SomaEngine Calculate\n");
-    for(int i = 0; i < NeuronTotal; i++) {
-        // refractory countdown
-        if (R_RefCnt[i] > 0) {
-            R_RefCnt[i] = ((R_RefCnt[i] - 1.0f) > 0.0f) ? (R_RefCnt[i] - 1.0f) : 0.0f;
+        if (t >= DCstimStart && t < DCstimStart + DCstimTotal) {
+            for (int i = NeuronStart; i < (int)(NeuronStart + NeuronTotal); i += 8) {
+                // Use DCstimAmp uniformly; can be replaced with DCstim_float[i-NeuronStart] if per-neuron values are desired
+                stream512u_t packet;
+                packet.data = 0;
+                for (int j = 0; j < 8; j++) {
+                    int base_bit = 511 - j * 64;
+                    bool valid_neuron = (i+j < (NeuronStart + NeuronTotal));
+                    packet.data.range(base_bit, base_bit - 23) = valid_neuron ? i+j : 0;
+                    packet.data.range(base_bit - 24, base_bit - 31) = 0x00;
+                    packet.data.range(base_bit - 32, base_bit - 63) = valid_neuron ? DCstim_float[(i+j)-NeuronStart] : 0;
+                }
+                write_packet_to_stream(SynapseStream, packet);
+            }
         }
-        // membrane update
-        if (R_RefCnt[i] > 0) {
-            U_membPot[i] = 0; // treat 0 as V_reset here in singlestep mode
-        } else {
-            float v_prev = U_membPot[i];
-            float i_prev = I_PreSynCurr[i];
-            float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
-            U_membPot[i] = v_new;
+
+        // Send sync word in lane 0: dst=NeuronStart, delay=0xFE, weight=0
+        stream512u_t sync_packet;
+        sync_packet.data = 0;
+        uint32_t dst_delay_sync = (((NeuronStart) << 8) & 0xFFFFFF00) | 0xFE;
+        sync_packet.data.range(511, 480) = dst_delay_sync;
+        write_packet_to_stream(SynapseStream, sync_packet);
+
+        ////////////////////----------------------------------------------------------////////////////////
+        // end AxonLoader
+        ////////////////////----------------------------------------------------------////////////////////
+
+        ////////////////////----------------------------------------------------------////////////////////
+        // start SynapseRouter
+        ////////////////////----------------------------------------------------------////////////////////
+        bool axon_done = false;
+        bool prev_done = false;
+        uint32_t coreDone = 0;
+        size_forward = 0;
+        
+        while (!(axon_done && prev_done)) {
+        #pragma HLS PIPELINE II=1 rewind
+            
+            // Helper to write to synapse streams (block until success)
+            auto write_synapse_to_stream = [](hls::stream<synapse_word_t>& stream, const synapse_word_t& packet) {
+                bool write_status = false;
+                while (!write_status) {
+                    write_status = stream.write_nb(packet);
+                }
+            };
+
+            // Process main synapse stream
+            stream512u_t pkt;
+            bool have_pkt = SynapseStream.read_nb(pkt);
+            if (have_pkt) {
+                // Extract all 8 synapse entries in parallel
+                DstID_t dst[8];
+                Delay_t delay[8];
+                uint32_t weight_bits[8];
+                #pragma HLS ARRAY_PARTITION variable=dst complete
+                #pragma HLS ARRAY_PARTITION variable=delay complete
+                #pragma HLS ARRAY_PARTITION variable=weight_bits complete
+                
+                // Unpack all 16 synapses at once
+                for (int i = 0; i < 8; i++) {
+                #pragma HLS UNROLL
+                    int base_bit = 511 - i * 64;
+                    dst[i] = pkt.data.range(base_bit, base_bit - 23);
+                    delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
+                    weight_bits[i] = pkt.data.range(base_bit - 32, base_bit - 63);
+                }
+
+                // Check if this is an axon done signal
+                if (delay[0] == 0xFE) {
+                    if((dst[0] == NeuronStart) && axon_done == false) {
+                        axon_done = true;
+                        prev_done = true; // single-core sim: consider previous done as soon as self done
+                    } else{
+                        // Ignore non-local done in single-step
+                        prev_done = true;
+                    }
+                } // end delay[0] == 0xFE
+
+                synapse_loop: for (int i = 0; i < 8; i++) {
+                    //#pragma HLS UNROLL
+                    // Create synapse word
+                    synapse_word_t temp;
+                    temp.range(63, 40) = dst[i];
+                    temp.range(39, 32) = delay[i];
+                    temp.range(31, 0)  = weight_bits[i];
+
+                    // Find region index in parallel
+                    int region = -1;
+                    find_region: for (int r = 0; r < 8; ++r) {
+                        #pragma HLS UNROLL
+                        bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
+                        if (is_local && region == -1) region = r;
+                    }
+
+                    // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
+                    switch (region) {
+                        case 0: write_synapse_to_stream(SynForward, temp); break;
+                        case 1: write_synapse_to_stream(SynForward1, temp); break;
+                        case 2: write_synapse_to_stream(SynForward2, temp); break;
+                        case 3: write_synapse_to_stream(SynForward3, temp); break;
+                        case 4: write_synapse_to_stream(SynForward4, temp); break;
+                        case 5: write_synapse_to_stream(SynForward5, temp); break;
+                        case 6: write_synapse_to_stream(SynForward6, temp); break;
+                        case 7: write_synapse_to_stream(SynForward7, temp); break;
+                        default: break; // no-op if no region matched
+                    }
+                    if(region != -1) {
+                        // Clear once
+                        dst[i] = 0;
+                        delay[i] = 0;
+                        weight_bits[i] = 0;
+                    }
+                }
+                bool any_non_zero = false;
+                for(int i = 0; i < 8; i++) {
+                    any_non_zero = any_non_zero || (dst[i] != 0);
+                }
+                if(any_non_zero) {
+                    // create stream512u_t packet
+                    stream512u_t temp_pkt;
+                    for(int i = 0; i < 8; i++) {
+                        #pragma HLS UNROLL
+                        int base_bit = 511 - i * 64;
+                        temp_pkt.data.range(base_bit, base_bit - 23) = dst[i];
+                        temp_pkt.data.range(base_bit - 24, base_bit - 31) = delay[i];
+                        temp_pkt.data.range(base_bit - 32, base_bit - 63) = weight_bits[i];
+                    }
+                    bool write_status = false;
+                    while(!write_status) {
+                        write_status = SynForwardRoute.write_nb(temp_pkt);
+                    }
+                }
+            } // end if have_pkt
+        } // end while loop
+        
+        // Send synchronization signal
+        synapse_word_t temp_sync;
+        temp_sync.range(63, 40) = 0xFFFFFF;
+        temp_sync.range(39, 32) = 0xFE;
+        temp_sync.range(31, 0) = 0x0;
+        
+        bool write_status = false;
+        while(!write_status) {
+            write_status = SynForward.write_nb(temp_sync);
         }
-        // threshold
-        float_to_uint32 thr_conv; thr_conv.u = threshold; float thr = thr_conv.f;
-        if (U_membPot[i] >= thr) {
-            spike_status.data |= (ap_uint<2048>)1<<i;
-            U_membPot[i] = 0; // reset
-            R_RefCnt[i] = (float)t_ref_steps;
+        bool write_status1 = false;
+        while(!write_status1) {
+            write_status1 = SynForward1.write_nb(temp_sync);
         }
-    }
-    printf("SomaEngine Calculate done\n");
-    SpikeOut_soma.write(spike_status);
-    // SpikeRecorder ------------------------------------------------------------------------------
-    stream2048u_t spike_status_soma;
-    spike_status_soma = SpikeOut_soma.read();
-    for (int i = 0; i < (NeuronTotal/32); i++) {
-        SpikeRecorder[i] = (uint32_t)(spike_status_soma.data[i*32] & 0xFFFFFFFF);
-    }
-    printf("SomaEngine done\n");
-    // print size of all streams
-    printf("SynapseStream size: %lu\n", SynapseStream.size());
-    printf("SynForward size: %lu\n", SynForward.size());
-    printf("SynForwardRoute size: %lu\n", SynForwardRoute.size());
-    printf("delay_fifo size: %lu\n", delay_fifo.size());
-    printf("SpikeStream size: %lu\n", SpikeStream.size());
-    printf("SpikeOut_soma size: %lu\n", SpikeOut_soma.size());
-}
+        bool write_status2 = false;
+        while(!write_status2) {
+            write_status2 = SynForward2.write_nb(temp_sync);
+        }
+        bool write_status3 = false;
+        while(!write_status3) {
+            write_status3 = SynForward3.write_nb(temp_sync);
+        }
+        bool write_status4 = false;
+        while(!write_status4) {
+            write_status4 = SynForward4.write_nb(temp_sync);
+        }
+        bool write_status5 = false;
+        while(!write_status5) {
+            write_status5 = SynForward5.write_nb(temp_sync);
+        }
+        bool write_status6 = false;
+        while(!write_status6) {
+            write_status6 = SynForward6.write_nb(temp_sync);
+        }
+        bool write_status7 = false;
+        while(!write_status7) {
+            write_status7 = SynForward7.write_nb(temp_sync);
+        }
+
+        ////////////////////----------------------------------------------------------////////////////////
+        // end SynapseRouter
+        ////////////////////----------------------------------------------------------////////////////////
+
+        ////////////////////----------------------------------------------------------////////////////////
+        // start SomaEngine
+        ////////////////////----------------------------------------------------------////////////////////
+        // SomaEngine 0 ------------------------------------------------------------
+        bool done = false;
+        while (!done) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot[dst.to_uint()-NeuronStart] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done = true;
+                } else {
+                    ap_uint<6> h2 = (head[dst.to_int()-NeuronStart] + delay) & 0x3F;
+                    float weight2 = buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)];    
+                    buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt0; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head[i]) & 0x3F;
+            I_PreSynCurr[i] = I_PreSynCurr[i] * I_decay + buf_flat[BUF_IDX(i,h3)];
+            buf_flat[BUF_IDX(i,h3)] = 0;
+            head[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status = 0;
+
+        for(int i = 0; i < cnt0; i++) {
+            // Refractory countdown
+            if (R_RefCnt[i] > 0) {
+                R_RefCnt[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot[i];
+                float i_prev = I_PreSynCurr[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot[i] = v_new;
+                // Spike generation
+                if (U_membPot[i] >= threshold_float) {
+                    spike_status.range(i, i) = 1;
+                    U_membPot[i] = membrane_potential_float;
+                    R_RefCnt[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*0 + i] = spike_status.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 1 ------------------------------------------------------------
+
+        bool done1 = false;
+        while (!done1) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward1.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot1[dst.to_uint()-base1] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done1 = true;
+                } else {
+                    ap_uint<6> h2 = (head1[dst.to_int()-base1] + delay) & 0x3F;
+                    float weight2 = buf_flat1[BUF_IDX((dst.to_int()-base1),h2)];    
+                    buf_flat1[BUF_IDX((dst.to_int()-base1),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt1; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head1[i]) & 0x3F;
+            I_PreSynCurr1[i] = I_PreSynCurr1[i] * I_decay + buf_flat1[BUF_IDX(i,h3)];
+            buf_flat1[BUF_IDX(i,h3)] = 0;
+            head1[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status1 = 0;
+
+        for(int i = 0; i < cnt1; i++) {
+            // Refractory countdown
+            if (R_RefCnt1[i] > 0) {
+                R_RefCnt1[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot1[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot1[i];
+                float i_prev = I_PreSynCurr1[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot1[i] = v_new;
+                // Spike generation
+                if (U_membPot1[i] >= threshold_float) {
+                    spike_status1.range(i, i) = 1;
+                    U_membPot1[i] = membrane_potential_float;
+                    R_RefCnt1[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*1 + i] = spike_status1.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 2 ------------------------------------------------------------
+        
+        bool done2 = false;
+        while (!done2) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward2.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot2[dst.to_uint()-base2] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done2 = true;
+                } else {
+                    ap_uint<6> h2 = (head2[dst.to_int()-base2] + delay) & 0x3F;
+                    float weight2 = buf_flat2[BUF_IDX((dst.to_int()-base2),h2)];    
+                    buf_flat2[BUF_IDX((dst.to_int()-base2),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt2; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head2[i]) & 0x3F;
+            I_PreSynCurr2[i] = I_PreSynCurr2[i] * I_decay + buf_flat2[BUF_IDX(i,h3)];
+            buf_flat2[BUF_IDX(i,h3)] = 0;
+            head2[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status2 = 0;
+
+        for(int i = 0; i < cnt2; i++) {
+            // Refractory countdown
+            if (R_RefCnt2[i] > 0) {
+                R_RefCnt2[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot2[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot2[i];
+                float i_prev = I_PreSynCurr2[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot2[i] = v_new;
+                // Spike generation
+                if (U_membPot2[i] >= threshold_float) {
+                    spike_status2.range(i, i) = 1;
+                    U_membPot2[i] = membrane_potential_float;
+                    R_RefCnt2[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*2 + i] = spike_status2.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 3 ------------------------------------------------------------
+
+        bool done3 = false;
+        while (!done3) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward3.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot3[dst.to_uint()-base3] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done3 = true;
+                } else {
+                    ap_uint<6> h2 = (head3[dst.to_int()-base3] + delay) & 0x3F;
+                    float weight2 = buf_flat3[BUF_IDX((dst.to_int()-base3),h2)];    
+                    buf_flat3[BUF_IDX((dst.to_int()-base3),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt3; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head3[i]) & 0x3F;
+            I_PreSynCurr3[i] = I_PreSynCurr3[i] * I_decay + buf_flat3[BUF_IDX(i,h3)];
+            buf_flat3[BUF_IDX(i,h3)] = 0;
+            head3[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status3 = 0;
+
+        for(int i = 0; i < cnt3; i++) {
+            // Refractory countdown
+            if (R_RefCnt3[i] > 0) {
+                R_RefCnt3[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot3[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot3[i];
+                float i_prev = I_PreSynCurr3[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot3[i] = v_new;
+                // Spike generation
+                if (U_membPot3[i] >= threshold_float) {
+                    spike_status3.range(i, i) = 1;
+                    U_membPot3[i] = membrane_potential_float;
+                    R_RefCnt3[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*3 + i] = spike_status3.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 4 ------------------------------------------------------------
+        
+        bool done4 = false;
+        while (!done4) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward4.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot4[dst.to_uint()-base4] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done4 = true;
+                } else {
+                    ap_uint<6> h2 = (head4[dst.to_int()-base4] + delay) & 0x3F;
+                    float weight2 = buf_flat4[BUF_IDX((dst.to_int()-base4),h2)];    
+                    buf_flat4[BUF_IDX((dst.to_int()-base4),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt4; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head4[i]) & 0x3F;
+            I_PreSynCurr4[i] = I_PreSynCurr4[i] * I_decay + buf_flat4[BUF_IDX(i,h3)];
+            buf_flat4[BUF_IDX(i,h3)] = 0;
+            head4[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status4 = 0;
+
+        for(int i = 0; i < cnt4; i++) {
+            // Refractory countdown
+            if (R_RefCnt4[i] > 0) {
+                R_RefCnt4[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot4[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot4[i];
+                float i_prev = I_PreSynCurr4[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot4[i] = v_new;
+                // Spike generation
+                if (U_membPot4[i] >= threshold_float) {
+                    spike_status4.range(i, i) = 1;
+                    U_membPot4[i] = membrane_potential_float;
+                    R_RefCnt4[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*4 + i] = spike_status4.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 5 ------------------------------------------------------------
+        
+        bool done5 = false;
+        while (!done5) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward5.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot5[dst.to_uint()-base5] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done5 = true;
+                } else {
+                    ap_uint<6> h2 = (head5[dst.to_int()-base5] + delay) & 0x3F;
+                    float weight2 = buf_flat5[BUF_IDX((dst.to_int()-base5),h2)];    
+                    buf_flat5[BUF_IDX((dst.to_int()-base5),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt5; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head5[i]) & 0x3F;
+            I_PreSynCurr5[i] = I_PreSynCurr5[i] * I_decay + buf_flat5[BUF_IDX(i,h3)];
+            buf_flat5[BUF_IDX(i,h3)] = 0;
+            head5[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status5 = 0;
+
+        for(int i = 0; i < cnt5; i++) {
+            // Refractory countdown
+            if (R_RefCnt5[i] > 0) {
+                R_RefCnt5[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot5[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot5[i];
+                float i_prev = I_PreSynCurr5[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot5[i] = v_new;
+                // Spike generation
+                if (U_membPot5[i] >= threshold_float) {
+                    spike_status5.range(i, i) = 1;
+                    U_membPot5[i] = membrane_potential_float;
+                    R_RefCnt5[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*5 + i] = spike_status5.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 6 ------------------------------------------------------------
+        
+        bool done6 = false;
+        while (!done6) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward6.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot6[dst.to_uint()-base6] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done6 = true;
+                } else {
+                    ap_uint<6> h2 = (head6[dst.to_int()-base6] + delay) & 0x3F;
+                    float weight2 = buf_flat6[BUF_IDX((dst.to_int()-base6),h2)];    
+                    buf_flat6[BUF_IDX((dst.to_int()-base6),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt6; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head6[i]) & 0x3F;
+            I_PreSynCurr6[i] = I_PreSynCurr6[i] * I_decay + buf_flat6[BUF_IDX(i,h3)];
+            buf_flat6[BUF_IDX(i,h3)] = 0;
+            head6[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status6 = 0;
+
+        for(int i = 0; i < cnt6; i++) {
+            // Refractory countdown
+            if (R_RefCnt6[i] > 0) {
+                R_RefCnt6[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot6[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot6[i];
+                float i_prev = I_PreSynCurr6[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot6[i] = v_new;
+                // Spike generation
+                if (U_membPot6[i] >= threshold_float) {
+                    spike_status6.range(i, i) = 1;
+                    U_membPot6[i] = membrane_potential_float;
+                    R_RefCnt6[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*6 + i] = spike_status6.range(((i+1)*32 - 1), (i*32));
+        }
+
+        // SomaEngine 7 ------------------------------------------------------------
+        
+        bool done7 = false;
+        while (!done7) {
+            //#pragma HLS PIPELINE II=6 rewind
+            //--------------------------------------------------
+            // 2) Accept new packets from SpikeStream
+            //--------------------------------------------------
+            synapse_word_t pkt_new;
+            bool have_pkt = SynForward7.read_nb(pkt_new);
+            if (have_pkt) {
+                DstID_t dst = pkt_new.range(63, 40);
+                Delay_t delay = pkt_new.range(39, 32);
+                float_to_uint32 temp_conv;
+                temp_conv.u = pkt_new.range(31, 0);
+                float weight = temp_conv.f;
+                if (delay == 0xFC) {
+                    U_membPot7[dst.to_uint()-base7] = weight;
+                }
+                else if (delay == 0xFE) {
+                    done7 = true;
+                } else {
+                    ap_uint<6> h2 = (head7[dst.to_int()-base7] + delay) & 0x3F;
+                    float weight2 = buf_flat7[BUF_IDX((dst.to_int()-base7),h2)];    
+                    buf_flat7[BUF_IDX((dst.to_int()-base7),h2)] = weight2 + weight;
+                }
+            }
+        }
+        //--------------------------------------------------
+        // 3) Update spike_status[] based on neuron PE results
+        //--------------------------------------------------
+        for(int i = 0; i < cnt7; i++) {
+            // Exponential synaptic current decay and accumulation of inputs (pA)
+            ap_uint<6> h3 = (head7[i]) & 0x3F;
+            I_PreSynCurr7[i] = I_PreSynCurr7[i] * I_decay + buf_flat7[BUF_IDX(i,h3)];
+            buf_flat7[BUF_IDX(i,h3)] = 0;
+            head7[i] = (h3 + 1) & 0x3F;
+        }
+
+        ap_uint<256> spike_status7 = 0;
+
+        for(int i = 0; i < cnt7; i++) {
+            // Refractory countdown
+            if (R_RefCnt7[i] > 0) {
+                R_RefCnt7[i] -= 1;
+                // Clamp to V_reset during refractory
+                U_membPot7[i] = membrane_potential_float;
+            } else {
+                float v_prev = U_membPot7[i];
+                float i_prev = I_PreSynCurr7[i]; // pA
+                float v_new = E_L + (v_prev - E_L) * V_decay + i_prev * syn_to_vm;
+                U_membPot7[i] = v_new;
+                // Spike generation
+                if (U_membPot7[i] >= threshold_float) {
+                    spike_status7.range(i, i) = 1;
+                    U_membPot7[i] = membrane_potential_float;
+                    R_RefCnt7[i] = (uint16_t)t_ref_steps;
+                }
+            }
+        }
+        //write spike_status to SpikeRecorder
+        for(int i = 0; i < 8; i++) {
+            SpikeRecorder[(t+1)*64 + 8*7 + i] = spike_status7.range(((i+1)*32 - 1), (i*32));
+        }
+        
+    } // end of loop t < SimulationTime
+} // end of NeuroRing_singlestep
 
 
 
 //============================================================
 //  END OF FILE – fill out TODOs & tune pragmas for your design
 //============================================================
+
+// Main function for testing NeuroRing_singlestep
+#ifdef _XF_SYNTHESIS_
+// Skip main function during HLS synthesis
+#else
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+int main() {
+    std::cout << "Starting NeuroRing_singlestep simulation..." << std::endl;
+    
+    // Simulation parameters
+    const uint32_t SimulationTime = 1000;
+    const float threshold = -50.0f;
+    const float membrane_potential = -65.0f;
+    const uint32_t AmountOfCores = 1;
+    const uint32_t NeuronStart = 1;
+    const uint32_t NeuronTotal = 771;
+    const uint32_t DCstimStart = 0;
+    const uint32_t DCstimTotal = 50;
+    const float DCstimAmp = 170.0f;
+    
+    // Calculate array sizes
+    const uint32_t SynapseListSize = NeuronTotal * SYNAPSE_LIST_SIZE;  // 771 * 10000
+    const uint32_t SpikeRecorderSize = 64 * SimulationTime;  // 64 * 1000
+    
+    std::cout << "Allocating SynapseList array of size: " << SynapseListSize << std::endl;
+    std::cout << "Allocating SpikeRecorder array of size: " << SpikeRecorderSize << std::endl;
+    
+    // Allocate and initialize arrays
+    uint32_t* SynapseList = new uint32_t[SynapseListSize];
+    uint32_t* SpikeRecorder = new uint32_t[SpikeRecorderSize];
+    
+    // Initialize SpikeRecorder to 0
+    for (uint32_t i = 0; i < SpikeRecorderSize; i++) {
+        SpikeRecorder[i] = 0;
+    }
+    
+    // Read Synapse_list.csv
+    std::cout << "Reading Synapse_list.csv..." << std::endl;
+    std::ifstream csvFile("host_py/Synapse_list.csv");
+    if (!csvFile.is_open()) {
+        std::cerr << "Error: Could not open Synapse_list.csv" << std::endl;
+        delete[] SynapseList;
+        delete[] SpikeRecorder;
+        return -1;
+    }
+    
+    std::string line;
+    uint32_t lineCount = 0;
+    uint32_t arrayIndex = 0;
+    
+    while (std::getline(csvFile, line) && arrayIndex < SynapseListSize) {
+        if (!line.empty()) {
+            try {
+                SynapseList[arrayIndex] = std::stoul(line);
+                arrayIndex++;
+            } catch (const std::exception& e) {
+                std::cerr << "Error parsing line " << lineCount << ": " << line << std::endl;
+            }
+        }
+        lineCount++;
+    }
+    
+    csvFile.close();
+    std::cout << "Read " << arrayIndex << " values from CSV (expected: " << SynapseListSize << ")" << std::endl;
+    
+    if (arrayIndex != SynapseListSize) {
+        std::cerr << "Warning: Expected " << SynapseListSize << " values but got " << arrayIndex << std::endl;
+    }
+    
+    // Call the simulation function
+    std::cout << "Starting simulation..." << std::endl;
+    std::cout << "Parameters:" << std::endl;
+    std::cout << "  SimulationTime: " << SimulationTime << std::endl;
+    std::cout << "  threshold: " << threshold << std::endl;
+    std::cout << "  membrane_potential: " << membrane_potential << std::endl;
+    std::cout << "  AmountOfCores: " << AmountOfCores << std::endl;
+    std::cout << "  NeuronStart: " << NeuronStart << std::endl;
+    std::cout << "  NeuronTotal: " << NeuronTotal << std::endl;
+    std::cout << "  DCstimStart: " << DCstimStart << std::endl;
+    std::cout << "  DCstimTotal: " << DCstimTotal << std::endl;
+    std::cout << "  DCstimAmp: " << DCstimAmp << std::endl;
+    
+    NeuroRing_singlestep(
+        SynapseList,
+        SpikeRecorder,
+        SimulationTime,
+        threshold,
+        membrane_potential,
+        AmountOfCores,
+        NeuronStart,
+        NeuronTotal,
+        DCstimStart,
+        DCstimTotal,
+        DCstimAmp
+    );
+    
+    std::cout << "Simulation completed!" << std::endl;
+    
+    // Print some sample results from SpikeRecorder
+    std::cout << "\nSample SpikeRecorder results:" << std::endl;
+    for (uint32_t t = 0; t < 200; t++) {  // Show first 5 timesteps
+        std::cout << "Timestep " << t << ": ";
+        for (uint32_t i = 0; i < 64; i++) {  // Show first 8 words
+            std::cout << SpikeRecorder[t * 64 + i] << " ";
+        }
+        std::cout << std::endl;
+    }
+    
+    // Cleanup
+    delete[] SynapseList;
+    delete[] SpikeRecorder;
+    
+    std::cout << "Simulation finished successfully!" << std::endl;
+    return 0;
+}
+#endif

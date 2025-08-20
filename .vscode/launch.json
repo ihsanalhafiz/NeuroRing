@@ -1,0 +1,30 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug neuroring_sim (gdb)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/home/miahafiz/NeuroRing/neuroring_sim",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "/home/miahafiz/NeuroRing",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"logging": {
+				"engineLogging": false,
+				"trace": false,
+				"traceResponse": false
+			}
+		}
+	]
+}

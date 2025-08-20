@@ -372,4 +372,7 @@ class NeuroRingHost:
         for fpga_idx in range(self.num_fpgas):
             for i, kernel in enumerate(self.kernels_per_fpga[fpga_idx]):
                 kernel.wait_for_kernel(sim_time)
+                
+    def save_array_to_csv(self, array, filename):
+        np.savetxt(filename, array, fmt='%u', delimiter=',')
 

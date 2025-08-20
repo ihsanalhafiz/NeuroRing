@@ -4,9 +4,7 @@
 #include <hls_stream.h>
 #include <ap_int.h>
 #include <ap_fixed.h>
-#include <ap_float.h>
 #include <stdint.h>
-#include <hls_vector.h>
 #include <ap_axi_sdata.h>
 
 #define NEURON_NUM 2048
@@ -84,6 +82,7 @@ extern "C" void NeuroRing_singlestep(
     uint32_t                    *SpikeRecorder,
     uint32_t                     SimulationTime,
     float                        threshold,
+    float                        membrane_potential,
     uint32_t                     AmountOfCores,
     uint32_t                     NeuronStart,
     uint32_t                     NeuronTotal,
