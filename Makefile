@@ -55,7 +55,7 @@ COMMFLAGS := --platform $(PLATFORM) --target $(TARGET) --save-temps --debug
 HLSCFLAGS := --compile $(COMMFLAGS) -I .
 LINKFLAGS := --link --optimize 3 $(COMMFLAGS) --vivado.impl.jobs 16 --vivado.synth.jobs 16
 
-FREQ_MHZ := --kernel_frequency 200
+FREQ_MHZ := --kernel_frequency 300
 
 RTL_SRC := ./rtl/*.v
 RTL_SRC += ./ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci 
