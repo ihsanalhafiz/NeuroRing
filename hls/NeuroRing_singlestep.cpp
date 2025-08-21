@@ -51,7 +51,8 @@ extern "C" void NeuroRing_singlestep(
     uint32_t                     NeuronTotal,
     uint32_t                     DCstimStart,
     uint32_t                     DCstimTotal,
-    float                        DCstimAmp)
+    float                        DCstimAmp,
+    uint32_t                     CoreID)
 {
     
 
@@ -121,57 +122,28 @@ extern "C" void NeuroRing_singlestep(
 
     // Initialize SynapseRouter ------------------------------------------------------------
     
-    const uint32_t neuron_end = NeuronStart + NeuronTotal;
     ap_uint<24> start[8];
     ap_uint<24> end[8];
     #pragma HLS ARRAY_PARTITION variable=start complete
     #pragma HLS ARRAY_PARTITION variable=end complete
 
-    start[0] = NeuronStart;
-    start[1] = NeuronStart + ((NeuronTotal+7)/8)*1;
-    start[2] = NeuronStart + ((NeuronTotal+7)/8)*2;
-    start[3] = NeuronStart + ((NeuronTotal+7)/8)*3;
-    start[4] = NeuronStart + ((NeuronTotal+7)/8)*4;
-    start[5] = NeuronStart + ((NeuronTotal+7)/8)*5;
-    start[6] = NeuronStart + ((NeuronTotal+7)/8)*6;
-    start[7] = NeuronStart + ((NeuronTotal+7)/8)*7;
+    start[0] = 1 + 2048*CoreID;
+    start[1] = 257 + 2048*(CoreID);
+    start[2] = 513 + 2048*(CoreID);
+    start[3] = 769 + 2048*(CoreID);
+    start[4] = 1025 + 2048*(CoreID);
+    start[5] = 1281 + 2048*(CoreID);
+    start[6] = 1537 + 2048*(CoreID);
+    start[7] = 1793 + 2048*(CoreID);
 
-    end[0] = start[1];
-    end[1] = start[2];
-    end[2] = start[3];
-    end[3] = start[4];
-    end[4] = start[5];
-    end[5] = start[6];
-    end[6] = start[7];
-    end[7] = neuron_end;
-
-    bool read_axonLoader = true;
-    hls::vector<DstID_t, 8> dst_forward = (DstID_t)0;
-    hls::vector<Delay_t, 8> delay_forward = (Delay_t)0;
-    hls::vector<uint32_t, 8> weight_bits_forward = (uint32_t)0;
-    #pragma HLS ARRAY_PARTITION variable=dst_forward complete
-    #pragma HLS ARRAY_PARTITION variable=delay_forward complete
-    #pragma HLS ARRAY_PARTITION variable=weight_bits_forward complete
-    int size_forward = 0;
-
-    // Local ranges per soma engine
-    int chunk_size = (NeuronTotal + 7) / 8;
-    int base0 = NeuronStart + chunk_size * 0;
-    int base1 = NeuronStart + chunk_size * 1;
-    int base2 = NeuronStart + chunk_size * 2;
-    int base3 = NeuronStart + chunk_size * 3;
-    int base4 = NeuronStart + chunk_size * 4;
-    int base5 = NeuronStart + chunk_size * 5;
-    int base6 = NeuronStart + chunk_size * 6;
-    int base7 = NeuronStart + chunk_size * 7;
-    int rem0 = (int)NeuronTotal - chunk_size * 0; int cnt0 = (rem0 <= 0) ? 0 : (rem0 > chunk_size ? chunk_size : rem0);
-    int rem1 = (int)NeuronTotal - chunk_size * 1; int cnt1 = (rem1 <= 0) ? 0 : (rem1 > chunk_size ? chunk_size : rem1);
-    int rem2 = (int)NeuronTotal - chunk_size * 2; int cnt2 = (rem2 <= 0) ? 0 : (rem2 > chunk_size ? chunk_size : rem2);
-    int rem3 = (int)NeuronTotal - chunk_size * 3; int cnt3 = (rem3 <= 0) ? 0 : (rem3 > chunk_size ? chunk_size : rem3);
-    int rem4 = (int)NeuronTotal - chunk_size * 4; int cnt4 = (rem4 <= 0) ? 0 : (rem4 > chunk_size ? chunk_size : rem4);
-    int rem5 = (int)NeuronTotal - chunk_size * 5; int cnt5 = (rem5 <= 0) ? 0 : (rem5 > chunk_size ? chunk_size : rem5);
-    int rem6 = (int)NeuronTotal - chunk_size * 6; int cnt6 = (rem6 <= 0) ? 0 : (rem6 > chunk_size ? chunk_size : rem6);
-    int rem7 = (int)NeuronTotal - chunk_size * 7; int cnt7 = (rem7 <= 0) ? 0 : (rem7 > chunk_size ? chunk_size : rem7);
+    end[0] = 257 + 2048*(CoreID); 
+    end[1] = 513 + 2048*(CoreID);
+    end[2] = 769 + 2048*(CoreID);
+    end[3] = 1025 + 2048*(CoreID);
+    end[4] = 1281 + 2048*(CoreID);
+    end[5] = 1537 + 2048*(CoreID);
+    end[6] = 1793 + 2048*(CoreID);
+    end[7] = 2049 + 2048*(CoreID);
 
     // Initialize SomaEngine ------------------------------------------------------------
     const float dt = 0.1f;
@@ -378,6 +350,9 @@ extern "C" void NeuroRing_singlestep(
         }
     }
 
+    // print total neuron
+    std::cout << "Total neuron: " << NeuronTotal << std::endl;
+
     ////////////////////----------------------------------------------------------////////////////////
     // Main loop
     ////////////////////----------------------------------------------------------////////////////////
@@ -441,7 +416,6 @@ extern "C" void NeuroRing_singlestep(
         bool axon_done = false;
         bool prev_done = false;
         uint32_t coreDone = 0;
-        size_forward = 0;
         
         while (!(axon_done && prev_done)) {
         #pragma HLS PIPELINE II=1 rewind
@@ -484,60 +458,60 @@ extern "C" void NeuroRing_singlestep(
                         // Ignore non-local done in single-step
                         prev_done = true;
                     }
-                } // end delay[0] == 0xFE
+                }else{ // end delay[0] == 0xFE
+                    synapse_loop: for (int i = 0; i < 8; i++) {
+                        //#pragma HLS UNROLL
+                        // Create synapse word
+                        synapse_word_t temp;
+                        temp.range(63, 40) = dst[i];
+                        temp.range(39, 32) = delay[i];
+                        temp.range(31, 0)  = weight_bits[i];
 
-                synapse_loop: for (int i = 0; i < 8; i++) {
-                    //#pragma HLS UNROLL
-                    // Create synapse word
-                    synapse_word_t temp;
-                    temp.range(63, 40) = dst[i];
-                    temp.range(39, 32) = delay[i];
-                    temp.range(31, 0)  = weight_bits[i];
+                        // Find region index in parallel
+                        int region = -1;
+                        find_region: for (int r = 0; r < 8; ++r) {
+                            #pragma HLS UNROLL
+                            bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
+                            if (is_local && region == -1) region = r;
+                        }
 
-                    // Find region index in parallel
-                    int region = -1;
-                    find_region: for (int r = 0; r < 8; ++r) {
-                        #pragma HLS UNROLL
-                        bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
-                        if (is_local && region == -1) region = r;
+                        // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
+                        switch (region) {
+                            case 0: write_synapse_to_stream(SynForward, temp); break;
+                            case 1: write_synapse_to_stream(SynForward1, temp); break;
+                            case 2: write_synapse_to_stream(SynForward2, temp); break;
+                            case 3: write_synapse_to_stream(SynForward3, temp); break;
+                            case 4: write_synapse_to_stream(SynForward4, temp); break;
+                            case 5: write_synapse_to_stream(SynForward5, temp); break;
+                            case 6: write_synapse_to_stream(SynForward6, temp); break;
+                            case 7: write_synapse_to_stream(SynForward7, temp); break;
+                            default: break; // no-op if no region matched
+                        }
+                        if(region != -1) {
+                            // Clear once
+                            dst[i] = 0;
+                            delay[i] = 0;
+                            weight_bits[i] = 0;
+                        }
                     }
-
-                    // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
-                    switch (region) {
-                        case 0: write_synapse_to_stream(SynForward, temp); break;
-                        case 1: write_synapse_to_stream(SynForward1, temp); break;
-                        case 2: write_synapse_to_stream(SynForward2, temp); break;
-                        case 3: write_synapse_to_stream(SynForward3, temp); break;
-                        case 4: write_synapse_to_stream(SynForward4, temp); break;
-                        case 5: write_synapse_to_stream(SynForward5, temp); break;
-                        case 6: write_synapse_to_stream(SynForward6, temp); break;
-                        case 7: write_synapse_to_stream(SynForward7, temp); break;
-                        default: break; // no-op if no region matched
-                    }
-                    if(region != -1) {
-                        // Clear once
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    }
-                }
-                bool any_non_zero = false;
-                for(int i = 0; i < 8; i++) {
-                    any_non_zero = any_non_zero || (dst[i] != 0);
-                }
-                if(any_non_zero) {
-                    // create stream512u_t packet
-                    stream512u_t temp_pkt;
+                    bool any_non_zero = false;
                     for(int i = 0; i < 8; i++) {
-                        #pragma HLS UNROLL
-                        int base_bit = 511 - i * 64;
-                        temp_pkt.data.range(base_bit, base_bit - 23) = dst[i];
-                        temp_pkt.data.range(base_bit - 24, base_bit - 31) = delay[i];
-                        temp_pkt.data.range(base_bit - 32, base_bit - 63) = weight_bits[i];
+                        any_non_zero = any_non_zero || (dst[i] != 0);
                     }
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_pkt);
+                    if(any_non_zero) {
+                        // create stream512u_t packet
+                        stream512u_t temp_pkt;
+                        for(int i = 0; i < 8; i++) {
+                            #pragma HLS UNROLL
+                            int base_bit = 511 - i * 64;
+                            temp_pkt.data.range(base_bit, base_bit - 23) = dst[i];
+                            temp_pkt.data.range(base_bit - 24, base_bit - 31) = delay[i];
+                            temp_pkt.data.range(base_bit - 32, base_bit - 63) = weight_bits[i];
+                        }
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute.write_nb(temp_pkt);
+                        }
                     }
                 }
             } // end if have_pkt
@@ -582,6 +556,15 @@ extern "C" void NeuroRing_singlestep(
             write_status7 = SynForward7.write_nb(temp_sync);
         }
 
+        std::cout << "Size of SynForward: " << SynForward.size() << std::endl;
+        std::cout << "Size of SynForward1: " << SynForward1.size() << std::endl;
+        std::cout << "Size of SynForward2: " << SynForward2.size() << std::endl;
+        std::cout << "Size of SynForward3: " << SynForward3.size() << std::endl;
+        std::cout << "Size of SynForward4: " << SynForward4.size() << std::endl;
+        std::cout << "Size of SynForward5: " << SynForward5.size() << std::endl;
+        std::cout << "Size of SynForward6: " << SynForward6.size() << std::endl;
+        std::cout << "Size of SynForward7: " << SynForward7.size() << std::endl;
+
         ////////////////////----------------------------------------------------------////////////////////
         // end SynapseRouter
         ////////////////////----------------------------------------------------------////////////////////
@@ -605,21 +588,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot[dst.to_uint()-NeuronStart] = weight;
+                    U_membPot[dst.to_uint()-start[0]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done = true;
                 } else {
-                    ap_uint<6> h2 = (head[dst.to_int()-NeuronStart] + delay) & 0x3F;
-                    float weight2 = buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)];    
-                    buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head[dst.to_int()-start[0]] + delay) & 0x3F;
+                    float weight2 = buf_flat[BUF_IDX((dst.to_int()-start[0]),h2)];    
+                    buf_flat[BUF_IDX((dst.to_int()-start[0]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt0; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head[i]) & 0x3F;
             I_PreSynCurr[i] = I_PreSynCurr[i] * I_decay + buf_flat[BUF_IDX(i,h3)];
@@ -629,7 +612,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status = 0;
 
-        for(int i = 0; i < cnt0; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt[i] > 0) {
                 R_RefCnt[i] -= 1;
@@ -670,21 +653,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot1[dst.to_uint()-base1] = weight;
+                    U_membPot1[dst.to_uint()-start[1]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done1 = true;
                 } else {
-                    ap_uint<6> h2 = (head1[dst.to_int()-base1] + delay) & 0x3F;
-                    float weight2 = buf_flat1[BUF_IDX((dst.to_int()-base1),h2)];    
-                    buf_flat1[BUF_IDX((dst.to_int()-base1),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head1[dst.to_int()-start[1]] + delay) & 0x3F;
+                    float weight2 = buf_flat1[BUF_IDX((dst.to_int()-start[1]),h2)];    
+                    buf_flat1[BUF_IDX((dst.to_int()-start[1]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt1; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head1[i]) & 0x3F;
             I_PreSynCurr1[i] = I_PreSynCurr1[i] * I_decay + buf_flat1[BUF_IDX(i,h3)];
@@ -694,7 +677,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status1 = 0;
 
-        for(int i = 0; i < cnt1; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt1[i] > 0) {
                 R_RefCnt1[i] -= 1;
@@ -735,21 +718,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot2[dst.to_uint()-base2] = weight;
+                    U_membPot2[dst.to_uint()-start[2]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done2 = true;
                 } else {
-                    ap_uint<6> h2 = (head2[dst.to_int()-base2] + delay) & 0x3F;
-                    float weight2 = buf_flat2[BUF_IDX((dst.to_int()-base2),h2)];    
-                    buf_flat2[BUF_IDX((dst.to_int()-base2),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head2[dst.to_int()-start[2]] + delay) & 0x3F;
+                    float weight2 = buf_flat2[BUF_IDX((dst.to_int()-start[2]),h2)];    
+                    buf_flat2[BUF_IDX((dst.to_int()-start[2]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt2; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head2[i]) & 0x3F;
             I_PreSynCurr2[i] = I_PreSynCurr2[i] * I_decay + buf_flat2[BUF_IDX(i,h3)];
@@ -759,7 +742,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status2 = 0;
 
-        for(int i = 0; i < cnt2; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt2[i] > 0) {
                 R_RefCnt2[i] -= 1;
@@ -800,21 +783,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot3[dst.to_uint()-base3] = weight;
+                    U_membPot3[dst.to_uint()-start[3]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done3 = true;
                 } else {
-                    ap_uint<6> h2 = (head3[dst.to_int()-base3] + delay) & 0x3F;
-                    float weight2 = buf_flat3[BUF_IDX((dst.to_int()-base3),h2)];    
-                    buf_flat3[BUF_IDX((dst.to_int()-base3),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head3[dst.to_int()-start[3]] + delay) & 0x3F;
+                    float weight2 = buf_flat3[BUF_IDX((dst.to_int()-start[3]),h2)];    
+                    buf_flat3[BUF_IDX((dst.to_int()-start[3]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt3; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head3[i]) & 0x3F;
             I_PreSynCurr3[i] = I_PreSynCurr3[i] * I_decay + buf_flat3[BUF_IDX(i,h3)];
@@ -824,7 +807,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status3 = 0;
 
-        for(int i = 0; i < cnt3; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt3[i] > 0) {
                 R_RefCnt3[i] -= 1;
@@ -865,21 +848,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot4[dst.to_uint()-base4] = weight;
+                    U_membPot4[dst.to_uint()-start[4]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done4 = true;
                 } else {
-                    ap_uint<6> h2 = (head4[dst.to_int()-base4] + delay) & 0x3F;
-                    float weight2 = buf_flat4[BUF_IDX((dst.to_int()-base4),h2)];    
-                    buf_flat4[BUF_IDX((dst.to_int()-base4),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head4[dst.to_int()-start[4]] + delay) & 0x3F;
+                    float weight2 = buf_flat4[BUF_IDX((dst.to_int()-start[4]),h2)];    
+                    buf_flat4[BUF_IDX((dst.to_int()-start[4]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt4; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head4[i]) & 0x3F;
             I_PreSynCurr4[i] = I_PreSynCurr4[i] * I_decay + buf_flat4[BUF_IDX(i,h3)];
@@ -889,7 +872,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status4 = 0;
 
-        for(int i = 0; i < cnt4; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt4[i] > 0) {
                 R_RefCnt4[i] -= 1;
@@ -930,21 +913,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot5[dst.to_uint()-base5] = weight;
+                    U_membPot5[dst.to_uint()-start[5]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done5 = true;
                 } else {
-                    ap_uint<6> h2 = (head5[dst.to_int()-base5] + delay) & 0x3F;
-                    float weight2 = buf_flat5[BUF_IDX((dst.to_int()-base5),h2)];    
-                    buf_flat5[BUF_IDX((dst.to_int()-base5),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head5[dst.to_int()-start[5]] + delay) & 0x3F;
+                    float weight2 = buf_flat5[BUF_IDX((dst.to_int()-start[5]),h2)];    
+                    buf_flat5[BUF_IDX((dst.to_int()-start[5]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt5; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head5[i]) & 0x3F;
             I_PreSynCurr5[i] = I_PreSynCurr5[i] * I_decay + buf_flat5[BUF_IDX(i,h3)];
@@ -954,7 +937,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status5 = 0;
 
-        for(int i = 0; i < cnt5; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt5[i] > 0) {
                 R_RefCnt5[i] -= 1;
@@ -995,21 +978,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot6[dst.to_uint()-base6] = weight;
+                    U_membPot6[dst.to_uint()-start[6]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done6 = true;
                 } else {
-                    ap_uint<6> h2 = (head6[dst.to_int()-base6] + delay) & 0x3F;
-                    float weight2 = buf_flat6[BUF_IDX((dst.to_int()-base6),h2)];    
-                    buf_flat6[BUF_IDX((dst.to_int()-base6),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head6[dst.to_int()-start[6]] + delay) & 0x3F;
+                    float weight2 = buf_flat6[BUF_IDX((dst.to_int()-start[6]),h2)];    
+                    buf_flat6[BUF_IDX((dst.to_int()-start[6]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt6; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head6[i]) & 0x3F;
             I_PreSynCurr6[i] = I_PreSynCurr6[i] * I_decay + buf_flat6[BUF_IDX(i,h3)];
@@ -1019,7 +1002,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status6 = 0;
 
-        for(int i = 0; i < cnt6; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt6[i] > 0) {
                 R_RefCnt6[i] -= 1;
@@ -1060,21 +1043,21 @@ extern "C" void NeuroRing_singlestep(
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
                 if (delay == 0xFC) {
-                    U_membPot7[dst.to_uint()-base7] = weight;
+                    U_membPot7[dst.to_uint()-start[7]] = weight;
                 }
                 else if (delay == 0xFE) {
                     done7 = true;
                 } else {
-                    ap_uint<6> h2 = (head7[dst.to_int()-base7] + delay) & 0x3F;
-                    float weight2 = buf_flat7[BUF_IDX((dst.to_int()-base7),h2)];    
-                    buf_flat7[BUF_IDX((dst.to_int()-base7),h2)] = weight2 + weight;
+                    ap_uint<6> h2 = (head7[dst.to_int()-start[7]] + delay) & 0x3F;
+                    float weight2 = buf_flat7[BUF_IDX((dst.to_int()-start[7]),h2)];    
+                    buf_flat7[BUF_IDX((dst.to_int()-start[7]),h2)] = weight2 + weight;
                 }
             }
         }
         //--------------------------------------------------
         // 3) Update spike_status[] based on neuron PE results
         //--------------------------------------------------
-        for(int i = 0; i < cnt7; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Exponential synaptic current decay and accumulation of inputs (pA)
             ap_uint<6> h3 = (head7[i]) & 0x3F;
             I_PreSynCurr7[i] = I_PreSynCurr7[i] * I_decay + buf_flat7[BUF_IDX(i,h3)];
@@ -1084,7 +1067,7 @@ extern "C" void NeuroRing_singlestep(
 
         ap_uint<256> spike_status7 = 0;
 
-        for(int i = 0; i < cnt7; i++) {
+        for(int i = 0; i < NCORE; i++) {
             // Refractory countdown
             if (R_RefCnt7[i] > 0) {
                 R_RefCnt7[i] -= 1;
@@ -1107,6 +1090,19 @@ extern "C" void NeuroRing_singlestep(
         for(int i = 0; i < 8; i++) {
             SpikeRecorder[(t+1)*64 + 8*7 + i] = spike_status7.range(((i+1)*32 - 1), (i*32));
         }
+
+        //print t
+        std::cout << "t: " << t << std::endl;
+        // print size of SynForward1, SynForward2, SynForward3, SynForward4, SynForward5, SynForward6, SynForward7
+        std::cout << "Size of SynForward: " << SynForward.size() << std::endl;
+        std::cout << "Size of SynForward1: " << SynForward1.size() << std::endl;
+        std::cout << "Size of SynForward2: " << SynForward2.size() << std::endl;
+        std::cout << "Size of SynForward3: " << SynForward3.size() << std::endl;
+        std::cout << "Size of SynForward4: " << SynForward4.size() << std::endl;
+        std::cout << "Size of SynForward5: " << SynForward5.size() << std::endl;
+        std::cout << "Size of SynForward6: " << SynForward6.size() << std::endl;
+        std::cout << "Size of SynForward7: " << SynForward7.size() << std::endl;
+        std::cout << "--------------------------------" << std::endl;
         
     } // end of loop t < SimulationTime
 } // end of NeuroRing_singlestep
@@ -1131,7 +1127,7 @@ int main() {
     std::cout << "Starting NeuroRing_singlestep simulation..." << std::endl;
     
     // Simulation parameters
-    const uint32_t SimulationTime = 1000;
+    const uint32_t SimulationTime = 5;
     const float threshold = -50.0f;
     const float membrane_potential = -65.0f;
     const uint32_t AmountOfCores = 1;
@@ -1214,17 +1210,21 @@ int main() {
         NeuronTotal,
         DCstimStart,
         DCstimTotal,
-        DCstimAmp
+        DCstimAmp,
+        0
     );
     
     std::cout << "Simulation completed!" << std::endl;
     
     // Print some sample results from SpikeRecorder
     std::cout << "\nSample SpikeRecorder results:" << std::endl;
-    for (uint32_t t = 0; t < 200; t++) {  // Show first 5 timesteps
+    for (uint32_t t = 0; t < SimulationTime; t++) {  // Show first 5 timesteps
         std::cout << "Timestep " << t << ": ";
-        for (uint32_t i = 0; i < 64; i++) {  // Show first 8 words
-            std::cout << SpikeRecorder[t * 64 + i] << " ";
+        for (uint32_t i = 0; i < 8 ; i++) {  // Show first 8 words
+            std::cout << "Core " << i << ": ";
+            for (uint32_t j = 0; j < 8; j++) {
+                std::cout << SpikeRecorder[t * 64 + i * 8 + j] << " ";
+            }
         }
         std::cout << std::endl;
     }

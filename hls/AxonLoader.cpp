@@ -37,6 +37,8 @@ extern "C" void AxonLoader(
         return packet;
     };
 
+    
+
     uint32_t DCstim_float[NEURON_NUM];
     uint32_t SynapseSize[NEURON_NUM];
     uint32_t UmemPot[NEURON_NUM];
@@ -87,11 +89,9 @@ extern "C" void AxonLoader(
             read_status = SpikeOutIn.read_nb(spike_read);
         }
         if (record_status == 1) {
-        // Record spike data
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    SpikeRecorder_SynapseList[(t)*64 + i*8 + j] = spike_read.data.range(((i*8 + j)+1)*32-1, (i*8 + j)*32);
-                }
+            // Record spike data
+            for (int i = 0; i < 64; i++) {
+                SpikeRecorder_SynapseList[(t)*64 + i] = spike_read.data.range(((i+1)*32-1), (i*32));
             }
         }
 

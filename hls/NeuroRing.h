@@ -88,6 +88,7 @@ extern "C" void NeuroRing_singlestep(
     uint32_t                     NeuronTotal,
     uint32_t                     DCstimStart,
     uint32_t                     DCstimTotal,
-    float                        DCstimAmp);
+    float                        DCstimAmp,
+    uint32_t                     CoreID);
 
 #endif // NEURORING_H 

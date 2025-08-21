@@ -255,6 +255,7 @@ void SynapseRouter(
     uint32_t                     NeuronTotal,
     uint32_t                     SimulationTime,
     uint32_t                     AmountOfCores,
+    uint32_t                     CoreID,
     hls::stream<synapse_word_t> &SynForward,
     hls::stream<synapse_word_t> &SynForward1,
     hls::stream<synapse_word_t> &SynForward2,
@@ -274,38 +275,30 @@ void SynapseRouter(
     };
     
     // Pre-compute range bounds for faster comparison
-    const uint32_t neuron_end = NeuronStart + NeuronTotal;
     ap_uint<24> start[8];
     ap_uint<24> end[8];
     #pragma HLS ARRAY_PARTITION variable=start complete
     #pragma HLS ARRAY_PARTITION variable=end complete
 
-    start[0] = NeuronStart;
-    start[1] = NeuronStart + ((NeuronTotal+7)/8)*1;
-    start[2] = NeuronStart + ((NeuronTotal+7)/8)*2;
-    start[3] = NeuronStart + ((NeuronTotal+7)/8)*3;
-    start[4] = NeuronStart + ((NeuronTotal+7)/8)*4;
-    start[5] = NeuronStart + ((NeuronTotal+7)/8)*5;
-    start[6] = NeuronStart + ((NeuronTotal+7)/8)*6;
-    start[7] = NeuronStart + ((NeuronTotal+7)/8)*7;
+    start[0] = 1 + 2048*CoreID;
+    start[1] = 257 + 2048*(CoreID);
+    start[2] = 513 + 2048*(CoreID);
+    start[3] = 769 + 2048*(CoreID);
+    start[4] = 1025 + 2048*(CoreID);
+    start[5] = 1281 + 2048*(CoreID);
+    start[6] = 1537 + 2048*(CoreID);
+    start[7] = 1793 + 2048*(CoreID);
 
-    end[0] = start[1];
-    end[1] = start[2];
-    end[2] = start[3];
-    end[3] = start[4];
-    end[4] = start[5];
-    end[5] = start[6];
-    end[6] = start[7];
-    end[7] = neuron_end;
+    end[0] = 257 + 2048*(CoreID); 
+    end[1] = 513 + 2048*(CoreID);
+    end[2] = 769 + 2048*(CoreID);
+    end[3] = 1025 + 2048*(CoreID);
+    end[4] = 1281 + 2048*(CoreID);
+    end[5] = 1537 + 2048*(CoreID);
+    end[6] = 1793 + 2048*(CoreID);
+    end[7] = 2049 + 2048*(CoreID);
 
     bool read_axonLoader = true;
-    hls::vector<DstID_t, 8> dst_forward = (DstID_t)0;
-    hls::vector<Delay_t, 8> delay_forward = (Delay_t)0;
-    hls::vector<uint32_t, 8> weight_bits_forward = (uint32_t)0;
-    #pragma HLS ARRAY_PARTITION variable=dst_forward complete
-    #pragma HLS ARRAY_PARTITION variable=delay_forward complete
-    #pragma HLS ARRAY_PARTITION variable=weight_bits_forward complete
-    int size_forward = 0;
     
     router_loop: for (int t = 0; t < SimulationTime; t++) {
         bool axon_done = false;
@@ -351,6 +344,7 @@ void SynapseRouter(
                     delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
                     weight_bits[i] = pkt.data.range(base_bit - 32, base_bit - 63);
                 }
+                
 
                 synapse_loop: for (int i = 0; i < 8; i++) {
                     //#pragma HLS UNROLL
@@ -485,6 +479,7 @@ extern "C" void NeuroRing(
     uint32_t              AmountOfCores,
     uint32_t              NeuronStart,
     uint32_t              NeuronTotal,
+    uint32_t              CoreID,
     hls::stream<stream512u_t> &syn_route_in,
     hls::stream<stream512u_t> &syn_forward_rt,
     hls::stream<stream512u_t> &synapse_stream,
@@ -545,6 +540,7 @@ extern "C" void NeuroRing(
         NeuronTotal,
         SimulationTime,
         AmountOfCores,
+        CoreID,
         spike_stream,
         spike_stream1,
         spike_stream2,
