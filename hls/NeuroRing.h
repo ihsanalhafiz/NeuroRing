@@ -13,7 +13,7 @@
 #define NLANE 8
 #define GROUP 64
 // Each neuron has a block of 10,000 32-bit words in the synapse list buffer
-#define SYNAPSE_LIST_SIZE 10000
+#define SYNAPSE_LIST_SIZE 1000
 #define SYNAPSE_ARRAY_OFFSET (120000 * 64)
 
 typedef ap_uint<64>        synapse_word_t;
@@ -25,7 +25,7 @@ typedef float     Weight_t;
 typedef ap_axiu<2048, 0, 0, 0> stream2048u_t;
 typedef ap_axiu<1024, 0, 0, 0> stream1024u_t;
 typedef ap_axiu<64, 0, 0, 0> stream64u_t;
-typedef ap_axiu<512, 0, 0, 0> stream512u_t;
+typedef ap_axiu<512, 0, 8, 8> stream512u_t;
 typedef ap_axiu<128, 0, 0, 0> stream128u_t;
 
 union float_to_uint32 {
@@ -65,10 +65,18 @@ extern "C" void AxonLoader(
         uint32_t              AmountOfCores,
         uint32_t              NeuronStart,
         uint32_t              NeuronTotal,
-        hls::stream<stream512u_t> &syn_route_in,
-        hls::stream<stream512u_t> &syn_forward_rt,
         hls::stream<stream512u_t> &synapse_stream,
         hls::stream<stream2048u_t> &spike_out_axon);
+
+extern "C" void Router(
+    hls::stream<stream512u_t>    &SynapseStream,
+    hls::stream<stream512u_t>    &SynapseOut);
+
+    extern "C" void Forwarder(
+        hls::stream<stream512u_t>    &SynapseStreamIn,
+        hls::stream<stream512u_t>    &SynapseRouteIn,
+        hls::stream<stream512u_t>    &SynapseStreamOut,
+        hls::stream<stream512u_t>    &SynapseRouteOut);
 
 extern "C" void kernel_mockup(
     uint32_t *hbm_in,

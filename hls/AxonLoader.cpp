@@ -135,6 +135,7 @@ extern "C" void AxonLoader(
         // Send sync word in lane 0: dst=NeuronStart, delay=0xFE, weight=0
         stream512u_t sync_packet;
         sync_packet.data = 0;
+        sync_packet.last = 1;
         uint32_t dst_delay_sync = (((NeuronStart) << 8) & 0xFFFFFF00) | 0xFE;
         sync_packet.data.range(511, 480) = dst_delay_sync;
         write_packet_to_stream(SynapseStream, sync_packet);

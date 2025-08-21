@@ -41,7 +41,7 @@ class NeuroRingKernel:
         self.synapseListHandle = None
         self.header_words = 120000 * 64  # recorder words (up to 120k timesteps * 128 words/tick)
         self.header_bytes = self.header_words * 4
-        self.tail_words_capacity = max(0, self.neuron_total) * 10000
+        self.tail_words_capacity = max(0, self.neuron_total) * 1000
         self.tail_bytes_capacity = self.tail_words_capacity * 4
         self.bo_size = self.header_bytes + self.tail_bytes_capacity
         
@@ -241,7 +241,7 @@ class NeuroRingHost:
         # --- Create packed_list ---
         self.packed_list_per_fpga = []
         self.kernel_neuron_ranges_per_fpga = []
-        block_size = 10000
+        block_size = 1000
         
 
         # Prepare fast lookups for header values per unique source
