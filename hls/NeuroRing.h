@@ -25,7 +25,7 @@ typedef float     Weight_t;
 typedef ap_axiu<2048, 0, 0, 0> stream2048u_t;
 typedef ap_axiu<1024, 0, 0, 0> stream1024u_t;
 typedef ap_axiu<64, 0, 0, 0> stream64u_t;
-typedef ap_axiu<512, 0, 0, 0> stream512u_t;
+typedef ap_axiu<512, 0, 8, 8> stream512u_t;
 typedef ap_axiu<128, 0, 0, 0> stream128u_t;
 
 union float_to_uint32 {
@@ -44,8 +44,6 @@ struct SynapseStream_t {
     hls::vector<synapse_word_t, 8> data;
 };
 
-
-
 extern "C" void AxonLoader(
     uint32_t                    *SpikeRecorder_SynapseList,
     uint32_t                     NeuronStart,
@@ -55,6 +53,8 @@ extern "C" void AxonLoader(
     uint32_t                     DCstimAmp,
     uint32_t                     SimulationTime,
     uint32_t                     record_status,
+    uint32_t                     CoreID,
+    uint32_t                     AmountOfCores,
     hls::stream<stream2048u_t>   &SpikeOutIn,
     hls::stream<stream512u_t>    &SynapseStream);
 
@@ -65,6 +65,7 @@ extern "C" void AxonLoader(
         uint32_t              AmountOfCores,
         uint32_t              NeuronStart,
         uint32_t              NeuronTotal,
+        uint32_t              CoreID,
         hls::stream<stream512u_t> &syn_route_in,
         hls::stream<stream512u_t> &syn_forward_rt,
         hls::stream<stream512u_t> &synapse_stream,

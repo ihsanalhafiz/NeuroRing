@@ -53,12 +53,11 @@ def get_exc_inh_matrix(val_exc, val_inh, num_pops):
     matrix[:, 1:num_pops:2] = val_inh
     return matrix
 
-
 net_dict = {
     # factor to scale the number of neurons
-    "N_scaling": 0.01,
+    "N_scaling": 0.04,
     # factor to scale the indegrees
-    "K_scaling": 0.01,
+    "K_scaling": 0.04,
     # neuron model
     "neuron_model": "iaf_psc_exp",
     # names of the simulated neuronal populations

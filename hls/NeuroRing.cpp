@@ -154,14 +154,14 @@ void SomaEngine(
                 float_to_uint32 temp_conv;
                 temp_conv.u = pkt_new.range(31, 0);
                 float weight = temp_conv.f;
-                ap_uint<6> h2 = (head[dst.to_int()-NeuronStart] + delay) & 0x3F;
-                float weight2 = buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)];
                 if (delay == 0xFC) {
                     U_membPot[dst.to_uint()-NeuronStart] = weight;
                 }
                 else if (delay == 0xFE) {
                     done = true;
                 } else {
+                    ap_uint<6> h2 = (head[dst.to_int()-NeuronStart] + delay) & 0x3F;
+                    float weight2 = buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)];    
                     buf_flat[BUF_IDX((dst.to_int()-NeuronStart),h2)] = weight2 + weight;
                 }
             }
@@ -299,15 +299,20 @@ void SynapseRouter(
     end[7] = 2049 + 2048*(CoreID);
 
     bool read_axonLoader = true;
+
+    bool sync_array[48];
+    #pragma HLS ARRAY_PARTITION variable=sync_array complete
+    for(int i = 0; i < 48; i++) {
+        sync_array[i] = false;
+    }
     
     router_loop: for (int t = 0; t < SimulationTime; t++) {
         bool axon_done = false;
         bool prev_done = false;
         uint32_t coreDone = 0;
-        size_forward = 0;
         
-        while (!(axon_done && prev_done)) {
-        #pragma HLS PIPELINE II=1 rewind
+        while (!(prev_done)) {
+            #pragma HLS PIPELINE II=1 rewind
             
             // Process main synapse stream
             stream512u_t pkt;
@@ -328,101 +333,73 @@ void SynapseRouter(
                 }   
             }
             if (have_pkt) {
-                // Extract all 8 synapse entries in parallel
-                DstID_t dst[8];
-                Delay_t delay[8];
-                uint32_t weight_bits[8];
-                #pragma HLS ARRAY_PARTITION variable=dst complete
-                #pragma HLS ARRAY_PARTITION variable=delay complete
-                #pragma HLS ARRAY_PARTITION variable=weight_bits complete
-                
-                // Unpack all 16 synapses at once
-                for (int i = 0; i < 8; i++) {
-                #pragma HLS UNROLL
-                    int base_bit = 511 - i * 64;
-                    dst[i] = pkt.data.range(base_bit, base_bit - 23);
-                    delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
-                    weight_bits[i] = pkt.data.range(base_bit - 32, base_bit - 63);
-                }
-                
-
-                synapse_loop: for (int i = 0; i < 8; i++) {
-                    //#pragma HLS UNROLL
-                    // Create synapse word
-                    synapse_word_t temp;
-                    temp.range(63, 40) = dst[i];
-                    temp.range(39, 32) = delay[i];
-                    temp.range(31, 0)  = weight_bits[i];
-
-                    // Find region index in parallel
-                    int region = -1;
-                    find_region: for (int r = 0; r < 8; ++r) {
-                        #pragma HLS UNROLL
-                        bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
-                        if (is_local && region == -1) region = r;
-                    }
-
-                    // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
-                    switch (region) {
-                        case 0: write_synapse_to_stream(SynForward, temp); break;
-                        case 1: write_synapse_to_stream(SynForward1, temp); break;
-                        case 2: write_synapse_to_stream(SynForward2, temp); break;
-                        case 3: write_synapse_to_stream(SynForward3, temp); break;
-                        case 4: write_synapse_to_stream(SynForward4, temp); break;
-                        case 5: write_synapse_to_stream(SynForward5, temp); break;
-                        case 6: write_synapse_to_stream(SynForward6, temp); break;
-                        case 7: write_synapse_to_stream(SynForward7, temp); break;
-                        default: break; // no-op if no region matched
-                    }
-                    if(region != -1) {
-                        // Clear once
-                        dst[i] = 0;
-                        delay[i] = 0;
-                        weight_bits[i] = 0;
-                    }
-                }
-                bool any_non_zero = false;
-                for(int i = 0; i < 8; i++) {
-                    any_non_zero = any_non_zero || (dst[i] != 0);
-                }
-                if(any_non_zero) {
-                    // create stream512u_t packet
-                    stream512u_t temp_pkt;
-                    for(int i = 0; i < 8; i++) {
-                        #pragma HLS UNROLL
-                        int base_bit = 511 - i * 64;
-                        temp_pkt.data.range(base_bit, base_bit - 23) = dst[i];
-                        temp_pkt.data.range(base_bit - 24, base_bit - 31) = delay[i];
-                        temp_pkt.data.range(base_bit - 32, base_bit - 63) = weight_bits[i];
-                    }
-                    bool write_status = false;
-                    while(!write_status) {
-                        write_status = SynForwardRoute.write_nb(temp_pkt);
-                    }
-                }
-            
-                // Check if this is an axon done signal
-                if (delay[0] == 0xFE) {
-                    if((dst[0] == NeuronStart) && axon_done == false) {
-                        axon_done = true;
+                if (pkt.last == 1) {
+                    if (pkt.dest != CoreID) {
                         bool write_status = false;
                         while(!write_status) {
                             write_status = SynForwardRoute.write_nb(pkt);
                         }
-                    } else{
-                        if(coreDone == AmountOfCores - 1) {
-                            prev_done = true;
-                        } else {
-                            coreDone++;
+                    } else {
+                        bool all_sync = true;
+                        sync_array[pkt.id] = true;
+                        for(int i = 0; i < AmountOfCores; i++) {
+                            all_sync = all_sync && sync_array[i];
                         }
-                        // Forward if not for this core
-                        if (dst[0] != ap_uint<24>(NeuronStart)) {
-                            bool write_status = false;
-                            while(!write_status) {
-                                write_status = SynForwardRoute.write_nb(pkt);
+                        if (all_sync) {
+                            for(int i = 0; i < AmountOfCores; i++) {
+                                sync_array[i] = false;
+                            }
+                            prev_done = true;
+                        }
+                    }
+                } else {
+                    if (pkt.dest != CoreID) {
+                        bool write_status = false;
+                        while(!write_status) {
+                            write_status = SynForwardRoute.write_nb(pkt);
+                        }
+                    }else{
+                        DstID_t dst[8];
+                        Delay_t delay[8];
+                        uint32_t weight_bits[8];
+                        #pragma HLS ARRAY_PARTITION variable=dst complete
+                        #pragma HLS ARRAY_PARTITION variable=delay complete
+                        #pragma HLS ARRAY_PARTITION variable=weight_bits complete
+                        
+                        // Unpack all 16 synapses at once
+                        for (int i = 0; i < 8; i++) {
+                            #pragma HLS UNROLL
+                            int base_bit = 511 - i * 64;
+                            dst[i] = pkt.data.range(base_bit, base_bit - 23);
+                            delay[i] = pkt.data.range(base_bit - 24, base_bit - 31);
+                            weight_bits[i] = pkt.data.range(base_bit - 32, base_bit - 63);
+
+                            synapse_word_t temp;
+                            temp.range(63, 40) = dst[i];
+                            temp.range(39, 32) = delay[i];
+                            temp.range(31, 0)  = weight_bits[i];
+        
+                            // Find region index in parallel
+                            int region = -1;
+                            find_region: for (int r = 0; r < 8; ++r) {
+                                #pragma HLS UNROLL
+                                bool is_local = (dst[i] >= start[r] && dst[i] < end[r]);
+                                if (is_local && region == -1) region = r;
+                            }
+        
+                            // Dispatch to the right stream (prefer blocking write to avoid spin-wait)
+                            switch (region) {
+                                case 0: write_synapse_to_stream(SynForward, temp); break;
+                                case 1: write_synapse_to_stream(SynForward1, temp); break;
+                                case 2: write_synapse_to_stream(SynForward2, temp); break;
+                                case 3: write_synapse_to_stream(SynForward3, temp); break;
+                                case 4: write_synapse_to_stream(SynForward4, temp); break;
+                                case 5: write_synapse_to_stream(SynForward5, temp); break;
+                                case 6: write_synapse_to_stream(SynForward6, temp); break;
+                                case 7: write_synapse_to_stream(SynForward7, temp); break;
+                                default: break; // no-op if no region matched
                             }
                         }
-
                     }
                 }
             }
@@ -433,39 +410,15 @@ void SynapseRouter(
         temp_sync.range(63, 40) = 0xFFFFFF;
         temp_sync.range(39, 32) = 0xFE;
         temp_sync.range(31, 0) = 0x0;
-        
-        bool write_status = false;
-        while(!write_status) {
-            write_status = SynForward.write_nb(temp_sync);
-        }
-        bool write_status1 = false;
-        while(!write_status1) {
-            write_status1 = SynForward1.write_nb(temp_sync);
-        }
-        bool write_status2 = false;
-        while(!write_status2) {
-            write_status2 = SynForward2.write_nb(temp_sync);
-        }
-        bool write_status3 = false;
-        while(!write_status3) {
-            write_status3 = SynForward3.write_nb(temp_sync);
-        }
-        bool write_status4 = false;
-        while(!write_status4) {
-            write_status4 = SynForward4.write_nb(temp_sync);
-        }
-        bool write_status5 = false;
-        while(!write_status5) {
-            write_status5 = SynForward5.write_nb(temp_sync);
-        }
-        bool write_status6 = false;
-        while(!write_status6) {
-            write_status6 = SynForward6.write_nb(temp_sync);
-        }
-        bool write_status7 = false;
-        while(!write_status7) {
-            write_status7 = SynForward7.write_nb(temp_sync);
-        }
+
+        write_synapse_to_stream(SynForward, temp_sync);
+        write_synapse_to_stream(SynForward1, temp_sync);
+        write_synapse_to_stream(SynForward2, temp_sync);
+        write_synapse_to_stream(SynForward3, temp_sync);
+        write_synapse_to_stream(SynForward4, temp_sync);
+        write_synapse_to_stream(SynForward5, temp_sync);
+        write_synapse_to_stream(SynForward6, temp_sync);
+        write_synapse_to_stream(SynForward7, temp_sync);
     }
 }
 
