@@ -16,6 +16,7 @@ large_files/
 *.npy
 *.bin
 *.csv
+*.jou
 *.log
 *.str
 backup_design
@@ -26,3 +27,5 @@ host_py/corticalmicrocircuit/
 host_py/data/
 host_py/xsim.dir/
 data/
+ip_generation/
+vivado_pack_krnl_aurora/

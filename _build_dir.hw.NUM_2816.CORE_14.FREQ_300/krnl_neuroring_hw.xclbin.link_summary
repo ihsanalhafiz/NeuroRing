@@ -1,0 +1,591 @@
+<ENTRY>
+{
+ "thisFile": "/home/miahafiz/NeuroRing/_build_dir.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring_hw.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Feb 12 14:48:38 2026",
+ "timestampMillis": "1770904118965",
+ "buildStep": {
+  "cmdId": "7edb5663-14fc-403f-acb7-8c1b221eb7ad",
+  "name": "v++",
+  "logFile": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/link.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --vivado.prop \"run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\" --vivado.prop run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true --vivado.prop run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --link --optimize 3 --platform xilinx_u55c_gen3x16_xdma_3_202210_1 --target hw --save-temps --vivado.impl.jobs 16 --vivado.synth.jobs 16 --kernel_frequency 300 --temp_dir ./_x.hw.NUM_2816.CORE_14.FREQ_300 --config ./conf/NeuroRing_NUM_2816_CORE_14.cfg --output _build_dir.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring_hw.xclbin _x.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring.xo _x.hw.NUM_2816.CORE_14.FREQ_300/krnl_synapserouter.xo _x.hw.NUM_2816.CORE_14.FREQ_300/serialin.xo _x.hw.NUM_2816.CORE_14.FREQ_300/serialout.xo _x.hw.NUM_2816.CORE_14.FREQ_300/krnl_aurora.xo _x.hw.NUM_2816.CORE_14.FREQ_300/strm_issue.xo _x.hw.NUM_2816.CORE_14.FREQ_300/strm_dump.xo ",
+  "args": [
+   "--link",
+   "--optimize",
+   "3",
+   "--platform",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "--target",
+   "hw",
+   "--save-temps",
+   "--vivado.impl.jobs",
+   "16",
+   "--vivado.synth.jobs",
+   "16",
+   "--kernel_frequency",
+   "300",
+   "--temp_dir",
+   "./_x.hw.NUM_2816.CORE_14.FREQ_300",
+   "--config",
+   "./conf/NeuroRing_NUM_2816_CORE_14.cfg",
+   "--output",
+   "_build_dir.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring_hw.xclbin",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_synapserouter.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/serialin.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/serialout.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_aurora.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/strm_issue.xo",
+   "_x.hw.NUM_2816.CORE_14.FREQ_300/strm_dump.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/conf/NeuroRing_NUM_2816_CORE_14.cfg",
+    "content": "[connectivity]\nnk=NeuroRing:14:NeuroRing_0,NeuroRing_1,NeuroRing_2,NeuroRing_3,NeuroRing_4,NeuroRing_5,NeuroRing_6,NeuroRing_7,NeuroRing_8,NeuroRing_9,NeuroRing_10,NeuroRing_11,NeuroRing_12,NeuroRing_13\nnk=SynapseRouter:14:SynapseRouter_0,SynapseRouter_1,SynapseRouter_2,SynapseRouter_3,SynapseRouter_4,SynapseRouter_5,SynapseRouter_6,SynapseRouter_7,SynapseRouter_8,SynapseRouter_9,SynapseRouter_10,SynapseRouter_11,SynapseRouter_12,SynapseRouter_13\nnk=krnl_aurora:2:krnl_aurora_0,krnl_aurora_1\nnk=SerialIn:1:SerialIn_0\nnk=SerialOut:1:SerialOut_0\nnk=strm_issue:1:strm_issue_0\nnk=strm_dump:1:strm_dump_0\n\nstream_connect=strm_issue_0.data_output:krnl_aurora_0.tx_axis\nstream_connect=krnl_aurora_1.rx_axis:strm_dump_0.data_input\n\n\nsp=NeuroRing_0.SpikeRecorder_SynapseList:HBM[0]\nsp=NeuroRing_1.SpikeRecorder_SynapseList:HBM[2]\nsp=NeuroRing_2.SpikeRecorder_SynapseList:HBM[4]\nsp=NeuroRing_3.SpikeRecorder_SynapseList:HBM[6]\nsp=NeuroRing_4.SpikeRecorder_SynapseList:HBM[8]\nsp=NeuroRing_5.SpikeRecorder_SynapseList:HBM[10]\nsp=NeuroRing_6.SpikeRecorder_SynapseList:HBM[12]\nsp=NeuroRing_7.SpikeRecorder_SynapseList:HBM[14]\nsp=NeuroRing_8.SpikeRecorder_SynapseList:HBM[16]\nsp=NeuroRing_9.SpikeRecorder_SynapseList:HBM[18]\nsp=NeuroRing_10.SpikeRecorder_SynapseList:HBM[20]\nsp=NeuroRing_11.SpikeRecorder_SynapseList:HBM[22]\nsp=NeuroRing_12.SpikeRecorder_SynapseList:HBM[24]\nsp=NeuroRing_13.SpikeRecorder_SynapseList:HBM[26]\n\nstream_connect=NeuroRing_0.SynapseStream:SynapseRouter_0.synapse_stream:256\nstream_connect=NeuroRing_1.SynapseStream:SynapseRouter_1.synapse_stream:256\nstream_connect=NeuroRing_2.SynapseStream:SynapseRouter_2.synapse_stream:256\nstream_connect=NeuroRing_3.SynapseStream:SynapseRouter_3.synapse_stream:256\nstream_connect=NeuroRing_4.SynapseStream:SynapseRouter_4.synapse_stream:256\nstream_connect=NeuroRing_5.SynapseStream:SynapseRouter_5.synapse_stream:256\nstream_connect=NeuroRing_6.SynapseStream:SynapseRouter_6.synapse_stream:256\nstream_connect=NeuroRing_7.SynapseStream:SynapseRouter_7.synapse_stream:256\nstream_connect=NeuroRing_8.SynapseStream:SynapseRouter_8.synapse_stream:256\nstream_connect=NeuroRing_9.SynapseStream:SynapseRouter_9.synapse_stream:256\nstream_connect=NeuroRing_10.SynapseStream:SynapseRouter_10.synapse_stream:256\nstream_connect=NeuroRing_11.SynapseStream:SynapseRouter_11.synapse_stream:256\nstream_connect=NeuroRing_12.SynapseStream:SynapseRouter_12.synapse_stream:256\nstream_connect=NeuroRing_13.SynapseStream:SynapseRouter_13.synapse_stream:256\n\nstream_connect=SynapseRouter_0.SpikeOutWeight:NeuroRing_0.SpikeInWeight:128\nstream_connect=SynapseRouter_1.SpikeOutWeight:NeuroRing_1.SpikeInWeight:128\nstream_connect=SynapseRouter_2.SpikeOutWeight:NeuroRing_2.SpikeInWeight:128\nstream_connect=SynapseRouter_3.SpikeOutWeight:NeuroRing_3.SpikeInWeight:128\nstream_connect=SynapseRouter_4.SpikeOutWeight:NeuroRing_4.SpikeInWeight:128\nstream_connect=SynapseRouter_5.SpikeOutWeight:NeuroRing_5.SpikeInWeight:128\nstream_connect=SynapseRouter_6.SpikeOutWeight:NeuroRing_6.SpikeInWeight:128\nstream_connect=SynapseRouter_7.SpikeOutWeight:NeuroRing_7.SpikeInWeight:128\nstream_connect=SynapseRouter_8.SpikeOutWeight:NeuroRing_8.SpikeInWeight:128\nstream_connect=SynapseRouter_9.SpikeOutWeight:NeuroRing_9.SpikeInWeight:128\nstream_connect=SynapseRouter_10.SpikeOutWeight:NeuroRing_10.SpikeInWeight:128\nstream_connect=SynapseRouter_11.SpikeOutWeight:NeuroRing_11.SpikeInWeight:128\nstream_connect=SynapseRouter_12.SpikeOutWeight:NeuroRing_12.SpikeInWeight:128\nstream_connect=SynapseRouter_13.SpikeOutWeight:NeuroRing_13.SpikeInWeight:128\n\nstream_connect=SynapseRouter_0.syn_forward_rt:SynapseRouter_1.syn_route_in:4096\nstream_connect=SynapseRouter_1.syn_forward_rt:SynapseRouter_2.syn_route_in:4096\nstream_connect=SynapseRouter_2.syn_forward_rt:SynapseRouter_3.syn_route_in:4096\nstream_connect=SynapseRouter_3.syn_forward_rt:SynapseRouter_4.syn_route_in:4096\nstream_connect=SynapseRouter_4.syn_forward_rt:SynapseRouter_5.syn_route_in:4096\nstream_connect=SynapseRouter_5.syn_forward_rt:SynapseRouter_6.syn_route_in:4096\nstream_connect=SynapseRouter_6.syn_forward_rt:SynapseRouter_7.syn_route_in:4096\nstream_connect=SynapseRouter_7.syn_forward_rt:SynapseRouter_8.syn_route_in:4096\nstream_connect=SynapseRouter_8.syn_forward_rt:SynapseRouter_9.syn_route_in:4096\nstream_connect=SynapseRouter_9.syn_forward_rt:SynapseRouter_10.syn_route_in:4096\nstream_connect=SynapseRouter_10.syn_forward_rt:SynapseRouter_11.syn_route_in:4096\nstream_connect=SynapseRouter_11.syn_forward_rt:SynapseRouter_12.syn_route_in:4096\nstream_connect=SynapseRouter_12.syn_forward_rt:SynapseRouter_13.syn_route_in:4096\nstream_connect=SynapseRouter_13.syn_forward_rt:SerialOut_0.SynapseIn:8192\nstream_connect=SerialIn_0.SynapseOut:SynapseRouter_0.syn_route_in:8192\n\nstream_connect=SerialOut_0.data_output:krnl_aurora_1.tx_axis:8192\nstream_connect=krnl_aurora_0.rx_axis:SerialIn_0.data_input:8192\n\nslr=krnl_aurora_0:SLR1\nslr=krnl_aurora_1:SLR1\n\n# port 0 (TX)\nconnect=io_clk_qsfp0_refclka_00:krnl_aurora_0/gt_refclk\nconnect=krnl_aurora_0/gt_port:io_gt_qsfp0_00\nconnect=krnl_aurora_0/init_clk:ii_level0_wire/ulp_m_aclk_freerun_ref_00\n\nconnect=io_clk_qsfp1_refclka_00:krnl_aurora_1/gt_refclk\nconnect=krnl_aurora_1/gt_port:io_gt_qsfp1_00\nconnect=krnl_aurora_1/init_clk:ii_level0_wire/ulp_m_aclk_freerun_ref_00\n\n\n[vivado]\n# Strong general-purpose timing closure strategy\nprop=run.impl_1.strategy=Performance_ExtraTimingOpt\n\n#\n## Drive the flow harder (routing/placement/physopt)\n#prop=run.impl_1.STEPS.OPT_DESIGN.ARGS.DIRECTIVE=Explore\n#prop=run.impl_1.STEPS.PLACE_DESIGN.ARGS.DIRECTIVE=Explore\n#prop=run.impl_1.STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE=AggressiveExplore\n#prop=run.impl_1.STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE=Explore\n#prop=run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE=AggressiveExplore\n#\n## Make sure these steps are enabled (some flows disable them)\n#prop=run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true\n#prop=run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:48:39 2026",
+ "timestampMillis": "1770904119153",
+ "status": {
+  "cmdId": "7edb5663-14fc-403f-acb7-8c1b221eb7ad",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Feb 12 14:50:20 2026",
+ "timestampMillis": "1770904220499",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "krnl_neuroring_hw",
+    "file": "/home/miahafiz/NeuroRing/_build_dir.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring_hw.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "NeuroRing",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/NeuroRing/NeuroRing/cpu_sources/NeuroRing.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "NeuroRing_0",
+     "NeuroRing_1",
+     "NeuroRing_2",
+     "NeuroRing_3",
+     "NeuroRing_4",
+     "NeuroRing_5",
+     "NeuroRing_6",
+     "NeuroRing_7",
+     "NeuroRing_8",
+     "NeuroRing_9",
+     "NeuroRing_10",
+     "NeuroRing_11",
+     "NeuroRing_12",
+     "NeuroRing_13"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "SynapseRouter",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_synapserouter.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/SynapseRouter/SynapseRouter/cpu_sources/SynapseRouter.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "SynapseRouter_0",
+     "SynapseRouter_1",
+     "SynapseRouter_2",
+     "SynapseRouter_3",
+     "SynapseRouter_4",
+     "SynapseRouter_5",
+     "SynapseRouter_6",
+     "SynapseRouter_7",
+     "SynapseRouter_8",
+     "SynapseRouter_9",
+     "SynapseRouter_10",
+     "SynapseRouter_11",
+     "SynapseRouter_12",
+     "SynapseRouter_13"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "SerialIn",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialin.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/SerialIn/SerialIn/cpu_sources/SerialIn.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "SerialIn_0"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "SerialOut",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialout.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/SerialOut/SerialOut/cpu_sources/SerialOut.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "SerialOut_0"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "krnl_aurora",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_aurora.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [],
+    "psSources": [],
+    "cuNames": [
+     "krnl_aurora_0",
+     "krnl_aurora_1"
+    ],
+    "type": "RTL",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "strm_issue",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_issue.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/strm_issue/strm_issue/cpu_sources/strm_issue.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "strm_issue_0"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "strm_dump",
+     "file": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_dump.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/strm_dump/strm_dump/cpu_sources/strm_dump.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "strm_dump_0"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2025.1. SW Build 6137779 on 2025-05-21-18:10:03"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Feb 12 14:50:21 2026",
+ "timestampMillis": "1770904221620",
+ "buildStep": {
+  "cmdId": "73215489-2bd6-40c4-bd5f-f1a82db788f7",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_synapserouter.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialin.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialout.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_aurora.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_issue.xo --xo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_dump.xo -keep --config /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/syslinkConfig.ini --xpfm /opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm --target hw --output_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int --temp_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/sys_link",
+  "args": [
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_neuroring.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_synapserouter.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialin.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/serialout.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/krnl_aurora.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_issue.xo",
+   "--xo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/strm_dump.xo",
+   "-keep",
+   "--config",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int",
+   "--temp_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/syslinkConfig.ini",
+    "content": "nk=NeuroRing:14:NeuroRing_0,NeuroRing_1,NeuroRing_2,NeuroRing_3,NeuroRing_4,NeuroRing_5,NeuroRing_6,NeuroRing_7,NeuroRing_8,NeuroRing_9,NeuroRing_10,NeuroRing_11,NeuroRing_12,NeuroRing_13\nnk=SynapseRouter:14:SynapseRouter_0,SynapseRouter_1,SynapseRouter_2,SynapseRouter_3,SynapseRouter_4,SynapseRouter_5,SynapseRouter_6,SynapseRouter_7,SynapseRouter_8,SynapseRouter_9,SynapseRouter_10,SynapseRouter_11,SynapseRouter_12,SynapseRouter_13\nnk=krnl_aurora:2:krnl_aurora_0,krnl_aurora_1\nnk=SerialIn:1:SerialIn_0\nnk=SerialOut:1:SerialOut_0\nnk=strm_issue:1:strm_issue_0\nnk=strm_dump:1:strm_dump_0\nsc=strm_issue_0.data_output:krnl_aurora_0.tx_axis\nsc=krnl_aurora_1.rx_axis:strm_dump_0.data_input\nsc=NeuroRing_0.SynapseStream:SynapseRouter_0.synapse_stream:256\nsc=NeuroRing_1.SynapseStream:SynapseRouter_1.synapse_stream:256\nsc=NeuroRing_2.SynapseStream:SynapseRouter_2.synapse_stream:256\nsc=NeuroRing_3.SynapseStream:SynapseRouter_3.synapse_stream:256\nsc=NeuroRing_4.SynapseStream:SynapseRouter_4.synapse_stream:256\nsc=NeuroRing_5.SynapseStream:SynapseRouter_5.synapse_stream:256\nsc=NeuroRing_6.SynapseStream:SynapseRouter_6.synapse_stream:256\nsc=NeuroRing_7.SynapseStream:SynapseRouter_7.synapse_stream:256\nsc=NeuroRing_8.SynapseStream:SynapseRouter_8.synapse_stream:256\nsc=NeuroRing_9.SynapseStream:SynapseRouter_9.synapse_stream:256\nsc=NeuroRing_10.SynapseStream:SynapseRouter_10.synapse_stream:256\nsc=NeuroRing_11.SynapseStream:SynapseRouter_11.synapse_stream:256\nsc=NeuroRing_12.SynapseStream:SynapseRouter_12.synapse_stream:256\nsc=NeuroRing_13.SynapseStream:SynapseRouter_13.synapse_stream:256\nsc=SynapseRouter_0.SpikeOutWeight:NeuroRing_0.SpikeInWeight:128\nsc=SynapseRouter_1.SpikeOutWeight:NeuroRing_1.SpikeInWeight:128\nsc=SynapseRouter_2.SpikeOutWeight:NeuroRing_2.SpikeInWeight:128\nsc=SynapseRouter_3.SpikeOutWeight:NeuroRing_3.SpikeInWeight:128\nsc=SynapseRouter_4.SpikeOutWeight:NeuroRing_4.SpikeInWeight:128\nsc=SynapseRouter_5.SpikeOutWeight:NeuroRing_5.SpikeInWeight:128\nsc=SynapseRouter_6.SpikeOutWeight:NeuroRing_6.SpikeInWeight:128\nsc=SynapseRouter_7.SpikeOutWeight:NeuroRing_7.SpikeInWeight:128\nsc=SynapseRouter_8.SpikeOutWeight:NeuroRing_8.SpikeInWeight:128\nsc=SynapseRouter_9.SpikeOutWeight:NeuroRing_9.SpikeInWeight:128\nsc=SynapseRouter_10.SpikeOutWeight:NeuroRing_10.SpikeInWeight:128\nsc=SynapseRouter_11.SpikeOutWeight:NeuroRing_11.SpikeInWeight:128\nsc=SynapseRouter_12.SpikeOutWeight:NeuroRing_12.SpikeInWeight:128\nsc=SynapseRouter_13.SpikeOutWeight:NeuroRing_13.SpikeInWeight:128\nsc=SynapseRouter_0.syn_forward_rt:SynapseRouter_1.syn_route_in:4096\nsc=SynapseRouter_1.syn_forward_rt:SynapseRouter_2.syn_route_in:4096\nsc=SynapseRouter_2.syn_forward_rt:SynapseRouter_3.syn_route_in:4096\nsc=SynapseRouter_3.syn_forward_rt:SynapseRouter_4.syn_route_in:4096\nsc=SynapseRouter_4.syn_forward_rt:SynapseRouter_5.syn_route_in:4096\nsc=SynapseRouter_5.syn_forward_rt:SynapseRouter_6.syn_route_in:4096\nsc=SynapseRouter_6.syn_forward_rt:SynapseRouter_7.syn_route_in:4096\nsc=SynapseRouter_7.syn_forward_rt:SynapseRouter_8.syn_route_in:4096\nsc=SynapseRouter_8.syn_forward_rt:SynapseRouter_9.syn_route_in:4096\nsc=SynapseRouter_9.syn_forward_rt:SynapseRouter_10.syn_route_in:4096\nsc=SynapseRouter_10.syn_forward_rt:SynapseRouter_11.syn_route_in:4096\nsc=SynapseRouter_11.syn_forward_rt:SynapseRouter_12.syn_route_in:4096\nsc=SynapseRouter_12.syn_forward_rt:SynapseRouter_13.syn_route_in:4096\nsc=SynapseRouter_13.syn_forward_rt:SerialOut_0.SynapseIn:8192\nsc=SerialIn_0.SynapseOut:SynapseRouter_0.syn_route_in:8192\nsc=SerialOut_0.data_output:krnl_aurora_1.tx_axis:8192\nsc=krnl_aurora_0.rx_axis:SerialIn_0.data_input:8192\nsp=NeuroRing_0.SpikeRecorder_SynapseList:HBM[0]\nsp=NeuroRing_1.SpikeRecorder_SynapseList:HBM[2]\nsp=NeuroRing_2.SpikeRecorder_SynapseList:HBM[4]\nsp=NeuroRing_3.SpikeRecorder_SynapseList:HBM[6]\nsp=NeuroRing_4.SpikeRecorder_SynapseList:HBM[8]\nsp=NeuroRing_5.SpikeRecorder_SynapseList:HBM[10]\nsp=NeuroRing_6.SpikeRecorder_SynapseList:HBM[12]\nsp=NeuroRing_7.SpikeRecorder_SynapseList:HBM[14]\nsp=NeuroRing_8.SpikeRecorder_SynapseList:HBM[16]\nsp=NeuroRing_9.SpikeRecorder_SynapseList:HBM[18]\nsp=NeuroRing_10.SpikeRecorder_SynapseList:HBM[20]\nsp=NeuroRing_11.SpikeRecorder_SynapseList:HBM[22]\nsp=NeuroRing_12.SpikeRecorder_SynapseList:HBM[24]\nsp=NeuroRing_13.SpikeRecorder_SynapseList:HBM[26]\nconnect=io_clk_qsfp0_refclka_00:krnl_aurora_0/gt_refclk\nconnect=krnl_aurora_0/gt_port:io_gt_qsfp0_00\nconnect=krnl_aurora_0/init_clk:ii_level0_wire/ulp_m_aclk_freerun_ref_00\nconnect=io_clk_qsfp1_refclka_00:krnl_aurora_1/gt_refclk\nconnect=krnl_aurora_1/gt_port:io_gt_qsfp1_00\nconnect=krnl_aurora_1/init_clk:ii_level0_wire/ulp_m_aclk_freerun_ref_00\nslr=krnl_aurora_0:SLR1\nslr=krnl_aurora_1:SLR1\n\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:50:21 2026",
+ "timestampMillis": "1770904221622",
+ "status": {
+  "cmdId": "73215489-2bd6-40c4-bd5f-f1a82db788f7",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:51:38 2026",
+ "timestampMillis": "1770904298573",
+ "status": {
+  "cmdId": "73215489-2bd6-40c4-bd5f-f1a82db788f7",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Feb 12 14:51:38 2026",
+ "timestampMillis": "1770904298693",
+ "buildStep": {
+  "cmdId": "3d10ca92-27aa-4e66-bf2f-d8cc64d4e935",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/sdsl.dat -rtd /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/cf2sw.rtd -nofilter /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/cf2sw_full.rtd -xclbin /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xclbin_orig.xml -o /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/sdsl.dat",
+   "-rtd",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xclbin_orig.xml",
+   "-o",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:51:38 2026",
+ "timestampMillis": "1770904298693",
+ "status": {
+  "cmdId": "3d10ca92-27aa-4e66-bf2f-d8cc64d4e935",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:28 2026",
+ "timestampMillis": "1770904348560",
+ "status": {
+  "cmdId": "3d10ca92-27aa-4e66-bf2f-d8cc64d4e935",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Feb 12 14:52:28 2026",
+ "timestampMillis": "1770904348731",
+ "buildStep": {
+  "cmdId": "e4fd77f8-fd15-403d-9d86-eee8ae900b88",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:28 2026",
+ "timestampMillis": "1770904348732",
+ "status": {
+  "cmdId": "e4fd77f8-fd15-403d-9d86-eee8ae900b88",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Feb 12 14:52:29 2026",
+ "timestampMillis": "1770904349317",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:29 2026",
+ "timestampMillis": "1770904349323",
+ "status": {
+  "cmdId": "e4fd77f8-fd15-403d-9d86-eee8ae900b88",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Feb 12 14:52:29 2026",
+ "timestampMillis": "1770904349573",
+ "buildStep": {
+  "cmdId": "12f309a9-140c-495c-9472-f5801ac45c4d",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u55c_gen3x16_xdma_3_202210_1 -s --kernel_frequency 300 --remote_ip_cache /home/miahafiz/NeuroRing/.ipcache --output_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int --log_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/logs/link --report_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/reports/link --config /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/vplConfig.ini -k /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link --no-info --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_dump_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_issue_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialOut_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_user_krnl_aurora_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialIn_1_0 --messageDb /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/run_link/vpl.pb /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u55c_gen3x16_xdma_3_202210_1",
+   "-s",
+   "--kernel_frequency",
+   "300",
+   "--remote_ip_cache",
+   "/home/miahafiz/NeuroRing/.ipcache",
+   "--output_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int",
+   "--log_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/logs/link",
+   "--report_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/reports/link",
+   "--config",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/vplConfig.ini",
+   "-k",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link",
+   "--no-info",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_dump_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_issue_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialOut_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_user_krnl_aurora_1_0",
+   "--iprepo",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialIn_1_0",
+   "--messageDb",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/run_link/vpl.pb",
+   "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=compiler.vppCurrentWorkingDir=/home/miahafiz/NeuroRing\nmisc=BinaryName=krnl_neuroring_hw\n\n[connectivity]\nnk=NeuroRing:14:NeuroRing_0,NeuroRing_1,NeuroRing_2,NeuroRing_3,NeuroRing_4,NeuroRing_5,NeuroRing_6,NeuroRing_7,NeuroRing_8,NeuroRing_9,NeuroRing_10,NeuroRing_11,NeuroRing_12,NeuroRing_13\nnk=SynapseRouter:14:SynapseRouter_0,SynapseRouter_1,SynapseRouter_2,SynapseRouter_3,SynapseRouter_4,SynapseRouter_5,SynapseRouter_6,SynapseRouter_7,SynapseRouter_8,SynapseRouter_9,SynapseRouter_10,SynapseRouter_11,SynapseRouter_12,SynapseRouter_13\nnk=SerialIn:1:SerialIn_0\nnk=SerialOut:1:SerialOut_0\nnk=krnl_aurora:2:krnl_aurora_0,krnl_aurora_1\nnk=strm_issue:1:strm_issue_0\nnk=strm_dump:1:strm_dump_0\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\nprop=run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\nprop=run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true\nprop=run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true\nsynth.jobs=16\nimpl.jobs=16\nprop=run.impl_1.strategy=Performance_ExtraTimingOpt\n\n"
+   }
+  ],
+  "cwd": "/home/miahafiz/NeuroRing"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:29 2026",
+ "timestampMillis": "1770904349574",
+ "status": {
+  "cmdId": "12f309a9-140c-495c-9472-f5801ac45c4d",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Feb 12 14:52:32 2026",
+ "timestampMillis": "1770904352213",
+ "buildStep": {
+  "cmdId": "0d4e27da-5abd-49f7-8281-5c2cb5ca14ca",
+  "name": "vpl",
+  "logFile": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/link.steps.log",
+  "commandLine": "/opt/xilinx/2025.1/Vitis/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u55c_gen3x16_xdma_3_202210_1 -s --kernel_frequency 300 --remote_ip_cache /home/miahafiz/NeuroRing/.ipcache --output_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int --log_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/logs/link --report_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/reports/link --config /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/vplConfig.ini -k /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link --no-info --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_dump_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_strm_issue_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialOut_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_user_krnl_aurora_1_0 --iprepo /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SerialIn_1_0 --messageDb /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/run_link/vpl.pb /home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:32 2026",
+ "timestampMillis": "1770904352213",
+ "status": {
+  "cmdId": "0d4e27da-5abd-49f7-8281-5c2cb5ca14ca",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Thu Feb 12 14:52:45 2026",
+ "timestampMillis": "1770904365301",
+ "vivadoProject": {
+  "openDir": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Feb 12 14:52:45 2026",
+ "timestampMillis": "1770904365435",
+ "buildStep": {
+  "cmdId": "55e54b95-b3ec-4dc6-ae5c-30e2a705cccd",
+  "name": "vivado",
+  "logFile": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Feb 12 14:52:45 2026",
+ "timestampMillis": "1770904365437",
+ "status": {
+  "cmdId": "55e54b95-b3ec-4dc6-ae5c-30e2a705cccd",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Feb 12 15:00:37 2026",
+ "timestampMillis": "1770904837159",
+ "report": {
+  "path": "/home/miahafiz/NeuroRing/_x.hw.NUM_2816.CORE_14.FREQ_300/link/int/automation_summary_pre_synthesis.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
