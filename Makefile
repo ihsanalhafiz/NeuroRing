@@ -5,21 +5,12 @@
 
 ECHO=@echo
 
-.PHONY: help xclbin host all clean
+.PHONY: help xclbin all clean
 
 help::
 	$(ECHO) "Makefile Usage:"
-	$(ECHO) "  make xclbin"
+	$(ECHO) "  make xclbin NEURON_NUM=<2816> CORE_PER_FPGA=<14> FREQ=<300> PLATFORM=<xilinx_u55c_gen3x16_xdma_3_202210_1>"
 	$(ECHO) "      Command to build xclbin files for Alveo platform"
-	$(ECHO) ""
-	$(ECHO) "  make host"
-	$(ECHO) "      Command to build host software for xclbin test"
-	$(ECHO) ""
-	$(ECHO) "  make all"
-	$(ECHO) "      Command to build sw and hw"
-	$(ECHO) ""
-	$(ECHO) "  make clean"
-	$(ECHO) "      Command to remove all the generated files."
 
 # PART setting: uncomment the lines matching your Alveo card, or override them by make variable
 #PART := xcu200-fsgd2104-2-e
@@ -39,89 +30,91 @@ PLATFORM ?= xilinx_u55c_gen3x16_xdma_3_202210_1
 
 # TARGET: set the build target, only hw target is supported for designs including GT kernel
 TARGET := hw
+include ./utils.mk
+
+##############################################
+# Define size configuration
+##############################################
+NEURON_NUM := 2816
+CORE_PER_FPGA := 14
+FREQ := 300
+
+TEMP_DIR := ./_x.$(TARGET).NUM_$(NEURON_NUM).CORE_$(CORE_PER_FPGA).FREQ_$(FREQ)
+BUILD_DIR := ./_build_dir.$(TARGET).NUM_$(NEURON_NUM).CORE_$(CORE_PER_FPGA).FREQ_$(FREQ)
+LINK_OUTPUT := $(BUILD_DIR)/neuroringcore.link.xclbin
 
 
 ################## IP resource generation 
 
-./ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci: ./tcl/gen_aurora_ip.tcl
+./ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci: ./aurora_ipcore/tcl/gen_aurora_ip.tcl
 	mkdir -p ip_generation; rm -rf ip_generation/aurora_64b66b_0; vivado -mode batch -source $^ -tclargs $(PART)
 
-./ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci: ./tcl/gen_fifo_ip.tcl
+./ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci: ./aurora_ipcore/tcl/gen_fifo_ip.tcl
 	mkdir -p ip_generation; rm -rf ip_generation/axis_data_fifo_0; vivado -mode batch -source $^ -tclargs $(PART)
 
 
 ################## hardware build 
-COMMFLAGS := --platform $(PLATFORM) --target $(TARGET) --save-temps --debug 
+COMMFLAGS := --platform $(PLATFORM) --target $(TARGET) --save-temps 
 HLSCFLAGS := --compile $(COMMFLAGS) -I .
 LINKFLAGS := --link --optimize 3 $(COMMFLAGS) --vivado.impl.jobs 16 --vivado.synth.jobs 16
 
-FREQ_MHZ := --kernel_frequency 200
+FREQ_MHZ := --kernel_frequency $(FREQ)
 
-RTL_SRC := ./rtl/*.v
+RTL_SRC := ./aurora_ipcore/rtl/*.v
 RTL_SRC += ./ip_generation/aurora_64b66b_0/aurora_64b66b_0.xci 
 RTL_SRC += ./ip_generation/axis_data_fifo_0/axis_data_fifo_0.xci
 
 XCLBIN_OBJ := krnl_aurora_test_$(TARGET).xclbin
 NEURORING_XCLBIN_OBJ := krnl_neuroring_$(TARGET).xclbin
-TEST_KERNEL_OBJ := krnl_test_kernel_$(TARGET).xclbin
 
-krnl_aurora.xo: $(RTL_SRC) ./tcl/pack_kernel.tcl
-	rm -rf vivado_pack_krnl_project; mkdir vivado_pack_krnl_project; cd vivado_pack_krnl_project; vivado -mode batch -source ../tcl/pack_kernel.tcl -tclargs $(PART)
+$(TEMP_DIR)/krnl_aurora.xo: $(RTL_SRC) ./aurora_ipcore/tcl/pack_kernel.tcl
+	mkdir -p $(TEMP_DIR)
+	rm -rf vivado_pack_krnl_aurora; mkdir vivado_pack_krnl_aurora; cd vivado_pack_krnl_aurora; vivado -mode batch -source ../aurora_ipcore/tcl/pack_kernel.tcl -tclargs $(PART) $(NEURON_NUM) $(CORE_PER_FPGA) $(FREQ)
 
-strm_dump_$(TARGET).xo: ./hls/strm_dump.cpp
-	v++ $(HLSCFLAGS) --kernel strm_dump --output $@ $^
+$(TEMP_DIR)/strm_dump.xo: ./hls/strm_dump.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel strm_dump --temp_dir $(TEMP_DIR) --output $@ $^
 
-strm_issue_$(TARGET).xo: ./hls/strm_issue.cpp
-	v++ $(HLSCFLAGS) --kernel strm_issue --output $@ $^
+$(TEMP_DIR)/strm_issue.xo: ./hls/strm_issue.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel strm_issue --temp_dir $(TEMP_DIR) --output $@ $^
 
-$(XCLBIN_OBJ): krnl_aurora.xo strm_issue_$(TARGET).xo strm_dump_$(TARGET).xo krnl_aurora_test.cfg
-	v++ $(LINKFLAGS) --config krnl_aurora_test.cfg --output $@ krnl_aurora.xo strm_dump_$(TARGET).xo strm_issue_$(TARGET).xo 
+$(TEMP_DIR)/krnl_neuroring.xo: ./hls/NeuroRing.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --temp_dir $(TEMP_DIR) --output $@ $^ --hls.pre_tcl ./conf/compile_hls.tcl -D NEURON_NUM=$(NEURON_NUM)
 
+$(TEMP_DIR)/krnl_synapserouter.xo: ./hls/SynapseRouter.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel SynapseRouter --temp_dir $(TEMP_DIR) --output $@ $^ --hls.pre_tcl ./conf/compile_hls.tcl -D NEURON_NUM=$(NEURON_NUM)
 
-loopback.xo: ./hls/loopback.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel loopback --output $@ $^
+$(TEMP_DIR)/serialin.xo: ./hls/SerialIn.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel SerialIn --temp_dir $(TEMP_DIR) --output $@ $^
 
-krnl_neuroring.xo: ./hls/NeuroRing.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --output $@ $^ --hls.pre_tcl ./compile_hls.tcl
+$(TEMP_DIR)/serialout.xo: ./hls/SerialOut.cpp
+	mkdir -p $(TEMP_DIR)
+	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel SerialOut --temp_dir $(TEMP_DIR) --output $@ $^
 
-krnl_axonloader.xo: ./hls/AxonLoader.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel AxonLoader --output $@ $^ --hls.pre_tcl ./compile_hls.tcl
-
-$(NEURORING_XCLBIN_OBJ): krnl_neuroring.xo krnl_axonloader.xo NeuroRing.cfg
-	v++ $(LINKFLAGS) $(FREQ_MHZ) --config NeuroRing.cfg --output $@ krnl_neuroring.xo krnl_axonloader.xo
-
-test_kernel.xo: ./hls/test_kernel.cpp
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel test_kernel --output $@ $^
-
-$(TEST_KERNEL_OBJ): test_kernel.xo TestKernel.cfg
-	v++ $(LINKFLAGS) $(FREQ_MHZ) --config TestKernel.cfg --output $@ test_kernel.xo
-
-################## software build for XRT Native API code
-
-CXXFLAGS += -std=c++17 -Wno-deprecated-declarations
-CXXFLAGS += -I$(XILINX_XRT)/include
-LDFLAGS := -L$(XILINX_XRT)/lib
-LDFLAGS += $(LDFLAGS) -lxrt_coreutil
-EXECUTABLE := host_krnl_aurora_test
-
-HOST_SRCS := ./host/host_krnl_aurora_test.cpp
-
-$(EXECUTABLE): $(HOST_SRCS)
-	$(CXX) -o $(EXECUTABLE) $^ $(CXXFLAGS) $(LDFLAGS)
-
+$(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo  $(TEMP_DIR)/serialin.xo $(TEMP_DIR)/serialout.xo $(TEMP_DIR)/krnl_aurora.xo $(TEMP_DIR)/strm_issue.xo $(TEMP_DIR)/strm_dump.xo
+	mkdir -p $(BUILD_DIR)
+	v++ $(LINKFLAGS) $(FREQ_MHZ) --temp_dir $(TEMP_DIR) --config ./conf/NeuroRing_NUM_$(NEURON_NUM)_CORE_$(CORE_PER_FPGA).cfg --output $@  $(+)
+	rm -rf .Xil
+	rm -rf ip_generation
+	rm -rf vivado_pack_krnl_aurora
+	rm -f *.log *.jou
 
 ################## all flow
-xclbin: $(XCLBIN_OBJ)
-host: $(EXECUTABLE)
-neuroring_xclbin: $(NEURORING_XCLBIN_OBJ)
+xclbin: $(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ)
 
-test_kernel: $(TEST_KERNEL_OBJ)
-
-all: xclbin host
+all: xclbin
 
 
 ################## clean up
 clean:
-	$(RM) -rf ip_generation vivado_pack_krnl_project
+	$(RM) -rf ip_generation vivado_pack_krnl_aurora
 	$(RM) -rf *.xo *.xclbin *.xclbin.info *.xclbin.link_summary *.jou *.log *.xo.compile_summary _x
-	$(RM) -rf *.dat *.pb xsim.dir *.xml *.ltx *.csv *.protoinst *.wdb *.wcfg host_krnl_aurora_test
+	$(RM) -rf *.dat *.pb xsim.dir *.xml *.ltx *.csv *.protoinst *.wdb *.wcfg
+
+clean_log:
+	$(RM) -rf *.log *.jou
+

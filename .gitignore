@@ -1,6 +1,28 @@
-_x/
-.ipcache/
-.Xil/
+/_x*/
+/.*
+.*
+# except for .gitignore
+!.gitignore
+/xsim*/
+host_py/xilinx_u55c*
+# Ignore files larger than 10MB
+*.10mb+
+*.over10mb
+# You may also use this pattern for disk-based size filtering in git, but .gitignore itself can't filter files by size.
+# As a convention, you may specify a folder to store or list large files to be ignored:
+large_files/
+# If using Git LFS, you might add patterns or attributes, but for plain git:
+# (N.B. True size-based rules aren't supported natively by .gitignore, so this is a convention.)
+*.npy
+*.bin
+*.csv
 *.log
-host_py/__pycache__/
-*.dat
+*.str
+backup_design
+build_*
+package*
+host_py/__pycache__
+host_py/corticalmicrocircuit/
+host_py/data/
+host_py/xsim.dir/
+data/
