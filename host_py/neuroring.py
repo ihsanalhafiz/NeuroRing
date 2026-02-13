@@ -57,7 +57,7 @@ class NeuroRingKernel:
         # print all the attributes
         print(self.__dict__)
 
-    def initialize_kernel(self, device, xclbin, uuid, kernel_name, kernel_axon_loader):
+    def initialize_kernel(self, device, xclbin, uuid, kernel_name, kernel_synapserouter):
         self.device = device
         self.xclbin = xclbin
         self.uuid = uuid
@@ -181,9 +181,9 @@ class NeuroRingKernel:
         arr = self._bo_slice_u32(base_byte + pairs_offset_words * 4, total_words)
         return arr.reshape((-1, 2)).copy()
     
-    def wait_for_axon(self):
-        self.runAxonLoader.wait()
-        print(f"Axon loader run complete {self.kernel_axon_loader}")
+    def wait_for_synapserouter(self):
+        self.runSynapseRouter.wait()
+        print(f"Synapse router run complete {self.kernel_synapserouter}")
 
     def wait_for_neuroring(self):
         self.runNeuroRing.wait()

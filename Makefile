@@ -98,6 +98,9 @@ $(TEMP_DIR)/serialout.xo: ./hls/SerialOut.cpp
 $(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo  $(TEMP_DIR)/serialin.xo $(TEMP_DIR)/serialout.xo $(TEMP_DIR)/krnl_aurora.xo $(TEMP_DIR)/strm_issue.xo $(TEMP_DIR)/strm_dump.xo
 	mkdir -p $(BUILD_DIR)
 	v++ $(LINKFLAGS) $(FREQ_MHZ) --temp_dir $(TEMP_DIR) --config ./conf/NeuroRing_NUM_$(NEURON_NUM)_CORE_$(CORE_PER_FPGA).cfg --output $@  $(+)
+	cp -rf $(TEMP_DIR)/reports $(BUILD_DIR)
+	cp -rf $(TEMP_DIR)/logs $(BUILD_DIR)
+	rm -rf .ipcache
 	rm -rf .Xil
 	rm -rf ip_generation
 	rm -rf vivado_pack_krnl_aurora
