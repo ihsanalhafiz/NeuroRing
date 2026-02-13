@@ -71,14 +71,6 @@ $(TEMP_DIR)/krnl_aurora.xo: $(RTL_SRC) ./aurora_ipcore/tcl/pack_kernel.tcl
 	mkdir -p $(TEMP_DIR)
 	rm -rf vivado_pack_krnl_aurora; mkdir vivado_pack_krnl_aurora; cd vivado_pack_krnl_aurora; vivado -mode batch -source ../aurora_ipcore/tcl/pack_kernel.tcl -tclargs $(PART) $(NEURON_NUM) $(CORE_PER_FPGA) $(FREQ)
 
-$(TEMP_DIR)/strm_dump.xo: ./hls/strm_dump.cpp
-	mkdir -p $(TEMP_DIR)
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel strm_dump --temp_dir $(TEMP_DIR) --output $@ $^
-
-$(TEMP_DIR)/strm_issue.xo: ./hls/strm_issue.cpp
-	mkdir -p $(TEMP_DIR)
-	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel strm_issue --temp_dir $(TEMP_DIR) --output $@ $^
-
 $(TEMP_DIR)/krnl_neuroring.xo: ./hls/NeuroRing.cpp
 	mkdir -p $(TEMP_DIR)
 	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel NeuroRing --temp_dir $(TEMP_DIR) --output $@ $^ --hls.pre_tcl ./conf/compile_hls.tcl -D NEURON_NUM=$(NEURON_NUM)
@@ -95,7 +87,7 @@ $(TEMP_DIR)/serialout.xo: ./hls/SerialOut.cpp
 	mkdir -p $(TEMP_DIR)
 	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel SerialOut --temp_dir $(TEMP_DIR) --output $@ $^
 
-$(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo  $(TEMP_DIR)/serialin.xo $(TEMP_DIR)/serialout.xo $(TEMP_DIR)/krnl_aurora.xo $(TEMP_DIR)/strm_issue.xo $(TEMP_DIR)/strm_dump.xo
+$(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo  $(TEMP_DIR)/serialin.xo $(TEMP_DIR)/serialout.xo $(TEMP_DIR)/krnl_aurora.xo
 	mkdir -p $(BUILD_DIR)
 	v++ $(LINKFLAGS) $(FREQ_MHZ) --temp_dir $(TEMP_DIR) --config ./conf/NeuroRing_NUM_$(NEURON_NUM)_CORE_$(CORE_PER_FPGA).cfg --output $@  $(+)
 	cp -rf $(TEMP_DIR)/reports $(BUILD_DIR)
