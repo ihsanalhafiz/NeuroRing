@@ -1,0 +1,54 @@
+===============================================================================
+Version:    v++ v2025.1 (64-bit)
+Build:      SW Build 6137779 on 2025-05-21-18:10:03
+Copyright:  Copyright 1986-2025 Xilinx, Inc. All Rights Reserved.
+Created:    Fri Feb 13 09:09:53 2026
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             krnl_neuroring
+Target Device:           xilinx:u55c:gen3x16_xdma_3:202210.1
+Target Clock:            300.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name  Type  Target              OpenCL Library  Compute Units
+-----------  ----  ------------------  --------------  -------------
+NeuroRing    c     fpga0:OCL_REGION_0  krnl_neuroring  1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     krnl_neuroring
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit  Kernel Name  Module Name                                   Target Frequency  Estimated Frequency
+------------  -----------  --------------------------------------------  ----------------  -------------------
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_84_1            300.300293        411.015198
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  300.300293        413.223114
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_fetch_synapses             300.300293        411.015198
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         300.300293        411.015198
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_392_2           300.300293        658.32782
+NeuroRing_1   NeuroRing    NeuroRing                                     300.300293        411.015198
+
+Latency Information
+Compute Unit  Kernel Name  Module Name                                   Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+------------  -----------  --------------------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_84_1            4097            4177           4177          4177            13.922 us        13.922 us       13.922 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  353             388            388           388             1.293 us         1.293 us        1.293 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_fetch_synapses             2 ~ 536870913   75             268435530     536870986       0.250 us         0.895 sec       1.789 sec
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         12              82             82            82              0.273 us         0.273 us        0.273 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_392_2           353             354            354           354             1.180 us         1.180 us        1.180 us
+NeuroRing_1   NeuroRing    NeuroRing                                     undef           undef          undef         undef           undef            undef           undef
+
+Area Information
+Compute Unit  Kernel Name  Module Name                                   FF     LUT    DSP  BRAM  URAM
+------------  -----------  --------------------------------------------  -----  -----  ---  ----  ----
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_84_1            648    464    0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  31040  22137  0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_fetch_synapses             494    284    0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         470    681    0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_392_2           15     87     0    0     0
+NeuroRing_1   NeuroRing    NeuroRing                                     36813  40332  0    52    0
+-------------------------------------------------------------------------------
