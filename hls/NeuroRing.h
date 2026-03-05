@@ -8,7 +8,7 @@
 #include <ap_axi_sdata.h>
 #include "hls_half.h"
 
-#define NEURON_NUM 2816
+#define NEURON_NUM 4096
 #define SYNAPSE_TOTAL 7000
 #define DELAY 64
 #define SYNAPSE_LIST_SIZE SYNAPSE_TOTAL*2
@@ -40,17 +40,29 @@ extern "C" void NeuroRing(
     uint32_t                     record_status,
     uint32_t                     CoreID,
     uint32_t                     AmountOfCores,
+    float                        V_decay,
+    float                        I_decay,
+    float                        syn_to_vm,
+    float                        bias_to_vm,
+    float                        V_th_rel,
+    float                        V_reset_rel,
+    float                        E_L,
+    uint32_t                     t_ref_steps,
     hls::stream<stream256u_t>     &SpikeInWeight,
-    hls::stream<stream256u_t>    &SynapseStream);
+    hls::stream<stream256u_t>    &SynapseStreamRight,
+    hls::stream<stream256u_t>    &SynapseStreamLeft);
 
 extern "C" void SynapseRouter(
     uint32_t              SimulationTime,
     uint32_t              AmountOfCores,
     uint32_t              NeuronStart,
     uint32_t              CoreID,
-    hls::stream<stream256u_t> &syn_route_in,
-    hls::stream<stream256u_t> &syn_forward_rt,
-    hls::stream<stream256u_t> &synapse_stream,
+    hls::stream<stream256u_t> &syn_route_in_right,
+    hls::stream<stream256u_t> &syn_route_in_left,
+    hls::stream<stream256u_t> &syn_forward_rt_right,
+    hls::stream<stream256u_t> &syn_forward_rt_left,
+    hls::stream<stream256u_t> &synapse_stream_right,
+    hls::stream<stream256u_t> &synapse_stream_left,
     hls::stream<stream256u_t> &SpikeOutWeight);
 
 extern "C" void SerialOut(

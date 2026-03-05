@@ -35,8 +35,8 @@ include ./utils.mk
 ##############################################
 # Define size configuration
 ##############################################
-NEURON_NUM := 2816
-CORE_PER_FPGA := 14
+NEURON_NUM := 4096
+CORE_PER_FPGA := 10
 FREQ := 300
 
 TEMP_DIR := ./_x.$(TARGET).NUM_$(NEURON_NUM).CORE_$(CORE_PER_FPGA).FREQ_$(FREQ)
@@ -87,7 +87,7 @@ $(TEMP_DIR)/serialout.xo: ./hls/SerialOut.cpp
 	mkdir -p $(TEMP_DIR)
 	v++ $(HLSCFLAGS) $(FREQ_MHZ) --kernel SerialOut --temp_dir $(TEMP_DIR) --output $@ $^
 
-$(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo  $(TEMP_DIR)/serialin.xo $(TEMP_DIR)/serialout.xo $(TEMP_DIR)/krnl_aurora.xo
+$(BUILD_DIR)/$(NEURORING_XCLBIN_OBJ): $(TEMP_DIR)/krnl_neuroring.xo $(TEMP_DIR)/krnl_synapserouter.xo $(TEMP_DIR)/krnl_aurora.xo
 	mkdir -p $(BUILD_DIR)
 	v++ $(LINKFLAGS) $(FREQ_MHZ) --temp_dir $(TEMP_DIR) --config ./conf/NeuroRing_NUM_$(NEURON_NUM)_CORE_$(CORE_PER_FPGA).cfg --output $@  $(+)
 	cp -rf $(TEMP_DIR)/reports $(BUILD_DIR)

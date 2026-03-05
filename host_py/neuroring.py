@@ -19,20 +19,23 @@ import struct
 import pyxrt
 from utils_binding import *   # provides .index and .bitstreamFile
 
+param_dict = {
+    'dt': 0.1,
+    'tau_m': 10.0,
+    'tau_syn': 0.5,
+    'C_m': 250.0,
+    'E_L': -65.0,
+    't_ref_steps': 20,
+    'V_th_abs': -50.0,
+    'V_reset_abs': -65.0,
+}
+
 class NeuroRingKernel:
-    def __init__(self, simulation_time, threshold, membrane_potential, amount_of_cores, neuron_start, neuron_total, dcstim_start, dcstim_total, dcstim_amp, core_id, neuron_per_cu, synapse_total_per_cu):
+    def __init__(self, simulation_time, amount_of_cores, neuron_start, neuron_total, core_id, neuron_per_cu, synapse_total_per_cu, record_status, param_dict):
         self.simulation_time = simulation_time
-        threshold_float = struct.unpack('<I', struct.pack('<f', threshold))[0]  # IEEE-754 bits
-        self.threshold = int(threshold_float)
-        membrane_potential_float = struct.unpack('<I', struct.pack('<f', membrane_potential))[0]  # IEEE-754 bits
-        self.membrane_potential = int(membrane_potential_float)
         self.amount_of_cores = int(amount_of_cores)
         self.neuron_start = int(neuron_start)
         self.neuron_total = int(neuron_total)
-        self.dcstim_start = int(dcstim_start)
-        self.dcstim_total = int(dcstim_total)
-        dcstim_amp_float = struct.unpack('<I', struct.pack('<f', dcstim_amp))[0]  # IEEE-754 bits
-        self.dcstim_amp = int(dcstim_amp_float)
         self.device = None
         self.xclbin = None
         self.uuid = None
@@ -40,7 +43,9 @@ class NeuroRingKernel:
         self.kernel = None
         self.neuron_per_cu = neuron_per_cu
         self.synapse_total_per_cu = synapse_total_per_cu
-
+        self.param_dict = param_dict
+        self.record_status = record_status
+        
         # Persistent BO and layout info
         self.synapseListHandle = None
         self.header_words = int(100000 * (self.neuron_per_cu/32))  # recorder words (up to 120k timesteps * 128 words/tick)
@@ -50,22 +55,17 @@ class NeuroRingKernel:
         self.bo_size = self.header_bytes + self.tail_bytes_capacity
         self.core_id = core_id
         
-        print(f"threshold: {threshold}")
-        print(f"membrane_potential: {membrane_potential}")
-        print(f"dcstim_amp: {dcstim_amp}")
-        
         # print all the attributes
         print(self.__dict__)
 
-    def initialize_kernel(self, device, xclbin, uuid, kernel_name, kernel_synapserouter):
+    def initialize_kernel(self, device, xclbin, uuid, kernel_neuroring, kernel_synapserouter):
         self.device = device
         self.xclbin = xclbin
         self.uuid = uuid
-        self.kernel_name = kernel_name
         # Initialize the kernel object from pyxrt
-        self.kernel_neuroring = pyxrt.kernel(device, uuid, kernel_name, pyxrt.kernel.shared)
+        self.kernel_neuroring = pyxrt.kernel(device, uuid, kernel_neuroring, pyxrt.kernel.shared)
         self.kernel_synapserouter = pyxrt.kernel(device, uuid, kernel_synapserouter, pyxrt.kernel.shared)
-        print(f"Initialized kernel {kernel_name} and {kernel_synapserouter} on device {device}")
+        print(f"Initialized kernel {kernel_neuroring} and {kernel_synapserouter} on device {device}")
         
         # Allocate persistent BO once per kernel and keep it for reuse across runs
         if self.tail_bytes_capacity < 0:
@@ -75,34 +75,34 @@ class NeuroRingKernel:
         self.recorderMap = self.synapseListHandle.map()
         print(f"Allocated BO of {self.total_bo_size} bytes (header {self.header_bytes}, tail {self.tail_bytes_capacity})")
         
-    def run_kernel(self, synapse_list_data, simulation_time):
-        header_clear_words = min(simulation_time * int(self.neuron_per_cu/32), self.header_words)
-        if header_clear_words > 0:
-            zero_header = np.zeros(header_clear_words, dtype=np.uint32)
-            self.synapseListHandle.write(zero_header, 0)
-            self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, header_clear_words * 4, 0)
-
-        # Clear only the recorder region needed for this run
-        # Write the full buffer at BO base so that per-neuron region aligns at SYNAPSE_ARRAY_OFFSET
-        self.synapseListHandle.write(synapse_list_data, 0)
-        self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, synapse_list_data.nbytes, 0)
-
-        print(f"write done kernel {self.kernel_neuroring}")
-        ### run the kernel
-        self.runNeuroRing = self.kernel_neuroring(self.synapseListHandle, self.neuron_start, self.neuron_total,
-                                                     simulation_time, 1, self.core_id, self.amount_of_cores)
-        print(f"Running kernel {self.kernel_neuroring}")
-        self.runSynapseRouter = self.kernel_synapserouter(simulation_time, self.amount_of_cores, self.neuron_start, self.core_id)
-        print(f"Running kernel {self.kernel_synapserouter}")    
-
     def upload_synapse_list(self, synapse_list_data):
         self.synapseListHandle.write(synapse_list_data, 0)
         self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_TO_DEVICE, synapse_list_data.nbytes, 0)
         print(f"Uploaded synapse list to {self.kernel_neuroring}")
         
     def run_neuroring(self, simulation_time):
+        V_decay = np.exp(-self.param_dict['dt']/self.param_dict['tau_m'])
+        I_decay = np.exp(-self.param_dict['dt']/self.param_dict['tau_syn'])
+        syn_to_vm = (1.0 / self.param_dict['C_m']) * ((I_decay - V_decay) / ((1.0 / self.param_dict['tau_m']) - (1.0 / self.param_dict['tau_syn'])))
+        bias_to_vm = (self.param_dict['tau_m'] / self.param_dict['C_m']) * (1.0 - V_decay)  # mV per pA
+        t_ref_steps = self.param_dict['t_ref_steps']        # round(2.0/0.1)
+        V_th_rel = self.param_dict['V_th_abs'] - self.param_dict['E_L']
+        V_reset_rel = self.param_dict['V_reset_abs'] - self.param_dict['E_L']
+        
+        V_decay_bits = struct.unpack('!I', struct.pack('!f', V_decay))[0]
+        I_decay_bits = struct.unpack('!I', struct.pack('!f', I_decay))[0]
+        syn_to_vm_bits = struct.unpack('!I', struct.pack('!f', syn_to_vm))[0]
+        bias_to_vm_bits = struct.unpack('!I', struct.pack('!f', bias_to_vm))[0]
+        V_th_rel_bits = struct.unpack('!I', struct.pack('!f', V_th_rel))[0]
+        V_reset_rel_bits = struct.unpack('!I', struct.pack('!f', V_reset_rel))[0]
+        # convert E_L to negative value to match the hardware design but still keep the same value
+        E_L_bits = struct.unpack('!I', struct.pack('!f', -self.param_dict['E_L']))[0]
+
+         ### run the kernel
         self.runNeuroRing = self.kernel_neuroring(self.synapseListHandle, self.neuron_start, self.neuron_total,
-                                                     simulation_time, 1, self.core_id, self.amount_of_cores)
+                                                     simulation_time, 1, self.core_id, self.amount_of_cores,
+                                                     V_decay_bits, I_decay_bits, syn_to_vm_bits, bias_to_vm_bits, 
+                                                     V_th_rel_bits, V_reset_rel_bits, E_L_bits,t_ref_steps)
         print(f"Running kernel {self.kernel_neuroring}")
 
     def run_synapserouter(self, simulation_time):
@@ -117,69 +117,6 @@ class NeuroRingKernel:
         # Allow run handles to be GC'd between runs
         self.runNeuroRing = None
         self.runSynapseRouter = None
-
-    # --- Debug helpers: verify BO memory contents ---
-    def _bo_slice_u32(self, byte_offset, num_words):
-        if num_words <= 0:
-            return np.array([], dtype=np.uint32)
-        byte_len = num_words * 4
-        # Sync region from device to host and return a copy as contiguous u32 array
-        self.synapseListHandle.sync(pyxrt.xclBOSyncDirection.XCL_BO_SYNC_BO_FROM_DEVICE, byte_len, byte_offset)
-        buf = bytes(self.recorderMap[byte_offset: byte_offset + byte_len])
-        return np.frombuffer(buf, dtype=np.uint32)
-
-    def verify_neuron_synapse_header(self, local_neuron_index, pairs_preview=8):
-        """
-        Read back header words and a few synapse pairs for a local neuron index [0..4095].
-        Returns a dict with parsed fields for quick inspection.
-        """
-        SYNAPSE_LIST_SIZE_WORDS = int(self.synapse_total_per_cu*2)
-        if local_neuron_index < 0 or local_neuron_index >= self.neuron_per_cu:
-            raise ValueError("local_neuron_index must be in [0, neuron_per_cu]")
-        # Compute words and bytes offsets in BO
-        base_word = self.header_words + local_neuron_index * SYNAPSE_LIST_SIZE_WORDS
-        base_byte = base_word * 4
-        # Fetch header [0..71] + preview pairs after 72
-        header_words_to_read = 72 + (pairs_preview * 2)
-        arr = self._bo_slice_u32(base_byte, header_words_to_read)
-        if arr.size < header_words_to_read:
-            return {"error": "short read", "size": int(arr.size)}
-        # Parse fields
-        I_bias_bits = int(arr[0])
-        V_m_bits = int(arr[1])
-        delay_meta = arr[8:72].copy()
-        pairs = arr[72:72 + (pairs_preview * 2)].copy()
-        return {
-            "I_bias_bits": I_bias_bits,
-            "V_m_bits": V_m_bits,
-            "delay_meta_u32": delay_meta,
-            "pairs_u32": pairs,
-        }
-
-    def verify_delay_bucket(self, local_neuron_index, delay_value):
-        """
-        Read back all synapse pairs for a given delay bucket for a local neuron.
-        Returns an array of shape [num_pairs, 2] (target|delay, weight_bits).
-        """
-        SYNAPSE_LIST_SIZE_WORDS = int(self.synapse_total_per_cu*2)
-        if local_neuron_index < 0 or local_neuron_index >= self.neuron_per_cu:
-            raise ValueError("local_neuron_index must be in [0, neuron_per_cu]")
-        if delay_value < 0 or delay_value > 63:
-            raise ValueError("delay_value must be in [0, 63]")
-        base_word = self.header_words + local_neuron_index * SYNAPSE_LIST_SIZE_WORDS
-        base_byte = base_word * 4
-        # Read delay meta words [8..71]
-        meta = self._bo_slice_u32(base_byte + 8 * 4, 64)
-        entry = int(meta[delay_value])
-        count = (entry >> 16) & 0xFFFF
-        index_words = entry & 0xFFFF
-        if count == 0:
-            return np.zeros((0, 2), dtype=np.uint32)
-        # Each synapse takes 2 u32 words, data starts at word 72
-        pairs_offset_words = 72 + index_words
-        total_words = count * 2
-        arr = self._bo_slice_u32(base_byte + pairs_offset_words * 4, total_words)
-        return arr.reshape((-1, 2)).copy()
     
     def wait_for_synapserouter(self):
         self.runSynapseRouter.wait()
@@ -199,10 +136,14 @@ class NeuroRingKernel:
         buf_bytes = bytes(self.recorderMap[:size_bytes])
         return np.frombuffer(buf_bytes, dtype=np.uint32, count=sim_time * int(self.neuron_per_cu/32))
 
+##############################################################
+# Host class
+##############################################################
 
 class NeuroRingHost:
-    def __init__(self, net, neuron_per_cu, synapse_total_per_cu, num_compute_units, num_fpgas, bitstream_file):
+    def __init__(self, net, neuron_per_cu, synapse_total_per_cu, num_compute_units, num_fpgas, param_dict, record_status, bitstream_file):
         self.net = net
+        self.param_dict = param_dict
         self.num_compute_units = num_compute_units
         self.num_fpgas = num_fpgas
         self.bitstream_file = bitstream_file
@@ -212,7 +153,7 @@ class NeuroRingHost:
         self.kernels = []  # List of NeuroRingKernel instances
         self.kernels_per_fpga = []  # List of lists: kernels assigned to each FPGA
         self.spikeRecorder_array = []
-        
+        self.record_status = record_status
         
         # Precompute DC amplitude per population and convert to IEEE-754 bits
         self.dc_amp = net.DC_amp 
@@ -370,17 +311,14 @@ class NeuroRingHost:
                 neuron_start, neuron_total = self.kernel_neuron_ranges_per_fpga[fpga_idx][kernel_id]
                 kernel = NeuroRingKernel(
                     simulation_time=1,
-                    threshold=net_dict["neuron_params"]["V_th"],
-                    membrane_potential=net_dict["neuron_params"]["E_L"],
                     amount_of_cores = total_cores,
                     neuron_start=neuron_start,
                     neuron_total=neuron_total,
-                    dcstim_start=stim_dict["dc_transient_start"]*10,
-                    dcstim_total=stim_dict["dc_transient_dur"]*10,
-                    dcstim_amp=np.average(self.net.DC_amp),
                     core_id=(kernel_id + core_offset),
                     neuron_per_cu=self.neuron_per_cu,
                     synapse_total_per_cu=self.synapse_total_per_cu,
+                    record_status=self.record_status,
+                    param_dict=self.param_dict,
                 )
                 kernel.initialize_kernel(device, xclbin, uuid, kernel_name, kernel_synapserouter)
                 self.kernels.append(kernel)
@@ -398,16 +336,6 @@ class NeuroRingHost:
                 # Ensure we pass a contiguous uint32 buffer
                 buf = np.asarray(self.synapse_fpga[i], dtype=np.uint32, order='C')
                 kernel.run_kernel(buf, sim_time)
-
-    # ---- Convenience wrappers for verification ----
-    def verify_kernel_neuron(self, fpga_idx, kernel_idx, local_neuron_index, pairs_preview=8):
-        kern = self.kernels_per_fpga[fpga_idx][kernel_idx]
-        info = kern.verify_neuron_synapse_header(local_neuron_index, pairs_preview=pairs_preview)
-        return info
-
-    def verify_kernel_delay(self, fpga_idx, kernel_idx, local_neuron_index, delay_value):
-        kern = self.kernels_per_fpga[fpga_idx][kernel_idx]
-        return kern.verify_delay_bucket(local_neuron_index, delay_value)
     
     def wait_for_kernels(self, sim_time):
         for fpga_idx in range(self.num_fpgas):
@@ -415,9 +343,6 @@ class NeuroRingHost:
                 print(f"waiting for FPGA {fpga_idx} Kernel {i}")
                 kernel.wait_for_kernel(sim_time)
                 
-    def save_array_to_csv(self, array, filename):
-        np.savetxt(filename, array, fmt='%u', delimiter=',')
-
     def get_spike_recorder_array(self, sim_time):
         # Vectorized decoding: iterate bits (0..31) only; avoid triple nested loops
         self.neuronidx = []
