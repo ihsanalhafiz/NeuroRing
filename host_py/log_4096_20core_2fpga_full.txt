@@ -1,0 +1,207 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0
+ Built: Oct  2 2025 06:57:01
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Mar 05 17:35:16 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Mar 05 17:36:08 NodeManager::prepare_nodes [Info]: 
+    Preparing 77169 nodes for simulation.
+Data will be written to: /home/miahafiz/NeuroRing/host_py/data/
+  Directory already existed. Old data will be overwritten.
+
+
+RNG seed: 55
+Total number of virtual processes: 4
+Creating neuronal populations.
+Connecting neuronal populations recurrently.
+[NodeCollection(metadata=None, model=iaf_psc_exp, size=20683, first=1, last=20683), NodeCollection(metadata=None, model=iaf_psc_exp, size=5834, first=20684, last=26517), NodeCollection(metadata=None, model=iaf_psc_exp, size=21915, first=26518, last=48432), NodeCollection(metadata=None, model=iaf_psc_exp, size=5479, first=48433, last=53911), NodeCollection(metadata=None, model=iaf_psc_exp, size=4850, first=53912, last=58761), NodeCollection(metadata=None, model=iaf_psc_exp, size=1065, first=58762, last=59826), NodeCollection(metadata=None, model=iaf_psc_exp, size=14395, first=59827, last=74221), NodeCollection(metadata=None, model=iaf_psc_exp, size=2948, first=74222, last=77169)]
+Extracting synapse information...
+Loading synapse data from syndata_total77169_NperCU4096_SperCU7000.npy
+Loading synapse FPGA data from synfpga_total77169_NperCU4096_SperCU7000.npy
+
+Distributing 77169 neurons across 20 compute units on 2 FPGAs:
+Kernels per FPGA: [10, 10]
+
+FPGA 0 (Kernels: 10):
+  Kernel 0 (Global ID: 0): neurons 1 to 4096 (total: 4096)
+  Kernel 1 (Global ID: 1): neurons 4097 to 8192 (total: 4096)
+  Kernel 2 (Global ID: 2): neurons 8193 to 12288 (total: 4096)
+  Kernel 3 (Global ID: 3): neurons 12289 to 16384 (total: 4096)
+  Kernel 4 (Global ID: 4): neurons 16385 to 20480 (total: 4096)
+  Kernel 5 (Global ID: 5): neurons 20481 to 24576 (total: 4096)
+  Kernel 6 (Global ID: 6): neurons 24577 to 28672 (total: 4096)
+  Kernel 7 (Global ID: 7): neurons 28673 to 32768 (total: 4096)
+  Kernel 8 (Global ID: 8): neurons 32769 to 36864 (total: 4096)
+  Kernel 9 (Global ID: 9): neurons 36865 to 40960 (total: 4096)
+
+FPGA 1 (Kernels: 10):
+  Kernel 0 (Global ID: 10): neurons 40961 to 45056 (total: 4096)
+  Kernel 1 (Global ID: 11): neurons 45057 to 49152 (total: 4096)
+  Kernel 2 (Global ID: 12): neurons 49153 to 53248 (total: 4096)
+  Kernel 3 (Global ID: 13): neurons 53249 to 57344 (total: 4096)
+  Kernel 4 (Global ID: 14): neurons 57345 to 61440 (total: 4096)
+  Kernel 5 (Global ID: 15): neurons 61441 to 65536 (total: 4096)
+  Kernel 6 (Global ID: 16): neurons 65537 to 69632 (total: 4096)
+  Kernel 7 (Global ID: 17): neurons 69633 to 73728 (total: 4096)
+  Kernel 8 (Global ID: 18): neurons 73729 to 77169 (total: 3441)
+  Kernel 9 (Global ID: 19): neurons 0 to 0 (total: 0)
+
+Total neurons assigned: 77169
+Initialized device 0 with XCLBIN UUID: 5bf43ddb-2f3a-6c4c-746a-07f4b2b07fe8
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 1, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 0}
+Initialized kernel NeuroRing:{NeuroRing_0} and SynapseRouter:{SynapseRouter_0} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 4097, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 1}
+Initialized kernel NeuroRing:{NeuroRing_1} and SynapseRouter:{SynapseRouter_1} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 8193, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 2}
+Initialized kernel NeuroRing:{NeuroRing_2} and SynapseRouter:{SynapseRouter_2} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 12289, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 3}
+Initialized kernel NeuroRing:{NeuroRing_3} and SynapseRouter:{SynapseRouter_3} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 16385, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 4}
+Initialized kernel NeuroRing:{NeuroRing_4} and SynapseRouter:{SynapseRouter_4} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 20481, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 5}
+Initialized kernel NeuroRing:{NeuroRing_5} and SynapseRouter:{SynapseRouter_5} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 24577, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 6}
+Initialized kernel NeuroRing:{NeuroRing_6} and SynapseRouter:{SynapseRouter_6} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 28673, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 7}
+Initialized kernel NeuroRing:{NeuroRing_7} and SynapseRouter:{SynapseRouter_7} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 32769, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 8}
+Initialized kernel NeuroRing:{NeuroRing_8} and SynapseRouter:{SynapseRouter_8} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 36865, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 9}
+Initialized kernel NeuroRing:{NeuroRing_9} and SynapseRouter:{SynapseRouter_9} on device <pyxrt.device object at 0x7f79446c7030>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+Initialized device 1 with XCLBIN UUID: 5bf43ddb-2f3a-6c4c-746a-07f4b2b07fe8
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 40961, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 10}
+Initialized kernel NeuroRing:{NeuroRing_0} and SynapseRouter:{SynapseRouter_0} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 45057, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 11}
+Initialized kernel NeuroRing:{NeuroRing_1} and SynapseRouter:{SynapseRouter_1} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 49153, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 12}
+Initialized kernel NeuroRing:{NeuroRing_2} and SynapseRouter:{SynapseRouter_2} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 53249, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 13}
+Initialized kernel NeuroRing:{NeuroRing_3} and SynapseRouter:{SynapseRouter_3} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 57345, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 14}
+Initialized kernel NeuroRing:{NeuroRing_4} and SynapseRouter:{SynapseRouter_4} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 61441, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 15}
+Initialized kernel NeuroRing:{NeuroRing_5} and SynapseRouter:{SynapseRouter_5} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 65537, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 16}
+Initialized kernel NeuroRing:{NeuroRing_6} and SynapseRouter:{SynapseRouter_6} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 69633, 'neuron_total': 4096, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 17}
+Initialized kernel NeuroRing:{NeuroRing_7} and SynapseRouter:{SynapseRouter_7} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 73729, 'neuron_total': 3441, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 18}
+Initialized kernel NeuroRing:{NeuroRing_8} and SynapseRouter:{SynapseRouter_8} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+{'simulation_time': 1, 'amount_of_cores': 20, 'neuron_start': 0, 'neuron_total': 0, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 4096, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 12800000, 'header_bytes': 51200000, 'tail_words_capacity': 57344000, 'tail_bytes_capacity': 229376000, 'bo_size': 280576000, 'core_id': 19}
+Initialized kernel NeuroRing:{NeuroRing_9} and SynapseRouter:{SynapseRouter_9} on device <pyxrt.device object at 0x7f79446cebf0>
+Allocated BO of 280576000 bytes (header 51200000, tail 229376000)
+Initialized devices
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ca270>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446c79f0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ba7b0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cf5f0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cf570>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cdef0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ceaf0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446b4cf0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cf670>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cf970>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cfeb0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ce1f0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cfe30>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ce6b0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cf070>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cec30>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cef70>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446ceab0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f79446cfe70>
+Uploaded synapse list to FPGA
+Running simulation 1/20
+Measured total power: 82.672 W
+Time taken for run 1: 8.289592504501343 seconds
+Running simulation 2/20
+Measured total power: 82.769 W
+Time taken for run 2: 8.316027641296387 seconds
+Running simulation 3/20
+Measured total power: 82.769 W
+Time taken for run 3: 8.286161184310913 seconds
+Running simulation 4/20
+Measured total power: 82.855 W
+Time taken for run 4: 8.284419298171997 seconds
+Running simulation 5/20
+Measured total power: 82.965 W
+Time taken for run 5: 8.285117387771606 seconds
+Running simulation 6/20
+Measured total power: 82.952 W
+Time taken for run 6: 8.311186790466309 seconds
+Running simulation 7/20
+Measured total power: 83.062 W
+Time taken for run 7: 8.312576055526733 seconds
+Running simulation 8/20
+Measured total power: 83.062 W
+Time taken for run 8: 8.287949800491333 seconds
+Running simulation 9/20
+Measured total power: 83.172 W
+Time taken for run 9: 8.314105033874512 seconds
+Running simulation 10/20
+Measured total power: 83.172 W
+Time taken for run 10: 8.283070087432861 seconds
+Running simulation 11/20
+Measured total power: 83.062 W
+Time taken for run 11: 8.281221628189087 seconds
+Running simulation 12/20
+Measured total power: 83.172 W
+Time taken for run 12: 8.347965955734253 seconds
+Running simulation 13/20
+Measured total power: 83.172 W
+Time taken for run 13: 8.307780027389526 seconds
+Running simulation 14/20
+Measured total power: 83.270 W
+Time taken for run 14: 8.288318395614624 seconds
+Running simulation 15/20
+Measured total power: 83.172 W
+Time taken for run 15: 8.294732332229614 seconds
+Running simulation 16/20
+Measured total power: 83.172 W
+Time taken for run 16: 8.319106340408325 seconds
+Running simulation 17/20
+Measured total power: 83.270 W
+Time taken for run 17: 8.329204082489014 seconds
+Running simulation 18/20
+Measured total power: 83.172 W
+Time taken for run 18: 8.332789659500122 seconds
+Running simulation 19/20
+Measured total power: 83.367 W
+Time taken for run 19: 8.312830448150635 seconds
+Running simulation 20/20
+Measured total power: 83.270 W
+Time taken for run 20: 8.332276582717896 seconds
+Average time over 20 runs: 8.305821561813355 seconds
+Average total power over 20 runs: 83.078 W
