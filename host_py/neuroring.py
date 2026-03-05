@@ -103,28 +103,28 @@ class NeuroRingKernel:
                                                      simulation_time, 1, self.core_id, self.amount_of_cores,
                                                      V_decay_bits, I_decay_bits, syn_to_vm_bits, bias_to_vm_bits, 
                                                      V_th_rel_bits, V_reset_rel_bits, E_L_bits,t_ref_steps)
-        print(f"Running kernel {self.kernel_neuroring}")
+        #print(f"Running kernel {self.kernel_neuroring}")
 
     def run_synapserouter(self, simulation_time):
         self.runSynapseRouter = self.kernel_synapserouter(simulation_time, self.amount_of_cores, self.neuron_start, self.core_id)
-        print(f"Running kernel {self.kernel_synapserouter}")
+        #print(f"Running kernel {self.kernel_synapserouter}")
 
     def wait_for_kernel(self):
         self.runNeuroRing.wait()
-        print(f"Kernel run complete {self.kernel_neuroring}")
+        #print(f"Kernel run complete {self.kernel_neuroring}")
         self.runSynapseRouter.wait()
-        print(f"Kernel run complete {self.kernel_synapserouter}")
+        #print(f"Kernel run complete {self.kernel_synapserouter}")
         # Allow run handles to be GC'd between runs
         self.runNeuroRing = None
         self.runSynapseRouter = None
     
     def wait_for_synapserouter(self):
         self.runSynapseRouter.wait()
-        print(f"Synapse router run complete {self.kernel_synapserouter}")
+        #print(f"Synapse router run complete {self.kernel_synapserouter}")
 
     def wait_for_neuroring(self):
         self.runNeuroRing.wait()
-        print(f"Kernel run complete {self.kernel_neuroring}")
+        #print(f"Kernel run complete {self.kernel_neuroring}")
 
     def get_spike_recorder_array(self, sim_time):
         # Read back 128 words per timestep (4096 bits)
