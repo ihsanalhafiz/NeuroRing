@@ -12,6 +12,33 @@ from elephant.conversion import BinnedSpikeTrain
 from elephant.spike_train_correlation import corrcoef
 from pathlib import Path
 
+import subprocess
+
+POWER_DEVICES = ["0000:2a:00.1", "0000:bd:00.1"]  # your two U55C devices
+
+def measure_board_power(device):
+    """Return power (W) for a single board using xrt-smi, or None on failure."""
+    try:
+        out = subprocess.check_output(
+            ["xrt-smi", "examine", "-d", device, "-r", "electrical"],
+            text=True
+        )
+    except Exception as e:
+        print(f"Failed to read power for {device}: {e}")
+        return None
+
+    m = re.search(r"^\s*Power\s+:\s*([\d.]+)\s*Watts", out, re.MULTILINE)
+    if not m:
+        print(f"Could not parse power for {device}")
+        return None
+    return float(m.group(1))
+
+def measure_total_power():
+    """Sum power over all devices in POWER_DEVICES."""
+    readings = [measure_board_power(dev) for dev in POWER_DEVICES]
+    readings = [p for p in readings if p is not None]
+    return sum(readings) if readings else None
+
 ## import model implementation
 import network
 ## import (default) parameters (network, simulation, stimulus)
@@ -74,8 +101,10 @@ host.kernels_per_fpga[1][8].upload_synapse_list(host.synapse_fpga[18])
 print("Uploaded synapse list to FPGA")
 
 # Run simulation multiple times and measure time
-num_runs = 1
+num_runs = 20
 times = []
+power_readings = []
+# timestep is the number of steps in the simulation
 timestep = 100000
 
 for run in range(num_runs):
@@ -122,6 +151,14 @@ for run in range(num_runs):
     host.kernels_per_fpga[1][8].run_synapserouter(timestep)
     host.kernels_per_fpga[1][9].run_neuroring(timestep)
     host.kernels_per_fpga[1][9].run_synapserouter(timestep)
+    
+    # wait 1 second and measure power while kernels are running
+    # because of waiting for kernel, sleep will not disturb the simulation time
+    time.sleep(1.0)
+    power = measure_total_power()
+    if power is not None:
+        print(f"Measured total power: {power:.3f} W")
+        power_readings.append(power)
 
     host.kernels_per_fpga[0][0].wait_for_kernel()
     host.kernels_per_fpga[0][1].wait_for_kernel()
@@ -152,3 +189,7 @@ for run in range(num_runs):
 
 avg_time = sum(times) / len(times)
 print(f"Average time over {num_runs} runs: {avg_time} seconds")
+
+if power_readings:
+    avg_power = sum(power_readings) / len(power_readings)
+    print(f"Average total power over {num_runs} runs: {avg_power:.3f} W")
