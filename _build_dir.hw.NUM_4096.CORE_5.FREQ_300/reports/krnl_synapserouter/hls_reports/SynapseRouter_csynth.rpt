@@ -1,0 +1,313 @@
+
+
+================================================================
+== Vitis HLS Report for 'SynapseRouter'
+================================================================
+* Date:           Fri Feb 27 05:35:38 2026
+
+* Version:        2025.1 (Build 6135595 on May 21 2025)
+* Project:        SynapseRouter
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu55c-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------+------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                     |                  |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |       Instance      |      Module      |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +---------------------+------------------+---------+---------+----------+----------+-----+-----+---------+
+        |RouterRight_U0       |RouterRight       |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |RouterLeft_U0        |RouterLeft        |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |entry_proc_U0        |entry_proc        |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+        |Accumulator_U0       |Accumulator       |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Block_entry_proc_U0  |Block_entry_proc  |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+        |Accumulator_1_U0     |Accumulator_1     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_2_U0     |Accumulator_2     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_3_U0     |Accumulator_3     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_4_U0     |Accumulator_4     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_5_U0     |Accumulator_5     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_6_U0     |Accumulator_6     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |Accumulator_7_U0     |Accumulator_7     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |weightforward_U0     |weightforward     |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +---------------------+------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       54|    -|
+|FIFO                 |        0|     -|    13749|     8010|    -|
+|Instance             |       16|    16|    54227|    48232|   32|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        0|       99|    -|
+|Register             |        -|     -|       14|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |       16|    16|    67990|    56395|   32|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        1|    ~0|        7|       12|   10|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |       ~0|    ~0|        2|        4|    3|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------+------------------+---------+----+------+------+-----+
+    |       Instance      |      Module      | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +---------------------+------------------+---------+----+------+------+-----+
+    |Accumulator_U0       |Accumulator       |        2|   2|  6368|  5490|    4|
+    |Accumulator_1_U0     |Accumulator_1     |        2|   2|  6367|  5463|    4|
+    |Accumulator_2_U0     |Accumulator_2     |        2|   2|  6367|  5463|    4|
+    |Accumulator_3_U0     |Accumulator_3     |        2|   2|  6367|  5463|    4|
+    |Accumulator_4_U0     |Accumulator_4     |        2|   2|  6367|  5463|    4|
+    |Accumulator_5_U0     |Accumulator_5     |        2|   2|  6367|  5463|    4|
+    |Accumulator_6_U0     |Accumulator_6     |        2|   2|  6367|  5463|    4|
+    |Accumulator_7_U0     |Accumulator_7     |        2|   2|  6367|  5463|    4|
+    |Block_entry_proc_U0  |Block_entry_proc  |        0|   0|   226|   347|    0|
+    |RouterLeft_U0        |RouterLeft        |        0|   0|  1113|  1462|    0|
+    |RouterRight_U0       |RouterRight       |        0|   0|  1309|  1717|    0|
+    |control_s_axi_U      |control_s_axi     |        0|   0|   188|   296|    0|
+    |entry_proc_U0        |entry_proc        |        0|   0|     3|    29|    0|
+    |weightforward_U0     |weightforward     |        0|   0|   451|   650|    0|
+    +---------------------+------------------+---------+----+------+------+-----+
+    |Total                |                  |       16|  16| 54227| 48232|   32|
+    +---------------------+------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +-----------------------+---------+-----+----+-----+------+-----+---------+
+    |          Name         | BRAM_18K|  FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +-----------------------+---------+-----+----+-----+------+-----+---------+
+    |NeuronStart_c_U        |        0|    5|   0|    -|     3|   32|       96|
+    |SimulationTime_c1_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c2_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c3_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c4_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c5_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c6_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c7_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c8_U    |        0|   68|   0|    -|     2|   32|       64|
+    |SimulationTime_c_U     |        0|   68|   0|    -|     2|   32|       64|
+    |SpikeWeight0_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight1_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight2_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight3_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight4_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight5_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight6_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SpikeWeight7_U         |        0|    8|   0|    -|    32|   32|     1024|
+    |SynForwardOut0_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut0_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut1_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut1_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut2_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut2_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut3_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut3_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut4_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut4_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut5_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut5_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut6_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut6_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut7_U       |        0|  787|   0|    -|    32|  256|     8192|
+    |SynForwardOut7_left_U  |        0|  787|   0|    -|    32|  256|     8192|
+    |add1_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add2_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add3_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add4_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add5_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add6_loc_channel_U     |        0|   68|   0|    -|     2|   32|       64|
+    |add_loc_channel_U      |        0|   68|   0|    -|     2|   32|       64|
+    +-----------------------+---------+-----+----+-----+------+-----+---------+
+    |Total                  |        0|13749|   0|    0|   803| 4896|   140384|
+    +-----------------------+---------+-----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +----------------------------------------+----------+----+---+----+------------+------------+
+    |              Variable Name             | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------------+----------+----+---+----+------------+------------+
+    |Block_entry_proc_U0_ap_continue         |       and|   0|  0|   2|           1|           1|
+    |Block_entry_proc_U0_ap_start            |       and|   0|  0|   2|           1|           1|
+    |RouterLeft_U0_ap_start                  |       and|   0|  0|   2|           1|           1|
+    |RouterRight_U0_ap_start                 |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add1_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add2_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add3_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add4_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add5_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add6_loc_channel        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_add_loc_channel         |       and|   0|  0|   2|           1|           1|
+    |ap_idle                                 |       and|   0|  0|   2|           1|           1|
+    |ap_sync_continue                        |       and|   0|  0|   2|           1|           1|
+    |ap_sync_done                            |       and|   0|  0|   2|           1|           1|
+    |ap_sync_ready                           |       and|   0|  0|   2|           1|           1|
+    |entry_proc_U0_ap_start                  |       and|   0|  0|   2|           1|           1|
+    |ap_sync_Block_entry_proc_U0_ap_ready    |        or|   0|  0|   2|           1|           1|
+    |ap_sync_RouterLeft_U0_ap_ready          |        or|   0|  0|   2|           1|           1|
+    |ap_sync_RouterRight_U0_ap_ready         |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add1_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add2_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add3_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add4_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add5_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add6_loc_channel  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_add_loc_channel   |        or|   0|  0|   2|           1|           1|
+    |ap_sync_entry_proc_U0_ap_ready          |        or|   0|  0|   2|           1|           1|
+    +----------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                   |          |   0|  0|  54|          27|          27|
+    +----------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |                    Name                    | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_Block_entry_proc_U0_ap_ready    |   9|          2|    1|          2|
+    |ap_sync_reg_RouterLeft_U0_ap_ready          |   9|          2|    1|          2|
+    |ap_sync_reg_RouterRight_U0_ap_ready         |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add1_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add2_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add3_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add4_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add5_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add6_loc_channel  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_add_loc_channel   |   9|          2|    1|          2|
+    |ap_sync_reg_entry_proc_U0_ap_ready          |   9|          2|    1|          2|
+    +--------------------------------------------+----+-----------+-----+-----------+
+    |Total                                       |  99|         22|   11|         22|
+    +--------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------+---+----+-----+-----------+
+    |                    Name                    | FF| LUT| Bits| Const Bits|
+    +--------------------------------------------+---+----+-----+-----------+
+    |ap_rst_n_inv                                |  1|   0|    1|          0|
+    |ap_rst_reg_1                                |  1|   0|    1|          0|
+    |ap_rst_reg_2                                |  1|   0|    1|          0|
+    |ap_sync_reg_Block_entry_proc_U0_ap_ready    |  1|   0|    1|          0|
+    |ap_sync_reg_RouterLeft_U0_ap_ready          |  1|   0|    1|          0|
+    |ap_sync_reg_RouterRight_U0_ap_ready         |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add1_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add2_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add3_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add4_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add5_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add6_loc_channel  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_add_loc_channel   |  1|   0|    1|          0|
+    |ap_sync_reg_entry_proc_U0_ap_ready          |  1|   0|    1|          0|
+    +--------------------------------------------+---+----+-----+-----------+
+    |Total                                       | 14|   0|   14|          0|
+    +--------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------+-----+-----+---------------+-------------------------------+--------------+
+|          RTL Ports          | Dir | Bits|    Protocol   |         Source Object         |    C Type    |
++-----------------------------+-----+-----+---------------+-------------------------------+--------------+
+|s_axi_control_AWVALID        |   in|    1|          s_axi|                        control|        scalar|
+|s_axi_control_AWREADY        |  out|    1|          s_axi|                        control|        scalar|
+|s_axi_control_AWADDR         |   in|    6|          s_axi|                        control|        scalar|
+|s_axi_control_WVALID         |   in|    1|          s_axi|                        control|        scalar|
+|s_axi_control_WREADY         |  out|    1|          s_axi|                        control|        scalar|
+|s_axi_control_WDATA          |   in|   32|          s_axi|                        control|        scalar|
+|s_axi_control_WSTRB          |   in|    4|          s_axi|                        control|        scalar|
+|s_axi_control_ARVALID        |   in|    1|          s_axi|                        control|        scalar|
+|s_axi_control_ARREADY        |  out|    1|          s_axi|                        control|        scalar|
+|s_axi_control_ARADDR         |   in|    6|          s_axi|                        control|        scalar|
+|s_axi_control_RVALID         |  out|    1|          s_axi|                        control|        scalar|
+|s_axi_control_RREADY         |   in|    1|          s_axi|                        control|        scalar|
+|s_axi_control_RDATA          |  out|   32|          s_axi|                        control|        scalar|
+|s_axi_control_RRESP          |  out|    2|          s_axi|                        control|        scalar|
+|s_axi_control_BVALID         |  out|    1|          s_axi|                        control|        scalar|
+|s_axi_control_BREADY         |   in|    1|          s_axi|                        control|        scalar|
+|s_axi_control_BRESP          |  out|    2|          s_axi|                        control|        scalar|
+|ap_clk                       |   in|    1|  ap_ctrl_chain|                  SynapseRouter|  return value|
+|ap_rst_n                     |   in|    1|  ap_ctrl_chain|                  SynapseRouter|  return value|
+|interrupt                    |  out|    1|  ap_ctrl_chain|                  SynapseRouter|  return value|
+|syn_route_in_right_TDATA     |   in|  256|           axis|    syn_route_in_right_V_data_V|       pointer|
+|syn_route_in_right_TKEEP     |   in|   32|           axis|    syn_route_in_right_V_keep_V|       pointer|
+|syn_route_in_right_TSTRB     |   in|   32|           axis|    syn_route_in_right_V_strb_V|       pointer|
+|syn_route_in_right_TLAST     |   in|    1|           axis|    syn_route_in_right_V_last_V|       pointer|
+|syn_route_in_right_TVALID    |   in|    1|           axis|    syn_route_in_right_V_last_V|       pointer|
+|syn_route_in_right_TREADY    |  out|    1|           axis|    syn_route_in_right_V_last_V|       pointer|
+|syn_route_in_left_TDATA      |   in|  256|           axis|     syn_route_in_left_V_data_V|       pointer|
+|syn_route_in_left_TKEEP      |   in|   32|           axis|     syn_route_in_left_V_keep_V|       pointer|
+|syn_route_in_left_TSTRB      |   in|   32|           axis|     syn_route_in_left_V_strb_V|       pointer|
+|syn_route_in_left_TLAST      |   in|    1|           axis|     syn_route_in_left_V_last_V|       pointer|
+|syn_route_in_left_TVALID     |   in|    1|           axis|     syn_route_in_left_V_last_V|       pointer|
+|syn_route_in_left_TREADY     |  out|    1|           axis|     syn_route_in_left_V_last_V|       pointer|
+|syn_forward_rt_right_TDATA   |  out|  256|           axis|  syn_forward_rt_right_V_data_V|       pointer|
+|syn_forward_rt_right_TKEEP   |  out|   32|           axis|  syn_forward_rt_right_V_keep_V|       pointer|
+|syn_forward_rt_right_TSTRB   |  out|   32|           axis|  syn_forward_rt_right_V_strb_V|       pointer|
+|syn_forward_rt_right_TLAST   |  out|    1|           axis|  syn_forward_rt_right_V_last_V|       pointer|
+|syn_forward_rt_right_TVALID  |  out|    1|           axis|  syn_forward_rt_right_V_last_V|       pointer|
+|syn_forward_rt_right_TREADY  |   in|    1|           axis|  syn_forward_rt_right_V_last_V|       pointer|
+|syn_forward_rt_left_TDATA    |  out|  256|           axis|   syn_forward_rt_left_V_data_V|       pointer|
+|syn_forward_rt_left_TKEEP    |  out|   32|           axis|   syn_forward_rt_left_V_keep_V|       pointer|
+|syn_forward_rt_left_TSTRB    |  out|   32|           axis|   syn_forward_rt_left_V_strb_V|       pointer|
+|syn_forward_rt_left_TLAST    |  out|    1|           axis|   syn_forward_rt_left_V_last_V|       pointer|
+|syn_forward_rt_left_TVALID   |  out|    1|           axis|   syn_forward_rt_left_V_last_V|       pointer|
+|syn_forward_rt_left_TREADY   |   in|    1|           axis|   syn_forward_rt_left_V_last_V|       pointer|
+|synapse_stream_right_TDATA   |   in|  256|           axis|  synapse_stream_right_V_data_V|       pointer|
+|synapse_stream_right_TKEEP   |   in|   32|           axis|  synapse_stream_right_V_keep_V|       pointer|
+|synapse_stream_right_TSTRB   |   in|   32|           axis|  synapse_stream_right_V_strb_V|       pointer|
+|synapse_stream_right_TLAST   |   in|    1|           axis|  synapse_stream_right_V_last_V|       pointer|
+|synapse_stream_right_TVALID  |   in|    1|           axis|  synapse_stream_right_V_last_V|       pointer|
+|synapse_stream_right_TREADY  |  out|    1|           axis|  synapse_stream_right_V_last_V|       pointer|
+|synapse_stream_left_TDATA    |   in|  256|           axis|   synapse_stream_left_V_data_V|       pointer|
+|synapse_stream_left_TKEEP    |   in|   32|           axis|   synapse_stream_left_V_keep_V|       pointer|
+|synapse_stream_left_TSTRB    |   in|   32|           axis|   synapse_stream_left_V_strb_V|       pointer|
+|synapse_stream_left_TLAST    |   in|    1|           axis|   synapse_stream_left_V_last_V|       pointer|
+|synapse_stream_left_TVALID   |   in|    1|           axis|   synapse_stream_left_V_last_V|       pointer|
+|synapse_stream_left_TREADY   |  out|    1|           axis|   synapse_stream_left_V_last_V|       pointer|
+|SpikeOutWeight_TDATA         |  out|  256|           axis|        SpikeOutWeight_V_data_V|       pointer|
+|SpikeOutWeight_TKEEP         |  out|   32|           axis|        SpikeOutWeight_V_keep_V|       pointer|
+|SpikeOutWeight_TSTRB         |  out|   32|           axis|        SpikeOutWeight_V_strb_V|       pointer|
+|SpikeOutWeight_TLAST         |  out|    1|           axis|        SpikeOutWeight_V_last_V|       pointer|
+|SpikeOutWeight_TVALID        |  out|    1|           axis|        SpikeOutWeight_V_last_V|       pointer|
+|SpikeOutWeight_TREADY        |   in|    1|           axis|        SpikeOutWeight_V_last_V|       pointer|
++-----------------------------+-----+-----+---------------+-------------------------------+--------------+
+

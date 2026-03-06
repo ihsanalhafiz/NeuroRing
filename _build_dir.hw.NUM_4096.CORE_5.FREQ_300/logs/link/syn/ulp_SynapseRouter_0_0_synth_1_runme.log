@@ -1,0 +1,1203 @@
+
+*** Running vivado
+    with args -log ulp_SynapseRouter_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ulp_SynapseRouter_0_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Feb 27 05:46:23 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source ulp_SynapseRouter_0_0.tcl -notrace
+INFO: Dispatch client connection id - 40507
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1535.715 ; gain = 0.023 ; free physical = 69855 ; free virtual = 155370
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/vitis/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axi_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axi_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axis_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axis_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axis_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pipeline_reg:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/pipeline_reg_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/pipeline_reg_v1_0
+Command: synth_design -top ulp_SynapseRouter_0_0 -part xcu55c-fsvh2892-2L-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Device 21-403] Loading part xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 894715
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3239.043 ; gain = 289.605 ; free physical = 37087 ; free virtual = 122590
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'ulp_SynapseRouter_0_0' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/synth/ulp_SynapseRouter_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_control_s_axi' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_control_s_axi.v:9]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_control_s_axi.v:228]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_control_s_axi' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_control_s_axi.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_entry_proc' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_entry_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_entry_proc' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_entry_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_RouterRight' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_RouterRight.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_regslice_both' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_regslice_both' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_regslice_both__parameterized0' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_regslice_both__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_regslice_both__parameterized1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_regslice_both__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_RouterRight' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_RouterRight.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_RouterLeft' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_RouterLeft.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_RouterLeft' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_RouterLeft.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_head_RAM_AUTO_1R1W' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_head_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_head_RAM_AUTO_1R1W' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_head_RAM_AUTO_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_flow_control_loop_pipe_sequential_init' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_flow_control_loop_pipe_sequential_init' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1.v:9]
+INFO: [Synth 8-638] synthesizing module 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/synth/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip.vhd:72]
+	Parameter C_XDEVICEFAMILY bound to: virtexuplusHBM - type: string 
+	Parameter C_PART bound to: xcu55c-fsvh2892-2L-e - type: string 
+	Parameter C_HAS_ADD bound to: 1 - type: integer 
+	Parameter C_HAS_SUBTRACT bound to: 0 - type: integer 
+	Parameter C_HAS_MULTIPLY bound to: 0 - type: integer 
+	Parameter C_HAS_DIVIDE bound to: 0 - type: integer 
+	Parameter C_HAS_SQRT bound to: 0 - type: integer 
+	Parameter C_HAS_COMPARE bound to: 0 - type: integer 
+	Parameter C_HAS_FIX_TO_FLT bound to: 0 - type: integer 
+	Parameter C_HAS_FLT_TO_FIX bound to: 0 - type: integer 
+	Parameter C_HAS_FLT_TO_FLT bound to: 0 - type: integer 
+	Parameter C_HAS_RECIP bound to: 0 - type: integer 
+	Parameter C_HAS_RECIP_SQRT bound to: 0 - type: integer 
+	Parameter C_HAS_ABSOLUTE bound to: 0 - type: integer 
+	Parameter C_HAS_LOGARITHM bound to: 0 - type: integer 
+	Parameter C_HAS_EXPONENTIAL bound to: 0 - type: integer 
+	Parameter C_HAS_FMA bound to: 0 - type: integer 
+	Parameter C_HAS_FMS bound to: 0 - type: integer 
+	Parameter C_HAS_UNFUSED_MULTIPLY_ADD bound to: 0 - type: integer 
+	Parameter C_HAS_UNFUSED_MULTIPLY_SUB bound to: 0 - type: integer 
+	Parameter C_HAS_UNFUSED_MULTIPLY_ACCUMULATOR_A bound to: 0 - type: integer 
+	Parameter C_HAS_UNFUSED_MULTIPLY_ACCUMULATOR_S bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUMULATOR_A bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUMULATOR_S bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUMULATOR_PRIMITIVE_A bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUMULATOR_PRIMITIVE_S bound to: 0 - type: integer 
+	Parameter C_A_WIDTH bound to: 32 - type: integer 
+	Parameter C_A_FRACTION_WIDTH bound to: 24 - type: integer 
+	Parameter C_B_WIDTH bound to: 32 - type: integer 
+	Parameter C_B_FRACTION_WIDTH bound to: 24 - type: integer 
+	Parameter C_C_WIDTH bound to: 32 - type: integer 
+	Parameter C_C_FRACTION_WIDTH bound to: 24 - type: integer 
+	Parameter C_RESULT_WIDTH bound to: 32 - type: integer 
+	Parameter C_RESULT_FRACTION_WIDTH bound to: 24 - type: integer 
+	Parameter C_COMPARE_OPERATION bound to: 8 - type: integer 
+	Parameter C_LATENCY bound to: 5 - type: integer 
+	Parameter C_OPTIMIZATION bound to: 1 - type: integer 
+	Parameter C_MULT_USAGE bound to: 2 - type: integer 
+	Parameter C_BRAM_USAGE bound to: 0 - type: integer 
+	Parameter C_RATE bound to: 1 - type: integer 
+	Parameter C_ACCUM_INPUT_MSB bound to: 32 - type: integer 
+	Parameter C_ACCUM_MSB bound to: 32 - type: integer 
+	Parameter C_ACCUM_LSB bound to: -31 - type: integer 
+	Parameter C_HAS_UNDERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_OVERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_INVALID_OP bound to: 0 - type: integer 
+	Parameter C_HAS_DIVIDE_BY_ZERO bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUM_OVERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_ACCUM_INPUT_OVERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_ACLKEN bound to: 1 - type: integer 
+	Parameter C_HAS_ARESETN bound to: 0 - type: integer 
+	Parameter C_THROTTLE_SCHEME bound to: 3 - type: integer 
+	Parameter C_HAS_A_TUSER bound to: 0 - type: integer 
+	Parameter C_HAS_A_TLAST bound to: 0 - type: integer 
+	Parameter C_HAS_B bound to: 1 - type: integer 
+	Parameter C_HAS_B_TUSER bound to: 0 - type: integer 
+	Parameter C_HAS_B_TLAST bound to: 0 - type: integer 
+	Parameter C_HAS_C bound to: 0 - type: integer 
+	Parameter C_HAS_C_TUSER bound to: 0 - type: integer 
+	Parameter C_HAS_C_TLAST bound to: 0 - type: integer 
+	Parameter C_HAS_OPERATION bound to: 0 - type: integer 
+	Parameter C_HAS_OPERATION_TUSER bound to: 0 - type: integer 
+	Parameter C_HAS_OPERATION_TLAST bound to: 0 - type: integer 
+	Parameter C_HAS_RESULT_TUSER bound to: 0 - type: integer 
+	Parameter C_HAS_RESULT_TLAST bound to: 0 - type: integer 
+	Parameter C_TLAST_RESOLUTION bound to: 0 - type: integer 
+	Parameter C_A_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_A_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_B_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_B_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_C_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_C_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_OPERATION_TDATA_WIDTH bound to: 8 - type: integer 
+	Parameter C_OPERATION_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_RESULT_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_RESULT_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_FIXED_DATA_UNSIGNED bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'floating_point_v7_1_20' declared at '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/floating_point_v7_1_vh_rfs.vhd:93266' bound to instance 'U0' of component 'floating_point_v7_1_20' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/synth/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip.vhd:217]
+INFO: [Synth 8-256] done synthesizing module 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/synth/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip.vhd:72]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Block_entry_proc' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Block_entry_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Block_entry_proc' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Block_entry_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_1_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_2' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_2_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_2' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_3' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_3_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_3' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_3.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_4' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_4_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_4' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_5' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_5_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_5' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_5.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_6' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_6_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_6' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_6.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_7' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_VITIS_LOOP_283_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_VITIS_LOOP_283_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_VITIS_LOOP_283_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_accumulate_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_accumulate_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_accumulate_loop.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_output_loop' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_7_Pipeline_output_loop' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7_Pipeline_output_loop.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_Accumulator_7' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_Accumulator_7.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_weightforward' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_weightforward' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward.v:9]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d3_S' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d3_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d3_S_ShiftReg' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d3_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d3_S_ShiftReg' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d3_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d3_S' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d3_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w256_d32_A' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w256_d32_A.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w256_d32_A_ram' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w256_d32_A.v:201]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w256_d32_A_ram' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w256_d32_A.v:201]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w256_d32_A' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w256_d32_A.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d2_S' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d2_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d2_S_ShiftReg' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d2_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d2_S_ShiftReg' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d2_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d2_S' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d2_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d32_S' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d32_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_fifo_w32_d32_S_ShiftReg' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d32_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d32_S_ShiftReg' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d32_S.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_fifo_w32_d32_S' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_fifo_w32_d32_S.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_start_for_Accumulator_U0' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_Accumulator_U0.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_start_for_Accumulator_U0_ShiftReg' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_Accumulator_U0.v:124]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_start_for_Accumulator_U0_ShiftReg' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_Accumulator_U0.v:124]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_start_for_Accumulator_U0' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_Accumulator_U0.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_start_for_weightforward_U0' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_weightforward_U0.v:10]
+INFO: [Synth 8-6157] synthesizing module 'SynapseRouter_start_for_weightforward_U0_ShiftReg' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_weightforward_U0.v:124]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_start_for_weightforward_U0_ShiftReg' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_weightforward_U0.v:124]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter_start_for_weightforward_U0' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_start_for_weightforward_U0.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'SynapseRouter' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'ulp_SynapseRouter_0_0' (0#1) [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/synth/ulp_SynapseRouter_0_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element int_ap_done_reg was removed.  [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_control_s_axi.v:302]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-7129] Port addr[1] in module SynapseRouter_fifo_w32_d2_S_ShiftReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight1_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight2_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight3_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight4_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight5_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight6_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_num_data_valid[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[5] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[4] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[3] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[2] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[1] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight7_fifo_cap[0] in module SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[5] in module SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[4] in module SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SpikeWeight0_num_data_valid[3] in module SynapseRouter_weightforward_Pipeline_VITIS_LOOP_405_1 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 3555.551 ; gain = 606.113 ; free physical = 27395 ; free virtual = 112937
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 3555.551 ; gain = 606.113 ; free physical = 26987 ; free virtual = 112533
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 3555.551 ; gain = 606.113 ; free physical = 26987 ; free virtual = 112533
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.74 . Memory (MB): peak = 3555.551 ; gain = 0.000 ; free physical = 25305 ; free virtual = 110918
+INFO: [Netlist 29-17] Analyzing 664 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/constraints/SynapseRouter_ooc.xdc] for cell 'inst'
+create_clock: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 3677.395 ; gain = 5.938 ; free physical = 21416 ; free virtual = 106984
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/constraints/SynapseRouter_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_SynapseRouter_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_SynapseRouter_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3677.395 ; gain = 0.000 ; free physical = 21252 ; free virtual = 106825
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 40 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 16 instances
+  FDE => FDRE: 24 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 3688.332 ; gain = 10.902 ; free physical = 19999 ; free virtual = 105576
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 3688.332 ; gain = 738.895 ; free physical = 21359 ; free virtual = 106925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 3696.336 ; gain = 746.898 ; free physical = 21403 ; free virtual = 106970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 3696.336 ; gain = 746.898 ; free physical = 21344 ; free virtual = 106915
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'wstate_reg' in module 'SynapseRouter_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'SynapseRouter_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'SynapseRouter_regslice_both'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'SynapseRouter_regslice_both__parameterized0'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'SynapseRouter_regslice_both__parameterized1'
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0001 |                               11
+*
+                  WRIDLE |                             0010 |                               00
+                  WRDATA |                             0100 |                               01
+                  WRRESP |                             1000 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'wstate_reg' using encoding 'one-hot' in module 'SynapseRouter_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                               10
+*
+                  RDIDLE |                              010 |                               00
+                  RDDATA |                              100 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rstate_reg' using encoding 'one-hot' in module 'SynapseRouter_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'SynapseRouter_regslice_both'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'SynapseRouter_regslice_both__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'SynapseRouter_regslice_both__parameterized1'
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W:/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W:/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W:/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter_Accumulator_buf_flat_RAM_2P_URAM_1R1W:/ram_reg"'.
+INFO: [Synth 8-3971] The signal "SynapseRouter_Accumulator_head_RAM_AUTO_1R1W:/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter_fifo_w256_d32_A_ram:/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 3696.336 ; gain = 746.898 ; free physical = 23318 ; free virtual = 108879
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip:/U0/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip:/U0/i_synth/DELAY_ACCUM_OVERFLOW'
+INFO: [Synth 8-223] decloning instance 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip:/U0/i_synth/DELAY_DIVIDE_BY_ZERO' (delay__parameterized0) to 'SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip:/U0/i_synth/DELAY_ACCUM_INPUT_OVERFLOW'
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 9024 (col length:94)
+BRAMs: 4032 (col length: RAMB18 288 RAMB36 144)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut4_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut3_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut6_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut4_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port if_fifo_cap[0] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB0 has port O2[0] driven by constant 0
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled.
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB0/Accumulator_4_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB0/Accumulator_4_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut4_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut3_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut6_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB0/SynForwardOut4_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB0/Accumulator_4_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U160/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[8]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U160/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[9]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[1]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[2]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[3]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[4]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[5]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[6]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[7]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[8]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[0]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[1]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[1]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[2]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[2]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[3]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[3]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[4]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[4]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[5]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[5]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[6]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[6]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[7]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[7]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[8]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[8]' (FDE) to 'Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_pp0_iter1_reg_reg[8]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U160/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_27_reg_223_reg[0] )
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[0]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[1]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[2]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[3]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[4]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[5]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[6]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[7]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/p_read_8_reg_302_reg[8]' (FDE) to 'Accumulator_4_U0/trunc_ln261_reg_313_reg[8]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/tmp_s_reg_321_reg[0]' (FD) to 'Accumulator_4_U0/tmp_s_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/tmp_s_reg_321_reg[1]' (FD) to 'Accumulator_4_U0/tmp_s_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/tmp_s_reg_321_reg[2]' (FD) to 'Accumulator_4_U0/tmp_s_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/tmp_s_reg_321_reg[3]' (FD) to 'Accumulator_4_U0/tmp_s_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_4_U0/tmp_s_reg_321_reg[4]' (FD) to 'Accumulator_4_U0/tmp_s_reg_321_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_4_U0/grp_Accumulator_4_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut1_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut1_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut5_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port if_fifo_cap[0] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O5[0] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB1 has port O7[0] driven by constant 0
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB1/Accumulator_1_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB1/Accumulator_1_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut1_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut1_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB1/SynForwardOut5_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB1/Accumulator_1_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U106/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_output_loop_fu_164/head_addr_53_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_1_U0/grp_Accumulator_1_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB2/SynForwardOut2_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB2/SynForwardOut2_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port if_fifo_cap[0] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB2 has port O10[0] driven by constant 0
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB2/Accumulator_2_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB2/Accumulator_2_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB2/SynForwardOut2_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB2/SynForwardOut2_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB2/Accumulator_2_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U124/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_output_loop_fu_164/head_addr_44_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_2_U0/grp_Accumulator_2_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB3/SynForwardOut0_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB3 has port if_fifo_cap[0] driven by constant 0
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB3/Accumulator_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB3/Accumulator_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB3/SynForwardOut0_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB3/Accumulator_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_output_loop_fu_174/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_accumulate_loop_fu_161 /fadd_32ns_32ns_32_7_full_dsp_1_U83/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_output_loop_fu_174/head_addr_1_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/tmp_s_reg_331_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_VITIS_LOOP_283_1_fu_155/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_VITIS_LOOP_283_1_fu_155/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_accumulate_loop_fu_161 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_output_loop_fu_174/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_U0/grp_Accumulator_Pipeline_output_loop_fu_174/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-4471] merging register 'grp_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2_fu_102/ap_CS_fsm_reg[0:0]' into 'grp_weightforward_Pipeline_VITIS_LOOP_405_1_fu_74/ap_CS_fsm_reg[0:0]' [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/aec3/hdl/verilog/SynapseRouter_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2.v:197]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynForwardOut7_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynForwardOut7_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"Accumulator_7_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("Accumulator_7_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"Accumulator_7_U0/buf_flat_U/ram_reg"'.
+RAM ("Accumulator_7_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "Accumulator_7_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynForwardOut7_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynForwardOut7_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"Accumulator_7_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("Accumulator_7_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"Accumulator_7_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U214/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[8]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U214/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[9]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[1]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[2]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[3]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[4]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[5]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[6]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[7]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[8]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[0] )
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[0]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[1]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[1]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[2]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[2]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[3]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[3]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[4]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[4]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[5]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[5]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[6]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[6]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[7]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[7]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[8]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_pp0_iter1_reg_reg[8]' (FDE) to 'Accumulator_7_U0/grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_pp0_iter1_reg_reg[8]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (Accumulator_7_U0/grp_Accumulator_7_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U214/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_3_reg_223_reg[0] )
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[0]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[1]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[2]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[3]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[4]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[5]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[6]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[7]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[7]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/p_read_2_reg_302_reg[8]' (FDE) to 'Accumulator_7_U0/trunc_ln261_reg_313_reg[8]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/tmp_33_reg_321_reg[0]' (FD) to 'Accumulator_7_U0/tmp_33_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/tmp_33_reg_321_reg[1]' (FD) to 'Accumulator_7_U0/tmp_33_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/tmp_33_reg_321_reg[2]' (FD) to 'Accumulator_7_U0/tmp_33_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/tmp_33_reg_321_reg[3]' (FD) to 'Accumulator_7_U0/tmp_33_reg_321_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_7_U0/tmp_33_reg_321_reg[4]' (FD) to 'Accumulator_7_U0/tmp_33_reg_321_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/\tmp_33_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/grp_Accumulator_7_Pipeline_accumulate_loop_fu_151/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (weightforward_U0/\grp_weightforward_Pipeline_VITIS_LOOP_405_1_fu_74/ap_done_reg_reg )
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[6]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[7]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[8]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[3]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[4]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[5]' (FD) to 'weightforward_U0/tmp_reg_144_reg[0]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[0]' (FD) to 'weightforward_U0/tmp_reg_144_reg[1]'
+INFO: [Synth 8-3886] merging instance 'weightforward_U0/tmp_reg_144_reg[1]' (FD) to 'weightforward_U0/tmp_reg_144_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (weightforward_U0/\tmp_reg_144_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (weightforward_U0/\grp_weightforward_Pipeline_time_loop_VITIS_LOOP_428_2_fu_102/ap_done_reg_reg )
+INFO: [Synth 8-3886] merging instance 'control_s_axi_U/waddr_reg[0]' (FDE) to 'control_s_axi_U/waddr_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (control_s_axi_U/\waddr_reg[1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (weightforward_U0/\grp_weightforward_Pipeline_VITIS_LOOP_405_1_fu_74/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (Accumulator_7_U0/\grp_Accumulator_7_Pipeline_output_loop_fu_164/head_addr_2_reg_218_reg[0] )
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_wstate_reg[0]) is unused and will be removed from module SynapseRouter_control_s_axi.
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_rstate_reg[0]) is unused and will be removed from module SynapseRouter_control_s_axi.
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB5/SynForwardOut3_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB5/SynForwardOut0_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port if_fifo_cap[0] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB5 has port O47[0] driven by constant 0
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB5/Accumulator_3_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB5/Accumulator_3_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB5/SynForwardOut3_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB5/SynForwardOut0_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB5/Accumulator_3_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U142/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_output_loop_fu_164/head_addr_35_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_3_U0/grp_Accumulator_3_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB6/SynForwardOut5_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[5] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[4] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[3] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[1] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB6 has port if_fifo_cap[0] driven by constant 0
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB6/Accumulator_5_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB6/Accumulator_5_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB6/SynForwardOut5_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB6/Accumulator_5_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U178/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_output_loop_fu_164/head_addr_19_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_VITIS_LOOP_283_1_fu_145/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_5_U0/grp_Accumulator_5_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-6904] The RAM "SynForwardOut6_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2]' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:366]
+INFO: [Synth 8-3936] Found unconnected internal register 'ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg' and it is trimmed from '9' to '8' bits. [/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_SynapseRouter_0_0/hdl/ip/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip/hdl/xbip_pipe_v3_0_vh_rfs.vhd:361]
+INFO: [Synth 8-5544] ROM "ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.ALIGN_ADD/SHIFT_TABLE[0]" won't be mapped to Block RAM because address size (6) smaller than threshold (8)
+WARNING: [Synth 8-3917] design SynapseRouter__GB7 has port O66[2] driven by constant 0
+WARNING: [Synth 8-3917] design SynapseRouter__GB7 has port O66[1] driven by constant 1
+WARNING: [Synth 8-3917] design SynapseRouter__GB7 has port O66[0] driven by constant 1
+INFO: [Synth 8-6904] The RAM "SynapseRouter__GB7/SynForwardOut6_left_U/U_SynapseRouter_fifo_w256_d32_A_ram/mem_reg" of size (depth=31 x width=256) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"'.
+RAM ("SynapseRouter__GB7/Accumulator_6_U0/head_U/ram_reg") is too shallow (depth = 512) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-3971] The signal "SynapseRouter__GB7/Accumulator_6_U0/head_U/ram_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-5759] Cascade height of 1 specified for RAM '"SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"'. This RAM won't be implemented using URAM cascade chain
+INFO: [Synth 8-6833] Ram_style="hls_ultra" specified on RAM ("SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"). This will be implemented using Non-Cascaded URAMs that could result in higher LUTs an MUX utilization. 
+INFO: [Synth 8-5782] User specified cascade height of 1 will be used for URAM '"SynapseRouter__GB7/Accumulator_6_U0/buf_flat_U/ram_reg"'.
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U196/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[8]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_accumulate_loop_fu_151/fadd_32ns_32ns_32_7_full_dsp_1_U196/SynapseRouter_fadd_32ns_32ns_32_7_full_dsp_1_ip_u/U0/i_synth/ADDSUB_OP.ADDSUB/DSP.OP/DSP48E1_BODY.EXP/NOT_LOW_LATENCY_NORM_DIST.NORM_EXP_DELAY/i_pipe/opt_has_pipe.first_q_reg[9]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[1]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[2]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[1]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[3]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[2]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[4]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[3]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[5]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[4]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[6]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[5]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[7]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[6]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[8]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_reg_218_pp0_iter1_reg_reg[0]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0]'
+INFO: [Synth 8-3886] merging instance 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[1]' (FDE) to 'Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/trunc_ln368_reg_213_reg[0]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled.
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_accumulate_loop_fu_151 /fadd_32ns_32ns_32_7_full_dsp_1_U196/ce_r_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_11_reg_223_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/tmp_s_reg_321_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_VITIS_LOOP_283_1_fu_145/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\Block_entry_proc_U0/ap_CS_fsm_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_accumulate_loop_fu_151 /ap_done_reg_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\entry_proc_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/ap_done_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\Accumulator_6_U0/grp_Accumulator_6_Pipeline_output_loop_fu_164/head_addr_reg_218_reg[0] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:43 ; elapsed = 00:03:38 . Memory (MB): peak = 3724.270 ; gain = 774.832 ; free physical = 36887 ; free virtual = 108970
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:52 ; elapsed = 00:03:47 . Memory (MB): peak = 4123.695 ; gain = 1174.258 ; free physical = 46269 ; free virtual = 118348
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:03:31 ; elapsed = 00:04:30 . Memory (MB): peak = 4372.547 ; gain = 1423.109 ; free physical = 23683 ; free virtual = 95838
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_1/Accumulator_1_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_2/Accumulator_2_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_5/Accumulator_3_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_6/Accumulator_5_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_7/Accumulator_6_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_0/Accumulator_4_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/i_3_4/Accumulator_7_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:04:11 ; elapsed = 00:05:29 . Memory (MB): peak = 4392.480 ; gain = 1443.043 ; free physical = 19608 ; free virtual = 92046
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/head_U/ram_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_1_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_2_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_3_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_5_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_6_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_4_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/buf_flat_U/ram_reg_uram_2 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/buf_flat_U/ram_reg_uram_3 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/buf_flat_U/ram_reg_uram_4 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/Accumulator_7_U0/buf_flat_U/ram_reg_uram_5 (implemented as a Ultra RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:04:24 ; elapsed = 00:05:42 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 28929 ; free virtual = 101527
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:04:24 ; elapsed = 00:05:43 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 28785 ; free virtual = 101384
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:04:30 ; elapsed = 00:05:48 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 31349 ; free virtual = 103963
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:04:30 ; elapsed = 00:05:48 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 33191 ; free virtual = 105834
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:04:32 ; elapsed = 00:05:51 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 35069 ; free virtual = 107739
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:04:33 ; elapsed = 00:05:51 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 34739 ; free virtual = 107441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                         | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|dsp48e1_wrapper_721                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_674 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_634                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_587 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_547                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_500 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_460                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_413 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_373                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_326 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_286                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_239 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper_199                 | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0_152 | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
+|dsp48e1_wrapper                     | Dynamic     | -      | -      | -      | -      | 40     | -    | -    | -    | -    | 1     | 0    | 0    | 
+|dsp48e1_wrapper__parameterized0     | C+A'*B'     | 24     | 16     | 35     | -      | 35     | 1    | 1    | 0    | -    | -     | 0    | 0    | 
++------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY8   |   791|
+|2     |DSP48E1  |    16|
+|3     |LUT1     |   195|
+|4     |LUT2     |  3392|
+|5     |LUT3     | 10234|
+|6     |LUT4     |  6275|
+|7     |LUT5     |  1768|
+|8     |LUT6     |  6870|
+|9     |MUXCY    |   464|
+|10    |RAM32M   |    16|
+|11    |RAM32M16 |   288|
+|12    |RAMB18E2 |     8|
+|13    |SRL16E   |  2608|
+|14    |SRLC32E  |   256|
+|15    |URAM288  |    32|
+|16    |XORCY    |   136|
+|17    |FDE      |    24|
+|18    |FDRE     | 48926|
+|19    |FDSE     |   140|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:04:33 ; elapsed = 00:05:51 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 34640 ; free virtual = 107350
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 171 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:04:18 ; elapsed = 00:05:33 . Memory (MB): peak = 4463.223 ; gain = 1381.004 ; free physical = 36736 ; free virtual = 109444
+Synthesis Optimization Complete : Time (s): cpu = 00:04:37 ; elapsed = 00:05:53 . Memory (MB): peak = 4463.223 ; gain = 1513.785 ; free physical = 37053 ; free virtual = 109747
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.95 ; elapsed = 00:00:00.96 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 34372 ; free virtual = 107130
+INFO: [Netlist 29-17] Analyzing 1735 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 31567 ; free virtual = 104355
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 424 instances were transformed.
+  (CARRY4) => CARRY8: 80 instances
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 16 instances
+  FDE => FDRE: 24 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 16 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 288 instances
+
+Synth Design complete | Checksum: d6567438
+INFO: [Common 17-83] Releasing license: Synthesis
+653 Infos, 176 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:05:12 ; elapsed = 00:06:32 . Memory (MB): peak = 4463.223 ; gain = 2885.758 ; free physical = 29802 ; free virtual = 102592
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 6653.377; main = 3376.140; forked = 3283.339
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 9634.840; main = 4463.227; forked = 5171.613
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.18 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 30762 ; free virtual = 103586
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_SynapseRouter_0_0_synth_1/ulp_SynapseRouter_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 28349 ; free virtual = 101239
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ulp_SynapseRouter_0_0, cache-ID = 711c5f542b16b275
+INFO: [Coretcl 2-1174] Renamed 883 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.14 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 32394 ; free virtual = 105392
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_4096_5c/_x.hw.NUM_4096.CORE_5.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_SynapseRouter_0_0_synth_1/ulp_SynapseRouter_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 4463.223 ; gain = 0.000 ; free physical = 32585 ; free virtual = 105602
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ulp_SynapseRouter_0_0_utilization_synth.rpt -pb ulp_SynapseRouter_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 27 05:53:50 2026...
