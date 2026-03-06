@@ -17,7 +17,6 @@ large_files/
 *.bin
 *.csv
 *.jou
-*.log
 *.str
 backup_design
 build_*
