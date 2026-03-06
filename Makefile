@@ -35,8 +35,8 @@ include ./utils.mk
 ##############################################
 # Define size configuration
 ##############################################
-NEURON_NUM := 4096
-CORE_PER_FPGA := 10
+NEURON_NUM := 5632
+CORE_PER_FPGA := 7
 FREQ := 300
 
 TEMP_DIR := ./_x.$(TARGET).NUM_$(NEURON_NUM).CORE_$(CORE_PER_FPGA).FREQ_$(FREQ)

@@ -483,38 +483,38 @@ extern "C" void SynapseRouter(uint32_t SimulationTime, uint32_t AmountOfCores,
 #pragma HLS DATAFLOW
 
   hls::stream<synapse_list_t> SynForwardOut0("SynForwardOut0");
-#pragma HLS STREAM variable = SynForwardOut0 depth = 32
+#pragma HLS STREAM variable = SynForwardOut0 depth = 128
   hls::stream<synapse_list_t> SynForwardOut1("SynForwardOut1");
-#pragma HLS STREAM variable = SynForwardOut1 depth = 32
+#pragma HLS STREAM variable = SynForwardOut1 depth = 128
   hls::stream<synapse_list_t> SynForwardOut2("SynForwardOut2");
-#pragma HLS STREAM variable = SynForwardOut2 depth = 32
+#pragma HLS STREAM variable = SynForwardOut2 depth = 128
   hls::stream<synapse_list_t> SynForwardOut3("SynForwardOut3");
-#pragma HLS STREAM variable = SynForwardOut3 depth = 32
+#pragma HLS STREAM variable = SynForwardOut3 depth = 128
   hls::stream<synapse_list_t> SynForwardOut4("SynForwardOut4");
-#pragma HLS STREAM variable = SynForwardOut4 depth = 32
+#pragma HLS STREAM variable = SynForwardOut4 depth = 128
   hls::stream<synapse_list_t> SynForwardOut5("SynForwardOut5");
-#pragma HLS STREAM variable = SynForwardOut5 depth = 32
+#pragma HLS STREAM variable = SynForwardOut5 depth = 128
   hls::stream<synapse_list_t> SynForwardOut6("SynForwardOut6");
-#pragma HLS STREAM variable = SynForwardOut6 depth = 32
+#pragma HLS STREAM variable = SynForwardOut6 depth = 128
   hls::stream<synapse_list_t> SynForwardOut7("SynForwardOut7");
-#pragma HLS STREAM variable = SynForwardOut7 depth = 32
+#pragma HLS STREAM variable = SynForwardOut7 depth = 128
 
   hls::stream<synapse_list_t> SynForwardOut0_left("SynForwardOut0_left");
-#pragma HLS STREAM variable = SynForwardOut0_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut0_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut1_left("SynForwardOut1_left");
-#pragma HLS STREAM variable = SynForwardOut1_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut1_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut2_left("SynForwardOut2_left");
-#pragma HLS STREAM variable = SynForwardOut2_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut2_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut3_left("SynForwardOut3_left");
-#pragma HLS STREAM variable = SynForwardOut3_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut3_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut4_left("SynForwardOut4_left");
-#pragma HLS STREAM variable = SynForwardOut4_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut4_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut5_left("SynForwardOut5_left");
-#pragma HLS STREAM variable = SynForwardOut5_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut5_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut6_left("SynForwardOut6_left");
-#pragma HLS STREAM variable = SynForwardOut6_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut6_left depth = 128
   hls::stream<synapse_list_t> SynForwardOut7_left("SynForwardOut7_left");
-#pragma HLS STREAM variable = SynForwardOut7_left depth = 32
+#pragma HLS STREAM variable = SynForwardOut7_left depth = 128
 
   hls::stream<stream_weight_t> SpikeWeight0("SpikeWeight0");
 #pragma HLS STREAM variable = SpikeWeight0 depth = 32

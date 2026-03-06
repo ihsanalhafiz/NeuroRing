@@ -8,7 +8,7 @@
 #include <ap_axi_sdata.h>
 #include "hls_half.h"
 
-#define NEURON_NUM 4096
+#define NEURON_NUM 5632
 #define SYNAPSE_TOTAL 7000
 #define DELAY 64
 #define SYNAPSE_LIST_SIZE SYNAPSE_TOTAL*2

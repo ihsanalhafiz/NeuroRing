@@ -1,0 +1,156 @@
+===============================================================================
+Version:    v++ v2025.1 (64-bit)
+Build:      SW Build 6137779 on 2025-05-21-18:10:03
+Copyright:  Copyright 1986-2025 Xilinx, Inc. All Rights Reserved.
+Created:    Thu Feb 26 05:01:36 2026
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             krnl_synapserouter
+Target Device:           xilinx:u55c:gen3x16_xdma_3:202210.1
+Target Clock:            300.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name    Type  Target              OpenCL Library      Compute Units
+-------------  ----  ------------------  ------------------  -------------
+SynapseRouter  c     fpga0:OCL_REGION_0  krnl_synapserouter  1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     krnl_synapserouter
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit     Kernel Name    Module Name                                        Target Frequency  Estimated Frequency
+---------------  -------------  -------------------------------------------------  ----------------  -------------------
+SynapseRouter_1  SynapseRouter  entry_proc                                         300.300293        821.692688
+SynapseRouter_1  SynapseRouter  RouterRight                                        300.300293        433.275543
+SynapseRouter_1  SynapseRouter  RouterLeft                                         300.300293        433.275543
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_VITIS_LOOP_283_1              300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_accumulate_loop               300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_output_loop                   300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator                                        300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Block_entry_proc                                   300.300293        1136.36365
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_1                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_2                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_3                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_4                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_5                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_6                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_VITIS_LOOP_283_1            300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_accumulate_loop             300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_output_loop                 300.300293        388.500397
+SynapseRouter_1  SynapseRouter  Accumulator_7                                      300.300293        388.500397
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_VITIS_LOOP_405_1            300.300293        521.648376
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_time_loop_VITIS_LOOP_428_2  300.300293        521.648376
+SynapseRouter_1  SynapseRouter  weightforward                                      300.300293        521.648376
+SynapseRouter_1  SynapseRouter  SynapseRouter                                      300.300293        388.500397
+
+Latency Information
+Compute Unit     Kernel Name    Module Name                                        Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+---------------  -------------  -------------------------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+SynapseRouter_1  SynapseRouter  entry_proc                                         0               0              0             0               0 ns             0 ns            0 ns
+SynapseRouter_1  SynapseRouter  RouterRight                                        undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  RouterLeft                                         undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_VITIS_LOOP_283_1              65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_accumulate_loop               0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_output_loop                   706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator                                        undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Block_entry_proc                                   0               0              0             0               0 ns             0 ns            0 ns
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_1                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_2                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_3                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_4                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_5                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_6                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_VITIS_LOOP_283_1            65              67             67            67              0.223 us         0.223 us        0.223 us
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_accumulate_loop             0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_output_loop                 706             711            711           711             2.370 us         2.370 us        2.370 us
+SynapseRouter_1  SynapseRouter  Accumulator_7                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_VITIS_LOOP_405_1            705             706            706           706             2.353 us         2.353 us        2.353 us
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_time_loop_VITIS_LOOP_428_2  0               undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  weightforward                                      undef           undef          undef         undef           undef            undef           undef
+SynapseRouter_1  SynapseRouter  SynapseRouter                                      undef           undef          undef         undef           undef            undef           undef
+
+Area Information
+Compute Unit     Kernel Name    Module Name                                        FF     LUT    DSP  BRAM  URAM
+---------------  -------------  -------------------------------------------------  -----  -----  ---  ----  ----
+SynapseRouter_1  SynapseRouter  entry_proc                                         3      29     0    0     0
+SynapseRouter_1  SynapseRouter  RouterRight                                        1909   1887   0    0     0
+SynapseRouter_1  SynapseRouter  RouterLeft                                         1712   1630   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_VITIS_LOOP_283_1              27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_accumulate_loop               6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_Pipeline_output_loop                   157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator                                        6675   5784   0    2     8
+SynapseRouter_1  SynapseRouter  Block_entry_proc                                   226    347    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_1_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_1                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_2_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_2                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_3_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_3                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_4_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_4                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_5_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_5                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_6_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_6                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_VITIS_LOOP_283_1            27     89     0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_accumulate_loop             6317   4750   0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_7_Pipeline_output_loop                 157    182    0    0     0
+SynapseRouter_1  SynapseRouter  Accumulator_7                                      6674   5757   0    2     8
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_VITIS_LOOP_405_1            13     159    0    0     0
+SynapseRouter_1  SynapseRouter  weightforward_Pipeline_time_loop_VITIS_LOOP_428_2  46     223    0    0     0
+SynapseRouter_1  SynapseRouter  weightforward                                      456    739    0    0     0
+SynapseRouter_1  SynapseRouter  SynapseRouter                                      67650  56822  0    144   64
+-------------------------------------------------------------------------------
