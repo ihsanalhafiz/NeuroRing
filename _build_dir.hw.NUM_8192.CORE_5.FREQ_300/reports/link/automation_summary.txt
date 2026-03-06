@@ -1,0 +1,669 @@
+====================================================================
+Version:    xcd v2025.1 (64-bit)
+Copyright:  Copyright 1986-2025 Xilinx, Inc. All Rights Reserved.
+Created:    Fri Feb 27 12:09:12 2026
+====================================================================
+
+1. Kernel and compute unit information
+======================================
+
+Compute Unit: NeuroRing_0
+Kernel: NeuroRing
+Base Address: 0x800000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: NeuroRing_1
+Kernel: NeuroRing
+Base Address: 0x810000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: NeuroRing_2
+Kernel: NeuroRing
+Base Address: 0x820000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: NeuroRing_3
+Kernel: NeuroRing
+Base Address: 0x830000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: NeuroRing_4
+Kernel: NeuroRing
+Base Address: 0x840000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: SynapseRouter_0
+Kernel: SynapseRouter
+Base Address: 0x850000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: SynapseRouter_1
+Kernel: SynapseRouter
+Base Address: 0x860000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: SynapseRouter_2
+Kernel: SynapseRouter
+Base Address: 0x870000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: SynapseRouter_3
+Kernel: SynapseRouter
+Base Address: 0x880000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+Compute Unit: SynapseRouter_4
+Kernel: SynapseRouter
+Base Address: 0x890000
+Clock Pin: ap_clk
+Reset Pin: ap_rst_n
+
+2. Interface Connections
+========================
+
+IP to Compute Unit
+------------------
+Source Pin: buffer_SynapseRouter_0_SpikeOutWeight/M_AXIS
+Destination Pin: NeuroRing_0/SpikeInWeight
+
+Source Pin: SLR0/M01_AXI
+Destination Pin: NeuroRing_0/s_axi_control
+
+Source Pin: buffer_SynapseRouter_1_SpikeOutWeight/M_AXIS
+Destination Pin: NeuroRing_1/SpikeInWeight
+
+Source Pin: SLR0/M02_AXI
+Destination Pin: NeuroRing_1/s_axi_control
+
+Source Pin: buffer_SynapseRouter_2_SpikeOutWeight/M_AXIS
+Destination Pin: NeuroRing_2/SpikeInWeight
+
+Source Pin: SLR0/M03_AXI
+Destination Pin: NeuroRing_2/s_axi_control
+
+Source Pin: buffer_SynapseRouter_3_SpikeOutWeight/M_AXIS
+Destination Pin: NeuroRing_3/SpikeInWeight
+
+Source Pin: SLR0/M04_AXI
+Destination Pin: NeuroRing_3/s_axi_control
+
+Source Pin: buffer_SynapseRouter_4_SpikeOutWeight/M_AXIS
+Destination Pin: NeuroRing_4/SpikeInWeight
+
+Source Pin: SLR0/M05_AXI
+Destination Pin: NeuroRing_4/s_axi_control
+
+Source Pin: SLR0/M06_AXI
+Destination Pin: SynapseRouter_0/s_axi_control
+
+Source Pin: buffer_SynapseRouter_1_syn_forward_rt_left/M_AXIS
+Destination Pin: SynapseRouter_0/syn_route_in_left
+
+Source Pin: buffer_SynapseRouter_4_syn_forward_rt_right/M_AXIS
+Destination Pin: SynapseRouter_0/syn_route_in_right
+
+Source Pin: buffer_NeuroRing_0_SynapseStreamLeft/M_AXIS
+Destination Pin: SynapseRouter_0/synapse_stream_left
+
+Source Pin: buffer_NeuroRing_0_SynapseStreamRight/M_AXIS
+Destination Pin: SynapseRouter_0/synapse_stream_right
+
+Source Pin: SLR0/M07_AXI
+Destination Pin: SynapseRouter_1/s_axi_control
+
+Source Pin: buffer_SynapseRouter_2_syn_forward_rt_left/M_AXIS
+Destination Pin: SynapseRouter_1/syn_route_in_left
+
+Source Pin: buffer_SynapseRouter_0_syn_forward_rt_right/M_AXIS
+Destination Pin: SynapseRouter_1/syn_route_in_right
+
+Source Pin: buffer_NeuroRing_1_SynapseStreamLeft/M_AXIS
+Destination Pin: SynapseRouter_1/synapse_stream_left
+
+Source Pin: buffer_NeuroRing_1_SynapseStreamRight/M_AXIS
+Destination Pin: SynapseRouter_1/synapse_stream_right
+
+Source Pin: SLR0/M08_AXI
+Destination Pin: SynapseRouter_2/s_axi_control
+
+Source Pin: buffer_SynapseRouter_3_syn_forward_rt_left/M_AXIS
+Destination Pin: SynapseRouter_2/syn_route_in_left
+
+Source Pin: buffer_SynapseRouter_1_syn_forward_rt_right/M_AXIS
+Destination Pin: SynapseRouter_2/syn_route_in_right
+
+Source Pin: buffer_NeuroRing_2_SynapseStreamLeft/M_AXIS
+Destination Pin: SynapseRouter_2/synapse_stream_left
+
+Source Pin: buffer_NeuroRing_2_SynapseStreamRight/M_AXIS
+Destination Pin: SynapseRouter_2/synapse_stream_right
+
+Source Pin: SLR0/M09_AXI
+Destination Pin: SynapseRouter_3/s_axi_control
+
+Source Pin: buffer_SynapseRouter_4_syn_forward_rt_left/M_AXIS
+Destination Pin: SynapseRouter_3/syn_route_in_left
+
+Source Pin: buffer_SynapseRouter_2_syn_forward_rt_right/M_AXIS
+Destination Pin: SynapseRouter_3/syn_route_in_right
+
+Source Pin: buffer_NeuroRing_3_SynapseStreamLeft/M_AXIS
+Destination Pin: SynapseRouter_3/synapse_stream_left
+
+Source Pin: buffer_NeuroRing_3_SynapseStreamRight/M_AXIS
+Destination Pin: SynapseRouter_3/synapse_stream_right
+
+Source Pin: SLR0/M10_AXI
+Destination Pin: SynapseRouter_4/s_axi_control
+
+Source Pin: buffer_SynapseRouter_0_syn_forward_rt_left/M_AXIS
+Destination Pin: SynapseRouter_4/syn_route_in_left
+
+Source Pin: buffer_SynapseRouter_3_syn_forward_rt_right/M_AXIS
+Destination Pin: SynapseRouter_4/syn_route_in_right
+
+Source Pin: buffer_NeuroRing_4_SynapseStreamLeft/M_AXIS
+Destination Pin: SynapseRouter_4/synapse_stream_left
+
+Source Pin: buffer_NeuroRing_4_SynapseStreamRight/M_AXIS
+Destination Pin: SynapseRouter_4/synapse_stream_right
+
+Compute Unit to IP
+------------------
+Source Pin: NeuroRing_0/SynapseStreamLeft
+Destination Pin: buffer_NeuroRing_0_SynapseStreamLeft/S_AXIS
+
+Source Pin: NeuroRing_0/SynapseStreamRight
+Destination Pin: buffer_NeuroRing_0_SynapseStreamRight/S_AXIS
+
+Source Pin: NeuroRing_0/m_axi_gmem_syn
+Destination Pin: hmss_0/S01_AXI
+
+Source Pin: NeuroRing_1/SynapseStreamLeft
+Destination Pin: buffer_NeuroRing_1_SynapseStreamLeft/S_AXIS
+
+Source Pin: NeuroRing_1/SynapseStreamRight
+Destination Pin: buffer_NeuroRing_1_SynapseStreamRight/S_AXIS
+
+Source Pin: NeuroRing_1/m_axi_gmem_syn
+Destination Pin: hmss_0/S02_AXI
+
+Source Pin: NeuroRing_2/SynapseStreamLeft
+Destination Pin: buffer_NeuroRing_2_SynapseStreamLeft/S_AXIS
+
+Source Pin: NeuroRing_2/SynapseStreamRight
+Destination Pin: buffer_NeuroRing_2_SynapseStreamRight/S_AXIS
+
+Source Pin: NeuroRing_2/m_axi_gmem_syn
+Destination Pin: hmss_0/S03_AXI
+
+Source Pin: NeuroRing_3/SynapseStreamLeft
+Destination Pin: buffer_NeuroRing_3_SynapseStreamLeft/S_AXIS
+
+Source Pin: NeuroRing_3/SynapseStreamRight
+Destination Pin: buffer_NeuroRing_3_SynapseStreamRight/S_AXIS
+
+Source Pin: NeuroRing_3/m_axi_gmem_syn
+Destination Pin: hmss_0/S04_AXI
+
+Source Pin: NeuroRing_4/SynapseStreamLeft
+Destination Pin: buffer_NeuroRing_4_SynapseStreamLeft/S_AXIS
+
+Source Pin: NeuroRing_4/SynapseStreamRight
+Destination Pin: buffer_NeuroRing_4_SynapseStreamRight/S_AXIS
+
+Source Pin: NeuroRing_4/m_axi_gmem_syn
+Destination Pin: hmss_0/S05_AXI
+
+Source Pin: SynapseRouter_0/SpikeOutWeight
+Destination Pin: buffer_SynapseRouter_0_SpikeOutWeight/S_AXIS
+
+Source Pin: SynapseRouter_0/syn_forward_rt_left
+Destination Pin: buffer_SynapseRouter_0_syn_forward_rt_left/S_AXIS
+
+Source Pin: SynapseRouter_0/syn_forward_rt_right
+Destination Pin: buffer_SynapseRouter_0_syn_forward_rt_right/S_AXIS
+
+Source Pin: SynapseRouter_1/SpikeOutWeight
+Destination Pin: buffer_SynapseRouter_1_SpikeOutWeight/S_AXIS
+
+Source Pin: SynapseRouter_1/syn_forward_rt_left
+Destination Pin: buffer_SynapseRouter_1_syn_forward_rt_left/S_AXIS
+
+Source Pin: SynapseRouter_1/syn_forward_rt_right
+Destination Pin: buffer_SynapseRouter_1_syn_forward_rt_right/S_AXIS
+
+Source Pin: SynapseRouter_2/SpikeOutWeight
+Destination Pin: buffer_SynapseRouter_2_SpikeOutWeight/S_AXIS
+
+Source Pin: SynapseRouter_2/syn_forward_rt_left
+Destination Pin: buffer_SynapseRouter_2_syn_forward_rt_left/S_AXIS
+
+Source Pin: SynapseRouter_2/syn_forward_rt_right
+Destination Pin: buffer_SynapseRouter_2_syn_forward_rt_right/S_AXIS
+
+Source Pin: SynapseRouter_3/SpikeOutWeight
+Destination Pin: buffer_SynapseRouter_3_SpikeOutWeight/S_AXIS
+
+Source Pin: SynapseRouter_3/syn_forward_rt_left
+Destination Pin: buffer_SynapseRouter_3_syn_forward_rt_left/S_AXIS
+
+Source Pin: SynapseRouter_3/syn_forward_rt_right
+Destination Pin: buffer_SynapseRouter_3_syn_forward_rt_right/S_AXIS
+
+Source Pin: SynapseRouter_4/SpikeOutWeight
+Destination Pin: buffer_SynapseRouter_4_SpikeOutWeight/S_AXIS
+
+Source Pin: SynapseRouter_4/syn_forward_rt_left
+Destination Pin: buffer_SynapseRouter_4_syn_forward_rt_left/S_AXIS
+
+Source Pin: SynapseRouter_4/syn_forward_rt_right
+Destination Pin: buffer_SynapseRouter_4_syn_forward_rt_right/S_AXIS
+
+3. Clock Connections
+====================
+
+Compute Unit: NeuroRing_0
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: NeuroRing_0/ap_clk
+
+Compute Unit: NeuroRing_1
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: NeuroRing_1/ap_clk
+
+Compute Unit: NeuroRing_2
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: NeuroRing_2/ap_clk
+
+Compute Unit: NeuroRing_3
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: NeuroRing_3/ap_clk
+
+Compute Unit: NeuroRing_4
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: NeuroRing_4/ap_clk
+
+Compute Unit: SynapseRouter_0
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: SynapseRouter_0/ap_clk
+
+Compute Unit: SynapseRouter_1
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: SynapseRouter_1/ap_clk
+
+Compute Unit: SynapseRouter_2
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: SynapseRouter_2/ap_clk
+
+Compute Unit: SynapseRouter_3
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: SynapseRouter_3/ap_clk
+
+Compute Unit: SynapseRouter_4
+Clock ID: 0
+Platform Clock Frequency: 300.00 MHz
+Requested Kernel Clock Frequency: 300.00 MHz
+Achieved Kernel Clock Frequency: 216.40 MHz
+Source Pin: ulp_ucs/aclk_kernel_00
+Destination Pin: SynapseRouter_4/ap_clk
+
+Clock Instance: ulp_ucs
+Source Pin: ii_level0_wire/ulp_m_aclk_ctrl_00
+Destination Pin: ulp_ucs/aclk_ctrl
+
+Clock Instance: ulp_ucs
+Source Pin: ii_level0_wire/ulp_m_aclk_freerun_ref_00
+Destination Pin: ulp_ucs/aclk_freerun
+
+Clock Instance: ulp_ucs
+Source Pin: ii_level0_wire/ulp_m_aclk_freerun_ref_00
+Destination Pin: ulp_ucs/aclk_hbm_refclk
+
+Clock Instance: ulp_ucs
+Source Pin: ii_level0_wire/ulp_m_aclk_pcie_00
+Destination Pin: ulp_ucs/aclk_pcie
+
+4. Reset Connections
+====================
+
+Compute Unit: NeuroRing_0
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: NeuroRing_0/ap_rst_n
+Associated Clock Pin: NeuroRing_0/ap_clk
+
+Compute Unit: NeuroRing_1
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: NeuroRing_1/ap_rst_n
+Associated Clock Pin: NeuroRing_1/ap_clk
+
+Compute Unit: NeuroRing_2
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: NeuroRing_2/ap_rst_n
+Associated Clock Pin: NeuroRing_2/ap_clk
+
+Compute Unit: NeuroRing_3
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: NeuroRing_3/ap_rst_n
+Associated Clock Pin: NeuroRing_3/ap_clk
+
+Compute Unit: NeuroRing_4
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: NeuroRing_4/ap_rst_n
+Associated Clock Pin: NeuroRing_4/ap_clk
+
+Compute Unit: SynapseRouter_0
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: SynapseRouter_0/ap_rst_n
+Associated Clock Pin: SynapseRouter_0/ap_clk
+
+Compute Unit: SynapseRouter_1
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: SynapseRouter_1/ap_rst_n
+Associated Clock Pin: SynapseRouter_1/ap_clk
+
+Compute Unit: SynapseRouter_2
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: SynapseRouter_2/ap_rst_n
+Associated Clock Pin: SynapseRouter_2/ap_clk
+
+Compute Unit: SynapseRouter_3
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: SynapseRouter_3/ap_rst_n
+Associated Clock Pin: SynapseRouter_3/ap_clk
+
+Compute Unit: SynapseRouter_4
+Source Pin: proc_sys_reset_kernel_slr0/peripheral_aresetn
+Destination Pin: SynapseRouter_4/ap_rst_n
+Associated Clock Pin: SynapseRouter_4/ap_clk
+
+5. Clock Summary
+================
+
+PL
++-----------------+---------------+------------+---------------+------------+
+| Instance        | Kernel        | Clock Port | Compile (MHz) | Link (MHz) |
++-----------------+---------------+------------+---------------+------------+
+| NeuroRing_0     | NeuroRing     | ap_clk     | 300.03        | 300.00     |
+| NeuroRing_1     | NeuroRing     | ap_clk     | 300.03        | 300.00     |
+| NeuroRing_2     | NeuroRing     | ap_clk     | 300.03        | 300.00     |
+| NeuroRing_3     | NeuroRing     | ap_clk     | 300.03        | 300.00     |
+| NeuroRing_4     | NeuroRing     | ap_clk     | 300.03        | 300.00     |
+| SynapseRouter_0 | SynapseRouter | ap_clk     | 300.03        | 300.00     |
+| SynapseRouter_1 | SynapseRouter | ap_clk     | 300.03        | 300.00     |
+| SynapseRouter_2 | SynapseRouter | ap_clk     | 300.03        | 300.00     |
+| SynapseRouter_3 | SynapseRouter | ap_clk     | 300.03        | 300.00     |
+| SynapseRouter_4 | SynapseRouter | ap_clk     | 300.03        | 300.00     |
++-----------------+---------------+------------+---------------+------------+
+
+6. SLR Utilization per Compute Unit
+===================================
+
+Compute Unit: NeuroRing_0
++------------+-------+------+------+--------+--------+--------+
+| Site Type  |  SLR0 | SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+-------+------+------+--------+--------+--------+
+| LUT        | 30186 |    0 |    0 |   6.87 |   0.00 |   0.00 |
+| LUTAsLogic | 28600 |    0 |    0 |   6.50 |   0.00 |   0.00 |
+| LUTAsMem   |  1586 |    0 |    0 |   0.77 |   0.00 |   0.00 |
+| REG        | 33612 |    0 |    0 |   3.82 |   0.00 |   0.00 |
+| CARRY8     |   824 |    0 |    0 |   1.50 |   0.00 |   0.00 |
+| F7MUX      |  3502 |    0 |    0 |   1.59 |   0.00 |   0.00 |
+| F8MUX      |  1058 |    0 |    0 |   0.96 |   0.00 |   0.00 |
+| F9MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |  42.5 |    0 |    0 |   6.32 |   0.00 |   0.00 |
+| URAM       |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| DSPs       |   154 |    0 |    0 |   5.35 |   0.00 |   0.00 |
++------------+-------+------+------+--------+--------+--------+
+
+Compute Unit: NeuroRing_1
++------------+-------+------+------+--------+--------+--------+
+| Site Type  |  SLR0 | SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+-------+------+------+--------+--------+--------+
+| LUT        | 30354 |    0 |    0 |   6.90 |   0.00 |   0.00 |
+| LUTAsLogic | 28768 |    0 |    0 |   6.54 |   0.00 |   0.00 |
+| LUTAsMem   |  1586 |    0 |    0 |   0.77 |   0.00 |   0.00 |
+| REG        | 33551 |    0 |    0 |   3.82 |   0.00 |   0.00 |
+| CARRY8     |   824 |    0 |    0 |   1.50 |   0.00 |   0.00 |
+| F7MUX      |  3502 |    0 |    0 |   1.59 |   0.00 |   0.00 |
+| F8MUX      |  1058 |    0 |    0 |   0.96 |   0.00 |   0.00 |
+| F9MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |  42.5 |    0 |    0 |   6.32 |   0.00 |   0.00 |
+| URAM       |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| DSPs       |   154 |    0 |    0 |   5.35 |   0.00 |   0.00 |
++------------+-------+------+------+--------+--------+--------+
+
+Compute Unit: NeuroRing_2
++------------+------+-------+------+--------+--------+--------+
+| Site Type  | SLR0 |  SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+-------+------+--------+--------+--------+
+| LUT        |    0 | 30456 |    0 |   0.00 |   7.05 |   0.00 |
+| LUTAsLogic |    0 | 28870 |    0 |   0.00 |   6.68 |   0.00 |
+| LUTAsMem   |    0 |  1586 |    0 |   0.00 |   0.80 |   0.00 |
+| REG        |    0 | 33614 |    0 |   0.00 |   3.89 |   0.00 |
+| CARRY8     |    0 |   824 |    0 |   0.00 |   1.53 |   0.00 |
+| F7MUX      |    0 |  3502 |    0 |   0.00 |   1.62 |   0.00 |
+| F8MUX      |    0 |  1058 |    0 |   0.00 |   0.98 |   0.00 |
+| F9MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |  42.5 |    0 |   0.00 |   6.32 |   0.00 |
+| URAM       |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| DSPs       |    0 |   154 |    0 |   0.00 |   5.01 |   0.00 |
++------------+------+-------+------+--------+--------+--------+
+
+Compute Unit: NeuroRing_3
++------------+------+------+-------+--------+--------+--------+
+| Site Type  | SLR0 | SLR1 |  SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+------+-------+--------+--------+--------+
+| LUT        |    2 |   29 | 30097 |   0.00 |   0.01 |   6.97 |
+| LUTAsLogic |    2 |   29 | 28511 |   0.00 |   0.01 |   6.60 |
+| LUTAsMem   |    0 |    0 |  1586 |   0.00 |   0.00 |   0.80 |
+| REG        |    0 |  240 | 33355 |   0.00 |   0.03 |   3.86 |
+| CARRY8     |    0 |    0 |   824 |   0.00 |   0.00 |   1.53 |
+| F7MUX      |    0 |    0 |  3502 |   0.00 |   0.00 |   1.62 |
+| F8MUX      |    0 |    0 |  1058 |   0.00 |   0.00 |   0.98 |
+| F9MUX      |    0 |    0 |     0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |    0 |  42.5 |   0.00 |   0.00 |   6.32 |
+| URAM       |    0 |    0 |     0 |   0.00 |   0.00 |   0.00 |
+| DSPs       |    0 |    0 |   154 |   0.00 |   0.00 |   5.01 |
++------------+------+------+-------+--------+--------+--------+
+
+Compute Unit: NeuroRing_4
++------------+------+-------+------+--------+--------+--------+
+| Site Type  | SLR0 |  SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+-------+------+--------+--------+--------+
+| LUT        |    0 | 30366 |    0 |   0.00 |   7.03 |   0.00 |
+| LUTAsLogic |    0 | 28780 |    0 |   0.00 |   6.66 |   0.00 |
+| LUTAsMem   |    0 |  1586 |    0 |   0.00 |   0.80 |   0.00 |
+| REG        |    0 | 33578 |    0 |   0.00 |   3.89 |   0.00 |
+| CARRY8     |    0 |   824 |    0 |   0.00 |   1.53 |   0.00 |
+| F7MUX      |    0 |  3502 |    0 |   0.00 |   1.62 |   0.00 |
+| F8MUX      |    0 |  1058 |    0 |   0.00 |   0.98 |   0.00 |
+| F9MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |  42.5 |    0 |   0.00 |   6.32 |   0.00 |
+| URAM       |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| DSPs       |    0 |   154 |    0 |   0.00 |   5.01 |   0.00 |
++------------+------+-------+------+--------+--------+--------+
+
+Compute Unit: SynapseRouter_0
++------------+-------+------+------+--------+--------+--------+
+| Site Type  |  SLR0 | SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+-------+------+------+--------+--------+--------+
+| LUT        | 25713 |    0 |    0 |   5.85 |   0.00 |   0.00 |
+| LUTAsLogic | 21441 |    0 |    0 |   4.88 |   0.00 |   0.00 |
+| LUTAsMem   |  4272 |    0 |    0 |   2.08 |   0.00 |   0.00 |
+| REG        | 50441 |    0 |    0 |   5.74 |   0.00 |   0.00 |
+| CARRY8     |   879 |    0 |    0 |   1.60 |   0.00 |   0.00 |
+| F7MUX      |   513 |    0 |    0 |   0.23 |   0.00 |   0.00 |
+| F8MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| F9MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |     4 |    0 |    0 |   0.60 |   0.00 |   0.00 |
+| URAM       |    64 |    0 |    0 |  20.00 |   0.00 |   0.00 |
+| DSPs       |    16 |    0 |    0 |   0.56 |   0.00 |   0.00 |
++------------+-------+------+------+--------+--------+--------+
+
+Compute Unit: SynapseRouter_1
++------------+-------+------+------+--------+--------+--------+
+| Site Type  |  SLR0 | SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+-------+------+------+--------+--------+--------+
+| LUT        | 25683 |    0 |    0 |   5.84 |   0.00 |   0.00 |
+| LUTAsLogic | 21411 |    0 |    0 |   4.87 |   0.00 |   0.00 |
+| LUTAsMem   |  4272 |    0 |    0 |   2.08 |   0.00 |   0.00 |
+| REG        | 50433 |    0 |    0 |   5.74 |   0.00 |   0.00 |
+| CARRY8     |   879 |    0 |    0 |   1.60 |   0.00 |   0.00 |
+| F7MUX      |   513 |    0 |    0 |   0.23 |   0.00 |   0.00 |
+| F8MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| F9MUX      |     0 |    0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |     4 |    0 |    0 |   0.60 |   0.00 |   0.00 |
+| URAM       |    64 |    0 |    0 |  20.00 |   0.00 |   0.00 |
+| DSPs       |    16 |    0 |    0 |   0.56 |   0.00 |   0.00 |
++------------+-------+------+------+--------+--------+--------+
+
+Compute Unit: SynapseRouter_2
++------------+------+-------+------+--------+--------+--------+
+| Site Type  | SLR0 |  SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+-------+------+--------+--------+--------+
+| LUT        |    0 | 25774 |    0 |   0.00 |   5.97 |   0.00 |
+| LUTAsLogic |    0 | 21502 |    0 |   0.00 |   4.98 |   0.00 |
+| LUTAsMem   |    0 |  4272 |    0 |   0.00 |   2.16 |   0.00 |
+| REG        |    0 | 50444 |    0 |   0.00 |   5.84 |   0.00 |
+| CARRY8     |    0 |   879 |    0 |   0.00 |   1.63 |   0.00 |
+| F7MUX      |    0 |   513 |    0 |   0.00 |   0.24 |   0.00 |
+| F8MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| F9MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |     4 |    0 |   0.00 |   0.60 |   0.00 |
+| URAM       |    0 |    64 |    0 |   0.00 |  20.00 |   0.00 |
+| DSPs       |    0 |    16 |    0 |   0.00 |   0.52 |   0.00 |
++------------+------+-------+------+--------+--------+--------+
+
+Compute Unit: SynapseRouter_3
++------------+------+------+-------+--------+--------+--------+
+| Site Type  | SLR0 | SLR1 |  SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+------+-------+--------+--------+--------+
+| LUT        |    0 |    2 | 25653 |   0.00 |   0.00 |   5.94 |
+| LUTAsLogic |    0 |    2 | 21381 |   0.00 |   0.00 |   4.95 |
+| LUTAsMem   |    0 |    0 |  4272 |   0.00 |   0.00 |   2.16 |
+| REG        |    0 |    3 | 50428 |   0.00 |   0.00 |   5.84 |
+| CARRY8     |    0 |    0 |   879 |   0.00 |   0.00 |   1.63 |
+| F7MUX      |    0 |    0 |   513 |   0.00 |   0.00 |   0.24 |
+| F8MUX      |    0 |    0 |     0 |   0.00 |   0.00 |   0.00 |
+| F9MUX      |    0 |    0 |     0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |    0 |     4 |   0.00 |   0.00 |   0.60 |
+| URAM       |    0 |    0 |    64 |   0.00 |   0.00 |  20.00 |
+| DSPs       |    0 |    0 |    16 |   0.00 |   0.00 |   0.52 |
++------------+------+------+-------+--------+--------+--------+
+
+Compute Unit: SynapseRouter_4
++------------+------+-------+------+--------+--------+--------+
+| Site Type  | SLR0 |  SLR1 | SLR2 | SLR0 % | SLR1 % | SLR2 % |
++------------+------+-------+------+--------+--------+--------+
+| LUT        |    0 | 25788 |    0 |   0.00 |   5.97 |   0.00 |
+| LUTAsLogic |    0 | 21516 |    0 |   0.00 |   4.98 |   0.00 |
+| LUTAsMem   |    0 |  4272 |    0 |   0.00 |   2.16 |   0.00 |
+| REG        |    0 | 50442 |    0 |   0.00 |   5.84 |   0.00 |
+| CARRY8     |    0 |   879 |    0 |   0.00 |   1.63 |   0.00 |
+| F7MUX      |    0 |   513 |    0 |   0.00 |   0.24 |   0.00 |
+| F8MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| F9MUX      |    0 |     0 |    0 |   0.00 |   0.00 |   0.00 |
+| BRAM       |    0 |     4 |    0 |   0.00 |   0.60 |   0.00 |
+| URAM       |    0 |    64 |    0 |   0.00 |  20.00 |   0.00 |
+| DSPs       |    0 |    16 |    0 |   0.00 |   0.52 |   0.00 |
++------------+------+-------+------+--------+--------+--------+
+
+7. Compute Unit Utilization per SLR
+===================================
+
+SLR0
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| Site Type  | NeuroRing_0 | NeuroRing_1 | NeuroRing_2 | NeuroRing_3 | NeuroRing_4 | SynapseRouter_0 | SynapseRouter_1 | SynapseRouter_2 | SynapseRouter_3 | SynapseRouter_4 | Available |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| LUT        |       30186 |       30354 |           0 |           2 |           0 |           25713 |           25683 |               0 |               0 |               0 |    439680 |
+| LUTAsLogic |       28600 |       28768 |           0 |           2 |           0 |           21441 |           21411 |               0 |               0 |               0 |    439680 |
+| LUTAsMem   |        1586 |        1586 |           0 |           0 |           0 |            4272 |            4272 |               0 |               0 |               0 |    205440 |
+| REG        |       33612 |       33551 |           0 |           0 |           0 |           50441 |           50433 |               0 |               0 |               0 |    879360 |
+| CARRY8     |         824 |         824 |           0 |           0 |           0 |             879 |             879 |               0 |               0 |               0 |     54960 |
+| F7MUX      |        3502 |        3502 |           0 |           0 |           0 |             513 |             513 |               0 |               0 |               0 |    219840 |
+| F8MUX      |        1058 |        1058 |           0 |           0 |           0 |               0 |               0 |               0 |               0 |               0 |    109920 |
+| F9MUX      |           0 |           0 |           0 |           0 |           0 |               0 |               0 |               0 |               0 |               0 |     54960 |
+| BRAM       |        42.5 |        42.5 |           0 |           0 |           0 |               4 |               4 |               0 |               0 |               0 |       672 |
+| URAM       |           0 |           0 |           0 |           0 |           0 |              64 |              64 |               0 |               0 |               0 |       320 |
+| DSPs       |         154 |         154 |           0 |           0 |           0 |              16 |              16 |               0 |               0 |               0 |      2880 |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+
+SLR1
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| Site Type  | NeuroRing_0 | NeuroRing_1 | NeuroRing_2 | NeuroRing_3 | NeuroRing_4 | SynapseRouter_0 | SynapseRouter_1 | SynapseRouter_2 | SynapseRouter_3 | SynapseRouter_4 | Available |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| LUT        |           0 |           0 |       30456 |          29 |       30366 |               0 |               0 |           25774 |               2 |           25788 |    439680 |
+| LUTAsLogic |           0 |           0 |       28870 |          29 |       28780 |               0 |               0 |           21502 |               2 |           21516 |    439680 |
+| LUTAsMem   |           0 |           0 |        1586 |           0 |        1586 |               0 |               0 |            4272 |               0 |            4272 |    205440 |
+| REG        |           0 |           0 |       33614 |         240 |       33578 |               0 |               0 |           50444 |               3 |           50442 |    879360 |
+| CARRY8     |           0 |           0 |         824 |           0 |         824 |               0 |               0 |             879 |               0 |             879 |     54960 |
+| F7MUX      |           0 |           0 |        3502 |           0 |        3502 |               0 |               0 |             513 |               0 |             513 |    219840 |
+| F8MUX      |           0 |           0 |        1058 |           0 |        1058 |               0 |               0 |               0 |               0 |               0 |    109920 |
+| F9MUX      |           0 |           0 |           0 |           0 |           0 |               0 |               0 |               0 |               0 |               0 |     54960 |
+| BRAM       |           0 |           0 |        42.5 |           0 |        42.5 |               0 |               0 |               4 |               0 |               4 |       672 |
+| URAM       |           0 |           0 |           0 |           0 |           0 |               0 |               0 |              64 |               0 |              64 |       320 |
+| DSPs       |           0 |           0 |         154 |           0 |         154 |               0 |               0 |              16 |               0 |              16 |      2880 |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+
+SLR2
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| Site Type  | NeuroRing_0 | NeuroRing_1 | NeuroRing_2 | NeuroRing_3 | NeuroRing_4 | SynapseRouter_0 | SynapseRouter_1 | SynapseRouter_2 | SynapseRouter_3 | SynapseRouter_4 | Available |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+| LUT        |           0 |           0 |           0 |       30097 |           0 |               0 |               0 |               0 |           25653 |               0 |    439680 |
+| LUTAsLogic |           0 |           0 |           0 |       28511 |           0 |               0 |               0 |               0 |           21381 |               0 |    439680 |
+| LUTAsMem   |           0 |           0 |           0 |        1586 |           0 |               0 |               0 |               0 |            4272 |               0 |    205440 |
+| REG        |           0 |           0 |           0 |       33355 |           0 |               0 |               0 |               0 |           50428 |               0 |    879360 |
+| CARRY8     |           0 |           0 |           0 |         824 |           0 |               0 |               0 |               0 |             879 |               0 |     54960 |
+| F7MUX      |           0 |           0 |           0 |        3502 |           0 |               0 |               0 |               0 |             513 |               0 |    219840 |
+| F8MUX      |           0 |           0 |           0 |        1058 |           0 |               0 |               0 |               0 |               0 |               0 |    109920 |
+| F9MUX      |           0 |           0 |           0 |           0 |           0 |               0 |               0 |               0 |               0 |               0 |     54960 |
+| BRAM       |           0 |           0 |           0 |        42.5 |           0 |               0 |               0 |               0 |               4 |               0 |       672 |
+| URAM       |           0 |           0 |           0 |           0 |           0 |               0 |               0 |               0 |              64 |               0 |       320 |
+| DSPs       |           0 |           0 |           0 |         154 |           0 |               0 |               0 |               0 |              16 |               0 |      2880 |
++------------+-------------+-------------+-------------+-------------+-------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------+
+

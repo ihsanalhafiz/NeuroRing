@@ -1,0 +1,131 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0
+ Built: Oct  2 2025 06:57:01
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Mar 06 12:02:26 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Mar 06 12:02:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 38586 nodes for simulation.
+Data will be written to: /home/miahafiz/NeuroRing/host_py/data/
+  Directory already existed. Old data will be overwritten.
+
+Neuron numbers are scaled by a factor of 0.500.
+
+RNG seed: 55
+Total number of virtual processes: 4
+Creating neuronal populations.
+Connecting neuronal populations recurrently.
+[NodeCollection(metadata=None, model=iaf_psc_exp, size=10342, first=1, last=10342), NodeCollection(metadata=None, model=iaf_psc_exp, size=2917, first=10343, last=13259), NodeCollection(metadata=None, model=iaf_psc_exp, size=10958, first=13260, last=24217), NodeCollection(metadata=None, model=iaf_psc_exp, size=2740, first=24218, last=26957), NodeCollection(metadata=None, model=iaf_psc_exp, size=2425, first=26958, last=29382), NodeCollection(metadata=None, model=iaf_psc_exp, size=532, first=29383, last=29914), NodeCollection(metadata=None, model=iaf_psc_exp, size=7198, first=29915, last=37112), NodeCollection(metadata=None, model=iaf_psc_exp, size=1474, first=37113, last=38586)]
+Extracting synapse information...
+Loading synapse data from syndata_total38586_NperCU8192_SperCU7000.npy
+Loading synapse FPGA data from synfpga_total38586_NperCU8192_SperCU7000.npy
+
+Distributing 38586 neurons across 5 compute units on 1 FPGAs:
+Kernels per FPGA: [5]
+
+FPGA 0 (Kernels: 5):
+  Kernel 0 (Global ID: 0): neurons 1 to 8192 (total: 8192)
+  Kernel 1 (Global ID: 1): neurons 8193 to 16384 (total: 8192)
+  Kernel 2 (Global ID: 2): neurons 16385 to 24576 (total: 8192)
+  Kernel 3 (Global ID: 3): neurons 24577 to 32768 (total: 8192)
+  Kernel 4 (Global ID: 4): neurons 32769 to 38586 (total: 5818)
+
+Total neurons assigned: 38586
+Initialized device 0 with XCLBIN UUID: 70b1384f-f988-1aca-d466-a7d03bf3b6fd
+{'simulation_time': 1, 'amount_of_cores': 5, 'neuron_start': 1, 'neuron_total': 8192, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 8192, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 25600000, 'header_bytes': 102400000, 'tail_words_capacity': 114688000, 'tail_bytes_capacity': 458752000, 'bo_size': 561152000, 'core_id': 0}
+Initialized kernel NeuroRing:{NeuroRing_0} and SynapseRouter:{SynapseRouter_0} on device <pyxrt.device object at 0x7f20a893aff0>
+Allocated BO of 561152000 bytes (header 102400000, tail 458752000)
+{'simulation_time': 1, 'amount_of_cores': 5, 'neuron_start': 8193, 'neuron_total': 8192, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 8192, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 25600000, 'header_bytes': 102400000, 'tail_words_capacity': 114688000, 'tail_bytes_capacity': 458752000, 'bo_size': 561152000, 'core_id': 1}
+Initialized kernel NeuroRing:{NeuroRing_1} and SynapseRouter:{SynapseRouter_1} on device <pyxrt.device object at 0x7f20a893aff0>
+Allocated BO of 561152000 bytes (header 102400000, tail 458752000)
+{'simulation_time': 1, 'amount_of_cores': 5, 'neuron_start': 16385, 'neuron_total': 8192, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 8192, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 25600000, 'header_bytes': 102400000, 'tail_words_capacity': 114688000, 'tail_bytes_capacity': 458752000, 'bo_size': 561152000, 'core_id': 2}
+Initialized kernel NeuroRing:{NeuroRing_2} and SynapseRouter:{SynapseRouter_2} on device <pyxrt.device object at 0x7f20a893aff0>
+Allocated BO of 561152000 bytes (header 102400000, tail 458752000)
+{'simulation_time': 1, 'amount_of_cores': 5, 'neuron_start': 24577, 'neuron_total': 8192, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 8192, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 25600000, 'header_bytes': 102400000, 'tail_words_capacity': 114688000, 'tail_bytes_capacity': 458752000, 'bo_size': 561152000, 'core_id': 3}
+Initialized kernel NeuroRing:{NeuroRing_3} and SynapseRouter:{SynapseRouter_3} on device <pyxrt.device object at 0x7f20a893aff0>
+Allocated BO of 561152000 bytes (header 102400000, tail 458752000)
+{'simulation_time': 1, 'amount_of_cores': 5, 'neuron_start': 32769, 'neuron_total': 5818, 'device': None, 'xclbin': None, 'uuid': None, 'kernel_name': None, 'kernel': None, 'neuron_per_cu': 8192, 'synapse_total_per_cu': 7000, 'param_dict': {'dt': 0.1, 'tau_m': 10.0, 'tau_syn': 0.5, 'C_m': 250.0, 'E_L': -65.0, 't_ref_steps': 20, 'V_th_abs': -50.0, 'V_reset_abs': -65.0}, 'record_status': 0, 'synapseListHandle': None, 'header_words': 25600000, 'header_bytes': 102400000, 'tail_words_capacity': 114688000, 'tail_bytes_capacity': 458752000, 'bo_size': 561152000, 'core_id': 4}
+Initialized kernel NeuroRing:{NeuroRing_4} and SynapseRouter:{SynapseRouter_4} on device <pyxrt.device object at 0x7f20a893aff0>
+Allocated BO of 561152000 bytes (header 102400000, tail 458752000)
+Initialized devices
+Uploaded synapse list to <pyxrt.kernel object at 0x7f20a893b970>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f20a82d0170>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f20a82ce7b0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f20a82cd2b0>
+Uploaded synapse list to <pyxrt.kernel object at 0x7f20a82ddcb0>
+Uploaded synapse list to FPGA
+Running simulation 1/20
+Measured total power: 26.017 W
+Time taken for run 1: 10.270513534545898 seconds
+Running simulation 2/20
+Measured total power: 26.111 W
+Time taken for run 2: 10.289300680160522 seconds
+Running simulation 3/20
+Measured total power: 26.017 W
+Time taken for run 3: 10.250931024551392 seconds
+Running simulation 4/20
+Measured total power: 26.103 W
+Time taken for run 4: 10.243238687515259 seconds
+Running simulation 5/20
+Measured total power: 26.017 W
+Time taken for run 5: 10.344576120376587 seconds
+Running simulation 6/20
+Measured total power: 25.907 W
+Time taken for run 6: 10.273520469665527 seconds
+Running simulation 7/20
+Measured total power: 26.017 W
+Time taken for run 7: 10.223553895950317 seconds
+Running simulation 8/20
+Measured total power: 25.907 W
+Time taken for run 8: 10.231111288070679 seconds
+Running simulation 9/20
+Measured total power: 26.025 W
+Time taken for run 9: 10.24510383605957 seconds
+Running simulation 10/20
+Measured total power: 25.907 W
+Time taken for run 10: 10.23827052116394 seconds
+Running simulation 11/20
+Measured total power: 26.017 W
+Time taken for run 11: 10.3122718334198 seconds
+Running simulation 12/20
+Measured total power: 25.907 W
+Time taken for run 12: 10.268482446670532 seconds
+Running simulation 13/20
+Measured total power: 25.915 W
+Time taken for run 13: 10.215880870819092 seconds
+Running simulation 14/20
+Measured total power: 25.907 W
+Time taken for run 14: 10.247491359710693 seconds
+Running simulation 15/20
+Measured total power: 25.907 W
+Time taken for run 15: 10.25669240951538 seconds
+Running simulation 16/20
+Measured total power: 25.915 W
+Time taken for run 16: 10.257953882217407 seconds
+Running simulation 17/20
+Measured total power: 25.915 W
+Time taken for run 17: 10.204218864440918 seconds
+Running simulation 18/20
+Measured total power: 25.915 W
+Time taken for run 18: 10.23259949684143 seconds
+Running simulation 19/20
+Measured total power: 25.915 W
+Time taken for run 19: 10.227736473083496 seconds
+Running simulation 20/20
+Measured total power: 25.915 W
+Time taken for run 20: 10.244334697723389 seconds
+Average time over 20 runs: 10.253889119625091 seconds
+Average total power over 20 runs: 25.963 W

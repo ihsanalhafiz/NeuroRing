@@ -1,0 +1,51 @@
+===============================================================================
+Version:    v++ v2025.1 (64-bit)
+Build:      SW Build 6137779 on 2025-05-21-18:10:03
+Copyright:  Copyright 1986-2025 Xilinx, Inc. All Rights Reserved.
+Created:    Fri Feb 27 05:05:03 2026
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             krnl_neuroring
+Target Device:           xilinx:u55c:gen3x16_xdma_3:202210.1
+Target Clock:            300.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name  Type  Target              OpenCL Library  Compute Units
+-----------  ----  ------------------  --------------  -------------
+NeuroRing    c     fpga0:OCL_REGION_0  krnl_neuroring  1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     krnl_neuroring
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit  Kernel Name  Module Name                                   Target Frequency  Estimated Frequency
+------------  -----------  --------------------------------------------  ----------------  -------------------
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_94_1            300.300293        411.015198
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  300.300293        413.223114
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         300.300293        411.015198
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_224_6           300.300293        649.772583
+NeuroRing_1   NeuroRing    NeuroRing                                     300.300293        397.614288
+
+Latency Information
+Compute Unit  Kernel Name  Module Name                                   Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+------------  -----------  --------------------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_94_1            4097            4180           4180          4180            13.932 us        13.932 us       13.932 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  1025            1060           1060          1060            3.533 us         3.533 us        3.533 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         33              103            103           103             0.343 us         0.343 us        0.343 us
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_224_6           1025            1026           1026          1026            3.420 us         3.420 us        3.420 us
+NeuroRing_1   NeuroRing    NeuroRing                                     undef           undef          undef         undef           undef            undef           undef
+
+Area Information
+Compute Unit  Kernel Name  Module Name                                   FF     LUT    DSP  BRAM  URAM
+------------  -----------  --------------------------------------------  -----  -----  ---  ----  ----
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_94_1            639    412    0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_update_membrane_potential  36216  24100  0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_write_spike_status         473    1342   0    0     0
+NeuroRing_1   NeuroRing    NeuroRing_Pipeline_VITIS_LOOP_224_6           17     70     0    0     0
+NeuroRing_1   NeuroRing    NeuroRing                                     45580  36898  0    87    0
+-------------------------------------------------------------------------------
