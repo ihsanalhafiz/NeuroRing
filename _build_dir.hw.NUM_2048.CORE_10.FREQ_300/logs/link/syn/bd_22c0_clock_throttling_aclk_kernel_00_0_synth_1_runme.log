@@ -1,0 +1,302 @@
+
+*** Running vivado
+    with args -log bd_22c0_clock_throttling_aclk_kernel_00_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_22c0_clock_throttling_aclk_kernel_00_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Feb 27 13:17:48 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source bd_22c0_clock_throttling_aclk_kernel_00_0.tcl -notrace
+INFO: Dispatch client connection id - 35645
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1546.750 ; gain = 0.023 ; free physical = 36754 ; free virtual = 82580
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_user_krnl_aurora_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/vitis/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axi_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axi_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axis_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axis_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axis_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pipeline_reg:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/pipeline_reg_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/pipeline_reg_v1_0
+Command: synth_design -top bd_22c0_clock_throttling_aclk_kernel_00_0 -part xcu55c-fsvh2892-2L-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Device 21-403] Loading part xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2761856
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3237.438 ; gain = 289.691 ; free physical = 34796 ; free virtual = 80678
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'bd_22c0_clock_throttling_aclk_kernel_00_0' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/synth/bd_22c0_clock_throttling_aclk_kernel_00_0.vhd:74]
+	Parameter CLK_SLOW_DIV bound to: 1 - type: integer 
+	Parameter SYNTH_SIZE bound to: 8 - type: integer 
+	Parameter IS_VERSAL bound to: 0 - type: bool 
+	Parameter SIM_DEVICE bound to: ULTRASCALE_PLUS - type: string 
+INFO: [Synth 8-3491] module 'shell_utils_clock_throttling' declared at '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:56' bound to instance 'U0' of component 'shell_utils_clock_throttling' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/synth/bd_22c0_clock_throttling_aclk_kernel_00_0.vhd:123]
+INFO: [Synth 8-638] synthesizing module 'shell_utils_clock_throttling' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:82]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter SRC_INPUT_REG bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_cdc_single' declared at '/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152' bound to instance 'UP_CDC' of component 'xpm_cdc_single' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:159]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_single' [/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_single' (0#1) [/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter SRC_INPUT_REG bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_cdc_single' declared at '/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152' bound to instance 'LA_CDC' of component 'xpm_cdc_single' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:173]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter RST_ACTIVE_HIGH bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_cdc_async_rst' declared at '/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1175' bound to instance 'RST_CDC' of component 'xpm_cdc_async_rst' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:193]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_async_rst' [/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1175]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_async_rst' (0#1) [/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1175]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter RST_ACTIVE_HIGH bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_cdc_async_rst' declared at '/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1175' bound to instance 'LCK_CDC' of component 'xpm_cdc_async_rst' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:205]
+	Parameter DEST_SYNC_FF bound to: 4 - type: integer 
+	Parameter INIT_SYNC_FF bound to: 1 - type: integer 
+	Parameter RST_ACTIVE_HIGH bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_cdc_async_rst' declared at '/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1175' bound to instance 'SRT_CDC' of component 'xpm_cdc_async_rst' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:217]
+INFO: [Synth 8-113] binding component instance 'ICCLK' to cell 'BUFG' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:235]
+	Parameter CE_TYPE bound to: ASYNC - type: string 
+	Parameter SIM_DEVICE bound to: ULTRASCALE_PLUS - type: string 
+INFO: [Synth 8-113] binding component instance 'ECCLK' to cell 'BUFGCE' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:248]
+INFO: [Synth 8-113] binding component instance 'FCLK' to cell 'BUFGCE' [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:292]
+WARNING: [Synth 8-614] signal 'Rst_Int' is read in the process but is not in the sensitivity list [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:365]
+INFO: [Synth 8-256] done synthesizing module 'shell_utils_clock_throttling' (0#1) [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:82]
+INFO: [Synth 8-256] done synthesizing module 'bd_22c0_clock_throttling_aclk_kernel_00_0' (0#1) [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/synth/bd_22c0_clock_throttling_aclk_kernel_00_0.vhd:74]
+WARNING: [Synth 8-6014] Unused sequential element Mbufg_Clrb_SR_reg was removed.  [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:383]
+WARNING: [Synth 8-3848] Net Clk_Out_Div in module/entity shell_utils_clock_throttling does not have driver. [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/f1e8/hdl/shell_utils_clock_throttling_v2_0_vh_rfs.vhd:77]
+WARNING: [Synth 8-7129] Port src_clk in module xpm_cdc_single is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Clk_Out_Div in module shell_utils_clock_throttling is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 3319.406 ; gain = 371.660 ; free physical = 33665 ; free virtual = 79578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 3331.281 ; gain = 383.535 ; free physical = 33612 ; free virtual = 79524
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 3331.281 ; gain = 383.535 ; free physical = 33612 ; free virtual = 79524
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3345.219 ; gain = 0.000 ; free physical = 33525 ; free virtual = 79445
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/bd_22c0_clock_throttling_aclk_kernel_00_0_ooc.xdc] for cell 'U0'
+create_clock: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 3423.086 ; gain = 3.117 ; free physical = 31526 ; free virtual = 77409
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/bd_22c0_clock_throttling_aclk_kernel_00_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_clock_throttling_aclk_kernel_00_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_clock_throttling_aclk_kernel_00_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/bd_22c0_clock_throttling_aclk_kernel_00_0.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_60/bd_22c0_clock_throttling_aclk_kernel_00_0.xdc] for cell 'U0'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/bd_22c0_clock_throttling_aclk_kernel_00_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/bd_22c0_clock_throttling_aclk_kernel_00_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-1714] 5 XPM XDC files have been applied to the design.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3423.086 ; gain = 0.000 ; free physical = 31516 ; free virtual = 77399
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3423.121 ; gain = 0.000 ; free physical = 31754 ; free virtual = 77637
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 3423.121 ; gain = 475.375 ; free physical = 33027 ; free virtual = 78913
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 3431.090 ; gain = 483.344 ; free physical = 33025 ; free virtual = 78912
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 3431.090 ; gain = 483.344 ; free physical = 33009 ; free virtual = 78896
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 3431.090 ; gain = 483.344 ; free physical = 32731 ; free virtual = 78617
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 4     
++---Registers : 
+	                8 Bit    Registers := 3     
+	                4 Bit    Registers := 5     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 9024 (col length:94)
+BRAMs: 4032 (col length: RAMB18 288 RAMB36 144)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port src_clk in module xpm_cdc_single is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Clk_Out_Div in module shell_utils_clock_throttling is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 3431.090 ; gain = 483.344 ; free physical = 32616 ; free virtual = 78503
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'U0/LCK_CDC/src_arst' to pin 'Locked'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'U0/RST_CDC/src_arst' to pin 'Rst_In'
+INFO: [Synth 8-5819] Moved 2 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 3879.500 ; gain = 931.754 ; free physical = 37322 ; free virtual = 83212
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 3889.516 ; gain = 941.770 ; free physical = 37311 ; free virtual = 83201
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 3898.531 ; gain = 950.785 ; free physical = 37294 ; free virtual = 83184
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35609 ; free virtual = 81497
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35609 ; free virtual = 81497
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35609 ; free virtual = 81496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35607 ; free virtual = 81495
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35607 ; free virtual = 81494
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35607 ; free virtual = 81494
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |BUFGCE |     2|
+|4     |CARRY8 |     1|
+|5     |LUT1   |     4|
+|6     |LUT2   |     2|
+|7     |LUT3   |     8|
+|8     |LUT4   |     1|
+|9     |FDCE   |    12|
+|10    |FDRE   |    25|
+|11    |FDSE   |    17|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35607 ; free virtual = 81494
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 4065.344 ; gain = 1025.758 ; free physical = 35555 ; free virtual = 81442
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:42 . Memory (MB): peak = 4065.344 ; gain = 1117.598 ; free physical = 35552 ; free virtual = 81440
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4065.344 ; gain = 0.000 ; free physical = 35546 ; free virtual = 81433
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4065.344 ; gain = 0.000 ; free physical = 36430 ; free virtual = 82316
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+
+Synth Design complete | Checksum: 15f84418
+INFO: [Common 17-83] Releasing license: Synthesis
+49 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 4065.344 ; gain = 2486.750 ; free physical = 36245 ; free virtual = 82131
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3128.506; main = 2980.781; forked = 177.265
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4967.742; main = 4037.648; forked = 955.207
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4065.344 ; gain = 0.000 ; free physical = 36171 ; free virtual = 82058
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_clock_throttling_aclk_kernel_00_0_synth_1/bd_22c0_clock_throttling_aclk_kernel_00_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_22c0_clock_throttling_aclk_kernel_00_0, cache-ID = 4db7ae6212f3fe10
+INFO: [Coretcl 2-1174] Renamed 6 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4065.344 ; gain = 0.000 ; free physical = 38445 ; free virtual = 84406
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_clock_throttling_aclk_kernel_00_0_synth_1/bd_22c0_clock_throttling_aclk_kernel_00_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file bd_22c0_clock_throttling_aclk_kernel_00_0_utilization_synth.rpt -pb bd_22c0_clock_throttling_aclk_kernel_00_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 27 13:19:14 2026...

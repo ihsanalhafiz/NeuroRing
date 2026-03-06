@@ -1,0 +1,31 @@
+
+*** Running vivado
+    with args -log ulp_buffer_NeuroRing_6_SynapseStreamLeft_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ulp_buffer_NeuroRing_6_SynapseStreamLeft_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Feb 27 13:12:02 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source ulp_buffer_NeuroRing_6_SynapseStreamLeft_0.tcl -notrace
+INFO: Dispatch client connection id - 35645
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1541.750 ; gain = 0.023 ; free physical = 37417 ; free virtual = 82314
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_user_krnl_aurora_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/vitis/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axi_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axi_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axis_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axis_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axis_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pipeline_reg:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/pipeline_reg_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_2048/_x.hw.NUM_2048.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/pipeline_reg_v1_0
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP ulp_buffer_NeuroRing_6_SynapseStreamLeft_0, cache-ID = 2f6822aae270d9c3.
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 27 13:12:20 2026...
