@@ -1,0 +1,220 @@
+
+*** Running vivado
+    with args -log bd_22c0_gapping_demand_update_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_22c0_gapping_demand_update_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Wed Feb 25 12:56:34 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source bd_22c0_gapping_demand_update_0.tcl -notrace
+INFO: Dispatch client connection id - 42293
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1551.617 ; gain = 0.023 ; free physical = 30129 ; free virtual = 103953
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_Poisson_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/vitis/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axi_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axi_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axis_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axis_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axis_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pipeline_reg:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/pipeline_reg_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/pipeline_reg_v1_0
+Command: synth_design -top bd_22c0_gapping_demand_update_0 -part xcu55c-fsvh2892-2L-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Device 21-403] Loading part xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 1370029
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3237.477 ; gain = 288.691 ; free physical = 19514 ; free virtual = 93572
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_22c0_gapping_demand_update_0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_4/synth/bd_22c0_gapping_demand_update_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'util_vector_logic_v2_0_5_util_vector_logic' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/e056/hdl/util_vector_logic_v2_0_vl_rfs.v:90]
+INFO: [Synth 8-6155] done synthesizing module 'util_vector_logic_v2_0_5_util_vector_logic' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/e056/hdl/util_vector_logic_v2_0_vl_rfs.v:90]
+INFO: [Synth 8-6155] done synthesizing module 'bd_22c0_gapping_demand_update_0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_ulp_ucs_0/bd_0/ip/ip_4/synth/bd_22c0_gapping_demand_update_0.v:53]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3318.414 ; gain = 369.629 ; free physical = 19174 ; free virtual = 93274
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3333.258 ; gain = 384.473 ; free physical = 19079 ; free virtual = 93228
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3333.258 ; gain = 384.473 ; free physical = 19078 ; free virtual = 93228
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3333.258 ; gain = 0.000 ; free physical = 18899 ; free virtual = 93051
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3354.039 ; gain = 0.000 ; free physical = 22415 ; free virtual = 96478
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.08 . Memory (MB): peak = 3354.074 ; gain = 0.000 ; free physical = 22730 ; free virtual = 96816
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3354.074 ; gain = 405.289 ; free physical = 23025 ; free virtual = 97254
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3362.043 ; gain = 413.258 ; free physical = 23018 ; free virtual = 97247
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3362.043 ; gain = 413.258 ; free physical = 22780 ; free virtual = 97012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 3362.043 ; gain = 413.258 ; free physical = 23214 ; free virtual = 97457
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 9024 (col length:94)
+BRAMs: 4032 (col length: RAMB18 288 RAMB36 144)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 3362.043 ; gain = 413.258 ; free physical = 24183 ; free virtual = 98455
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 3868.328 ; gain = 919.543 ; free physical = 32478 ; free virtual = 106754
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 3868.328 ; gain = 919.543 ; free physical = 32474 ; free virtual = 106750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 3877.344 ; gain = 928.559 ; free physical = 32464 ; free virtual = 106740
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31377 ; free virtual = 105687
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31375 ; free virtual = 105685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31370 ; free virtual = 105680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31368 ; free virtual = 105678
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31363 ; free virtual = 105673
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31362 ; free virtual = 105672
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT2 |     1|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31358 ; free virtual = 105668
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 4053.156 ; gain = 1083.555 ; free physical = 31114 ; free virtual = 105424
+Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 4053.156 ; gain = 1104.371 ; free physical = 31105 ; free virtual = 105416
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4053.156 ; gain = 0.000 ; free physical = 30927 ; free virtual = 105240
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4053.156 ; gain = 0.000 ; free physical = 34531 ; free virtual = 108875
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 725b9bf6
+INFO: [Common 17-83] Releasing license: Synthesis
+27 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 4053.156 ; gain = 2474.664 ; free physical = 34254 ; free virtual = 108618
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2970.622; main = 2970.132; forked = 169.135
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4452.859; main = 4025.461; forked = 955.207
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_gapping_demand_update_0_synth_1/bd_22c0_gapping_demand_update_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_22c0_gapping_demand_update_0, cache-ID = 98155adc9e274031
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/bd_22c0_gapping_demand_update_0_synth_1/bd_22c0_gapping_demand_update_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file bd_22c0_gapping_demand_update_0_utilization_synth.rpt -pb bd_22c0_gapping_demand_update_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 25 12:57:49 2026...

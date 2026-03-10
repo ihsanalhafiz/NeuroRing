@@ -1,0 +1,343 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
+	Reports: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link
+	Log files: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/logs/link
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin.link_summary, at Wed Feb 25 12:41:25 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link/v++_link_krnl_neuroring_hw_guidance.html', at Wed Feb 25 12:41:25 2026
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/hw/hw.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2025.1
+INFO: [v++ 60-1302] Platform 'xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm' has been explicitly enabled for this release.
+INFO: [v++ 60-629] Linking for hardware target
+INFO: [v++ 60-423]   Target device: xilinx_u55c_gen3x16_xdma_3_202210_1
+WARNING: [v++ 60-889] User-specified kernel frequency for ID 0 is the same as the default frequency 300 MHz, so it will be ignored
+INFO: [v++ 60-1332] Run 'run_link' status: Not started
+INFO: [v++ 60-1443] [12:41:38] Run run_link: Step system_link: Started
+INFO: [v++ 60-1453] Command Line: system_link --xo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring.xo --xo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_poisson.xo --xo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter.xo -keep --config /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/syslinkConfig.ini --xpfm /opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm --target hw --output_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int --temp_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring.xo
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_poisson.xo
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter.xo
+INFO: [SYSTEM_LINK 82-53] Creating IP database /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-38] [12:41:50] build_xd_ip_db started: /opt/xilinx/2025.1/Vitis/bin/build_xd_ip_db -ip_search 0  -sds-pf /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/hw.hpfm -clkid 0 -ip /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/iprepo/xilinx_com_hls_NeuroRing_1_0,NeuroRing -ip /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/iprepo/xilinx_com_hls_NeuroRing_Poisson_1_0,NeuroRing_Poisson -ip /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/iprepo/xilinx_com_hls_SynapseRouter_1_0,SynapseRouter -o /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [12:41:52] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:00.68 ; elapsed = 00:00:02 . Memory (MB): peak = 498.840 ; gain = 0.000 ; free physical = 41115 ; free virtual = 161346
+INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
+INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [12:41:52] cfgen started: /opt/xilinx/2025.1/Vitis/bin/cfgen  -nk NeuroRing:1:NeuroRing_0 -nk NeuroRing_Poisson:1:NeuroRing_Poisson_0 -nk SynapseRouter:2:SynapseRouter_0,SynapseRouter_1 -sc NeuroRing_0.SynapseStreamRight:SynapseRouter_0.synapse_stream_right:256 -sc NeuroRing_Poisson_0.SynapseStreamRight:SynapseRouter_1.synapse_stream_right:256 -sc NeuroRing_0.SynapseStreamLeft:SynapseRouter_0.synapse_stream_left:256 -sc NeuroRing_Poisson_0.SynapseStreamLeft:SynapseRouter_1.synapse_stream_left:256 -sc SynapseRouter_0.SpikeOutWeight:NeuroRing_0.SpikeInWeight:128 -sc SynapseRouter_1.SpikeOutWeight:NeuroRing_Poisson_0.SpikeInWeight:128 -sc SynapseRouter_0.syn_forward_rt_right:SynapseRouter_1.syn_route_in_right:4096 -sc SynapseRouter_1.syn_forward_rt_right:SynapseRouter_0.syn_route_in_right:8192 -sc SynapseRouter_0.syn_forward_rt_left:SynapseRouter_1.syn_route_in_left:4096 -sc SynapseRouter_1.syn_forward_rt_left:SynapseRouter_0.syn_route_in_left:8192 -sp NeuroRing_0.SpikeRecorder_SynapseList:HBM[0] -sp NeuroRing_Poisson_0.SpikeRecorder_SynapseList:HBM[4] -dpa_mem_offload false -dpa_aie_mem_offload false -dmclkid 0 -r /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [CFGEN 83-0] Kernel Specs: 
+INFO: [CFGEN 83-0]   kernel: NeuroRing, num: 1  {NeuroRing_0}
+INFO: [CFGEN 83-0]   kernel: NeuroRing_Poisson, num: 1  {NeuroRing_Poisson_0}
+INFO: [CFGEN 83-0]   kernel: SynapseRouter, num: 2  {SynapseRouter_0 SynapseRouter_1}
+INFO: [CFGEN 83-0] Port Specs: 
+INFO: [CFGEN 83-0]   kernel: NeuroRing_0, k_port: SpikeRecorder_SynapseList, sptag: HBM[0]
+INFO: [CFGEN 83-0]   kernel: NeuroRing_Poisson_0, k_port: SpikeRecorder_SynapseList, sptag: HBM[4]
+INFO: [CFGEN 83-0] Stream Specs: 
+INFO: [CFGEN 83-0]   NeuroRing_0.SynapseStreamRight => SynapseRouter_0.synapse_stream_right
+INFO: [CFGEN 83-0]   NeuroRing_Poisson_0.SynapseStreamRight => SynapseRouter_1.synapse_stream_right
+INFO: [CFGEN 83-0]   NeuroRing_0.SynapseStreamLeft => SynapseRouter_0.synapse_stream_left
+INFO: [CFGEN 83-0]   NeuroRing_Poisson_0.SynapseStreamLeft => SynapseRouter_1.synapse_stream_left
+INFO: [CFGEN 83-0]   SynapseRouter_0.SpikeOutWeight => NeuroRing_0.SpikeInWeight
+INFO: [CFGEN 83-0]   SynapseRouter_1.SpikeOutWeight => NeuroRing_Poisson_0.SpikeInWeight
+INFO: [CFGEN 83-0]   SynapseRouter_0.syn_forward_rt_right => SynapseRouter_1.syn_route_in_right
+INFO: [CFGEN 83-0]   SynapseRouter_1.syn_forward_rt_right => SynapseRouter_0.syn_route_in_right
+INFO: [CFGEN 83-0]   SynapseRouter_0.syn_forward_rt_left => SynapseRouter_1.syn_route_in_left
+INFO: [CFGEN 83-0]   SynapseRouter_1.syn_forward_rt_left => SynapseRouter_0.syn_route_in_left
+INFO: [SYSTEM_LINK 82-37] [12:42:01] cfgen finished successfully
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 498.840 ; gain = 0.000 ; free physical = 36073 ; free virtual = 156297
+INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
+INFO: [SYSTEM_LINK 82-38] [12:42:02] cf2bd started: /opt/xilinx/2025.1/Vitis/bin/cf2bd  --linux --trace_buffer 1024 --input_file /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.xsd --temp_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link --output_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int --target_bd ulp.bd
+INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
+INFO: [CF2BD 82-28] cf2xd finished successfully
+INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -bd ulp.bd -dn dr -dp /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/sys_link/_sysl/.xsd
+rlwrap: warning: your $TERM is 'screen.xterm-256color' but rlwrap couldn't find it in the terminfo database. Expect some problems.: Inappropriate ioctl for device
+INFO: [CF2BD 82-28] cf_xsd finished successfully
+INFO: [SYSTEM_LINK 82-37] [12:42:14] cf2bd finished successfully
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 498.840 ; gain = 0.000 ; free physical = 37129 ; free virtual = 157356
+INFO: [v++ 60-1441] [12:42:14] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:36 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 37328 ; free virtual = 157555
+INFO: [v++ 60-1443] [12:42:14] Run run_link: Step cf2sw: Started
+INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/sdsl.dat -rtd /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/cf2sw.rtd -nofilter /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/cf2sw_full.rtd -xclbin /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xclbin_orig.xml -o /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xclbin_orig.1.xml
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+INFO: [v++ 60-1441] [12:42:31] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 37538 ; free virtual = 157758
+INFO: [v++ 60-1443] [12:42:31] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+INFO: [v++ 60-1441] [12:42:32] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.67 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 40291 ; free virtual = 160516
+INFO: [v++ 60-1443] [12:42:32] Run run_link: Step vpl: Started
+INFO: [v++ 60-1453] Command Line: vpl -t hw -f xilinx_u55c_gen3x16_xdma_3_202210_1 -s --kernel_frequency 300 --remote_ip_cache /home/miahafiz/NeuroRing_a_sudoku_v2/.ipcache --output_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int --log_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/logs/link --report_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link --config /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/vplConfig.ini -k /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link --no-info --iprepo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0 --iprepo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_Poisson_1_0 --iprepo /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0 --messageDb /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link/vpl.pb /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/dr.bd.tcl
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+
+****** vpl v2025.1 (64-bit)
+  **** SW Build 6137779 on 2025-05-21-18:10:03
+  **** Start of session at: Wed Feb 25 12:42:34 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+INFO: [VPL 60-839] Read in kernel information from file '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/kernel_info.dat'.
+INFO: [VPL 74-78] Compiler Version string: 2025.1
+INFO: [VPL 60-423]   Target device: xilinx_u55c_gen3x16_xdma_3_202210_1
+WARNING: [VPL 60-889] User-specified kernel frequency for ID 0 is the same as the default frequency 300 MHz, so it will be ignored
+INFO: [VPL 60-1032] Extracting hardware platform to /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform
+[12:42:58] Run vpl: Step create_project: Started
+Creating Vivado project.
+[12:43:01] Run vpl: Step create_project: Completed
+[12:43:01] Run vpl: Step create_bd: Started
+[12:43:53] Run vpl: Step create_bd: Completed
+[12:43:53] Run vpl: Step update_bd: Started
+[12:43:55] Run vpl: Step update_bd: Completed
+[12:43:55] Run vpl: Step generate_target: Started
+[12:45:11] Run vpl: Step generate_target: RUNNING...
+[12:46:28] Run vpl: Step generate_target: RUNNING...
+[12:46:37] Run vpl: Step generate_target: Completed
+[12:46:37] Run vpl: Step config_hw_runs: Started
+[12:47:56] Run vpl: Step config_hw_runs: RUNNING...
+[12:48:55] Run vpl: Step config_hw_runs: Completed
+[12:48:55] Run vpl: Step synth: Started
+[12:49:58] Block-level synthesis in progress, 0 of 156 jobs complete, 16 jobs running.
+[12:50:33] Block-level synthesis in progress, 0 of 156 jobs complete, 16 jobs running.
+[12:51:06] Block-level synthesis in progress, 0 of 156 jobs complete, 16 jobs running.
+[12:51:38] Block-level synthesis in progress, 13 of 156 jobs complete, 3 jobs running.
+[12:52:12] Block-level synthesis in progress, 17 of 156 jobs complete, 13 jobs running.
+[12:52:44] Block-level synthesis in progress, 22 of 156 jobs complete, 11 jobs running.
+[12:53:19] Block-level synthesis in progress, 24 of 156 jobs complete, 14 jobs running.
+[12:53:51] Block-level synthesis in progress, 31 of 156 jobs complete, 9 jobs running.
+[12:54:25] Block-level synthesis in progress, 37 of 156 jobs complete, 11 jobs running.
+[12:55:04] Block-level synthesis in progress, 37 of 156 jobs complete, 16 jobs running.
+[12:55:36] Block-level synthesis in progress, 44 of 156 jobs complete, 9 jobs running.
+[12:56:09] Block-level synthesis in progress, 48 of 156 jobs complete, 13 jobs running.
+[12:56:41] Block-level synthesis in progress, 51 of 156 jobs complete, 14 jobs running.
+[12:57:13] Block-level synthesis in progress, 57 of 156 jobs complete, 10 jobs running.
+[12:57:46] Block-level synthesis in progress, 64 of 156 jobs complete, 10 jobs running.
+[12:58:18] Block-level synthesis in progress, 72 of 156 jobs complete, 9 jobs running.
+[12:58:51] Block-level synthesis in progress, 76 of 156 jobs complete, 13 jobs running.
+[12:59:24] Block-level synthesis in progress, 84 of 156 jobs complete, 9 jobs running.
+[12:59:57] Block-level synthesis in progress, 92 of 156 jobs complete, 8 jobs running.
+[13:00:28] Block-level synthesis in progress, 104 of 156 jobs complete, 5 jobs running.
+[13:01:00] Block-level synthesis in progress, 109 of 156 jobs complete, 12 jobs running.
+[13:01:33] Block-level synthesis in progress, 113 of 156 jobs complete, 12 jobs running.
+[13:02:05] Block-level synthesis in progress, 116 of 156 jobs complete, 13 jobs running.
+[13:02:38] Block-level synthesis in progress, 123 of 156 jobs complete, 11 jobs running.
+[13:03:11] Block-level synthesis in progress, 135 of 156 jobs complete, 7 jobs running.
+[13:03:43] Block-level synthesis in progress, 150 of 156 jobs complete, 1 job running.
+[13:04:15] Block-level synthesis in progress, 151 of 156 jobs complete, 3 jobs running.
+[13:04:47] Block-level synthesis in progress, 152 of 156 jobs complete, 3 jobs running.
+[13:05:19] Block-level synthesis in progress, 154 of 156 jobs complete, 1 job running.
+[13:05:51] Block-level synthesis in progress, 154 of 156 jobs complete, 2 jobs running.
+[13:06:23] Block-level synthesis in progress, 155 of 156 jobs complete, 1 job running.
+[13:06:55] Block-level synthesis in progress, 156 of 156 jobs complete, 0 jobs running.
+[13:07:26] Top-level synthesis in progress.
+[13:07:58] Top-level synthesis in progress.
+[13:08:29] Top-level synthesis in progress.
+[13:09:01] Top-level synthesis in progress.
+[13:09:54] Run vpl: Step synth: Completed
+[13:09:54] Run vpl: Step impl: Started
+[13:18:57] Finished 2nd of 6 tasks (FPGA linking synthesized kernels to platform). Elapsed time: 00h 36m 22s 
+
+[13:18:57] Starting logic optimization..
+[13:18:57] Phase 1 Initialization
+[13:18:57] Phase 1.1 Core Generation And Design Setup
+[13:18:57] Phase 1.2 Setup Constraints And Sort Netlist
+[13:18:57] Phase 2 Timer Update And Timing Data Collection
+[13:18:57] Phase 2.1 Timer Update
+[13:19:29] Phase 2.2 Timing Data Collection
+[13:19:29] Phase 3 Retarget
+[13:19:29] Phase 4 Constant propagation
+[13:19:29] Phase 5 Sweep
+[13:20:01] Phase 6 BUFG optimization
+[13:20:01] Phase 7 Shift Register Optimization
+[13:20:01] Phase 8 Post Processing Netlist
+[13:20:33] Phase 9 Finalization
+[13:20:33] Phase 9.1 Finalizing Design Cores and Updating Shapes
+[13:20:33] Phase 9.2 Verifying Netlist Connectivity
+[13:20:33] Finished 3rd of 6 tasks (FPGA logic optimization). Elapsed time: 00h 01m 35s 
+
+[13:20:33] Starting logic placement..
+[13:21:04] Phase 1 Placer Initialization
+[13:21:04] Phase 1.1 Placer Initialization Netlist Sorting
+[13:25:19] Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+[13:25:51] Phase 1.3 Build Placer Netlist Model
+[13:27:58] Phase 1.4 Constrain Clocks/Macros
+[13:27:58] Phase 2 Global Placement
+[13:27:58] Phase 2.1 Floorplanning
+[13:29:02] Phase 2.1.1 Partition Driven Placement
+[13:29:02] Phase 2.1.1.1 PBP: Partition Driven Placement
+[13:31:09] Phase 2.1.1.2 PBP: Clock Region Placement
+[13:31:41] Phase 2.1.1.3 PBP: Discrete Incremental
+[13:32:13] Phase 2.1.1.4 PBP: Compute Congestion
+[13:32:13] Phase 2.1.1.5 PBP: Macro Placement
+[13:32:45] Phase 2.1.1.6 PBP: UpdateTiming
+[13:32:45] Phase 2.1.1.7 PBP: Add part constraints
+[13:33:17] Phase 2.2 Physical Synthesis After Floorplan
+[13:33:49] Phase 2.3 Update Timing before SLR Path Opt
+[13:33:49] Phase 2.4 Post-Processing in Floorplanning
+[13:33:49] Phase 2.5 Global Place Phase1
+[13:45:30] Phase 2.6 Global Place Phase2
+[13:45:30] Phase 2.6.1 UpdateTiming Before Physical Synthesis
+[13:46:02] Phase 2.6.2 Physical Synthesis In Placer
+[13:49:45] Phase 3 Detail Placement
+[13:50:17] Phase 3.1 Commit Multi Column Macros
+[13:50:17] Phase 3.2 Commit Most Macros & LUTRAMs
+[13:52:25] Phase 3.3 Small Shape DP
+[13:52:25] Phase 3.3.1 Small Shape Clustering
+[13:52:25] Phase 3.3.2 Slice Area Swap
+[13:52:25] Phase 3.3.2.1 Slice Area Swap Initial
+[13:55:04] Phase 3.4 Place Remaining
+[13:55:04] Phase 3.5 Re-assign LUT pins
+[13:55:37] Phase 3.6 Pipeline Register Optimization
+[13:56:08] Phase 3.7 Fast Optimization
+[13:57:12] Phase 4 Post Placement Optimization and Clean-Up
+[13:57:12] Phase 4.1 Post Commit Optimization
+[13:58:48] Phase 4.1.1 Post Placement Optimization
+[13:58:48] Phase 4.1.1.1 BUFG Insertion
+[13:58:48] Phase 1 Physical Synthesis Initialization
+[13:59:51] Phase 4.1.1.2 BUFG Replication
+[13:59:51] Phase 4.1.1.3 Post Placement Timing Optimization
+[14:04:38] Phase 4.1.1.4 Replication
+[14:05:41] Phase 4.2 Post Placement Cleanup
+[14:05:41] Phase 4.3 Placer Reporting
+[14:05:41] Phase 4.3.1 Print Estimated Congestion
+[14:05:41] Phase 4.4 Final Placement Cleanup
+[14:09:25] Finished 4th of 6 tasks (FPGA logic placement). Elapsed time: 00h 48m 51s 
+
+[14:09:25] Starting logic routing..
+[14:09:25] Phase 1 Build RT Design
+[14:11:00] Phase 2 Router Initialization
+[14:11:00] Phase 2.1 Fix Topology Constraints
+[14:11:00] Phase 2.2 Pre Route Cleanup
+[14:11:32] Phase 2.3 Global Clock Net Routing
+[14:12:04] Phase 2.4 Update Timing
+[14:14:11] Phase 2.5 Update Timing for Bus Skew
+[14:14:11] Phase 2.5.1 Update Timing
+[14:14:43] Phase 2.6 Soft Constraint Pins - Fast Budgeting
+[14:14:43] Phase 3 Global Routing
+[14:14:43] Phase 4 Initial Routing
+[14:14:43] Phase 4.1 Initial Net Routing Pass
+[14:16:18] Phase 5 Rip-up And Reroute
+[14:16:18] Phase 5.1 Global Iteration 0
+[14:28:01] Phase 5.2 Global Iteration 1
+[14:32:17] Phase 5.3 Global Iteration 2
+[14:38:08] Phase 6 Delay and Skew Optimization
+[14:38:08] Phase 6.1 TNS Cleanup
+[14:38:08] Phase 6.1.1 Delay CleanUp
+[14:39:43] Phase 6.2 Clock Skew Optimization
+[14:39:43] Phase 7 Post Hold Fix
+[14:39:43] Phase 7.1 Hold Fix Iter
+[14:40:16] Phase 7.2 Non Free Resource Hold Fix Iter
+[14:40:16] Phase 8 Route finalize
+[14:40:16] Phase 9 Verifying routed nets
+[14:40:47] Phase 10 Depositing Routes
+[14:41:20] Phase 11 Leaf Clock Prog Delay Opt
+[14:41:20] Phase 11.1 Optimize Skews
+[14:41:20] Phase 11.1.1 Leaf ClockOpt Init
+[14:42:23] Phase 11.2 Post SkewOpt Delay Cleanup
+[14:42:23] Phase 11.2.1 Delay CleanUp
+[14:42:55] Phase 11.3 Post SkewOpt Hold Fix
+[14:42:55] Phase 11.3.1 Hold Fix Iter
+[14:44:30] Phase 12 Depositing Routes
+[14:45:02] Phase 13 Resolve XTalk
+[14:45:02] Phase 14 Post Process Routing
+[14:45:02] Phase 15 Post Router Timing
+[14:46:05] Phase 16 Route finalize
+[14:46:05] Phase 17 Post-Route Event Processing
+[14:46:37] Finished 5th of 6 tasks (FPGA routing). Elapsed time: 00h 37m 12s 
+
+[14:46:37] Starting bitstream generation..
+Starting optional post-route physical design optimization.
+Finished optional post-route physical design optimization.
+[15:01:03] Creating bitmap...
+[15:04:47] Writing bitstream ./level0_i_ulp_my_rm_partial.bit...
+[15:04:47] Finished 6th of 6 tasks (FPGA bitstream generation). Elapsed time: 00h 18m 09s 
+Check VPL, containing 12 checks, has run: 0 errors, 2 advisory violations
+ADVISORY: [AUTO-FREQ-SCALING-08] For clock clk_kernel_00_unbuffered_net, the auto scaled frequency 302.1 MHz exceeds the original specified frequency. The compiler will select the original specified frequency of 300.0 MHz.
+ADVISORY: [AUTO-FREQ-SCALING-08] For clock hbm_aclk, the auto scaled frequency 469.4 MHz exceeds the original specified frequency. The compiler will select the original specified frequency of 450.0 MHz.
+[15:05:26] Run vpl: Step impl: Completed
+[15:05:31] Run vpl: FINISHED. Run Status: impl Complete!
+INFO: [v++ 60-1441] [15:06:21] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:03:41 ; elapsed = 02:23:49 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 97005 ; free virtual = 173722
+INFO: [v++ 60-1443] [15:06:21] Run run_link: Step rtdgen: Started
+INFO: [v++ 60-1453] Command Line: rtdgen
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+INFO: [v++ 60-991] clock name 'ulp_ucs/aclk_kernel_01' (clock ID '1') is being mapped to clock name 'KERNEL_CLK' in the xclbin
+INFO: [v++ 60-991] clock name 'ulp_ucs/aclk_kernel_00' (clock ID '0') is being mapped to clock name 'DATA_CLK' in the xclbin
+INFO: [v++ 60-991] clock name 'hbm_aclk' (clock ID '') is being mapped to clock name 'hbm_aclk' in the xclbin
+INFO: [v++ 60-1230] The compiler selected the following frequencies for the runtime controllable kernel clock(s) and scalable system clock(s): System (SYSTEM) clock: hbm_aclk = 450, Kernel (KERNEL) clock: ulp_ucs/aclk_kernel_01 = 500, Kernel (DATA) clock: ulp_ucs/aclk_kernel_00 = 300
+INFO: [v++ 60-1453] Command Line: cf2sw -a /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/address_map.xml -sdsl /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/sdsl.dat -xclbin /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xclbin_orig.xml -rtd /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw.rtd -o /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw.xml
+INFO: [v++ 60-1652] Cf2sw returned exit code: 0
+INFO: [v++ 60-1441] [15:06:56] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:35 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 97081 ; free virtual = 173821
+INFO: [v++ 60-1443] [15:06:56] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw.rtd --append-section :JSON:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw_xml.rtd --add-section BUILD_METADATA:JSON:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw.xml --add-section SYSTEM_METADATA:RAW:/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u55c_gen3x16_xdma_3_202210_1 --output /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+XRT Build Version: 2.18.179 (2024.2)
+       Build Date: 2024-11-05 13:57:47
+          Hash ID: 3ade2e671e5ab463400813fc2846c57edf82bb10
+Creating a default 'in-memory' xclbin image.
+
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 51909902 bytes
+Format : RAW
+File   : '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/partial.bit'
+
+Section: 'MEM_TOPOLOGY'(6) was successfully added.
+Format : JSON
+File   : 'mem_topology'
+
+Section: 'IP_LAYOUT'(8) was successfully added.
+Format : JSON
+File   : 'ip_layout'
+
+Section: 'CONNECTIVITY'(7) was successfully added.
+Format : JSON
+File   : 'connectivity'
+
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was successfully added.
+Size   : 410 bytes
+Format : JSON
+File   : '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw_xml.rtd'
+
+Section: 'BUILD_METADATA'(14) was successfully added.
+Size   : 12633 bytes
+Format : JSON
+File   : '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw_build.rtd'
+
+Section: 'EMBEDDED_METADATA'(2) was successfully added.
+Size   : 91080 bytes
+Format : RAW
+File   : '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/krnl_neuroring_hw.xml'
+
+Section: 'SYSTEM_METADATA'(22) was successfully added.
+Size   : 79976 bytes
+Format : RAW
+File   : '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/systemDiagramModelSlrBaseAddress.json'
+
+Section: 'PARTITION_METADATA'(20) was successfully appended to.
+Format : JSON
+File   : 'partition_metadata'
+
+Section: 'IP_LAYOUT'(8) was successfully appended to.
+Format : JSON
+File   : 'ip_layout'
+Successfully wrote (52139380 bytes) to the output file: /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin
+Leaving xclbinutil.
+INFO: [v++ 60-1441] [15:07:02] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:06 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 97040 ; free virtual = 173837
+INFO: [v++ 60-1443] [15:07:02] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --force --info /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin.info --input /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin
+INFO: [v++ 60-1454] Run Directory: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/run_link
+INFO: [v++ 60-1441] [15:07:08] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:00.68 ; elapsed = 00:00:06 . Memory (MB): peak = 515.875 ; gain = 0.000 ; free physical = 97063 ; free virtual = 173866
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link/system_estimate_krnl_neuroring_hw.xtxt
+INFO: [v++ 60-586] Created /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.ltx
+INFO: [v++ 60-586] Created _build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+	Guidance: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link/v++_link_krnl_neuroring_hw_guidance.html
+	Timing Report: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt
+	Vivado Log: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/logs/link/vivado.log
+	Steps Log File: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the Vitis Unified IDE to visualize and navigate the reports. Run the following command. 
+    vitis --analyze /home/miahafiz/NeuroRing_a_sudoku_v2/_build_dir.hw.NUM_4096.CORE_10.FREQ_300/krnl_neuroring_hw.xclbin.link_summary 
+INFO: [v++ 60-791] Total elapsed time: 2h 25m 50s

@@ -1,0 +1,96 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/krnl_synapserouter
+	Log files: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/logs/krnl_synapserouter
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter.xo.compile_summary, at Wed Feb 25 12:39:23 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/krnl_synapserouter/v++_compile_krnl_synapserouter_guidance.html', at Wed Feb 25 12:39:23 2026
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/opt/xilinx/platforms/xilinx_u55c_gen3x16_xdma_3_202210_1/hw/hw.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2025.1
+INFO: [v++ 60-1302] Platform 'xilinx_u55c_gen3x16_xdma_3_202210_1.xpfm' has been explicitly enabled for this release.
+INFO: [v++ 60-585] Compiling for hardware target
+INFO: [v++ 60-423]   Target device: xilinx_u55c_gen3x16_xdma_3_202210_1
+WARNING: [v++ 60-889] User-specified kernel frequency for ID 0 is the same as the default frequency 300 MHz, so it will be ignored
+INFO: [v++ 60-242] Creating kernel: 'SynapseRouter'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: SynapseRouter Log file: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter/SynapseRouter/vitis_hls.log :
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_67_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 4, loop 'VITIS_LOOP_67_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_185_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 4, loop 'VITIS_LOOP_185_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_1_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:546) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:546 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_2_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:549) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:549 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_3_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:552) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:552 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_4_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:555) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:555 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_5_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:558) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:558 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_6_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:561) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:561 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_283_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_283_1'
+INFO: [v++ 204-61] Pipelining loop 'accumulate_loop'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 4, Final II = 4, Depth = 56, loop 'accumulate_loop'
+INFO: [v++ 204-61] Pipelining loop 'output_loop'.
+WARNING: [v++ 200-885] The II Violation in module 'Accumulator_7_Pipeline_output_loop' (loop 'output_loop'): Unable to schedule 'store' operation 0 bit ('head_addr_2_write_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:564) of variable 'add_ln384', /home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:384->/home/miahafiz/NeuroRing_a_sudoku_v2/hls/SynapseRouter.cpp:564 on array 'head' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'head'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 3, Depth = 7, loop 'output_loop'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_400_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'VITIS_LOOP_400_1'
+INFO: [v++ 204-61] Pipelining loop 'time_loop_VITIS_LOOP_423_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'time_loop_VITIS_LOOP_423_2'
+INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [v++ 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/reports/krnl_synapserouter/system_estimate_krnl_synapserouter.xtxt
+INFO: [v++ 60-586] Created _x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter.xo
+INFO: [v++ 60-2343] Use the Vitis Unified IDE to visualize and navigate the reports. Run the following command. 
+    vitis --analyze /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/krnl_synapserouter.xo.compile_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 59s

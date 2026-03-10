@@ -1,0 +1,1059 @@
+
+*** Running vivado
+    with args -log ulp_NeuroRing_Poisson_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ulp_NeuroRing_Poisson_0_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Wed Feb 25 12:49:49 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source ulp_NeuroRing_Poisson_0_0.tcl -notrace
+INFO: Dispatch client connection id - 42293
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1537.648 ; gain = 2.992 ; free physical = 30339 ; free virtual = 130500
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_SynapseRouter_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_Poisson_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/int/xo/ip_repo/xilinx_com_hls_NeuroRing_1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/cache/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/ipcache'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/opt/xilinx/2025.1/Vitis/data/vitis/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axi_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axi_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axis_clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/axis_clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/axis_clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:clk_metadata_adapter:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/clk_metadata_adapter_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/clk_metadata_adapter_v1_0
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:pipeline_reg:1.0'. The one found in IP location '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/other_ipdefs/pipeline_reg_v1_0' will take precedence over the same IP in location /home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/.local/hw_platform/iprepo/ipdefs/pxi_ii_infra/pipeline_reg_v1_0
+Command: synth_design -top ulp_NeuroRing_Poisson_0_0 -part xcu55c-fsvh2892-2L-e -directive sdx_optimization_effort_high -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu55c'
+INFO: [Device 21-403] Loading part xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 1341300
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3238.117 ; gain = 289.777 ; free physical = 5472 ; free virtual = 100522
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'ulp_NeuroRing_Poisson_0_0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_NeuroRing_Poisson_0_0/synth/ulp_NeuroRing_Poisson_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_PoissonProb_RAM_2P_BRAM_1R1W' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_PoissonProb_RAM_2P_BRAM_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_PoissonProb_RAM_2P_BRAM_1R1W' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_PoissonProb_RAM_2P_BRAM_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_SynapseSize_RAM_2P_BRAM_1R1W' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_SynapseSize_RAM_2P_BRAM_1R1W.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_SynapseSize_RAM_2P_BRAM_1R1W' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_SynapseSize_RAM_2P_BRAM_1R1W.v:7]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1.v:45]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1.v:45]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_flow_control_loop_pipe_sequential_init' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_flow_control_loop_pipe_sequential_init' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mul_9ns_11ns_19_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_9ns_11ns_19_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mul_9ns_11ns_19_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_9ns_11ns_19_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mul_10ns_12ns_21_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_10ns_12ns_21_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mul_10ns_12ns_21_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_10ns_12ns_21_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mul_11ns_13ns_23_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_11ns_13ns_23_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mul_11ns_13ns_23_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_11ns_13ns_23_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mul_12ns_14ns_25_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_12ns_14ns_25_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mul_12ns_14ns_25_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_12ns_14ns_25_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized2' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized2' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized3' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized3' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized4' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized4' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized5' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized5' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized6' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_19_4_32_1_1__parameterized6' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_19_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_4_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_4_32_1_1.v:8]
+INFO: [Synth 8-226] default block is never used [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_4_32_1_1.v:126]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_4_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_4_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_5_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_5_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_5_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_5_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_6_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_6_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_6_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_6_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_200_6' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_200_6.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_200_6' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_200_6.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1_x' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1_x.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_33_7_32_1_1_x' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_33_7_32_1_1_x.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_control_s_axi' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_control_s_axi.v:9]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_control_s_axi.v:252]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_control_s_axi' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_control_s_axi.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_store' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:903]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized2' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized2' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized2' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized2' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized3' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized3' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized3' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized3' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_store' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:903]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_load' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:413]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized4' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_mem' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3814]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_mem' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3814]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized4' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_load' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:413]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_write' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:1934]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_burst_converter' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:2229]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_burst_sequential' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:2835]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_burst_sequential' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:2835]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_burst_converter' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:2229]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_throttle' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3188]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized5' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized4' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_srl__parameterized4' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3774]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_fifo__parameterized5' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3561]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_throttle' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3188]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized2' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized2' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_write' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:1934]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_read' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:1682]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized3' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized3' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:3457]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi_read' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:1682]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_gmem_syn_m_axi' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_gmem_syn_m_axi.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_sparsemux_257_7_32_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_257_7_32_1_1.v:8]
+INFO: [Synth 8-226] default block is never used [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_257_7_32_1_1.v:798]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_sparsemux_257_7_32_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_sparsemux_257_7_32_1_1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_mul_12ns_15ns_26_1_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_12ns_15ns_26_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_mul_12ns_15ns_26_1_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_mul_12ns_15ns_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_urem_32ns_32ns_32_36_1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:68]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_urem_32ns_32ns_32_36_1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:68]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_regslice_both' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_regslice_both' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_regslice_both__parameterized0' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_regslice_both__parameterized0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NeuroRing_Poisson_regslice_both__parameterized1' [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson_regslice_both__parameterized1' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_regslice_both.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'NeuroRing_Poisson' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'ulp_NeuroRing_Poisson_0_0' (0#1) [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_NeuroRing_Poisson_0_0/synth/ulp_NeuroRing_Poisson_0_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element int_ap_done_reg was removed.  [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_control_s_axi.v:341]
+WARNING: [Synth 8-6014] Unused sequential element loop[31].divisor_tmp_reg[32] was removed.  [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:52]
+WARNING: [Synth 8-6014] Unused sequential element quot_reg was removed.  [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:122]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-7129] Port reset in module NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_RID[0] in module NeuroRing_Poisson_gmem_syn_m_axi_read is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_RRESP[1] in module NeuroRing_Poisson_gmem_syn_m_axi_read is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_RRESP[0] in module NeuroRing_Poisson_gmem_syn_m_axi_read is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_RUSER[0] in module NeuroRing_Poisson_gmem_syn_m_axi_read is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[7] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[6] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[5] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[4] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[3] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[2] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[1] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BURST_AWLEN[0] in module NeuroRing_Poisson_gmem_syn_m_axi_throttle is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_BID[0] in module NeuroRing_Poisson_gmem_syn_m_axi_write is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_BRESP[1] in module NeuroRing_Poisson_gmem_syn_m_axi_write is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_BRESP[0] in module NeuroRing_Poisson_gmem_syn_m_axi_write is either unconnected or has no load
+WARNING: [Synth 8-7129] Port in_BUS_BUSER[0] in module NeuroRing_Poisson_gmem_syn_m_axi_write is either unconnected or has no load
+WARNING: [Synth 8-7129] Port AWADDR[1] in module NeuroRing_Poisson_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port AWADDR[0] in module NeuroRing_Poisson_control_s_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_ARREADY in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RVALID in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[255] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[254] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[253] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[252] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[251] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[250] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[249] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[248] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[247] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[246] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[245] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[244] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[243] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[242] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[241] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[240] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[239] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[238] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[237] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[236] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[235] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[234] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[233] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[232] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[231] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[230] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[229] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[228] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[227] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[226] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[225] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[224] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[223] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[222] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[221] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[220] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[219] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[218] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[217] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[216] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[215] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[214] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[213] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[212] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[211] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[210] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[209] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[208] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[207] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[206] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[205] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[204] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[203] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[202] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[201] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[200] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[199] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[198] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[197] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[196] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[195] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[194] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[193] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[192] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[191] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[190] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[189] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[188] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[187] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[186] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[185] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[184] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[183] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[182] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[181] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[180] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[179] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[178] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_gmem_syn_0_RDATA[177] in module NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_write_spike_status is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 3441.055 ; gain = 492.715 ; free physical = 1867 ; free virtual = 91675
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 3441.055 ; gain = 492.715 ; free physical = 1765 ; free virtual = 91498
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 3441.055 ; gain = 492.715 ; free physical = 1768 ; free virtual = 91498
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.44 ; elapsed = 00:00:00.46 . Memory (MB): peak = 3441.055 ; gain = 0.000 ; free physical = 4265 ; free virtual = 92992
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_NeuroRing_Poisson_0_0/constraints/NeuroRing_Poisson_ooc.xdc] for cell 'inst'
+create_clock: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 3573.891 ; gain = 24.930 ; free physical = 6922 ; free virtual = 93982
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ip/ulp_NeuroRing_Poisson_0_0/constraints/NeuroRing_Poisson_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_NeuroRing_Poisson_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_NeuroRing_Poisson_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3573.891 ; gain = 0.000 ; free physical = 6574 ; free virtual = 93641
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:01 . Memory (MB): peak = 3580.828 ; gain = 6.902 ; free physical = 5692 ; free virtual = 92761
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 3580.828 ; gain = 632.488 ; free physical = 9836 ; free virtual = 96973
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu55c-fsvh2892-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 3588.832 ; gain = 640.492 ; free physical = 9829 ; free virtual = 96966
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 3588.832 ; gain = 640.492 ; free physical = 9818 ; free virtual = 96955
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter75_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1778]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter74_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1777]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter73_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1776]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter72_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1775]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter71_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1774]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter70_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1773]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter69_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1771]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter68_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1770]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter67_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1769]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter66_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1768]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter65_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1767]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter64_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1766]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter63_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1765]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter62_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1764]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter61_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1763]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter60_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1762]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter59_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1760]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter58_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1759]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter57_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1758]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter56_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1757]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter55_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1756]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter54_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1755]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter53_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1754]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter52_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1753]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter51_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1752]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter50_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1751]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter49_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1749]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter48_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1748]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter47_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1747]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter46_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1746]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter45_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1745]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter44_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1744]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter43_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1743]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter42_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1742]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter41_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1741]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter40_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1740]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter39_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1738]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter38_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1737]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter37_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1736]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter36_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1735]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter35_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1734]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter34_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1733]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter33_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1732]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter32_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1731]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter31_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1730]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter30_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1729]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter29_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1727]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter28_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1726]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter27_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1725]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter26_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1724]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter25_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1723]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter24_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1722]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter23_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1721]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter22_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1720]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter21_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1719]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter20_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1718]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter19_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1717]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter18_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1716]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter17_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1715]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter16_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1714]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter15_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1713]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter14_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1712]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter13_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1711]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter12_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1710]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter11_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1709]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter10_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1708]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter9_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1708]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter8_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1780]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter7_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1779]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter6_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1772]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter5_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1761]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter4_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1750]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter3_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1739]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter2_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1728]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_pp0_iter1_reg_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1865]
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_2_reg_846_reg' and it is trimmed from '13' to '12' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1.v:1864]
+INFO: [Synth 8-802] inferred FSM for state register 'wstate_reg' in module 'NeuroRing_Poisson_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'NeuroRing_Poisson_control_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized0'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized1'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized2'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized3'
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[30].remd_tmp_reg[31]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[29].remd_tmp_reg[30]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[28].remd_tmp_reg[29]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[27].remd_tmp_reg[28]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[26].remd_tmp_reg[27]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[25].remd_tmp_reg[26]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[24].remd_tmp_reg[25]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[23].remd_tmp_reg[24]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[22].remd_tmp_reg[23]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[21].remd_tmp_reg[22]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[20].remd_tmp_reg[21]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[19].remd_tmp_reg[20]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[18].remd_tmp_reg[19]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[17].remd_tmp_reg[18]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[16].remd_tmp_reg[17]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[15].remd_tmp_reg[16]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[14].remd_tmp_reg[15]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[13].remd_tmp_reg[14]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[12].remd_tmp_reg[13]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[11].remd_tmp_reg[12]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[10].remd_tmp_reg[11]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[9].remd_tmp_reg[10]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[8].remd_tmp_reg[9]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+WARNING: [Synth 8-3936] Found unconnected internal register 'loop[7].remd_tmp_reg[8]' and it is trimmed from '32' to '31' bits. [/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.gen/my_rm/bd/ulp/ipshared/c431/hdl/verilog/NeuroRing_Poisson_urem_32ns_32ns_32_36_1.v:51]
+INFO: [Common 17-14] Message 'Synth 8-3936' appears 100 times and further instances of the messages will be disabled.
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_regslice_both'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_regslice_both__parameterized0'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'NeuroRing_Poisson_regslice_both__parameterized1'
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0001 |                               11
+*
+                  WRIDLE |                             0010 |                               00
+                  WRDATA |                             0100 |                               01
+                  WRRESP |                             1000 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'wstate_reg' using encoding 'one-hot' in module 'NeuroRing_Poisson_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                               10
+*
+                  RDIDLE |                              010 |                               00
+                  RDDATA |                              100 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rstate_reg' using encoding 'one-hot' in module 'NeuroRing_Poisson_control_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                               00 |                               10
+                     ONE |                               10 |                               11
+                     TWO |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                               00 |                               10
+                     ONE |                               10 |                               11
+                     TWO |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                               00 |                               10
+                     ONE |                               10 |                               11
+                     TWO |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized1'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                               00 |                               10
+                     ONE |                               10 |                               11
+                     TWO |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized2'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    ZERO |                               00 |                               10
+                     ONE |                               10 |                               11
+                     TWO |                               01 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_gmem_syn_m_axi_reg_slice__parameterized3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_regslice_both'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_regslice_both__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                               00 |                               00
+*
+                    ZERO |                               01 |                               10
+                     ONE |                               11 |                               11
+                     TWO |                               10 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'NeuroRing_Poisson_regslice_both__parameterized1'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:44 . Memory (MB): peak = 3588.832 ; gain = 640.492 ; free physical = 6845 ; free virtual = 94022
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'inst/regslice_both_SynapseStreamRight_V_keep_V_U' (NeuroRing_Poisson_regslice_both__parameterized0) to 'inst/regslice_both_SynapseStreamRight_V_strb_V_U'
+INFO: [Synth 8-223] decloning instance 'inst/regslice_both_SynapseStreamLeft_V_keep_V_U' (NeuroRing_Poisson_regslice_both__parameterized0) to 'inst/regslice_both_SynapseStreamLeft_V_strb_V_U'
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 3     
+	   2 Input   52 Bit       Adders := 2     
+	   3 Input   33 Bit       Adders := 64    
+	   3 Input   32 Bit       Adders := 1     
+	   4 Input   32 Bit       Adders := 2     
+	   2 Input   32 Bit       Adders := 5     
+	   2 Input   24 Bit       Adders := 1     
+	   2 Input   13 Bit       Adders := 3     
+	   2 Input   12 Bit       Adders := 5     
+	   2 Input   10 Bit       Adders := 2     
+	   3 Input    9 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 10    
+	   3 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 4     
+	   2 Input    6 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 16    
+	   2 Input    4 Bit       Adders := 6     
+	   2 Input    3 Bit       Adders := 2     
++---XORs : 
+	   2 Input     32 Bit         XORs := 27    
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	              288 Bit    Registers := 1     
+	              258 Bit    Registers := 3     
+	              256 Bit    Registers := 45    
+	              226 Bit    Registers := 1     
+	               97 Bit    Registers := 4     
+	               96 Bit    Registers := 2     
+	               73 Bit    Registers := 2     
+	               64 Bit    Registers := 8     
+	               59 Bit    Registers := 3     
+	               52 Bit    Registers := 2     
+	               32 Bit    Registers := 341   
+	               31 Bit    Registers := 63    
+	               26 Bit    Registers := 1     
+	               25 Bit    Registers := 1     
+	               24 Bit    Registers := 1     
+	               22 Bit    Registers := 2     
+	               20 Bit    Registers := 2     
+	               19 Bit    Registers := 1     
+	               18 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	               14 Bit    Registers := 1     
+	               13 Bit    Registers := 3     
+	               12 Bit    Registers := 78    
+	               10 Bit    Registers := 6     
+	                9 Bit    Registers := 18    
+	                8 Bit    Registers := 22    
+	                7 Bit    Registers := 21    
+	                6 Bit    Registers := 6     
+	                5 Bit    Registers := 15    
+	                4 Bit    Registers := 86    
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 18    
+	                1 Bit    Registers := 588   
++---RAMs : 
+	             128K Bit	(4096 X 32 bit)          RAMs := 1     
+	              64K Bit	(255 X 258 bit)          RAMs := 1     
+	              14K Bit	(456 X 32 bit)          RAMs := 18    
++---Muxes : 
+	   2 Input  258 Bit        Muxes := 1     
+	   2 Input  256 Bit        Muxes := 8     
+	   2 Input   97 Bit        Muxes := 2     
+	   2 Input   73 Bit        Muxes := 1     
+	   2 Input   64 Bit        Muxes := 7     
+	   2 Input   52 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 41    
+	   4 Input   32 Bit        Muxes := 4     
+	   2 Input   31 Bit        Muxes := 62    
+	   2 Input   20 Bit        Muxes := 2     
+	   2 Input   14 Bit        Muxes := 2     
+	   2 Input   13 Bit        Muxes := 3     
+	   2 Input   12 Bit        Muxes := 1     
+	   4 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 3     
+	   3 Input   11 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 1     
+	   3 Input   10 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 36    
+	   4 Input    9 Bit        Muxes := 6     
+	   2 Input    8 Bit        Muxes := 3     
+	   4 Input    8 Bit        Muxes := 4     
+	   2 Input    7 Bit        Muxes := 6     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 11    
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 5     
+	   2 Input    3 Bit        Muxes := 5     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 193   
+	   4 Input    2 Bit        Muxes := 46    
+	   3 Input    2 Bit        Muxes := 18    
+	   2 Input    1 Bit        Muxes := 201   
+	   4 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 9024 (col length:94)
+BRAMs: 4032 (col length: RAMB18 288 RAMB36 144)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP tmp_reg_9473_reg, operation Mode is: ((A:0x38f)*B2)'.
+DSP Report: register tmp_reg_9473_reg is absorbed into DSP tmp_reg_9473_reg.
+DSP Report: register tmp_reg_9473_reg is absorbed into DSP tmp_reg_9473_reg.
+DSP Report: operator mul_9ns_11ns_19_1_1_U25/tmp_product is absorbed into DSP tmp_reg_9473_reg.
+DSP Report: Generating DSP tmp_26_reg_9548_reg, operation Mode is: ((A:0x1c72)*B)'.
+DSP Report: register tmp_26_reg_9548_reg is absorbed into DSP tmp_26_reg_9548_reg.
+DSP Report: operator mul_12ns_14ns_25_1_1_U32/tmp_product is absorbed into DSP tmp_26_reg_9548_reg.
+DSP Report: Generating DSP tmp_21_reg_9538_reg, operation Mode is: ((A:0x1c72)*B)'.
+DSP Report: register tmp_21_reg_9538_reg is absorbed into DSP tmp_21_reg_9538_reg.
+DSP Report: operator mul_12ns_14ns_25_1_1_U31/tmp_product is absorbed into DSP tmp_21_reg_9538_reg.
+DSP Report: Generating DSP tmp_18_reg_9523_reg, operation Mode is: ((A:0x1c72)*B2)'.
+DSP Report: register tmp_18_reg_9523_reg is absorbed into DSP tmp_18_reg_9523_reg.
+DSP Report: register tmp_18_reg_9523_reg is absorbed into DSP tmp_18_reg_9523_reg.
+DSP Report: operator mul_12ns_14ns_25_1_1_U30/tmp_product is absorbed into DSP tmp_18_reg_9523_reg.
+DSP Report: Generating DSP tmp_15_reg_9513_reg, operation Mode is: ((A:0x1c72)*B)'.
+DSP Report: register tmp_15_reg_9513_reg is absorbed into DSP tmp_15_reg_9513_reg.
+DSP Report: operator mul_12ns_14ns_25_1_1_U29/tmp_product is absorbed into DSP tmp_15_reg_9513_reg.
+DSP Report: Generating DSP tmp_12_reg_9503_reg, operation Mode is: ((A:0xe39)*B)'.
+DSP Report: register tmp_12_reg_9503_reg is absorbed into DSP tmp_12_reg_9503_reg.
+DSP Report: operator mul_11ns_13ns_23_1_1_U28/tmp_product is absorbed into DSP tmp_12_reg_9503_reg.
+DSP Report: Generating DSP tmp_4_reg_9493_reg, operation Mode is: ((A:0xe39)*B)'.
+DSP Report: register tmp_4_reg_9493_reg is absorbed into DSP tmp_4_reg_9493_reg.
+DSP Report: operator mul_11ns_13ns_23_1_1_U27/tmp_product is absorbed into DSP tmp_4_reg_9493_reg.
+DSP Report: Generating DSP tmp_3_reg_9483_reg, operation Mode is: ((A:0x71d)*B)'.
+DSP Report: register tmp_3_reg_9483_reg is absorbed into DSP tmp_3_reg_9483_reg.
+DSP Report: operator mul_10ns_12ns_21_1_1_U26/tmp_product is absorbed into DSP tmp_3_reg_9483_reg.
+DSP Report: Generating DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg, operation Mode is: (C:0xc35000)+((A:0x36b0)'*B2)'.
+DSP Report: register mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: register mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/a_reg_reg is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: register mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: register mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/m_reg_reg is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: operator mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: operator mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/m is absorbed into DSP mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg.
+DSP Report: Generating DSP zext_ln146_reg_3874_reg, operation Mode is: ((A:0x36b0)*B2)'.
+DSP Report: register zext_ln146_reg_3874_reg is absorbed into DSP zext_ln146_reg_3874_reg.
+DSP Report: register zext_ln146_reg_3874_reg is absorbed into DSP zext_ln146_reg_3874_reg.
+DSP Report: operator mul_12ns_15ns_26_1_1_U369/tmp_product is absorbed into DSP zext_ln146_reg_3874_reg.
+INFO: [Synth 8-5784] Optimized 1 bits of RAM "SynapseSize_U/ram_reg" due to constant propagation. Old ram width 32 bits, new ram width 31 bits.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_state_reg[1]) is unused and will be removed from module NeuroRing_Poisson_regslice_both__parameterized0__1.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_state_reg[0]) is unused and will be removed from module NeuroRing_Poisson_regslice_both__parameterized0__1.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:31 ; elapsed = 00:01:40 . Memory (MB): peak = 3647.176 ; gain = 698.836 ; free physical = 44281 ; free virtual = 130100
+---------------------------------------------------------------------------------
+ Sort Area is NeuroRing_Poisson__GCB1 mac_muladd_14ns_12ns_24ns_27_4_1_U1/NeuroRing_Poisson_mac_muladd_14ns_12ns_24ns_27_4_1_DSP48_0_U/p_reg_reg_d : 0 0 : 2641 2641 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB1 zext_ln146_reg_3874_reg_f : 0 0 : 727 727 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_18_reg_9523_reg_9 : 0 0 : 539 539 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_15_reg_9513_reg_7 : 0 0 : 526 526 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_21_reg_9538_reg_b : 0 0 : 526 526 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_26_reg_9548_reg_c : 0 0 : 526 526 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_3_reg_9483_reg_2 : 0 0 : 493 493 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_reg_9473_reg_0 : 0 0 : 372 372 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_12_reg_9503_reg_6 : 0 0 : 359 359 : Used 1 time 0
+ Sort Area is NeuroRing_Poisson__GCB0 tmp_4_reg_9493_reg_4 : 0 0 : 359 359 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name                 | RTL Object                                | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|inst                        | rnd_prev_U/ram_reg                        | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_1_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_2_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_3_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_4_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_5_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_6_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_7_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_8_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | SynapseSize_U/ram_reg                     | 4 K x 32(READ_FIRST)   | W |   | 4 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 3      | 2,1,1           | 
+|inst                        | PoissonProb_8_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_7_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_6_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_5_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_4_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_3_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_2_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_1_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_U/ram_reg                     | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst/i_4_2/gmem_syn_m_axi_U | load_unit_0/buff_rdata/U_fifo_mem/mem_reg | 255 x 258(READ_FIRST)  | W |   | 255 x 258(WRITE_FIRST) |   | R | Port A and B     | 0      | 4      |                 | 
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------------------------------------------------------------+--------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                                                            | DSP Mapping                    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------------------------------------+--------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x38f)*B2)'                | 10     | 11     | -      | -      | 19     | 1    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x1c72)*B)'                | 13     | 14     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x1c72)*B)'                | 13     | 14     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x1c72)*B2)'               | 13     | 14     | -      | -      | 25     | 1    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x1c72)*B)'                | 13     | 14     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0xe39)*B)'                 | 12     | 13     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0xe39)*B)'                 | 12     | 13     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | ((A:0x71d)*B)'                 | 11     | 12     | -      | -      | 21     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1           | (C:0xc35000)+((A:0x36b0)'*B2)' | 27     | 13     | 25     | -      | 27     | 1    | 1    | 0    | -    | -     | 1    | 1    | 
+|NeuroRing_Poisson                                                      | ((A:0x36b0)*B2)'               | 13     | 15     | -      | -      | 28     | 1    | 0    | -    | -    | -     | 1    | 0    | 
++-----------------------------------------------------------------------+--------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:41 ; elapsed = 00:01:50 . Memory (MB): peak = 4027.492 ; gain = 1079.152 ; free physical = 42336 ; free virtual = 128302
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5784] Optimized 1 bits of RAM "SynapseSize_U/ram_reg" due to constant propagation. Old ram width 32 bits, new ram width 31 bits.
+INFO: [Synth 8-5556] The block RAM "inst/SynapseSize_U/ram_reg" may be mapped as a cascade chain, because it is not timing critical.
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:50 ; elapsed = 00:02:01 . Memory (MB): peak = 4132.531 ; gain = 1184.191 ; free physical = 30943 ; free virtual = 116985
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name                 | RTL Object                                | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|inst                        | rnd_prev_U/ram_reg                        | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_1_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_2_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_3_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_4_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_5_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_6_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_7_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | rnd_prev_8_U/ram_reg                      | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | SynapseSize_U/ram_reg                     | 4 K x 32(READ_FIRST)   | W |   | 4 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 3      | 2,1,1           | 
+|inst                        | PoissonProb_8_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_7_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_6_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_5_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_4_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_3_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_2_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_1_U/ram_reg                   | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst                        | PoissonProb_U/ram_reg                     | 456 x 32(READ_FIRST)   | W |   | 456 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|inst/i_4_2/gmem_syn_m_axi_U | load_unit_0/buff_rdata/U_fifo_mem/mem_reg | 255 x 258(READ_FIRST)  | W |   | 255 x 258(WRITE_FIRST) |   | R | Port A and B     | 0      | 4      |                 | 
++----------------------------+-------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_1_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_2_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_4_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_5_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_6_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_7_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/rnd_prev_8_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_8_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_7_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_6_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_5_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_4_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_3_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_2_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_1_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/PoissonProb_U/ram_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/gmem_syn_m_axi_U/load_unit_0/buff_rdata/U_fifo_mem/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/gmem_syn_m_axi_U/load_unit_0/buff_rdata/U_fifo_mem/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/gmem_syn_m_axi_U/load_unit_0/buff_rdata/U_fifo_mem/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/gmem_syn_m_axi_U/load_unit_0/buff_rdata/U_fifo_mem/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:02:02 ; elapsed = 00:02:13 . Memory (MB): peak = 4199.836 ; gain = 1251.496 ; free physical = 36350 ; free virtual = 122547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:09 ; elapsed = 00:02:21 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 40559 ; free virtual = 126702
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:09 ; elapsed = 00:02:21 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 40400 ; free virtual = 126546
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:12 ; elapsed = 00:02:23 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 39828 ; free virtual = 125974
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:12 ; elapsed = 00:02:24 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 39689 ; free virtual = 125836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:14 ; elapsed = 00:02:26 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 38390 ; free virtual = 124560
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:14 ; elapsed = 00:02:26 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 38198 ; free virtual = 124368
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------------+------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name       | RTL Name                                                                                                         | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------------+------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[1].dividend_tmp_reg[2][31]   | 4      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[2].dividend_tmp_reg[3][31]   | 5      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[3].dividend_tmp_reg[4][31]   | 6      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[4].dividend_tmp_reg[5][31]   | 7      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[5].dividend_tmp_reg[6][31]   | 8      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[6].dividend_tmp_reg[7][31]   | 9      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[7].dividend_tmp_reg[8][31]   | 10     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[8].dividend_tmp_reg[9][31]   | 11     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[9].dividend_tmp_reg[10][31]  | 12     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[10].dividend_tmp_reg[11][31] | 13     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[11].dividend_tmp_reg[12][31] | 14     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[12].dividend_tmp_reg[13][31] | 15     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[13].dividend_tmp_reg[14][31] | 16     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[14].dividend_tmp_reg[15][31] | 17     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[15].dividend_tmp_reg[16][31] | 18     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[16].dividend_tmp_reg[17][31] | 19     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[17].dividend_tmp_reg[18][31] | 20     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[18].dividend_tmp_reg[19][31] | 21     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[19].dividend_tmp_reg[20][31] | 22     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[20].dividend_tmp_reg[21][31] | 23     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[21].dividend_tmp_reg[22][31] | 24     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[22].dividend_tmp_reg[23][31] | 25     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[23].dividend_tmp_reg[24][31] | 26     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[24].dividend_tmp_reg[25][31] | 27     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[25].dividend_tmp_reg[26][31] | 28     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[26].dividend_tmp_reg[27][31] | 29     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[27].dividend_tmp_reg[28][31] | 30     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[28].dividend_tmp_reg[29][31] | 31     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U370/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[29].dividend_tmp_reg[30][31] | 32     | 1     | NO           | NO                 | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[1].dividend_tmp_reg[2][31]   | 4      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[2].dividend_tmp_reg[3][31]   | 5      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[3].dividend_tmp_reg[4][31]   | 6      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[4].dividend_tmp_reg[5][31]   | 7      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[5].dividend_tmp_reg[6][31]   | 8      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[6].dividend_tmp_reg[7][31]   | 9      | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[7].dividend_tmp_reg[8][31]   | 10     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[8].dividend_tmp_reg[9][31]   | 11     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[9].dividend_tmp_reg[10][31]  | 12     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[10].dividend_tmp_reg[11][31] | 13     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[11].dividend_tmp_reg[12][31] | 14     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[12].dividend_tmp_reg[13][31] | 15     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[13].dividend_tmp_reg[14][31] | 16     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[14].dividend_tmp_reg[15][31] | 17     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[15].dividend_tmp_reg[16][31] | 18     | 1     | NO           | YES                | YES               | 1      | 0       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[16].dividend_tmp_reg[17][31] | 19     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[17].dividend_tmp_reg[18][31] | 20     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[18].dividend_tmp_reg[19][31] | 21     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[19].dividend_tmp_reg[20][31] | 22     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[20].dividend_tmp_reg[21][31] | 23     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[21].dividend_tmp_reg[22][31] | 24     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[22].dividend_tmp_reg[23][31] | 25     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[23].dividend_tmp_reg[24][31] | 26     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[24].dividend_tmp_reg[25][31] | 27     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[25].dividend_tmp_reg[26][31] | 28     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[26].dividend_tmp_reg[27][31] | 29     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[27].dividend_tmp_reg[28][31] | 30     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[28].dividend_tmp_reg[29][31] | 31     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[29].dividend_tmp_reg[30][31] | 32     | 1     | NO           | YES                | YES               | 0      | 1       | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_update_membrane_potential_fu_1253/i_reg_9424_pp0_iter3_reg_reg[9]                 | 3      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_update_membrane_potential_fu_1253/ap_loop_exit_ready_pp0_iter3_reg_reg            | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_write_spike_status_fu_1424/ap_loop_exit_ready_pp0_iter69_reg_reg                  | 69     | 1     | NO           | NO                 | YES               | 0      | 3       | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1_fu_1205/trunc_ln87_reg_855_pp0_iter75_reg_reg[3]                  | 76     | 4     | NO           | NO                 | YES               | 0      | 12      | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1_fu_1205/i_2_reg_846_pp0_iter75_reg_reg[11]                        | 76     | 12    | NO           | NO                 | YES               | 0      | 36      | 
+|NeuroRing_Poisson | grp_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1_fu_1205/ap_loop_exit_ready_pp0_iter75_reg_reg                     | 75     | 1     | NO           | NO                 | YES               | 0      | 3       | 
+|NeuroRing_Poisson | val_temp_reg_3899_pp0_iter109_reg_reg[255]                                                                       | 38     | 160   | NO           | YES                | YES               | 0      | 320     | 
+|NeuroRing_Poisson | val_temp_reg_3899_pp0_iter109_reg_reg[95]                                                                        | 38     | 72    | NO           | NO                 | YES               | 0      | 144     | 
+|NeuroRing_Poisson | val_temp_reg_3899_pp0_iter109_reg_reg[31]                                                                        | 37     | 24    | NO           | NO                 | YES               | 0      | 48      | 
+|NeuroRing_Poisson | urem_32ns_32ns_32_36_1_U371/NeuroRing_Poisson_urem_32ns_32ns_32_36_1_divider_u/loop[30].dividend_tmp_reg[31][31] | 33     | 1     | NO           | NO                 | YES               | 0      | 1       | 
+|NeuroRing_Poisson | ap_enable_reg_pp0_iter72_reg                                                                                     | 71     | 1     | YES          | NO                 | YES               | 0      | 3       | 
+|NeuroRing_Poisson | ap_enable_reg_pp0_iter110_reg                                                                                    | 38     | 1     | YES          | NO                 | YES               | 0      | 2       | 
++------------------+------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+
+Dynamic Shift Register Report:
++------------+-------------+--------+------------+--------+---------+--------+--------+--------+
+|Module Name | RTL Name    | Length | Data Width | SRL16E | SRLC32E | Mux F7 | Mux F8 | Mux F9 | 
++------------+-------------+--------+------------+--------+---------+--------+--------+--------+
+|dsrl        | mem_reg[14] | 8      | 8          | 8      | 0       | 0      | 0      | 0      | 
+|dsrl__1     | mem_reg[68] | 96     | 96         | 0      | 288     | 192    | 96     | 0      | 
+|dsrl__2     | mem_reg[30] | 288    | 288        | 0      | 288     | 0      | 0      | 0      | 
+|dsrl__3     | mem_reg[14] | 1      | 1          | 1      | 0       | 0      | 0      | 0      | 
+|dsrl__4     | mem_reg[68] | 1      | 1          | 0      | 3       | 2      | 1      | 0      | 
+|dsrl__5     | mem_reg[14] | 64     | 64         | 64     | 0       | 0      | 0      | 0      | 
++------------+-------------+--------+------------+--------+---------+--------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                                                            | DSP Mapping   | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|NeuroRing_Poisson                                                      | (A'*B)'       | 12     | 14     | -      | -      | 26     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_VITIS_LOOP_87_1           | (C+(A'*B')')' | 14     | 12     | 24     | -      | 27     | 1    | 1    | 0    | -    | -     | 1    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A'*B)'       | 9      | 10     | -      | -      | 19     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 12     | 13     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 12     | 13     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A'*B)'       | 12     | 13     | -      | -      | 25     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 12     | 13     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 11     | 12     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 11     | 12     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|NeuroRing_Poisson_NeuroRing_Poisson_Pipeline_update_membrane_potential | (A*B)'        | 10     | 11     | -      | -      | 21     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |CARRY8          |   471|
+|2     |DSP_ALU         |    10|
+|4     |DSP_A_B_DATA    |    10|
+|7     |DSP_C_DATA      |    10|
+|8     |DSP_MULTIPLIER  |    10|
+|9     |DSP_M_DATA      |    10|
+|11    |DSP_OUTPUT      |    10|
+|12    |DSP_PREADD      |    10|
+|13    |DSP_PREADD_DATA |    10|
+|14    |LUT1            |   342|
+|15    |LUT2            |  3012|
+|16    |LUT3            |  2923|
+|17    |LUT4            |  1170|
+|18    |LUT5            |  1924|
+|19    |LUT6            |  5596|
+|20    |MUXF7           |  1674|
+|21    |MUXF8           |   512|
+|22    |RAMB18E2        |    19|
+|24    |RAMB36E2        |     7|
+|28    |SRL16E          |   107|
+|29    |SRLC32E         |  1248|
+|30    |FDRE            | 13731|
+|31    |FDSE            |    40|
++------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:14 ; elapsed = 00:02:26 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 38464 ; free virtual = 124632
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 115 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:59 ; elapsed = 00:02:11 . Memory (MB): peak = 4251.648 ; gain = 1163.535 ; free physical = 38736 ; free virtual = 124877
+Synthesis Optimization Complete : Time (s): cpu = 00:02:14 ; elapsed = 00:02:26 . Memory (MB): peak = 4251.648 ; gain = 1303.309 ; free physical = 38735 ; free virtual = 124876
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.34 ; elapsed = 00:00:00.34 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 36176 ; free virtual = 122311
+INFO: [Netlist 29-17] Analyzing 2667 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 32884 ; free virtual = 119035
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 10 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 10 instances
+
+Synth Design complete | Checksum: 9e1f2fca
+INFO: [Common 17-83] Releasing license: Synthesis
+208 Infos, 210 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:38 ; elapsed = 00:02:49 . Memory (MB): peak = 4251.648 ; gain = 2674.250 ; free physical = 30782 ; free virtual = 116975
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3349.354; main = 3185.631; forked = 173.271
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 5206.855; main = 4251.652; forked = 955.203
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.09 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 30340 ; free virtual = 116543
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_NeuroRing_Poisson_0_0_synth_1/ulp_NeuroRing_Poisson_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 22965 ; free virtual = 109177
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ulp_NeuroRing_Poisson_0_0, cache-ID = 4e0dc1851a067e00
+INFO: [Coretcl 2-1174] Renamed 74 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.2 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 13636 ; free virtual = 100115
+INFO: [Common 17-1381] The checkpoint '/home/miahafiz/NeuroRing_a_sudoku_v2/_x.hw.NUM_4096.CORE_10.FREQ_300/link/vivado/vpl/prj/prj.runs/ulp_NeuroRing_Poisson_0_0_synth_1/ulp_NeuroRing_Poisson_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 4251.648 ; gain = 0.000 ; free physical = 6743 ; free virtual = 93253
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ulp_NeuroRing_Poisson_0_0_utilization_synth.rpt -pb ulp_NeuroRing_Poisson_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 25 12:53:29 2026...
